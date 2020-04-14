@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0813aa6ae5d9981478de0b1cc8605322, type: 3}
+  m_Name: Inspire
+  m_EditorClassIdentifier: 
+  _displayName: Inspire
+  objectTargets: []
+  positionTargets: []
+  inspectorSubAbilities:
+  - {fileID: 11400000, guid: 53ac12f23e03c96408a57ea79edc6229, type: 2}
+  - {fileID: 11400000, guid: 07df29c41f01f8a479bf389a7df7d539, type: 2}
+  - {fileID: 11400000, guid: e384e129fcdab314eb722bd4d8fdf21a, type: 2}
+  - {fileID: 11400000, guid: 6e3051ae69b0a984995774a1fb00b496, type: 2}
+  - {fileID: 11400000, guid: 200e160e75203b84dab81ce5abc745b7, type: 2}
+  curSubAbilityIndx: 3
+  cooldownTime: 0

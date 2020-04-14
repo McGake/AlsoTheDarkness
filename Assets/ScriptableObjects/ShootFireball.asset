@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3121bdbc87d479d46bd30380923c35ab, type: 3}
+  m_Name: ShootFireball
+  m_EditorClassIdentifier: 
+  indirectMagicVariables:
+    displayName: ShootFireball
+    abilityType: 8
+    usableContexts: 01000000
+    damage: 0
+    coolDown: 9
+    abilityOver: 1
+    castable: 1
+    source: {fileID: 0}
+    curCooldownEndTime: 0
+    walkSpeed: 2
+    buttonDownTime: 2
+    repeateSpeed: 0.7
+    numberOfMagicObjects: 3
+    magicObject: {fileID: 5800589841093965516, guid: dc2278c849113a84095a9ef511aef0a2,
+      type: 3}
+    distanceToStepForward: {x: -2, y: 0, z: 0}

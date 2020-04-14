@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d92b296924277764984a979d9a74a7f5, type: 3}
+  m_Name: transitionZone
+  m_EditorClassIdentifier: 
+  triggerZone: {fileID: 3469405424360981490, guid: 1f24bcbaa5258a04eb45f78d9a15ac9f,
+    type: 3}
+  sceneToLoad: TestOverworld

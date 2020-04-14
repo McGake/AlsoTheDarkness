@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 586cd652f02c8cc479616dbcbad4e7fb, type: 3}
+  m_Name: testMedium
+  m_EditorClassIdentifier: 
+  zoneName: YellowRed3
+  encounterProb: 2
+  enemyMixTypesProb:
+  - enemyMix:
+      name: 
+      encounterMonsters:
+      - muppets
+    prob: 20
+  - enemyMix:
+      name: 
+      encounterMonsters:
+      - Go-Bots
+    prob: 20
+  - enemyMix:
+      name: 
+      encounterMonsters:
+      - Theatans
+    prob: 20
+  encounterTypesProb: []

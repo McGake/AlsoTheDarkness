@@ -66,6 +66,9 @@ public class Ability:ScriptableObject
     public delegate void DelStartSelectAllPCs(SubAbility subAb);
     public DelStartSelectAllPCs StartSelectAllPCs;
 
+    public delegate void DelStartSelectAllEnemies(SubAbility subAb);
+    public DelStartSelectAllEnemies StartSelectAllEnemeis;
+
     public delegate void DelStartSelectAllPCsButCurrent(SubAbility subAb);
     public DelStartSelectAllPCsButCurrent StartSelectAllPCsButCurrent;
 

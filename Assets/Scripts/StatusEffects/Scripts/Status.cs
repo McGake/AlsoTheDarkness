@@ -17,7 +17,12 @@ public abstract class Status : ScriptableObject
     /// </summary>
     public float duration;
 
-    public virtual void SetUpStatus(BaseBattleActor bbA)
+    public bool dontAddStatus = false;
+
+    public delegate void DelFinishStatus(Status status);
+    public DelFinishStatus FinishStatus;
+
+    public virtual void SetUpStatus(Ability sourceAbility, GameObject deliveryObject)
     {
 
     }
@@ -32,6 +37,35 @@ public abstract class Status : ScriptableObject
     }
     public virtual void DoStatusEnd(BaseBattleActor bbA)
     {
+
+    }
+
+    public virtual bool OnStatusAdded(BaseBattleActor bbA, Status statusAdded)
+    {
+        return true;
+    }
+
+    public virtual void OnAbilityUsed(BaseBattleActor bbA, Ability abilityUsed)
+    {
+
+    }
+
+    public void CleanUpStatusIfLastOne(BaseBattleActor bbA)
+    {
+        foreach(Status status in bbA.curStatuses) //if there is another status of this type and if it is not actually this status and if the status is not going to end on the same frame as this then don't do anything because one of the statuses is still ongoing
+        {
+            if(status.GetType() == this.GetType())
+            {
+                if (status != this)
+                {
+                    if(status.endTime < Time.time)
+                    {
+                        return;
+                    }                    
+                }
+            }
+        }
+        bbA.battleActorView.StopShowStatus(this);//otherwise stop showing the status. Consider doing all this just after status removeal?
 
     }
 }

@@ -2,21 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EffectOnContact : MonoBehaviour
+public class EffectOnContact : StatusDeliverer
 {
     public LayerMask layerMask;
 
     public List<string> targetTypes;
     public List<string> otherCollideableTypes;
 
-    public EffectDefiner effect;
-
 #pragma warning disable 649
     [SerializeField]
     private List<Status> inspectorStatusesToAdd;
 #pragma warning restore 649
 
-    private List<Status> statusesToAdd = new List<Status>();
+
 
     private List<Collider2D> alreadyColidedWith;
 
@@ -24,19 +22,40 @@ public class EffectOnContact : MonoBehaviour
 
 
 
+
+
+    public void OnEnable()
+    {
+        Debug.Log("effect on contact onenable called " + this.name);
+        GetInspectorStatuses();
+        SetUpStatuses();
+    }
+
+
+
     public void Start()
     {
+        
         //alreadyColidedWith.Clear();
 
-        foreach(Status status in inspectorStatusesToAdd)
+
+    }
+
+    private void GetInspectorStatuses()
+    {
+        if (statusesToAdd.Count < inspectorStatusesToAdd.Count)
         {
-            Status tempStat = Instantiate(status);
-            statusesToAdd.Add(tempStat);                           
+            foreach (Status status in inspectorStatusesToAdd)
+            {
+                Status tempStat = Instantiate(status);
+                statusesToAdd.Add(tempStat);
+            }
         }
     }
 
     public void OnTriggerEnter2D(Collider2D col)
-    {        
+    {
+        Debug.Log("enter2d");
         foreach(string type in targetTypes)
         {
             if(type == col.tag)
@@ -53,12 +72,22 @@ public class EffectOnContact : MonoBehaviour
         }
     }
 
+    public void OnTriggerStay2D(Collider2D col)
+    {
+
+    }
+
+    public void OnTriggerExit2D(Collider2D col)
+    {
+        
+    }
+
     #region Effects To Apply
     private void ApplyEffect(Collider2D col)
     {
         BaseBattleActor actorToAddEffectTo;
         actorToAddEffectTo = col.GetComponent<BaseBattleActor>();
-
+        Debug.Log("effect applying");
         foreach(Status status in statusesToAdd)
         {
             actorToAddEffectTo.AddStatus(status);
@@ -76,4 +105,25 @@ public class EffectOnContact : MonoBehaviour
     }
     #endregion Effects To Apply
 
+}
+
+public class StatusDeliverer:MonoBehaviour
+{
+    public Ability sourceAbility;
+
+    public void SetSourceAbility(Ability newSource)
+    {
+        sourceAbility = newSource;
+    }
+
+    public void SetUpStatuses()
+    {
+        foreach (Status status in statusesToAdd)
+        {
+            Debug.Log("set up called for " + status.name);
+            status.SetUpStatus(sourceAbility, gameObject);
+        }
+    }
+
+    protected List<Status> statusesToAdd = new List<Status>();
 }

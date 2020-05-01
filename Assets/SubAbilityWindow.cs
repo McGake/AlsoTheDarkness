@@ -5,7 +5,7 @@ using UnityEditor;
 
 public class SubAbilityWindow : EditorWindow
 {
-    [MenuItem("Window/Example")]
+    /*[MenuItem("Window/Example")]
     public static void ShowWindow()
     {
         EditorWindow.GetWindow<SubAbilityWindow>("SubAbilityWindow");
@@ -27,5 +27,5 @@ public class SubAbilityWindow : EditorWindow
             if (s.Contains(".prefab")) result.Add(s);
         }
         return result.ToArray();
-    }
+    }*/
 }

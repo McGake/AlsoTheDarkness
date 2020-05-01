@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3ed3a95ccbfe204cb8ca769f48bc50b, type: 3}
   m_Name: FireProjectileTimed
   m_EditorClassIdentifier: 
-  isFinished: 1
   projectilePrefab: {fileID: 5800589841093965516, guid: ae60a5a169f14c1449a562e7c8183445,
     type: 3}
+  projectiles: []

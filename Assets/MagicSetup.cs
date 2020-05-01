@@ -6,7 +6,7 @@ using UnityEngine;
 [CustomEditor(typeof(TestMagicAim))]
 public class MagicSetup : Editor
 {
-    TestMagicAim tMA;
+  /*  TestMagicAim tMA;
 
     ArcHandle arcHandle = new ArcHandle();
 
@@ -50,7 +50,7 @@ public class MagicSetup : Editor
                 //tMA.impulse = arcHandle.radius;
             }
         }
-    }
+    }*/
 
 
 }

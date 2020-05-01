@@ -89,6 +89,8 @@ public class BattleStarter : MonoBehaviour
         foreach (PC pc in bd.pcsInBattle)
         {
             pcBlanks[curPCBlankIndex].SetActive(true);
+            Debug.Log(pc.name);
+            Debug.Log(pc.battleAnimOverride);
             pcBlanks[curPCBlankIndex].GetComponent<Animator>().runtimeAnimatorController = pc.battleAnimOverride;
             curPCBlankIndex++;
             if(curPCBlankIndex >= maxBlanksCount)

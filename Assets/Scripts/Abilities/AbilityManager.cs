@@ -28,8 +28,8 @@ public class AbilityManager : MonoBehaviour
             aIU.AbilityStateMachine();
             if (aIU.IsAbilityOver())
             {
-                Debug.Log("ability was over");
-                Debug.Log("number of abilities just in use " + abilitiesInUse.Count);
+               // Debug.Log("ability was over");
+                //Debug.Log("number of abilities just in use " + abilitiesInUse.Count);
                 abilitiesToRemove.Add(aIU);//I actually dont know if this will mess up the for each loop
             }
         }
@@ -39,9 +39,9 @@ public class AbilityManager : MonoBehaviour
     {
         foreach (Ability aTR in abilitiesToRemove)
         {
-            Debug.Log(aTR.DisplayName + " was removed");
+            //Debug.Log(aTR.DisplayName + " was removed");
             abilitiesInUse.Remove(aTR);
-            Debug.Log("number of abilities in use after remove " + abilitiesInUse.Count);
+            //Debug.Log("number of abilities in use after remove " + abilitiesInUse.Count);
         }
 
         //Debug.Log("post count " + abilitiesInUse.Count);
@@ -72,5 +72,16 @@ public class AbilityManager : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void StopAllAbilitiesFromCharacter(GameObject character)
+    {
+        foreach (Ability aIU in abilitiesInUse)
+        {
+            if (aIU.owner == character)
+            {
+                abilitiesToRemove.Add(aIU);
+            }
+        }
     }
 }

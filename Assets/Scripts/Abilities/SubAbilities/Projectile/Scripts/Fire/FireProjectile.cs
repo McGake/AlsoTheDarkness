@@ -10,22 +10,26 @@ public class FireProjectile : SubProjectileAbility
 
     public List<GameObject> projectiles = new List<GameObject>();
 
-    public void Awake()
+    public override void DoInitialProjectileSubAbility(ProjectileAbility pa)
     {
-        GameObject tempProjectile;
-        for(int i =0; i <9; i++ )
+       
+        if (projectiles.Count == 0)
         {
-            tempProjectile = GameObject.Instantiate(projectilePrefab);
-            tempProjectile.SetActive(false);
-            projectiles.Add(tempProjectile);
+            GameObject tempProjectile;
+            for (int i = 0; i < pa.numberOfProjectiles; i++)
+            {
+                tempProjectile = GameObject.Instantiate(projectilePrefab);
+                tempProjectile.SetActive(false);
+                projectiles.Add(tempProjectile);
+            }
         }
     }
 
     public override void DoProjectileSubAbility(ProjectileAbility pa)
     {
         //GameObject.Instantiate(projectilePrefab, pa.sources[0].position, pa.quatProjectileFireAngle);
-        //projectiles[pa.projectilesFired].transform.position = pa.sources[0].position;
-       // projectiles[pa.projectilesFired].SetActive(true);
+        projectiles[pa.projectilesFired].transform.position = pa.sources[0].position;
+        projectiles[pa.projectilesFired].SetActive(true);
         Debug.Log("projectile " + pa.projectilesFired + " fired at " + Time.time);
         pa.projectilesFired++;
 

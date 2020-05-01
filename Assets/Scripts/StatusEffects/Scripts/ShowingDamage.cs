@@ -10,14 +10,14 @@ public class ShowingDamage : Status //TODO: perhaps to turn this and things like
 
     public float damage;
 
-    public override void SetUpStatus(BaseBattleActor bbA)
+    public override void SetUpStatus(Ability sourceAbility, GameObject deliveryObject)
     {
-        sR = bbA.transform.GetComponent<SpriteRenderer>();
+        
     }
 
     public override void DoStatusInitialEffect(BaseBattleActor bbA)
     {
-
+        sR = bbA.transform.GetComponent<SpriteRenderer>();
         BattleMenuManager.battleMenuManager.ExplodeDamageText(damage, bbA.gameObject);
     }
 

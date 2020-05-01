@@ -4,7 +4,7 @@ using UnityEditor;
 [CustomPropertyDrawer(typeof(AngleAttribute))]
 public class AngleDrawer : PropertyDrawer
 {
-    private static Vector2 mousePosition;
+    /*private static Vector2 mousePosition;
     private static Texture2D KnobBack = Resources.Load("KnobBack") as Texture2D;
     private static Texture2D Knob = Resources.Load("Knob") as Texture2D;
     private static GUIStyle s_TempStyle = new GUIStyle();
@@ -89,5 +89,5 @@ public class AngleDrawer : PropertyDrawer
             return;
         s_TempStyle.normal.background = texture;
         s_TempStyle.Draw(position, GUIContent.none, false, false, false, false);
-    }
+    }*/
 }

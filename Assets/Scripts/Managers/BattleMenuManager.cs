@@ -122,6 +122,7 @@ public class BattleMenuManager : GameSegment
             {
                 aB.StartSelectFromPCs = StartSelectFromPCs;
                 aB.StartSelectAllPCs = StartSelectAllPCs;
+                aB.StartSelectAllEnemeis = StartSelectAllEnemies;
                 aB.StartSelectAllPCsButCurrent = StartSelectAllPCsButCurrent;               
                 aB.InstantiateInWorldSpaceCanvas = InstantiateInWorldSpaceCanvas;
             }
@@ -224,7 +225,8 @@ public class BattleMenuManager : GameSegment
         if (AbilityManager.abManager.IsCharacterCurrentlyDoingAbility(curHero) == false) //another way to do this would be just to check current heros abilities to see if he has any that are currently set to not finished.
         {
             CurSelectionBehavior = WaitForAbilityAndUpdateDisplay;
-            AbilityManager.abManager.TurnOnAbility(abilityToPass);
+            curHero.GetComponent<BaseBattleActor>().DoAbility(abilityToPass);
+           
             
             //curState = BattleMenuStates.WaitingOnAbilitySystem;
         }
@@ -418,6 +420,13 @@ public class BattleMenuManager : GameSegment
         objectsToSwtichBetween = objectsInBattle.pcsInBattle;
         CurSelectionBehavior = OneGroupSelection;
 
+    }
+
+    private void StartSelectAllEnemies(SubAbility subAb)
+    {
+        InitializeSelection(subAb);
+        objectsToSwtichBetween = objectsInBattle.enemiesInBattle;
+        CurSelectionBehavior = OneGroupSelection;
     }
 
     private void StartSelectFromEnemies(SubAbility subAb)

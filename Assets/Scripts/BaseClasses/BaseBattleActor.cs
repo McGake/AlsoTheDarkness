@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [System.Serializable]
 public class BattleStats
@@ -30,8 +31,9 @@ public class BaseBattleActor :MonoBehaviour
 
     public BattleActorView battleActorView;
 
-
     public BattleStats stats;
+
+    public BattleStats modifiedStats;
 
     public List<Status> curStatuses = new List<Status>();
 
@@ -46,8 +48,6 @@ public class BaseBattleActor :MonoBehaviour
     public delegate void DelShowBuff();
     public DelShowBuff ShowBuff;
 
-   
-
 
     void Awake()
     {
@@ -56,9 +56,12 @@ public class BaseBattleActor :MonoBehaviour
 
     }
 
+
     void Start()
     {
-        
+
+        //allClips = GetComponent<Animator>().runtimeAnimatorController.animationClips;
+
 
 
     }
@@ -95,8 +98,16 @@ public class BaseBattleActor :MonoBehaviour
             status.nextInterval = Time.time + status.intervalLength;
         }
         status.endTime = Time.time + status.duration;
+        status.FinishStatus = FinishStatus;
+        for (int i = 0; i < curStatuses.Count; i++)//TODO: This might not be needed
+        {
+           if( curStatuses[i].OnStatusAdded(this, status) == false)
+            {
+                return;
+            }
+        }
         curStatuses.Add(status);
-        status.SetUpStatus(this);
+
         status.DoStatusInitialEffect(this); 
     }
 
@@ -115,6 +126,12 @@ public class BaseBattleActor :MonoBehaviour
                 RunStatus(curStatuses[i]);
             }
         }
+    }
+
+    public void FinishStatus(Status status)
+    {
+        EndStatus(status);
+        RemoveStatus(status);
     }
 
     private bool IsStatusFinished(Status status)
@@ -155,6 +172,35 @@ public class BaseBattleActor :MonoBehaviour
 
     //This regoin should be temporary till i move functionality to abilities themselves
     #region AbilityManagement 
+
+
+
+    public void DoAbility(Ability aB)
+    {
+        if (!IsStuned())
+        {
+            for (int i = 0; i < curStatuses.Count; i++)
+            {
+                curStatuses[i].OnAbilityUsed(this, aB);//TODO: change this to an event system
+            }
+            AbilityManager.abManager.TurnOnAbility(aB);
+        }
+    }
+
+    public bool IsStuned() //TODO: when we have a better grasp of what kind of status effects are going to be in our game, generalize this. We could , for example, have a function that runs a snipet of code from every status called ModifyAbility()
+    {
+        foreach(Status status in curStatuses)
+        {
+            if(status is Stun)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
     void SetAbilityUsable()
     {
         foreach (Ability ab in abilities) //TODO: make this a part of the ability itself. Why should it be handled here? 
@@ -174,6 +220,8 @@ public class BaseBattleActor :MonoBehaviour
         GameObject.Destroy(gameObject); //TODO: flesh this out with arbitrary animation and make it part of a pooling system. PC's and monsters will of course have their own thing but should implement the base class if possible.
     }
 }
+
+
 
 
 

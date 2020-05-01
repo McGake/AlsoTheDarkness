@@ -11,6 +11,9 @@ public class BattleActorView : MonoBehaviour
 
     [SerializeField]
     private GameObject worldSpaceCanvas;
+
+    [SerializeField]
+    private Animator animator;
 #pragma warning restore 649
 
     public void Start()
@@ -43,10 +46,17 @@ public class BattleActorView : MonoBehaviour
 
     public void ShowStatus(Status statusToShow)
     {
-
+        string statusName = statusToShow.GetType().ToString();
+        animator.SetBool(statusName,true);
     }
 
-    public void ShowRemoveStatus(Status statusToRemove)
+    public void StopShowStatus(Status statusToRemove)
+    {
+        string statusName = statusToRemove.GetType().ToString();
+        animator.SetBool(statusName, false);
+    }
+
+    private void SetAnimationByStatus(Status statusToShow)
     {
 
     }

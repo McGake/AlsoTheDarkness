@@ -11,7 +11,7 @@ public class BuffPhysicalPowerAndHeal : Status
 
     public int physicalPowerBuff;
 
-    public override void SetUpStatus(BaseBattleActor bbA)
+    public override void SetUpStatus(Ability sourceAbility, GameObject de)
     {
 
     }

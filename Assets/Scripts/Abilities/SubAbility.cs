@@ -22,6 +22,18 @@ public abstract class SubAbility : ScriptableObject
         ab.lastAnimSet = newAnim;
     }
 
+    protected void SetNewSpecialAnimation(AnimationClip anim, Ability ab)
+    {
+        AnimatorOverrideController aOC;
+        aOC = ab.pcAnimator.runtimeAnimatorController as AnimatorOverrideController;
+        Debug.Log("aoc is " + aOC.name);
+        ab.pcAnimator.runtimeAnimatorController = aOC;
+        Debug.Log(aOC["special"].name);
+        Debug.Log(anim.name);
+        aOC["special"] = anim;
+        SetNewAnimation("special", ab);
+    }   
+
     public virtual void DoFinishSubAbility(Ability ab)
     {
 

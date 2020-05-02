@@ -121,6 +121,7 @@ public class BattleMenuManager : GameSegment
             foreach (Ability aB in tempListToSet)
             {
                 aB.StartSelectFromPCs = StartSelectFromPCs;
+                aB.StartSelectFromEnemies = StartSelectFromEnemies;
                 aB.StartSelectAllPCs = StartSelectAllPCs;
                 aB.StartSelectAllEnemeis = StartSelectAllEnemies;
                 aB.StartSelectAllPCsButCurrent = StartSelectAllPCsButCurrent;               
@@ -397,6 +398,12 @@ public class BattleMenuManager : GameSegment
         CurSelectionBehavior = LinearSelection;
         Debug.Log("method end " + CurSelectionBehavior.Method);
     }
+    private void StartSelectFromEnemies(SubAbility subAb)
+    {
+        InitializeSelection(subAb);
+        objectsToSwtichBetween = objectsInBattle.enemiesInBattle;
+        CurSelectionBehavior = LinearSelection;
+    }
 
     public void TestSelection()
     {
@@ -429,10 +436,7 @@ public class BattleMenuManager : GameSegment
         CurSelectionBehavior = OneGroupSelection;
     }
 
-    private void StartSelectFromEnemies(SubAbility subAb)
-    {
 
-    }
 
     private void StartSelectAllPCsButCurrent(SubAbility subAb)//TODO: maybe Just make this a call back rather than passing the whole sub ability
     {
@@ -467,7 +471,6 @@ public class BattleMenuManager : GameSegment
 
     public void LinearSelection()
     {
-        Debug.Log("linear selection!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         float yVal = Input.GetAxis("Vertical");
 
         if (Time.time > nextLegalSwitch)

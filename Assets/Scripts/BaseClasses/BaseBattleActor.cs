@@ -177,7 +177,7 @@ public class BaseBattleActor :MonoBehaviour
 
     public void DoAbility(Ability aB)
     {
-        if (!IsStuned())
+        if (!IsStuned())//TODO this is no longer the right way to do this. add this functionality to the Stuned OnAbilityStarted override
         {
             for (int i = 0; i < curStatuses.Count; i++)
             {

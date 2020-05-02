@@ -83,6 +83,8 @@
     <Compile Include="Assets\Scripts\Abilities\Defs\ProjectileDef.cs" />
     <Compile Include="Assets\Scripts\Abilities\Defs\SingleDirectDef.cs" />
     <Compile Include="Assets\Scripts\Abilities\Defs\SingleDirectEnemyVerDef.cs" />
+    <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Take Charge\InteruptAbilitiesOfTarget.cs" />
+    <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Take Charge\RunAbilityOnTarget.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\AddStatus\Scripts\AddStatusToMultiple.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\AddStatus\Scripts\AddStatusToSingle.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\AssignSpell\Scripts\ObjectAssignSpell.cs" />
@@ -91,6 +93,7 @@
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\MiniGame\Scripts\MiniGameLauncher.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\MiniGame\Scripts\PowerBarMG.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Movement\Scripts\M_MoveDistanceFromCurPos.cs" />
+    <Compile Include="Assets\Scripts\Abilities\SubAbilities\Movement\Scripts\MoveInArcToCharacter.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Movement\Scripts\MoveInDirection.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Preparation\Scripts\Attacking.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Preparation\Scripts\Casting.cs" />
@@ -112,6 +115,7 @@
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Targeting\Scripts\TargetPCsExceptSelf.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Targeting\Scripts\TargetSelf.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Targeting\Scripts\TargetSingle.cs" />
+    <Compile Include="Assets\Scripts\Abilities\SubAbilities\Targeting\Scripts\TargetSingleEnemy.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Test\Scripts\DelayAndPlayScpecialAnim.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Test\Scripts\TestSpecialAnim.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbility.cs" />
@@ -144,6 +148,7 @@
     <Compile Include="Assets\Scripts\SpecificMenuScripts\TownMenuManager.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\EffectDefiner.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\EffectOnContact.cs" />
+    <Compile Include="Assets\Scripts\StatusEffects\Scripts\BuffArmor.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\BuffArmorAndMagDef.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\BuffPhysicalPowerAndHeal.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\DefensivePosture.cs" />

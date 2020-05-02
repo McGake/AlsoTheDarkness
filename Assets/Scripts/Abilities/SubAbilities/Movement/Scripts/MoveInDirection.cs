@@ -23,7 +23,7 @@ public class MoveInDirection : SubAbility
         direction = ab.positionTargets[0];
         direction.z = ab.owner.transform.position.z;
         totalMovement = Vector3.zero;
-        sqrDistance = Mathf.Pow(distance, 2);
+        sqrDistance = Mathf.Pow(distance, 2);        
     }
 
     public override void DoSubAbility(Ability ab)

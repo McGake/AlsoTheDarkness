@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 [CreateAssetMenu(fileName = "TargetSingle", menuName = "SubAbilities/Targeting/TargetSingle", order = 1)]
-public class TargetSingle : SubAbility
+public class TargetSingle : SubAbility//TODO: THIs is no longer target single. rename to target single pc or something
 {
-    public SelectionCategories sC;
 
-    private Ability ability;//TODO: possibly set this when I initialize/instantiate the sub ability and then stop passing it to each method
+    private Ability ability;
 
     public override void DoInitialSubAbility(Ability ab)
     {

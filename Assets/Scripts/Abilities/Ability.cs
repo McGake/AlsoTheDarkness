@@ -46,6 +46,19 @@ public class Ability:ScriptableObject
 
     public string lastAnimSet { get; set; } = "stand";
 
+    public GameObject singleObjectTarget //this avoids using a majic number in every subability that only has one target while also avoiding having a seperate variable for single and multiple targets. In other words, single targeting abilities always use the first object slot in objectTargets
+    {
+        get
+        {
+            return objectTargets[0];
+        }
+
+        set
+        {
+            objectTargets[0] = value;
+        }
+    }
+
     [HideInInspector]
     public List<GameObject> objectTargets = new List<GameObject>();
     [HideInInspector]
@@ -62,6 +75,9 @@ public class Ability:ScriptableObject
 
     public delegate void DelStartSelectFromPCs(SubAbility subAb);
     public DelStartSelectFromPCs StartSelectFromPCs; //TODO: this is temporary untill I can put in a proper event system
+
+    public delegate void DelStartSelectFromEnemies(SubAbility subAb);
+    public DelStartSelectFromEnemies StartSelectFromEnemies;
 
     public delegate void DelStartSelectAllPCs(SubAbility subAb);
     public DelStartSelectAllPCs StartSelectAllPCs;
@@ -130,12 +146,12 @@ public class Ability:ScriptableObject
     }
 
     
-    public void SubAbOver()//Called by sub ability delegate
+    public void OnSubAbilityOver()//Called by sub ability delegate
     {
         FinishLastSubAb();
         IncrementCurSubAb();
 
-        if (AbilityIsOver())
+        if (SubAbilitesAreFinished())
         {
             EndAbility();
         }
@@ -150,7 +166,7 @@ public class Ability:ScriptableObject
         curSubAbilityIndx++;
     }
 
-    private bool AbilityIsOver()
+    private bool SubAbilitesAreFinished()
     {
         if (curSubAbilityIndx >= subAbilities.Count)
         {
@@ -168,7 +184,7 @@ public class Ability:ScriptableObject
 
     private void SetUpNextSubAb()
     {
-        subAbilities[curSubAbilityIndx].EndSubAbility = SubAbOver;
+        subAbilities[curSubAbilityIndx].EndSubAbility = OnSubAbilityOver;
         subAbilities[curSubAbilityIndx].DoInitialSubAbility(this);
     }
 

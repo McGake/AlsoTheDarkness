@@ -16,7 +16,7 @@ public class TargetEnemiesByRelativePos : SubAbility
     public override void DoInitialSubAbility(Ability ab)
     {
         abilty = ab;
-        ab.StartSelectAllEnemeis(this);
+        ab.StartSelectAllEnemeies(this);
     }
 
     public override void DoSubAbility(Ability ab)

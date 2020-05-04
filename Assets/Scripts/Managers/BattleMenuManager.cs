@@ -123,7 +123,7 @@ public class BattleMenuManager : GameSegment
                 aB.StartSelectFromPCs = StartSelectFromPCs;
                 aB.StartSelectFromEnemies = StartSelectFromEnemies;
                 aB.StartSelectAllPCs = StartSelectAllPCs;
-                aB.StartSelectAllEnemeis = StartSelectAllEnemies;
+                aB.StartSelectAllEnemeies = StartSelectAllEnemies;
                 aB.StartSelectAllPCsButCurrent = StartSelectAllPCsButCurrent;               
                 aB.InstantiateInWorldSpaceCanvas = InstantiateInWorldSpaceCanvas;
             }

@@ -72,6 +72,7 @@
     <Compile Include="Assets\MagicSetup.cs" />
     <Compile Include="Assets\MoveForward.cs" />
     <Compile Include="Assets\OnlyCollideWithOneThing.cs" />
+    <Compile Include="Assets\Prefabs\Projectiles\DisableAfterSeconds.cs" />
     <Compile Include="Assets\Prefabs\Projectiles\WorldEffectScripts\WorldEffect.cs" />
     <Compile Include="Assets\Scripts\Abilities\Ability.cs" />
     <Compile Include="Assets\Scripts\Abilities\AbilityManager.cs" />
@@ -87,9 +88,12 @@
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Take Charge\RunAbilityOnTarget.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\AddStatus\Scripts\AddStatusToMultiple.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\AddStatus\Scripts\AddStatusToSingle.cs" />
+    <Compile Include="Assets\Scripts\Abilities\SubAbilities\AgressiveMovement\MoveAllTargets.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\AssignSpell\Scripts\ObjectAssignSpell.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\AttackZone\Scripts\InstantDamageZone.cs" />
+    <Compile Include="Assets\Scripts\Abilities\SubAbilities\MiniGame\Scripts\ChooseDirectionMiniGame.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\MiniGame\Scripts\DirectionalMiniGame.cs" />
+    <Compile Include="Assets\Scripts\Abilities\SubAbilities\MiniGame\Scripts\FlipBetweenMiniGame.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\MiniGame\Scripts\MiniGameLauncher.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\MiniGame\Scripts\PowerBarMG.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Movement\Scripts\M_MoveDistanceFromCurPos.cs" />
@@ -106,10 +110,12 @@
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\DeterminAngle\DeterminAngleSimpleSetting.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\Fire\FireProjectile.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\Fire\FireProjectileWithForce.cs" />
+    <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\Fire\FireReturningTargetsProjectile.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\IntervalTimer\IntervalTimeBased.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\ProjectileAbility.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\SetSource\SetProjSourceRelativePrefabs.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\SetSource\SetProjSourceSelfCenter.cs" />
+    <Compile Include="Assets\Scripts\Abilities\SubAbilities\Targeting\Scripts\TargetAllEnemies.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Targeting\Scripts\TargetAllInCircle.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Targeting\Scripts\TargetEnemiesByRelativePos.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Targeting\Scripts\TargetPCsExceptSelf.cs" />

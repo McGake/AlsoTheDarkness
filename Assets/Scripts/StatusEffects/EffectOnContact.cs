@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EffectOnContact : StatusDeliverer
 {
-    public LayerMask layerMask;
-
     public List<string> targetTypes;
     public List<string> otherCollideableTypes;
 
@@ -14,15 +12,12 @@ public class EffectOnContact : StatusDeliverer
     private List<Status> inspectorStatusesToAdd;
 #pragma warning restore 649
 
-
-
     private List<Collider2D> alreadyColidedWith;
 
-    public WorldEffect worldEffectScript;
+    private List<GameObject> objectsHit;
 
-
-
-
+    public delegate void DelSendObjectsHit(List<GameObject> osHit);
+    public DelSendObjectsHit SendObjectsHit;
 
     public void OnEnable()
     {
@@ -34,11 +29,8 @@ public class EffectOnContact : StatusDeliverer
 
 
     public void Start()
-    {
-        
+    {      
         //alreadyColidedWith.Clear();
-
-
     }
 
     private void GetInspectorStatuses()
@@ -61,6 +53,7 @@ public class EffectOnContact : StatusDeliverer
             if(type == col.tag)
             {
                 ApplyEffect(col);
+                
             }            
         }
         foreach(string type in otherCollideableTypes)
@@ -102,6 +95,11 @@ public class EffectOnContact : StatusDeliverer
     private void EndWorldEffect()
     {
 
+    }
+
+    private void OnDisable()
+    {
+        SendObjectsHit(objectsHit);
     }
     #endregion Effects To Apply
 

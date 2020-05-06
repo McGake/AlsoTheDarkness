@@ -36430,13 +36430,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sourceAbility: {fileID: 0}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
   targetTypes: []
   otherCollideableTypes: []
   inspectorStatusesToAdd: []
-  worldEffectScript: {fileID: 0}
 --- !u!58 &1585052024
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -43894,7 +43890,7 @@ PrefabInstance:
         type: 3}
       propertyPath: inspectorAbilities.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 955a79af5e2bcbb4ab56aec1b77f364b,
+      objectReference: {fileID: 11400000, guid: c91821ce54c284141abb0fa139fa23c5,
         type: 2}
     - target: {fileID: 4007987562068389461, guid: fe0a650f0a20be7448445eeb95bb55d1,
         type: 3}

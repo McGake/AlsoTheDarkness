@@ -15,7 +15,7 @@ public class FlipBetweenMiniGame : SubAbility
 
     private float inputDelay = 0f;
 
-    private bool skip = true;
+    private bool skip = false;
 
     private float nextFlipTime = 0f;
 
@@ -34,27 +34,36 @@ public class FlipBetweenMiniGame : SubAbility
 
     public List<MGSeleciton> mgSelections;
 
+
     public override void DoInitialSubAbility(Ability ab)
     {
-        if (mgSelections.Count <= 0)
-        {
+
             for (int i = 0; i < mgSelections.Count; i++)
             {
-                mgSelections[i].display = Instantiate(mgSelections[i].display, ab.owner.transform);
+                mgSelections[i].display = GameObject.Instantiate(mgSelections[i].display, ab.owner.transform);
+            mgSelections[i].display.transform.position += new Vector3(0f,1f, 0f); 
                 //mgSelections[i].sR = mgSelections[i].display.GetComponent<SpriteRenderer>();
                 //mgSelections[i].sR.color = greyedOutColor;
-                mgSelections[i].display.SetActive(false);
+            mgSelections[i].display.SetActive(false);
             }
-        }
+        
         curSelection = 0;
         mgSelections[curSelection].display.SetActive(true);
         flipInterval = startFlipInterval;
-        
+        if(Input.GetButtonDown("A"))
+        {
+            skip = true;
+        }
     }
 
 
     public override void DoSubAbility(Ability ab)
     {
+        if(skip == true)//TODO: automatically skip a frame between Starting an ability and the first run through so that this is not needed
+        {
+            skip = false;
+            return;
+        }
         if(nextFlipTime < Time.time)
         {
             nextFlipTime = Time.time + flipInterval;
@@ -70,7 +79,7 @@ public class FlipBetweenMiniGame : SubAbility
             mgSelections[curSelection].display.SetActive(true);
         }
 
-        if(Input.GetKeyDown("A"))
+        if(Input.GetButtonDown("A"))
         {
             ab.positionTargets.Add(mgSelections[curSelection].directionData);
             EndSubAbility();

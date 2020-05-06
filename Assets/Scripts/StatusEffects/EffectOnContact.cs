@@ -14,7 +14,7 @@ public class EffectOnContact : StatusDeliverer
 
     private List<Collider2D> alreadyColidedWith;
 
-    private List<GameObject> objectsHit;
+    private List<GameObject> objectsHit = new List<GameObject>();
 
     public delegate void DelSendObjectsHit(List<GameObject> osHit);
     public DelSendObjectsHit SendObjectsHit;
@@ -22,6 +22,7 @@ public class EffectOnContact : StatusDeliverer
     public void OnEnable()
     {
         Debug.Log("effect on contact onenable called " + this.name);
+        objectsHit.Clear();
         GetInspectorStatuses();
         SetUpStatuses();
     }
@@ -47,13 +48,13 @@ public class EffectOnContact : StatusDeliverer
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("enter2d");
+
         foreach(string type in targetTypes)
         {
             if(type == col.tag)
             {
                 ApplyEffect(col);
-                
+                objectsHit.Add(col.gameObject);
             }            
         }
         foreach(string type in otherCollideableTypes)
@@ -99,7 +100,10 @@ public class EffectOnContact : StatusDeliverer
 
     private void OnDisable()
     {
-        SendObjectsHit(objectsHit);
+        if (SendObjectsHit != null)
+        {
+            SendObjectsHit(objectsHit);
+        }
     }
     #endregion Effects To Apply
 

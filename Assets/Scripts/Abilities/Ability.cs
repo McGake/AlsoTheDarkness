@@ -46,6 +46,8 @@ public class Ability:ScriptableObject
 
     public string lastAnimSet { get; set; } = "stand";
 
+    public bool onEnemy = false;
+
     public GameObject singleObjectTarget //this avoids using a majic number in every subability that only has one target while also avoiding having a seperate variable for single and multiple targets. In other words, single targeting abilities always use the first object slot in objectTargets
     {
         get
@@ -73,23 +75,25 @@ public class Ability:ScriptableObject
     [HideInInspector]
     public int curSubAbilityIndx = 0;
 
-    public delegate void DelStartSelectFromPCs(SubAbility subAb);
+    public delegate void DelStartSelectFromPCs(SubAbility subAb,Type requesterType);
     public DelStartSelectFromPCs StartSelectFromPCs; //TODO: this is temporary untill I can put in a proper event system
 
-    public delegate void DelStartSelectFromEnemies(SubAbility subAb);
+    public delegate void DelStartSelectFromEnemies(SubAbility subAb, Type requesterType);
     public DelStartSelectFromEnemies StartSelectFromEnemies;
 
-    public delegate void DelStartSelectAllPCs(SubAbility subAb);
+    public delegate void DelStartSelectAllPCs(SubAbility subAb, Type requesterType);
     public DelStartSelectAllPCs StartSelectAllPCs;
 
-    public delegate void DelStartSelectAllEnemies(SubAbility subAb);
+    public delegate void DelStartSelectAllEnemies(SubAbility subAb, Type requesterType);
     public DelStartSelectAllEnemies StartSelectAllEnemeies;
 
-    public delegate void DelStartSelectAllPCsButCurrent(SubAbility subAb);
+    public delegate void DelStartSelectAllPCsButCurrent(SubAbility subAb, Type requesterType);
     public DelStartSelectAllPCsButCurrent StartSelectAllPCsButCurrent;
 
     public delegate void DelKickOffMinigame(MiniGame mG);
     public DelKickOffMinigame KickOffMiniGame;
+
+    public Type actorType;
 
 
     public delegate GameObject DelInstantiateInWorldSpaceCanvas(GameObject go, Vector3 position);
@@ -101,6 +105,14 @@ public class Ability:ScriptableObject
         Debug.Log("set up ability");
         owner = inOwner;
         pcAnimator = owner.GetComponent<Animator>();
+        if(owner.GetComponent<BaseEnemy>() != null)
+        {
+            actorType = typeof(BaseEnemy);
+        }
+        else if(owner.GetComponent<BattlePC>() != null)
+        {
+            actorType = typeof(BattlePC);
+        }
         subAbilities.Clear();
         abilityOver = true;
         useable = true;

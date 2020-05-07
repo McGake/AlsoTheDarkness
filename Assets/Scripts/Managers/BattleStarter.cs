@@ -58,7 +58,7 @@ public class BattleStarter : MonoBehaviour
 
 
         battleFolder.SetActive(true);
-        objectsInBattle.GetObjectsInBattle();
+        objectsInBattle.CollectObjectsInBattle();
         overworldFolder.SetActive(false);
 
     }

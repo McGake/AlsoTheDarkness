@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using System;
 using TMPro;
 
 
@@ -89,7 +89,7 @@ public class BattleMenuManager : GameSegment
         Collider2D tempCollider = damagedObject.transform.GetChild(0).GetComponent<Collider2D>();
         
         explodingText.GetComponent<OnlyCollideWithOneThing>().thingToCollideWith = tempCollider;
-        Vector2 force = new Vector2(Random.Range(-35f, 35f), 75f);
+        Vector2 force = new Vector2(UnityEngine.Random.Range(-35f, 35f), 75f);
         force.Normalize();
         explodingText.GetComponent<Rigidbody2D>().AddForce(force * 250);
     }
@@ -120,11 +120,11 @@ public class BattleMenuManager : GameSegment
            tempListToSet = pc.GetComponent<BattlePC>().abilities; //TODO: Decouple this
             foreach (Ability aB in tempListToSet)
             {
-                aB.StartSelectFromPCs = StartSelectFromPCs;
-                aB.StartSelectFromEnemies = StartSelectFromEnemies;
-                aB.StartSelectAllPCs = StartSelectAllPCs;
-                aB.StartSelectAllEnemeies = StartSelectAllEnemies;
-                aB.StartSelectAllPCsButCurrent = StartSelectAllPCsButCurrent;               
+                aB.StartSelectFromPCs = StartSelectFromFriendlies;
+                aB.StartSelectFromEnemies = StartSelectFromOpponents;
+                aB.StartSelectAllPCs = StartSelectAllFriendlies;
+                aB.StartSelectAllEnemeies = StartSelectAllOpponents;
+                aB.StartSelectAllPCsButCurrent = StartSelectAllFriendliesButCurrent;               
                 aB.InstantiateInWorldSpaceCanvas = InstantiateInWorldSpaceCanvas;
             }
         }  
@@ -389,19 +389,22 @@ public class BattleMenuManager : GameSegment
     private delegate void DelOnSelectionFinished(List<GameObject> selectedObjects);
     DelOnSelectionFinished OnSelectionFinished;
 
-    private void StartSelectFromPCs(SubAbility subAb)
+    private void StartSelectFromFriendlies(SubAbility subAb, Type requesterType)
     {
-        Debug.Log("method start " + CurSelectionBehavior.Method);
-        Debug.Log("startSelectFromPCs");
         InitializeSelection(subAb);
-        objectsToSwtichBetween = objectsInBattle.pcsInBattle;
+        objectsToSwtichBetween = objectsInBattle.GetFriendsOfType(requesterType);
+
         CurSelectionBehavior = LinearSelection;
-        Debug.Log("method end " + CurSelectionBehavior.Method);
     }
-    private void StartSelectFromEnemies(SubAbility subAb)
+
+    private void SelectionMainBody(SubAbility subAb, Type requesterType, DelCurSelectionBehavior selectionBehavior, bool getFriends)
+    {
+
+    }
+    private void StartSelectFromOpponents(SubAbility subAb, Type requesterType)
     {
         InitializeSelection(subAb);
-        objectsToSwtichBetween = objectsInBattle.enemiesInBattle;
+        objectsToSwtichBetween = objectsInBattle.GetOpponentsOfType(requesterType);
         CurSelectionBehavior = LinearSelection;
     }
 
@@ -421,7 +424,7 @@ public class BattleMenuManager : GameSegment
         Debug.Log("TestSelection 222two222 is playing");
     }
 
-    private void StartSelectAllPCs(SubAbility subAb)
+    private void StartSelectAllFriendlies(SubAbility subAb,Type requesterType)
     {
         InitializeSelection(subAb);
         objectsToSwtichBetween = objectsInBattle.pcsInBattle;
@@ -429,19 +432,19 @@ public class BattleMenuManager : GameSegment
 
     }
 
-    private void StartSelectAllEnemies(SubAbility subAb)
+    private void StartSelectAllOpponents(SubAbility subAb, Type requesterType)
     {
         InitializeSelection(subAb);
-        objectsToSwtichBetween = objectsInBattle.enemiesInBattle;
+        objectsToSwtichBetween = objectsInBattle.GetOpponentsOfType(requesterType);        
         CurSelectionBehavior = OneGroupSelection;
     }
 
 
 
-    private void StartSelectAllPCsButCurrent(SubAbility subAb)//TODO: maybe Just make this a call back rather than passing the whole sub ability
+    private void StartSelectAllFriendliesButCurrent(SubAbility subAb, Type requesterType)//TODO: maybe Just make this a call back rather than passing the whole sub ability
     {
         InitializeSelection(subAb);
-        objectsToSwtichBetween = objectsInBattle.pcsInBattle;
+        objectsToSwtichBetween = objectsInBattle.GetFriendsOfType(requesterType);
         for(int i = 0; i < objectsToSwtichBetween.Count; i++)
         {
 

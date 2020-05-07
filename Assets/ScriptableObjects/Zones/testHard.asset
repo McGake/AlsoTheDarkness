@@ -14,5 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zoneName: Red3
   encounterProb: 2
-  enemyMixTypesProb: []
-  encounterTypesProb: []
+  enemyMixTypesProb:
+  - enemyMix:
+      name: hard test 1
+      encounterMonsters:
+      - test monster 1
+    prob: 100
+  encounterTypesProb:
+  - encounterType: 1
+    prob: 100

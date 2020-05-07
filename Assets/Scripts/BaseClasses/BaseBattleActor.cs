@@ -48,7 +48,6 @@ public class BaseBattleActor :MonoBehaviour
     public delegate void DelShowBuff();
     public DelShowBuff ShowBuff;
 
-
     void Awake()
     {
         stats.hP = stats.maxHP;
@@ -66,7 +65,7 @@ public class BaseBattleActor :MonoBehaviour
 
     }
 
-    private void SetUpAbilities()
+    protected virtual void SetUpAbilities()
     {
         foreach (Ability aB in inspectorAbilities)
         {

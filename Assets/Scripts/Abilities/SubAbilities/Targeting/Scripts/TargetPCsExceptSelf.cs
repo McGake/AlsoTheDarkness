@@ -9,7 +9,7 @@ public class TargetPCsExceptSelf : SubAbility
     public override void DoInitialSubAbility(Ability ab)
     {
         ability = ab;
-        ab.StartSelectAllPCsButCurrent(this);
+        ab.StartSelectAllPCsButCurrent(this, ab.actorType);
     }
 
     public override void DoSubAbility(Ability ab)

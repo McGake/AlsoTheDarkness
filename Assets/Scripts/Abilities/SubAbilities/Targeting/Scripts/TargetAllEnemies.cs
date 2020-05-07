@@ -9,7 +9,7 @@ public class TargetAllEnemies : SubAbility
     public override void DoInitialSubAbility(Ability ab)
     {
         ability = ab;
-        ab.StartSelectAllEnemeies(this);
+        ab.StartSelectAllEnemeies(this, ab.actorType);
     }
 
     public override void DoSubAbility(Ability ab)

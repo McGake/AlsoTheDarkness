@@ -9,7 +9,7 @@ public class TargetSingle : SubAbility//TODO: THIs is no longer target single. r
 
     public override void DoInitialSubAbility(Ability ab)
     {
-        ab.StartSelectFromPCs(this);
+        ab.StartSelectFromPCs(this, ab.actorType);
         ability = ab;
     }
 

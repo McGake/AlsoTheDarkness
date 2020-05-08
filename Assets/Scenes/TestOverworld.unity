@@ -15816,7 +15816,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &823115045
 Transform:
   m_ObjectHideFlags: 0
@@ -16671,7 +16671,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &898838322
 Transform:
   m_ObjectHideFlags: 0
@@ -43878,19 +43878,19 @@ PrefabInstance:
     - target: {fileID: 3200650400635346008, guid: fe0a650f0a20be7448445eeb95bb55d1,
         type: 3}
       propertyPath: inspectorAbilities.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3200650400635346008, guid: fe0a650f0a20be7448445eeb95bb55d1,
         type: 3}
       propertyPath: inspectorAbilities.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: aa7b8d23ff8a3d446ad59801aa0f8fb1,
+      objectReference: {fileID: 11400000, guid: e9434c0dee7e31342866192801c3160f,
         type: 2}
     - target: {fileID: 3200650400635346008, guid: fe0a650f0a20be7448445eeb95bb55d1,
         type: 3}
       propertyPath: inspectorAbilities.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: c91821ce54c284141abb0fa139fa23c5,
+      objectReference: {fileID: 11400000, guid: 76e3795f9a443774db7410197ca2d7cd,
         type: 2}
     - target: {fileID: 4007987562068389461, guid: fe0a650f0a20be7448445eeb95bb55d1,
         type: 3}

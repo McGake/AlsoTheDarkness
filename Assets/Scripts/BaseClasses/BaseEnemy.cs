@@ -20,7 +20,7 @@ public class BaseEnemy : BaseBattleActor
         else
         {
             int randAbilIndx = Random.Range(0, abilities.Count);
-            //AbilityManager.abManager.TurnOnAbility(newAbilities[randAbilIndx], gameObject); 
+            //AbilityManager.abManager.TurnOnAbility(abilities[randAbilIndx]); 
         }
     }
 

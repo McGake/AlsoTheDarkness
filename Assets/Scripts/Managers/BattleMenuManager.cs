@@ -128,6 +128,19 @@ public class BattleMenuManager : GameSegment
                 aB.InstantiateInWorldSpaceCanvas = InstantiateInWorldSpaceCanvas;
             }
         }  
+        foreach(GameObject en in objectsInBattle.enemiesInBattle)
+        {
+            tempListToSet = en.GetComponent<BaseEnemy>().abilities; //TODO: Decouple this
+            foreach (Ability aB in tempListToSet)
+            {
+                aB.StartSelectFromPCs = StartSelectFromFriendlies_AI;
+                aB.StartSelectFromEnemies = StartSelectFromOpponents_AI;
+                aB.StartSelectAllPCs = StartSelectAllFriendlies_AI;
+                aB.StartSelectAllEnemeies = StartSelectAllOpponents_AI;
+                aB.StartSelectAllPCsButCurrent = StartSelectAllFriendliesButCurrent_AI;
+                aB.InstantiateInWorldSpaceCanvas = InstantiateInWorldSpaceCanvas;
+            }
+        }
     }
 
     public override void UpdateGameSegment()
@@ -389,56 +402,87 @@ public class BattleMenuManager : GameSegment
     private delegate void DelOnSelectionFinished(List<GameObject> selectedObjects);
     DelOnSelectionFinished OnSelectionFinished;
 
-    private void StartSelectFromFriendlies(SubAbility subAb, Type requesterType)
+    private delegate List<GameObject> DelGetRelations(Type requesterType);
+
+    private void BaseSelection(SubAbility subAb, Type requesterType, DelCurSelectionBehavior SelectionBehavior, DelGetRelations GetRelations)
     {
-        InitializeSelection(subAb);
-        objectsToSwtichBetween = objectsInBattle.GetFriendsOfType(requesterType);
-
-        CurSelectionBehavior = LinearSelection;
-    }
-
-    private void SelectionMainBody(SubAbility subAb, Type requesterType, DelCurSelectionBehavior selectionBehavior, bool getFriends)
-    {
-
-    }
-    private void StartSelectFromOpponents(SubAbility subAb, Type requesterType)
-    {
-        InitializeSelection(subAb);
-        objectsToSwtichBetween = objectsInBattle.GetOpponentsOfType(requesterType);
-        CurSelectionBehavior = LinearSelection;
-    }
-
-    public void TestSelection()
-    {
-        Debug.Log("TestSelection 1 is playing");
-
-        if(Input.GetButtonDown("A"))
+        objectsToSwtichBetween = GetRelations(requesterType);
+        CurSelectionBehavior = SelectionBehavior;
+        if(requesterType == typeof(BattlePC))
         {
-            Debug.Log("A was pressed");
-            CurSelectionBehavior = LinearSelection;
+            InitializeSelection(subAb);
+            
+
+        }
+        else if(requesterType == typeof(BaseEnemy))
+        {
+            OnSelectionFinished = subAb.OnSelectionFinished;
         }
     }
 
-    public void TestSelectionTwo()
+    private void StartSelectFromFriendlies(SubAbility subAb, Type requesterType)
     {
-        Debug.Log("TestSelection 222two222 is playing");
+        BaseSelection(subAb, requesterType, LinearSelection, objectsInBattle.GetFriendsOfType);
+
+        //InitializeSelection(subAb);
+        //objectsToSwtichBetween = objectsInBattle.GetFriendsOfType(requesterType);
+
+        //CurSelectionBehavior = LinearSelection;
     }
+
+    private void StartSelectFromOpponents(SubAbility subAb, Type requesterType)
+    {
+        BaseSelection(subAb, requesterType, LinearSelection, objectsInBattle.GetOpponentsOfType);
+        //InitializeSelection(subAb);
+        //objectsToSwtichBetween = objectsInBattle.GetOpponentsOfType(requesterType);
+        //CurSelectionBehavior = LinearSelection;
+    }
+
+    private void StartSelectFromOpponents_AI(SubAbility subAb, Type requesterType)
+    {
+        BaseSelection(subAb, requesterType, AISingleRandomSelection, objectsInBattle.GetOpponentsOfType);
+    }
+
+    private void StartSelectFromFriendlies_AI(SubAbility subAb, Type requesterType)
+    {
+        BaseSelection(subAb, requesterType, AISingleRandomSelection, objectsInBattle.GetFriendsOfType);
+    }
+
 
     private void StartSelectAllFriendlies(SubAbility subAb,Type requesterType)
     {
-        InitializeSelection(subAb);
-        objectsToSwtichBetween = objectsInBattle.pcsInBattle;
-        CurSelectionBehavior = OneGroupSelection;
+        BaseSelection(subAb, requesterType, OneGroupSelection, objectsInBattle.GetFriendsOfType);
+        //InitializeSelection(subAb);
+        //objectsToSwtichBetween = objectsInBattle.pcsInBattle;
+        //CurSelectionBehavior = OneGroupSelection;
+
+    }
+
+    private void StartSelectAllFriendlies_AI(SubAbility subAb, Type requesterType)
+    {
+        BaseSelection(subAb, requesterType, AIOneGroupSelection, objectsInBattle.GetFriendsOfType);
+        //InitializeSelection(subAb);
+        //objectsToSwtichBetween = objectsInBattle.pcsInBattle;
+        //CurSelectionBehavior = OneGroupSelection;
 
     }
 
     private void StartSelectAllOpponents(SubAbility subAb, Type requesterType)
     {
-        InitializeSelection(subAb);
-        objectsToSwtichBetween = objectsInBattle.GetOpponentsOfType(requesterType);        
-        CurSelectionBehavior = OneGroupSelection;
+        BaseSelection(subAb, requesterType, OneGroupSelection, objectsInBattle.GetOpponentsOfType);
+        //InitializeSelection(subAb);
+        //objectsToSwtichBetween = objectsInBattle.GetOpponentsOfType(requesterType);        
+        //CurSelectionBehavior = OneGroupSelection;
     }
 
+
+    private void StartSelectAllOpponents_AI(SubAbility subAb, Type requesterType)
+    {
+        BaseSelection(subAb, requesterType, AIOneGroupSelection, objectsInBattle.GetOpponentsOfType);
+        //InitializeSelection(subAb);
+        //objectsToSwtichBetween = objectsInBattle.GetOpponentsOfType(requesterType);        
+        //CurSelectionBehavior = OneGroupSelection;
+    }
 
 
     private void StartSelectAllFriendliesButCurrent(SubAbility subAb, Type requesterType)//TODO: maybe Just make this a call back rather than passing the whole sub ability
@@ -455,6 +499,11 @@ public class BattleMenuManager : GameSegment
             }
         }
         CurSelectionBehavior = OneGroupSelection;
+    }
+
+    private void StartSelectAllFriendliesButCurrent_AI(SubAbility subAb, Type requesterType)//TODO: maybe Just make this a call back rather than passing the whole sub ability
+    {
+        Debug.LogError("Method Not Created For AI. Please Write this method");
     }
 
     private void InitializeSelection(SubAbility subAb)
@@ -509,6 +558,14 @@ public class BattleMenuManager : GameSegment
         }        
     }
 
+    public void AISingleRandomSelection()
+    {
+        int randomOpponentIndx = UnityEngine.Random.Range(0, objectsToSwtichBetween.Count);
+        List<GameObject> tempSelectedObjects = new List<GameObject>();
+        tempSelectedObjects.Add(objectsToSwtichBetween[randomOpponentIndx]);
+        EndSelection(tempSelectedObjects);
+    }
+
     private void OneGroupSelection() //this is the old school way of doing this. need to make partially see through selection indicators and turn them on and off or move all of them. This does nothing except visually show the selection and wait for confirmation
     {
         
@@ -525,27 +582,10 @@ public class BattleMenuManager : GameSegment
         }
     }
 
-    private List<GameObject> SwitchObdjectsToSwitchBetweenByEnum(SelectionCategories sC)
+    private void AIOneGroupSelection()
     {
-        List<GameObject>  tempObjects = new List<GameObject>();
-
-        if (sC == SelectionCategories.Enemies)
-        {
-            tempObjects = objectsInBattle.enemiesInBattle;
-        }
-        else if (sC == SelectionCategories.PCs)
-        {
-            tempObjects = objectsInBattle.pcsInBattle;
-        }
-        if (sC == SelectionCategories.Everyone)
-        {
-            tempObjects.AddRange(objectsInBattle.enemiesInBattle);
-            tempObjects.AddRange(objectsInBattle.pcsInBattle);
-        }
-        return tempObjects;
+        EndSelection(objectsToSwtichBetween);
     }
-
-
 
     #endregion SelectionMethods
 

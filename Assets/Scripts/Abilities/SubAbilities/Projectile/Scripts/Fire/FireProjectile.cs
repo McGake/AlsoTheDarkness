@@ -33,7 +33,7 @@ public class FireProjectile : SubProjectileAbility
         projectiles[pa.projectilesFired].transform.position = pa.sources[0].position;
         projectiles[pa.projectilesFired].transform.rotation = pa.quatProjectileFireAngle;
         projectiles[pa.projectilesFired].SetActive(true);
-        Debug.Log("projectile " + pa.projectilesFired + " fired at " + Time.time);
+
         pa.projectilesFired++;
 
         EndProjectileSubAbility();

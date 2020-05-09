@@ -50,7 +50,6 @@ public class BaseBattleActor :MonoBehaviour
 
     void Awake()
     {
-        stats.hP = stats.maxHP;
         SetUpAbilities();
 
     }

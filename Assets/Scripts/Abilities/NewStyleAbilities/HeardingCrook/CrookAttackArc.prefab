@@ -83,7 +83,6 @@ MonoBehaviour:
   otherCollideableTypes: []
   inspectorStatusesToAdd:
   - {fileID: 11400000, guid: 1835e310515904f4dbf4094bc46a6409, type: 2}
-  - {fileID: 11400000, guid: 1b527e2e0a528dd4b8a0730ee5bc1c95, type: 2}
 --- !u!114 &4941200126124808951
 MonoBehaviour:
   m_ObjectHideFlags: 0

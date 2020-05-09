@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: RushIn
   m_EditorClassIdentifier: 
   _displayName: Rush In
+  onEnemy: 0
   objectTargets: []
   positionTargets: []
   inspectorSubAbilities:
@@ -23,4 +24,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b29c1070d3fe482438c2f1b2ffbd47f4, type: 2}
   - {fileID: 11400000, guid: 8400c7211f1532c4f9e754be323fb3da, type: 2}
   curSubAbilityIndx: 3
-  cooldownTime: 0
+  cooldownTime: 2.75

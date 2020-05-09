@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2361612476304597977}
   - component: {fileID: 3647189363385741791}
   m_Layer: 11
-  m_Name: NewSystemTestFireball
+  m_Name: NewSystemTestFireball 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126,16 +126,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 807c8491161469a47b639c8cf2878697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
+  sourceAbility: {fileID: 0}
   targetTypes:
   - Monster
   otherCollideableTypes: []
-  effect: {fileID: 11400000, guid: b2809afc957060742a5c04cf6972a158, type: 2}
   inspectorStatusesToAdd:
   - {fileID: 11400000, guid: 1de6d6285809560419ed390fb67a00e8, type: 2}
-  - {fileID: 11400000, guid: 1b527e2e0a528dd4b8a0730ee5bc1c95, type: 2}
 --- !u!50 &3647189363385741791
 Rigidbody2D:
   serializedVersion: 4

@@ -16,5 +16,6 @@ MonoBehaviour:
   intervalLength: 0
   nextInterval: 0
   endTime: 0
-  duration: 0
+  duration: 2
+  dontAddStatus: 0
   damage: 15

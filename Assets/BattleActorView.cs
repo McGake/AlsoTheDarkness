@@ -14,16 +14,29 @@ public class BattleActorView : MonoBehaviour
 
     [SerializeField]
     private Animator animator;
+
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
+
+    private delegate void DelOngoingDisplayBehavior();
+    private DelOngoingDisplayBehavior OngoingDisplaybehavior;//TODO: if needed, make this a list of behaviors
+
 #pragma warning restore 649
 
     public void Start()
     {
         SetupBattleActorView();
+        OngoingDisplaybehavior = Nothing;//TODO: this is a cludge
     }
 
     private void SetupBattleActorView()
     {
 
+    }
+
+    public void Update()
+    {
+        OngoingDisplaybehavior();
     }
 
     public void ShowDamage(int damage)
@@ -56,8 +69,34 @@ public class BattleActorView : MonoBehaviour
         animator.SetBool(statusName, false);
     }
 
-    private void SetAnimationByStatus(Status statusToShow)
+    private float nextBlinkTime;
+    private float blinkInterval = .25f;
+
+    public void StartBlink()
+    {
+        nextBlinkTime = Time.time;
+        OngoingDisplaybehavior = Blink;
+    }
+
+    private void Blink()
+    {
+        if(Time.time >= nextBlinkTime)
+        {
+            spriteRenderer.enabled = !spriteRenderer.enabled;
+            nextBlinkTime = Time.time + blinkInterval;
+            
+        }
+    }
+
+    public void StopBlink()
+    {
+        spriteRenderer.enabled = true;
+        OngoingDisplaybehavior = Nothing;
+    }
+
+    private void Nothing()//TODO: remove this cludge
     {
 
     }
+
 }

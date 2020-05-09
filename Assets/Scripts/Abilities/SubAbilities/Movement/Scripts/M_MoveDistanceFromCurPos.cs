@@ -23,9 +23,9 @@ public class M_MoveDistanceFromCurPos : SubAbility
         }
         else
         {
-
+            SetNewAnimation("stand", ab);
             EndSubAbility();      
-            ab.pcAnimator.SetBool("walk", false); 
+            
         }    
     }
 

@@ -15,6 +15,7 @@ public class RunAbilityOnTarget : SubAbility
     {
         abilityInstance = Instantiate(abilityToAdd);
         abilityInstance.SetupAbility(ab.singleObjectTarget);
+        
         AbilityManager.abManager.TurnOnAbility(abilityInstance);
         EndSubAbility();
     }

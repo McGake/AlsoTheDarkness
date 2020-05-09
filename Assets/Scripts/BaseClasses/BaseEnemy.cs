@@ -24,24 +24,4 @@ public class BaseEnemy : BaseBattleActor
         }
     }
 
-    protected override void SetUpAbilities()
-    {
-        base.SetUpAbilities();
-        foreach (Ability aB in abilities)
-        {
-            aB.onEnemy = true;
-        }
-    }
-
-    //private void UpdateAbilitiesUseability()
-    //{
-    //    foreach (Ability ab in abilities)
-    //    {
-    //        ab.castable = true;
-    //        if (Time.time <= ab.curCooldownEndTime)
-    //        {
-    //            ab.castable = false;
-    //        }
-    //    }
-    //}
 }

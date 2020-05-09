@@ -14,6 +14,14 @@ public class InstantDamage : Status
     public override void DoStatusInitialEffect(BaseBattleActor bbA)
     {
         bbA.stats.hP -= (int)damage;
+        bbA.battleActorView.ShowDamage((int)damage);
+        bbA.battleActorView.StartBlink();
+        
         //bbA.battleActorView.ShowDamage((int)damage);
-    }    
+    }
+
+    public override void DoStatusEnd(BaseBattleActor bbA)
+    {
+        bbA.battleActorView.StopBlink();
+    }
 }

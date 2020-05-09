@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Struggle
   m_EditorClassIdentifier: 
   _displayName: Struggle
+  onEnemy: 0
   objectTargets: []
   positionTargets: []
   inspectorSubAbilities:
   - {fileID: 11400000, guid: 3bb0ca607d36e3f4aabfc264e3328b39, type: 2}
   - {fileID: 11400000, guid: e3d29d72561bd9d4fb92a48602a8f738, type: 2}
   curSubAbilityIndx: 3
-  cooldownTime: 0
+  cooldownTime: 2.5

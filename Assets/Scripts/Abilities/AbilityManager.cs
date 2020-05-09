@@ -16,8 +16,9 @@ public class AbilityManager : MonoBehaviour
 
     void Update()
     {
-        RunAbilities();
         RemoveFinishedAbilities();
+        RunAbilities();
+        
     }
 
     private void RunAbilities()
@@ -25,13 +26,17 @@ public class AbilityManager : MonoBehaviour
         //Debug.Log("pre count " + abilitiesInUse.Count);
         foreach (Ability aIU in abilitiesInUse)
         {
-            aIU.AbilityStateMachine();
             if (aIU.IsAbilityOver())
             {
-               // Debug.Log("ability was over");
+                Debug.Log(aIU.DisplayName + " ability was over on: " + aIU.owner.name);
                 //Debug.Log("number of abilities just in use " + abilitiesInUse.Count);
                 abilitiesToRemove.Add(aIU);//I actually dont know if this will mess up the for each loop
             }
+            else
+            {
+                aIU.AbilityStateMachine();
+            }
+
         }
     }
 

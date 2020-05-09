@@ -21,7 +21,7 @@ public class EffectOnContact : StatusDeliverer
 
     public void OnEnable()
     {
-        Debug.Log("effect on contact onenable called " + this.name);
+
         objectsHit.Clear();
         GetInspectorStatuses();
         SetUpStatuses();
@@ -81,7 +81,7 @@ public class EffectOnContact : StatusDeliverer
     {
         BaseBattleActor actorToAddEffectTo;
         actorToAddEffectTo = col.GetComponent<BaseBattleActor>();
-        Debug.Log("effect applying");
+        //Debug.Log("effect applying");
         foreach(Status status in statusesToAdd)
         {
             actorToAddEffectTo.AddStatus(status);
@@ -122,7 +122,6 @@ public class StatusDeliverer:MonoBehaviour
     {
         foreach (Status status in statusesToAdd)
         {
-            Debug.Log("set up called for " + status.name);
             status.SetUpStatus(sourceAbility, gameObject);
         }
     }

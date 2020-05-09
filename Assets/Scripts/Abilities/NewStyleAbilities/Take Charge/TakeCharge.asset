@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: TakeCharge
   m_EditorClassIdentifier: 
   _displayName: TakeCharge
+  onEnemy: 0
   objectTargets: []
   positionTargets: []
   inspectorSubAbilities:
@@ -20,4 +21,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5dd78961110bf364085790d29631a635, type: 2}
   - {fileID: 11400000, guid: c40bf24d45e91604ebeb21f55c89397b, type: 2}
   curSubAbilityIndx: 3
-  cooldownTime: 0
+  cooldownTime: 5

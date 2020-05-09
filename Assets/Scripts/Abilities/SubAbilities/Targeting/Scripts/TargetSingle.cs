@@ -21,7 +21,8 @@ public class TargetSingle : SubAbility//TODO: THIs is no longer target single. r
 
     public override void OnSelectionFinished(List<GameObject> selectedObjects)
     {
-        ability.objectTargets.AddRange(selectedObjects);
+        Debug.Log("on selection finished called");
+       ability.objectTargets.AddRange(selectedObjects);
         EndSubAbility();
     }
 

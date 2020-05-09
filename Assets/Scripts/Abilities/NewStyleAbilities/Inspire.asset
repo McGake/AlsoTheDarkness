@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Inspire
   m_EditorClassIdentifier: 
   _displayName: Inspire
+  onEnemy: 0
   objectTargets: []
   positionTargets: []
   inspectorSubAbilities:
@@ -22,4 +23,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6e3051ae69b0a984995774a1fb00b496, type: 2}
   - {fileID: 11400000, guid: 200e160e75203b84dab81ce5abc745b7, type: 2}
   curSubAbilityIndx: 3
-  cooldownTime: 0
+  cooldownTime: 4.5

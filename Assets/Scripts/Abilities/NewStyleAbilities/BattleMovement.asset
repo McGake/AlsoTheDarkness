@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: BattleMovement
   m_EditorClassIdentifier: 
   _displayName: BattleMovement
+  onEnemy: 0
   objectTargets: []
   positionTargets: []
   inspectorSubAbilities:
   - {fileID: 11400000, guid: ae0423beb129ed545b5b3a461071deea, type: 2}
   - {fileID: 11400000, guid: ac1a9e2925e234c438f16bb07c3aa7a1, type: 2}
   curSubAbilityIndx: 3
-  cooldownTime: 0
+  cooldownTime: 4.5

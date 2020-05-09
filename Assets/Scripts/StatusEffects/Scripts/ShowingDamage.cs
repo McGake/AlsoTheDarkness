@@ -17,25 +17,25 @@ public class ShowingDamage : Status //TODO: perhaps to turn this and things like
 
     public override void DoStatusInitialEffect(BaseBattleActor bbA)
     {
-        sR = bbA.transform.GetComponent<SpriteRenderer>();
-        BattleMenuManager.battleMenuManager.ExplodeDamageText(damage, bbA.gameObject);
+        //sR = bbA.transform.GetComponent<SpriteRenderer>();
+        //BattleMenuManager.battleMenuManager.ExplodeDamageText(damage, bbA.gameObject);
     }
 
     public override void DoStatus(BaseBattleActor bbA)
     {
-        if (sR.color.a == 0)
-        {
-            sR.color = Color.white;
-            //sR.material.SetColor("whiteColor", Color.white);
-        }
-        else
-        {
-            sR.color = Color.clear;
-        }
+        //if (sR.color.a == 0)
+        //{
+        //    sR.color = Color.white;
+        //    //sR.material.SetColor("whiteColor", Color.white);
+        //}
+        //else
+        //{
+        //    sR.color = Color.clear;
+        //}
     }
 
     public override void DoStatusEnd(BaseBattleActor bbA)
     {
-        sR.color = Color.white;
+        //sR.color = Color.white;
     }
 }

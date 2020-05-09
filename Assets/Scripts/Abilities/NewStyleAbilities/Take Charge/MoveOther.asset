@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: MoveOther
   m_EditorClassIdentifier: 
   _displayName: 
+  onEnemy: 0
   objectTargets: []
   positionTargets: []
   inspectorSubAbilities:

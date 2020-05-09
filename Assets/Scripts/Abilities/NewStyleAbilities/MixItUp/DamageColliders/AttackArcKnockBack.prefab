@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8515647366171059880}
   - component: {fileID: 8515647366171059887}
   m_Layer: 11
-  m_Name: AttackArc
+  m_Name: AttackArcKnockBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,14 +77,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sourceAbility: {fileID: 0}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
   targetTypes:
   - Monster
   otherCollideableTypes: []
   inspectorStatusesToAdd:
   - {fileID: 11400000, guid: 1835e310515904f4dbf4094bc46a6409, type: 2}
-  - {fileID: 11400000, guid: 1b527e2e0a528dd4b8a0730ee5bc1c95, type: 2}
   - {fileID: 11400000, guid: 6e2295f6ff445404997e1bb232fc12db, type: 2}
-  worldEffectScript: {fileID: 0}

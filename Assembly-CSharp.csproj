@@ -76,14 +76,8 @@
     <Compile Include="Assets\Prefabs\Projectiles\WorldEffectScripts\WorldEffect.cs" />
     <Compile Include="Assets\Scripts\Abilities\Ability.cs" />
     <Compile Include="Assets\Scripts\Abilities\AbilityManager.cs" />
-    <Compile Include="Assets\Scripts\Abilities\Defs\AbilityDef.cs" />
-    <Compile Include="Assets\Scripts\Abilities\Defs\AttackAllDef.cs" />
     <Compile Include="Assets\Scripts\Abilities\Defs\DangerZoneDef.cs" />
-    <Compile Include="Assets\Scripts\Abilities\Defs\IndirectMagicDef.cs" />
     <Compile Include="Assets\Scripts\Abilities\Defs\ItemDef.cs" />
-    <Compile Include="Assets\Scripts\Abilities\Defs\ProjectileDef.cs" />
-    <Compile Include="Assets\Scripts\Abilities\Defs\SingleDirectDef.cs" />
-    <Compile Include="Assets\Scripts\Abilities\Defs\SingleDirectEnemyVerDef.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Take Charge\InteruptAbilitiesOfTarget.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Take Charge\RunAbilityOnTarget.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\AddStatus\Scripts\AddStatusToMultiple.cs" />

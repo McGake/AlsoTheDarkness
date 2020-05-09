@@ -8,29 +8,11 @@ using TMPro;
 
 public class BattleMenuManager : GameSegment
 {
-
-    public enum BattleMenuStates
-    {
-        none = 0,
-        SwitchingHero = 1,
-        HeroSelected = 2,
-        NoHeroSelected = 3,
-
-        WaitingOnAbilitySystem = 12,
-
-        BattleEnd = 4,
-        DisplayFinalStats = 5,
-
-
-    }
-
     public static BattleMenuManager battleMenuManager;
 
-    public GameObject pointer;
+    public GameObject cursor;
 
-    public GameObject secondaryPointer;
-
-    public BattleMenuStates curState = BattleMenuStates.SwitchingHero;
+    public GameObject secondaryCursor;
 
     ObjectsInBattle objectsInBattle;
 
@@ -155,7 +137,7 @@ public class BattleMenuManager : GameSegment
     void SwitchHero()
     {
         curHero = objectsInBattle.pcsInBattle[curHeroIndx];
-        pointer.transform.position = curHero.transform.position + new Vector3(-.33f, .3f,0f);
+        cursor.transform.position = curHero.transform.position + new Vector3(-.33f, .3f,0f);
     }
 
     List<Ability> curCombatAbilities = new List<Ability>();
@@ -167,7 +149,8 @@ public class BattleMenuManager : GameSegment
 
     void GetBattleAbilities()
     {
-        List<Ability> allAbilitiesOnPC = curHero.GetComponent<BattlePC>().abilities; 
+        List<Ability> allAbilitiesOnPC = curHero.GetComponent<BattlePC>().abilities;
+
         curCombatAbilities = Ability.NewRetrunOnlyAbilitiesOfContext( UsableContexts.battleAbilityMenu, allAbilitiesOnPC);
     }
 
@@ -238,7 +221,7 @@ public class BattleMenuManager : GameSegment
         }
         if (AbilityManager.abManager.IsCharacterCurrentlyDoingAbility(curHero) == false) //another way to do this would be just to check current heros abilities to see if he has any that are currently set to not finished.
         {
-            CurSelectionBehavior = WaitForAbilityAndUpdateDisplay;
+            CurSelectionBehavior = SwitchHeroOnInput;//WaitForAbilityAndUpdateDisplay;
             curHero.GetComponent<BaseBattleActor>().DoAbility(abilityToPass);
            
             
@@ -318,7 +301,6 @@ public class BattleMenuManager : GameSegment
 
     public void SwitchHeroOnInput()
     {
-
         float yVal = Input.GetAxis("Vertical");
         
         if (Time.time > nextLegalSwitch && preventCharacterSwitch == false)
@@ -382,11 +364,11 @@ public class BattleMenuManager : GameSegment
 
     public void TurnOnSecondaryPointer()
     {
-        secondaryPointer.SetActive(true);
+        secondaryCursor.SetActive(true);
     }
     public void TurnOffSecondaryPointer()
     {
-        secondaryPointer.SetActive(false);
+        secondaryCursor.SetActive(false);
     }
 
     #region SelectionMethods
@@ -488,7 +470,7 @@ public class BattleMenuManager : GameSegment
     private void StartSelectAllFriendliesButCurrent(SubAbility subAb, Type requesterType)//TODO: maybe Just make this a call back rather than passing the whole sub ability
     {
         InitializeSelection(subAb);
-        objectsToSwtichBetween = objectsInBattle.GetFriendsOfType(requesterType);
+        objectsToSwtichBetween = new List<GameObject> (objectsInBattle.GetFriendsOfType(requesterType));
         for(int i = 0; i < objectsToSwtichBetween.Count; i++)
         {
 
@@ -509,7 +491,7 @@ public class BattleMenuManager : GameSegment
     private void InitializeSelection(SubAbility subAb)
     {
         OnSelectionFinished = subAb.OnSelectionFinished;
-        secondaryPointer.SetActive(true);
+        secondaryCursor.SetActive(true);
     }
 
     private void EndSelection(List<GameObject> selectedObjects)
@@ -517,7 +499,7 @@ public class BattleMenuManager : GameSegment
         Debug.Log("End Selection");
         OnSelectionFinished(selectedObjects);
         CurSelectionBehavior = SwitchHeroOnInput;
-        secondaryPointer.SetActive(false);
+        secondaryCursor.SetActive(false);
         
     }
 
@@ -548,7 +530,7 @@ public class BattleMenuManager : GameSegment
                 }
                 
             }
-            secondaryPointer.transform.position = objectsToSwtichBetween[genericSwitchIndx].transform.position;
+            secondaryCursor.transform.position = objectsToSwtichBetween[genericSwitchIndx].transform.position;
         }
         if(Input.GetButtonDown("A"))
         {
@@ -569,7 +551,7 @@ public class BattleMenuManager : GameSegment
     private void OneGroupSelection() //this is the old school way of doing this. need to make partially see through selection indicators and turn them on and off or move all of them. This does nothing except visually show the selection and wait for confirmation
     {
         
-        secondaryPointer.transform.position = objectsToSwtichBetween[genericSwitchIndx].transform.position;
+        secondaryCursor.transform.position = objectsToSwtichBetween[genericSwitchIndx].transform.position;
         genericSwitchIndx++;
         if (genericSwitchIndx >= objectsToSwtichBetween.Count)
         {

@@ -23,5 +23,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f6a908b9f30ddb8479aa6cc29c610440, type: 2}
   - {fileID: 11400000, guid: b29c1070d3fe482438c2f1b2ffbd47f4, type: 2}
   - {fileID: 11400000, guid: 1ecdbf3908725dd43a6477dc25ab9662, type: 2}
+  - {fileID: 11400000, guid: 200e160e75203b84dab81ce5abc745b7, type: 2}
   curSubAbilityIndx: 3
-  cooldownTime: 0
+  cooldownTime: 7

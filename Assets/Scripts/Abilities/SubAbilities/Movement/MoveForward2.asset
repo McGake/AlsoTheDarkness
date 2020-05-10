@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: MoveForward2
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  distanceToMove: {x: -2, y: 0, z: 0}
+  distanceToMove: {x: 2, y: 0, z: 0}

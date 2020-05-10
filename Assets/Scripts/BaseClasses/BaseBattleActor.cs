@@ -48,7 +48,7 @@ public class BaseBattleActor :MonoBehaviour
     public delegate void DelShowBuff();
     public DelShowBuff ShowBuff;
 
-    void Awake()
+    public virtual void Awake()
     {
         SetUpAbilities();
 

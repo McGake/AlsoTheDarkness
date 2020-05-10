@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\Abilities\AbilityManager.cs" />
     <Compile Include="Assets\Scripts\Abilities\Defs\DangerZoneDef.cs" />
     <Compile Include="Assets\Scripts\Abilities\Defs\ItemDef.cs" />
+    <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\RandomBetweenTwoMovements\RandomTwoDirections.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Take Charge\InteruptAbilitiesOfTarget.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Take Charge\RunAbilityOnTarget.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\AddStatus\Scripts\AddStatusToMultiple.cs" />

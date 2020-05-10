@@ -23,8 +23,10 @@ public class P_Chanting : SubAbility
          
         if (endPrepTime <= Time.time)
         {
+           
             EndSubAbility();
-            ab.pcAnimator.SetBool("chantSpell", false);
+
+
         }
     }
 }

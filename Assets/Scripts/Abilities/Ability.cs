@@ -16,17 +16,6 @@ public enum UsableContexts
 }
 
 
-public enum AbilityState
-{
-    none = 0,
-    Setup = 1,
-    Target = 2,
-    PrepAnimation = 3,
-    Execute = 4,
-    EndAnimation = 5,
-    Cancel = 1000,
-}
-
 
 [System.Serializable]
 [CreateAssetMenu(fileName = "NameThisAbility", menuName = "ScriptableObjects/Ability", order = 1)]
@@ -188,7 +177,7 @@ public class Ability:ScriptableObject
 
     private void EndAbility()
     {
-        Debug.Log("end ability called");
+        //Debug.Log("end ability called");
         abilityOver = true;
     }
 

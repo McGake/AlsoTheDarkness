@@ -8,8 +8,17 @@ using UnityEngine;
 public class DeterminAngleCenterSpread : SubProjectileAbility
 {
     public float spreadAngle;
-    public float projectileFireAngle;//TODO:This is the base/center angle. the angle of the arc so to say. rename this as such
+    public float inspectorProjectileFireAngle;
+    private float projectileFireAngle;//TODO:This is the base/center angle. the angle of the arc so to say. rename this as such
     private float invertingValue = 1f;
+    public override void DoInitialProjectileSubAbility(ProjectileAbility pa)
+    {
+        projectileFireAngle = inspectorProjectileFireAngle;
+        if(pa.sources[0].transform.right.x == -1f) //TODO: change this to find the angle for the facing/rotation of the gameobject, probably can get it from the angle of transform.right
+        {
+            projectileFireAngle = 180 - inspectorProjectileFireAngle;
+        }
+    }
 
     public override void DoProjectileSubAbility(ProjectileAbility pa)
     {       

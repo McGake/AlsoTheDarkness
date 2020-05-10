@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5800589841093965518
 Transform:
   m_ObjectHideFlags: 0
@@ -132,6 +132,9 @@ MonoBehaviour:
   otherCollideableTypes: []
   inspectorStatusesToAdd:
   - {fileID: 11400000, guid: 1de6d6285809560419ed390fb67a00e8, type: 2}
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!50 &3647189363385741791
 Rigidbody2D:
   serializedVersion: 4

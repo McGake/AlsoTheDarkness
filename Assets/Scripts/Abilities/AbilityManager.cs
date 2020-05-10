@@ -28,7 +28,7 @@ public class AbilityManager : MonoBehaviour
         {
             if (aIU.IsAbilityOver())
             {
-                Debug.Log(aIU.DisplayName + " ability was over on: " + aIU.owner.name);
+                //Debug.Log(aIU.DisplayName + " ability was over on: " + aIU.owner.name);
                 //Debug.Log("number of abilities just in use " + abilitiesInUse.Count);
                 abilitiesToRemove.Add(aIU);//I actually dont know if this will mess up the for each loop
             }

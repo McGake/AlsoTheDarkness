@@ -11,16 +11,31 @@ public class BaseEnemy : BaseBattleActor
         SimpleAbilitySelector();
     }
 
+    public float abilityIntervalMax;
+
+    public float abilityIntervalMin;
+
+    private float nextAbilityInterval;
+    public override void Awake()
+    {
+        base.Awake();
+        nextAbilityInterval = Random.Range(abilityIntervalMin, abilityIntervalMax);
+    }
+
     void SimpleAbilitySelector()
     {
-        if(AbilityManager.abManager.IsCharacterCurrentlyDoingAbility(gameObject))
+        if (nextAbilityInterval <= Time.time)
         {
-            return;
-        }
-        else
-        {
-            int randAbilIndx = Random.Range(0, abilities.Count);
-            //AbilityManager.abManager.TurnOnAbility(abilities[randAbilIndx]); 
+            if (AbilityManager.abManager.IsCharacterCurrentlyDoingAbility(gameObject))
+            {
+                return;
+            }
+            else
+            {
+                nextAbilityInterval = Time.time + Random.Range(abilityIntervalMin, abilityIntervalMax);
+                int randAbilIndx = Random.Range(0, abilities.Count);
+                AbilityManager.abManager.TurnOnAbility(abilities[randAbilIndx]);
+            }
         }
     }
 

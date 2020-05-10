@@ -18,7 +18,10 @@ public class FireProjectile : SubProjectileAbility
             GameObject tempProjectile;
             for (int i = 0; i < pa.numberOfProjectiles; i++)
             {
+                Debug.Log("This is when instantiate happens");
                 tempProjectile = GameObject.Instantiate(projectilePrefab);
+                Debug.Log("are we even getting the ability " + pa.ability);
+                tempProjectile.GetComponent<EffectOnContact>().SetSourceAbility(pa.ability); //TODO: make factory for projectile creation
                 tempProjectile.SetActive(false);
                 projectiles.Add(tempProjectile);
             }

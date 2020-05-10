@@ -19,13 +19,13 @@ TagManager:
   - UI
   - 
   - 
-  - PC
+  - BattlePC
   - trigger
   - test
-  - Projectile
-  - Enemy
+  - PCProjectile
+  - BattleEnemy
   - BouncingText
-  - 
+  - EnemyProjectile
   - 
   - 
   - 

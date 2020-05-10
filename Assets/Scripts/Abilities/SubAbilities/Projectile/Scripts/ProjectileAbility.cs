@@ -61,7 +61,7 @@ public class ProjectileAbility : SubAbility
         ability = ab;
         SetUpNextProjectileSubAb();
         power = 0f;
-        Debug.Log("initial projectile ability ran");
+        //Debug.Log("initial projectile ability ran");
     }
 
     public override void DoSubAbility(Ability ab)

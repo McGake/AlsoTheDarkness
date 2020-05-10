@@ -17,9 +17,12 @@ public abstract class SubAbility : ScriptableObject
 
     protected void SetNewAnimation(string newAnim, Ability ab)
     {
-        ab.pcAnimator.SetBool(ab.lastAnimSet, false);
-        ab.pcAnimator.SetBool(newAnim, true);
-        ab.lastAnimSet = newAnim;
+        if (ab.actorType == typeof(BattlePC))//TODO: this is temp code that must be modified if we want enemies to be able to use same sub abilities as pcs
+        {
+            ab.pcAnimator.SetBool(ab.lastAnimSet, false);
+            ab.pcAnimator.SetBool(newAnim, true);
+            ab.lastAnimSet = newAnim;
+        }
     }
 
     protected void SetNewSpecialAnimation(AnimationClip anim, Ability ab)

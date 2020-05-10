@@ -19,9 +19,11 @@ public class EffectOnContact : StatusDeliverer
     public delegate void DelSendObjectsHit(List<GameObject> osHit);
     public DelSendObjectsHit SendObjectsHit;
 
+    public LayerMask mask;
+
     public void OnEnable()
     {
-
+        SetPhysicsLayer();
         objectsHit.Clear();
         GetInspectorStatuses();
         SetUpStatuses();
@@ -32,6 +34,20 @@ public class EffectOnContact : StatusDeliverer
     public void Start()
     {      
         //alreadyColidedWith.Clear();
+    }
+
+    private void SetPhysicsLayer()
+    {
+        Debug.Log(sourceAbility);
+        Debug.Log(sourceAbility.actorType);
+        if(sourceAbility.actorType == typeof(BattlePC))
+        {
+            gameObject.layer = LayerMask.NameToLayer("PCProjectile");
+        }
+        else if (sourceAbility.actorType == typeof(BaseEnemy))
+        {
+            gameObject.layer = LayerMask.NameToLayer("EnemyProjectile");
+        }
     }
 
     private void GetInspectorStatuses()
@@ -48,22 +64,23 @@ public class EffectOnContact : StatusDeliverer
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-
-        foreach(string type in targetTypes)
-        {
-            if(type == col.tag)
-            {
-                ApplyEffect(col);
-                objectsHit.Add(col.gameObject);
-            }            
-        }
-        foreach(string type in otherCollideableTypes)
-        {
-            if(type == col.tag)
-            {
-                OnHitOther(col);
-            }
-        }
+        ApplyEffect(col);
+        objectsHit.Add(col.gameObject);
+        //foreach(string type in targetTypes)
+        //{
+        //    if(type == col.tag)
+        //    {
+        //        ApplyEffect(col);
+        //        objectsHit.Add(col.gameObject);
+        //    }            
+        //}
+        //foreach(string type in otherCollideableTypes)
+        //{
+        //    if(type == col.tag)
+        //    {
+        //        OnHitOther(col);
+        //    }
+        //}
     }
 
     public void OnTriggerStay2D(Collider2D col)

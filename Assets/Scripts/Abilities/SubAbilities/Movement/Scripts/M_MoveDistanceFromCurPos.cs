@@ -31,8 +31,7 @@ public class M_MoveDistanceFromCurPos : SubAbility
 
     private void CalculateTarget(GameObject owner)
     {
-
-        moveTarget = owner.transform.position + distanceToMove;
+        moveTarget = owner.transform.position + (distanceToMove * owner.transform.right.x);
     }
 
 

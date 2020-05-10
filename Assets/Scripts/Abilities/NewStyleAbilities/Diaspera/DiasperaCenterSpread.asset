@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DiasperaCenterSpread
   m_EditorClassIdentifier: 
   spreadAngle: 45
-  projectileFireAngle: 180
+  inspectorProjectileFireAngle: 0

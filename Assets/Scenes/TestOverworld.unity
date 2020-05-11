@@ -41440,19 +41440,19 @@ PrefabInstance:
     - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
         type: 3}
       propertyPath: inspectorAbilities.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
         type: 3}
       propertyPath: inspectorAbilities.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 76e3795f9a443774db7410197ca2d7cd,
+      objectReference: {fileID: 11400000, guid: fef5c55e2826bcc42a8e7672acf2cbb4,
         type: 2}
     - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
         type: 3}
       propertyPath: inspectorAbilities.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 9363c311d2df6074eaab8ea215ea05b6,
+      objectReference: {fileID: 11400000, guid: 76e3795f9a443774db7410197ca2d7cd,
         type: 2}
     - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
         type: 3}
@@ -41464,6 +41464,12 @@ PrefabInstance:
       propertyPath: abilityIntervalMin
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
+        type: 3}
+      propertyPath: inspectorAbilities.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: fef5c55e2826bcc42a8e7672acf2cbb4,
+        type: 2}
     - target: {fileID: 8844169639533487329, guid: bd4b75f9dc605f447bcd0309e9922de2,
         type: 3}
       propertyPath: m_Name
@@ -41474,6 +41480,11 @@ PrefabInstance:
       propertyPath: worldSpaceCanvas
       value: 
       objectReference: {fileID: 1736787082}
+    - target: {fileID: 8844169639533487356, guid: bd4b75f9dc605f447bcd0309e9922de2,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8844169639533487358, guid: bd4b75f9dc605f447bcd0309e9922de2,
         type: 3}
       propertyPath: m_LocalPosition.x

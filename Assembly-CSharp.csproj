@@ -65,6 +65,7 @@
     <Compile Include="Assets\Art\Characters\Loke\TestAddAnim.cs" />
     <Compile Include="Assets\Art\TileMaps\PlaceHoderTiles\Scriptable TilesBrushes\TransitionZoneDef.cs" />
     <Compile Include="Assets\BattleActorView.cs" />
+    <Compile Include="Assets\CallbackOnDisable.cs" />
     <Compile Include="Assets\ChangeLevelOnTouch.cs" />
     <Compile Include="Assets\Characters\PCs\PC.cs" />
     <Compile Include="Assets\DestroyAfterSeconds.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Assets\MagicSetup.cs" />
     <Compile Include="Assets\MoveForward.cs" />
     <Compile Include="Assets\OnlyCollideWithOneThing.cs" />
+    <Compile Include="Assets\Prefabs\Projectiles\BeamExtender.cs" />
     <Compile Include="Assets\Prefabs\Projectiles\DisableAfterSeconds.cs" />
     <Compile Include="Assets\Prefabs\Projectiles\WorldEffectScripts\WorldEffect.cs" />
     <Compile Include="Assets\Scripts\Abilities\Ability.cs" />
@@ -97,6 +99,7 @@
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Movement\Scripts\MoveInDirection.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Preparation\Scripts\Attacking.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Preparation\Scripts\Casting.cs" />
+    <Compile Include="Assets\Scripts\Abilities\SubAbilities\Preparation\Scripts\ChantingWithAnim.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Preparation\Scripts\P_Chanting.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Preparation\Scripts\PrepingForStrike.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Preparation\Scripts\ReturnToStanding.cs" />
@@ -104,7 +107,9 @@
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\DeterminAngle\DeterminAngleCenterSpread.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\DeterminAngle\DeterminAngleEdgeSpread.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\DeterminAngle\DeterminAngleSimpleSetting.cs" />
+    <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\Fire\FireCallbackOnDisable.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\Fire\FireProjectile.cs" />
+    <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\Fire\FireProjectileAndWaitForDisable.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\Fire\FireProjectileWithForce.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\Fire\FireReturningTargetsProjectile.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\IntervalTimer\IntervalTimeBased.cs" />

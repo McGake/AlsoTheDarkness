@@ -9,6 +9,7 @@ public class SetProjSourceSelfCenter : SubProjectileAbility
     {
         if (pa.sources.Count == 0)
         {
+
             pa.sources.Add(pa.ability.owner.transform);
         }
         else

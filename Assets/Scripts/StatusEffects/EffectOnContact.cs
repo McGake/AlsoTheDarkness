@@ -21,33 +21,16 @@ public class EffectOnContact : StatusDeliverer
 
     public LayerMask mask;
 
+    public bool continuous;
+
+    public float repeatInterval;
+    private float nextInterval;
+
     public void OnEnable()
     {
-        SetPhysicsLayer();
         objectsHit.Clear();
         GetInspectorStatuses();
         SetUpStatuses();
-    }
-
-
-
-    public void Start()
-    {      
-        //alreadyColidedWith.Clear();
-    }
-
-    private void SetPhysicsLayer()
-    {
-        Debug.Log(sourceAbility);
-        Debug.Log(sourceAbility.actorType);
-        if(sourceAbility.actorType == typeof(BattlePC))
-        {
-            gameObject.layer = LayerMask.NameToLayer("PCProjectile");
-        }
-        else if (sourceAbility.actorType == typeof(BaseEnemy))
-        {
-            gameObject.layer = LayerMask.NameToLayer("EnemyProjectile");
-        }
     }
 
     private void GetInspectorStatuses()
@@ -64,33 +47,25 @@ public class EffectOnContact : StatusDeliverer
 
     public void OnTriggerEnter2D(Collider2D col)
     {
+        Debug.Log("trigger enter!!!!!!");
         ApplyEffect(col);
         objectsHit.Add(col.gameObject);
-        //foreach(string type in targetTypes)
-        //{
-        //    if(type == col.tag)
-        //    {
-        //        ApplyEffect(col);
-        //        objectsHit.Add(col.gameObject);
-        //    }            
-        //}
-        //foreach(string type in otherCollideableTypes)
-        //{
-        //    if(type == col.tag)
-        //    {
-        //        OnHitOther(col);
-        //    }
-        //}
+        nextInterval = Time.time + repeatInterval;
     }
 
     public void OnTriggerStay2D(Collider2D col)
     {
+        if(continuous)
+        {
 
-    }
-
-    public void OnTriggerExit2D(Collider2D col)
-    {
-        
+            if (nextInterval < Time.time)
+            {
+                
+                ApplyEffect(col);
+                nextInterval = Time.time + repeatInterval;
+                
+            }
+        }
     }
 
     #region Effects To Apply
@@ -133,6 +108,7 @@ public class StatusDeliverer:MonoBehaviour
     public void SetSourceAbility(Ability newSource)
     {
         sourceAbility = newSource;
+        SetPhysicsLayer();
     }
 
     public void SetUpStatuses()
@@ -141,6 +117,22 @@ public class StatusDeliverer:MonoBehaviour
         {
             status.SetUpStatus(sourceAbility, gameObject);
         }
+    }
+
+    private void SetPhysicsLayer()
+    {
+        if (sourceAbility.actorType != null)
+        {
+            if (sourceAbility.actorType == typeof(BattlePC))
+            {
+                gameObject.layer = LayerMask.NameToLayer("PCProjectile");
+            }
+            else if (sourceAbility.actorType == typeof(BaseEnemy))
+            {
+                gameObject.layer = LayerMask.NameToLayer("EnemyProjectile");
+            }
+        }
+
     }
 
     protected List<Status> statusesToAdd = new List<Status>();

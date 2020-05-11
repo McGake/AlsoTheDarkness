@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 1829457371}
   - component: {fileID: 8898088046320939687}
   - component: {fileID: 7781133962832424867}
+  - component: {fileID: 9100974367497304608}
   m_Layer: 8
   m_Name: PC
   m_TagString: PC
@@ -297,6 +298,27 @@ MonoBehaviour:
   aOC: {fileID: 22100000, guid: 7ee4d6d8e6fe9e24e83206d761699f05, type: 2}
   testAnimationClip: {fileID: 7400000, guid: f78f4238014ab914e83d971c8d371c62, type: 2}
   animator: {fileID: 0}
+--- !u!50 &9100974367497304608
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4007987562068389461}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &5526922521252651099
 GameObject:
   m_ObjectHideFlags: 0

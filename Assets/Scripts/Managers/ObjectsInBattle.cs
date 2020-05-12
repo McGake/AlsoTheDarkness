@@ -29,6 +29,7 @@ public class ObjectsInBattle : MonoBehaviour
         tempPCs = FindObjectsOfType<BattlePC>();
         foreach (BattlePC bpc in tempPCs)
         {
+            bpc.GetComponent<BaseBattleActor>().OnDeathCallback = OnPCDeath;
             pcsInBattle.Add(bpc.gameObject);
             
         }
@@ -36,6 +37,7 @@ public class ObjectsInBattle : MonoBehaviour
         tempEnemies = FindObjectsOfType<BaseEnemy>();
         foreach(BaseEnemy be in tempEnemies)
         {
+            be.GetComponent<BaseBattleActor>().OnDeathCallback = OnMonsterDeath;
             enemiesInBattle.Add(be.gameObject);
             
         }
@@ -89,5 +91,28 @@ public class ObjectsInBattle : MonoBehaviour
         }
         Debug.LogError("GetFriendsOfType Has returned null. Are you trying to get a non actor type?");
         return null;
+    }
+
+    public void DestroyMonstersInBattle()
+    {
+        for (int i = 0; i < enemiesInBattle.Count; i++)
+        {
+            Destroy(enemiesInBattle[i]);
+            enemiesInBattle.Clear();
+        }
+    }
+
+    public void OnMonsterDeath(GameObject monster)//TEMP: This and the callback on monsters is only here untill we get our event system made
+    {
+        enemiesInBattle.Remove(monster);
+        if(enemiesInBattle.Count <= 0)
+        {
+            //Call all monsters dead event
+        }
+    }
+
+    public void OnPCDeath(GameObject pc)
+    {
+        pcsInBattle.Remove(pc);
     }
 }

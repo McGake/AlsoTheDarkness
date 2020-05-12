@@ -4,12 +4,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "TargetEnemiesByRelativePosition", menuName = "SubAbilities/Targeting/TargetEnemiesByRelativePosition", order = 1)]
 public class TargetEnemiesByRelativePos : SubAbility
 {
-    public bool below;
-    public bool behind;
-    public bool inFront;
-    public bool above;
+    public bool noForward;
+    public bool noBackward;
+    public bool noUp;
+    public bool noDown;
 
-    public List<GameObject> tempEnemies;
+    private List<GameObject> tempEnemies;
 
     private Ability abilty;
 
@@ -34,18 +34,47 @@ public class TargetEnemiesByRelativePos : SubAbility
         tempEnemies.AddRange(selectedObjects);
         Vector3 pos = abilty.owner.transform.position;
 
-        Vector3 forward = new Vector3(-1f, 0f, 0f);
-        Vector3 backward = new Vector3(1f, 0f, 0f);
-        Vector3 up = new Vector3(0f, 1f, 0f);
-        Vector3 down = new Vector3(0f, -1f, 0f);
+        Vector3 forward = abilty.owner.transform.right;
+        Vector3 backward =-1f * abilty.owner.transform.right;
+        Vector3 up = abilty.owner.transform.up;
+        Vector3 down = -1f * abilty.owner.transform.up;
 
 
         for (int i = 0; i < tempEnemies.Count; i++)
         {
-            if(Vector3.Dot(backward, abilty.owner.transform.InverseTransformPoint(tempEnemies[i].transform.position)) > 0)
+            if (noBackward)
             {
-                Destroy(tempEnemies[i]);
+                if (Vector3.Dot(backward, abilty.owner.transform.InverseTransformPoint(tempEnemies[i].transform.position)) > 0)
+                {
+                    tempEnemies.Remove(tempEnemies[i]);
+                    //Destroy(tempEnemies[i]);
+                }
             }
+            else if (noForward)
+            {
+                if (Vector3.Dot(forward, abilty.owner.transform.InverseTransformPoint(tempEnemies[i].transform.position)) > 0)
+                {
+                    tempEnemies.Remove(tempEnemies[i]);
+                    //Destroy(tempEnemies[i]);
+                }
+            }
+            else if(noUp)
+            {
+                if (Vector3.Dot(up, abilty.owner.transform.InverseTransformPoint(tempEnemies[i].transform.position)) > 0)
+                {
+                    tempEnemies.Remove(tempEnemies[i]);
+                    //Destroy(tempEnemies[i]);
+                }
+            }
+            else if (noDown)
+            {
+                if (Vector3.Dot(up, abilty.owner.transform.InverseTransformPoint(tempEnemies[i].transform.position)) > 0)
+                {
+                    tempEnemies.Remove(tempEnemies[i]);
+                    //Destroy(tempEnemies[i]);
+                }
+            }
+
         }
 
         EndSubAbility();

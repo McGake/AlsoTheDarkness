@@ -21,7 +21,7 @@ public class ChangeLevelOnTouch : MonoBehaviour
     public void Awake()
     {
         lm = FindObjectOfType<LevelManager>().GetComponent<LevelManager>();
-        Debug.Log(gameObject.layer + "self layer");
+
     }
 
     public void OnTriggerEnter2D(Collider2D col)

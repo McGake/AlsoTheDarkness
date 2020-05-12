@@ -9,6 +9,8 @@ public class BattleStats
     public int maxHP;
     public int hP;
 
+    
+
     public int maxMana;
     public int mana;
 
@@ -47,6 +49,9 @@ public class BaseBattleActor :MonoBehaviour
 
     public delegate void DelShowBuff();
     public DelShowBuff ShowBuff;
+
+    public delegate void DelOnDeathCallback(GameObject gO);
+    public DelOnDeathCallback OnDeathCallback;
 
     public virtual void Awake()
     {
@@ -213,9 +218,34 @@ public class BaseBattleActor :MonoBehaviour
     #endregion AbilityManagement
 
 
+    public void ChangeHp(int amount)
+    {
+        stats.hP += amount;
+
+        if (stats.hP > stats.maxHP)
+        {
+            stats.hP = stats.maxHP;
+        }
+
+
+
+        if (stats.hP <= 0)
+        {
+            Die();
+        }
+
+        if(amount <0)
+        {
+            battleActorView.ShowDamage(amount);
+            battleActorView.StartBlink();
+        }
+    }
+
+
     public virtual void Die()
     {
-        GameObject.Destroy(gameObject); //TODO: flesh this out with arbitrary animation and make it part of a pooling system. PC's and monsters will of course have their own thing but should implement the base class if possible.
+        OnDeathCallback(gameObject);
+        gameObject.SetActive(false); //TODO: flesh this out with arbitrary animation and make it part of a pooling system. PC's and monsters will of course have their own thing but should implement the base class if possible.
     }
 }
 

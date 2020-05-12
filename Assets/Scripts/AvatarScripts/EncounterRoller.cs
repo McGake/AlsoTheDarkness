@@ -68,7 +68,7 @@ public class EncounterRoller : MonoBehaviour
             }
 
         }
-        Debug.LogError("after rolling positive for encounter, we did roll an encounter type. This should never happen.");
+        Debug.LogError("after rolling positive for encounter, we did not roll an encounter type. This should never happen.");
         return (EncounterTypes.none);
     }
 

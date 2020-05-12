@@ -24,9 +24,7 @@ public class EnemyMixProb
 [System.Serializable]
 public class EnemyMix
 {
-    public string name;
-    //this should contain a list of enemies that describes an encounter eg: 2 twisted tigers and 3 evil hienas and a probability int  
-    public List<string> encounterMonsters; // this should be the monster definitions themselves rather than list of strings
+    public List<GameObject> encounterMonsters;
 }
 
 [System.Serializable]

@@ -80,7 +80,6 @@
     <Compile Include="Assets\Scripts\Abilities\AbilityManager.cs" />
     <Compile Include="Assets\Scripts\Abilities\Defs\DangerZoneDef.cs" />
     <Compile Include="Assets\Scripts\Abilities\Defs\ItemDef.cs" />
-    <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\RandomBetweenTwoMovements\RandomTwoDirections.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Take Charge\InteruptAbilitiesOfTarget.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Take Charge\RunAbilityOnTarget.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\AddStatus\Scripts\AddStatusToMultiple.cs" />
@@ -94,9 +93,11 @@
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\MiniGame\Scripts\FlipBetweenMiniGame.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\MiniGame\Scripts\MiniGameLauncher.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\MiniGame\Scripts\PowerBarMG.cs" />
+    <Compile Include="Assets\Scripts\Abilities\SubAbilities\Movement\Scripts\ChooseDirectionOnRelativeY.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Movement\Scripts\M_MoveDistanceFromCurPos.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Movement\Scripts\MoveInArcToCharacter.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Movement\Scripts\MoveInDirection.cs" />
+    <Compile Include="Assets\Scripts\Abilities\SubAbilities\Movement\Scripts\RandomTwoDirections.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Preparation\Scripts\Attacking.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Preparation\Scripts\Casting.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Preparation\Scripts\ChantingWithAnim.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\ProjectileAbility.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\SetSource\SetProjSourceRelativePrefabs.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\SetSource\SetProjSourceSelfCenter.cs" />
+    <Compile Include="Assets\Scripts\Abilities\SubAbilities\Targeting\Scripts\LimitToClosestTarget.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Targeting\Scripts\TargetAllEnemies.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Targeting\Scripts\TargetAllInCircle.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Targeting\Scripts\TargetEnemiesByRelativePos.cs" />

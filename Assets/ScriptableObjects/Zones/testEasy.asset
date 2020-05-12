@@ -13,20 +13,18 @@ MonoBehaviour:
   m_Name: testEasy
   m_EditorClassIdentifier: 
   zoneName: Green3
-  encounterProb: 2
+  encounterProb: 20
   enemyMixTypesProb:
   - enemyMix:
-      name: Big Fight
       encounterMonsters:
-      - digger
-      - fighter
-      - spanker
+      - {fileID: 8844169639533487329, guid: bd4b75f9dc605f447bcd0309e9922de2, type: 3}
+      - {fileID: 8844169639533487329, guid: bd4b75f9dc605f447bcd0309e9922de2, type: 3}
+      - {fileID: 8844169639533487329, guid: bd4b75f9dc605f447bcd0309e9922de2, type: 3}
     prob: 40
   - enemyMix:
-      name: Dance Fight
       encounterMonsters:
-      - digger
-      - slasher
+      - {fileID: 1853974824209273933, guid: 4d9dcb86e5818e24f93ad740a20035bc, type: 3}
+      - {fileID: 1853974824209273933, guid: 4d9dcb86e5818e24f93ad740a20035bc, type: 3}
     prob: 60
   encounterTypesProb:
   - encounterType: 1

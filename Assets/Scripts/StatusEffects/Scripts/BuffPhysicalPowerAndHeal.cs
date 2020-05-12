@@ -18,12 +18,9 @@ public class BuffPhysicalPowerAndHeal : Status
 
     public override void DoStatusInitialEffect(BaseBattleActor bbA)
     {
-        bbA.stats.hP += healthBuff;
+        bbA.ChangeHp(healthBuff);
 
-        if(bbA.stats.hP > bbA.stats.maxHP)
-        {
-            bbA.stats.hP = bbA.stats.maxHP;
-        }
+
 
         bbA.stats.physicalPower += physicalPowerBuff;
     }

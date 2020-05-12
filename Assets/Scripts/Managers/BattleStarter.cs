@@ -18,6 +18,21 @@ public class BattleStarter : MonoBehaviour
 
     public BattleDef defaultBd;
 
+    public List<Transform> leftSideStartPositions;
+
+    public List<Transform> rightSideStartPositions;
+
+    public List<Transform> centerStartPositions;
+
+    public List<Transform> distantRightStartPositions;
+
+    public List<Transform> centerSurroundedStartPositions;
+
+
+    public List<Transform> possiblePCStartPositions;
+
+    public List<Transform> possibleMonsterStartPositions;
+
     public void Update()
     {
         if(Input.GetButtonDown("Start"))//this is temporary test code
@@ -27,6 +42,11 @@ public class BattleStarter : MonoBehaviour
         if(Input.GetButtonDown("A"))
         {
             //Debug.Log("a was pressed");
+        }
+
+        if(objectsInBattle.enemiesInBattle.Count <= 0)//TEMP:this is only here till we get our event system in place. then replace this with an all enemies dead listener
+        {
+            ExitBattle();
         }
     }
 
@@ -75,7 +95,17 @@ public class BattleStarter : MonoBehaviour
 
     private void SetupEncounter()
     {
-
+        if(bd.encounterType == EncounterTypes.standard)
+        {
+            possiblePCStartPositions = rightSideStartPositions;
+            possibleMonsterStartPositions = leftSideStartPositions;
+        }
+        else if(bd.encounterType == EncounterTypes.surrounded)
+        {
+            possiblePCStartPositions = centerSurroundedStartPositions;
+            possibleMonsterStartPositions.AddRange(leftSideStartPositions);
+            possibleMonsterStartPositions.AddRange(rightSideStartPositions);
+        }
     }
 
     private void SetupSituations()
@@ -88,7 +118,9 @@ public class BattleStarter : MonoBehaviour
         int curPCBlankIndex = 0;
         foreach (PC pc in bd.pcsInBattle)
         {
+            pcBlanks[curPCBlankIndex].transform.position = TakeRandomPosition(possiblePCStartPositions);
             pcBlanks[curPCBlankIndex].SetActive(true);
+            
             Debug.Log(pc.name);
             Debug.Log(pc.battleAnimOverride);
             pcBlanks[curPCBlankIndex].GetComponent<Animator>().runtimeAnimatorController = pc.battleAnimOverride;
@@ -102,7 +134,22 @@ public class BattleStarter : MonoBehaviour
 
     private void SetupMonsters()
     {
+        List<GameObject> encounterMonsters = bd.enemyMix.encounterMonsters;
+        for(int i = 0; i < encounterMonsters.Count; i++)
+        {
+            encounterMonsters[i] = Instantiate(encounterMonsters[i]);
+            encounterMonsters[i].transform.position = TakeRandomPosition(possibleMonsterStartPositions);
+        }
+    }
 
+
+    private Vector3 TakeRandomPosition(List<Transform> transforms)
+    {
+        Vector3 returnVector;
+        int randPosIndx = Random.Range(0, transforms.Count);
+        returnVector = transforms[randPosIndx].position;
+        transforms.RemoveAt(randPosIndx);
+        return (returnVector);
     }
 
 
@@ -114,6 +161,7 @@ public class BattleStarter : MonoBehaviour
         }
         battleFolder.SetActive(false);
         overworldFolder.SetActive(true);
+        objectsInBattle.DestroyMonstersInBattle();
     }
 }
 

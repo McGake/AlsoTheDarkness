@@ -11,16 +11,19 @@ public class ChooseDirectionOnRelativeY : SubAbility
 
     public override void DoInitialSubAbility(Ability ab)
     {
+        if (ab.objectTargets[0] != null)
+        {
 
-        if ((ab.objectTargets[0].transform.position.y - ab.owner.transform.position.y) >0)
-        {
-            ab.positionTargets.Add(direction0.normalized *ab.owner.transform.right.x);
-            EndSubAbility();
-        }
-        else
-        {
-            ab.positionTargets.Add(direction1.normalized * ab.owner.transform.right.x);
-            EndSubAbility();
+            if ((ab.objectTargets[0].transform.position.y - ab.owner.transform.position.y) > 0)
+            {
+                ab.positionTargets.Add(direction0.normalized * ab.owner.transform.right.x);
+                EndSubAbility();
+            }
+            else
+            {
+                ab.positionTargets.Add(direction1.normalized * ab.owner.transform.right.x);
+                EndSubAbility();
+            }
         }
     }
 

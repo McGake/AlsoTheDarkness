@@ -309,7 +309,7 @@ MonoBehaviour:
     armor: 0
   curStatuses: []
   inspectorAbilities:
-  - {fileID: 11400000, guid: fef5c55e2826bcc42a8e7672acf2cbb4, type: 2}
+  - {fileID: 11400000, guid: 9363c311d2df6074eaab8ea215ea05b6, type: 2}
   abilityIntervalMax: 4
   abilityIntervalMin: 0.5
 --- !u!60 &8844169639533487357
@@ -361,7 +361,7 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!114 &8844169639533487355

@@ -7,10 +7,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
+        type: 3}
+      propertyPath: inspectorAbilities.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4d5b8e8bc91a9d9429d2fa30d81088b4,
+        type: 2}
     - target: {fileID: 8844169639533487329, guid: bd4b75f9dc605f447bcd0309e9922de2,
         type: 3}
       propertyPath: m_Name
-      value: TestEnemy2
+      value: TestEnemy2 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8844169639533487354, guid: bd4b75f9dc605f447bcd0309e9922de2,
         type: 3}

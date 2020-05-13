@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Assets\Art\Characters\Loke\TestAddAnim.cs" />
     <Compile Include="Assets\Art\TileMaps\PlaceHoderTiles\Scriptable TilesBrushes\TransitionZoneDef.cs" />
+    <Compile Include="Assets\Barrier.cs" />
     <Compile Include="Assets\BattleActorView.cs" />
     <Compile Include="Assets\CallbackOnDisable.cs" />
     <Compile Include="Assets\ChangeLevelOnTouch.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Assets\Prefabs\Projectiles\BeamExtender.cs" />
     <Compile Include="Assets\Prefabs\Projectiles\DisableAfterSeconds.cs" />
     <Compile Include="Assets\Prefabs\Projectiles\WorldEffectScripts\WorldEffect.cs" />
+    <Compile Include="Assets\RotationZone.cs" />
     <Compile Include="Assets\Scripts\Abilities\Ability.cs" />
     <Compile Include="Assets\Scripts\Abilities\AbilityManager.cs" />
     <Compile Include="Assets\Scripts\Abilities\Defs\DangerZoneDef.cs" />

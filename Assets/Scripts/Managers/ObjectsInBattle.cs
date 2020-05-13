@@ -27,6 +27,7 @@ public class ObjectsInBattle : MonoBehaviour
         enemiesInBattle.Clear();
         objectsInBattle = this;
         tempPCs = FindObjectsOfType<BattlePC>();
+        Debug.Log(tempPCs.Length + " pcs found");
         foreach (BattlePC bpc in tempPCs)
         {
             bpc.GetComponent<BaseBattleActor>().OnDeathCallback = OnPCDeath;

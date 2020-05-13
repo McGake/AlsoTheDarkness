@@ -9,7 +9,7 @@ public class TargetEnemiesByRelativePos : SubAbility
     public bool noUp;
     public bool noDown;
 
-    private List<GameObject> tempEnemies;
+    private List<GameObject> tempEnemies = new List<GameObject>();
 
     private Ability abilty;
 
@@ -31,6 +31,7 @@ public class TargetEnemiesByRelativePos : SubAbility
 
     public override void OnSelectionFinished(List<GameObject> selectedObjects)
     {
+        Debug.Log(selectedObjects.Count + " objects retuned");
         tempEnemies.AddRange(selectedObjects);
         Vector3 pos = abilty.owner.transform.position;
 
@@ -74,6 +75,14 @@ public class TargetEnemiesByRelativePos : SubAbility
                     //Destroy(tempEnemies[i]);
                 }
             }
+
+        }
+        if (tempEnemies.Count > 0)
+        {
+            abilty.objectTargets.AddRange(tempEnemies);
+        }
+        else
+        {
 
         }
 

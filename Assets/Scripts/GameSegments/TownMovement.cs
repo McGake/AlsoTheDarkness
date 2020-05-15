@@ -95,14 +95,13 @@ public class TownMovement : GameSegment
         RaycastHit2D rh2D = Physics2D.Raycast(raycastHelper.position, curDirection, .5f,mask);
 
         GameSegment gameSegmentScript;
-        Debug.Log("1");
+
         if (rh2D != false)
         {
-            Debug.Log("2");
+
             gameSegmentScript = rh2D.collider.GetComponent<GameSegment>();
             if (rh2D.collider.GetComponent<GameSegment>() != null)
             {
-                Debug.Log("3");
                 Debug.Log(gameSegmentScript);
                 
                 gameSegmentScript.StartSegment(gameObject);

@@ -275,7 +275,7 @@ public class OverworldMovement : GameSegment
 
     private void GetPartyMembers()
     {
-        partyMembers = GetComponent<Party>().partyMembers;
+        partyMembers = PartyManager.curParty.partyMembers;
     }
 
     private void CheckForEncounter()

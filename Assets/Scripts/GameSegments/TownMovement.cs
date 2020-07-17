@@ -18,6 +18,8 @@ public class TownMovement : GameSegment
 
     private LayerMask mask;
 
+    public static bool inMenu = false;
+
 
     public enum TownStates
     {
@@ -68,7 +70,10 @@ public class TownMovement : GameSegment
 
     public override void UpdateGameSegment()
     {
-        WalkingBehavior();
+
+           
+            WalkingBehavior();
+       
     }
 
     void SetMovement(string newDir)
@@ -114,7 +119,7 @@ public class TownMovement : GameSegment
     private void WalkingBehavior()
     {
         WalkModeInput();
-
+   
         anim.enabled = true;
         if (Input.GetAxis("Vertical") > 0.1f)
         {

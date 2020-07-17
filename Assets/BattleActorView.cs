@@ -52,10 +52,6 @@ public class BattleActorView : MonoBehaviour
         explodingText.GetComponent<Rigidbody2D>().AddForce(force * 250);
     }
 
-    public void ShowBuff(Stats statBuff)
-    {
-
-    }
 
     public void ShowStatus(Status statusToShow)
     {

@@ -70,10 +70,11 @@ public class TownMovement : GameSegment
 
     public override void UpdateGameSegment()
     {
+        if (inMenu == false)
+        {
 
-           
             WalkingBehavior();
-       
+        }
     }
 
     void SetMovement(string newDir)

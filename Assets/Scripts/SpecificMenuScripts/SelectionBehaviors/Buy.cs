@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Buy : MonoBehaviour, ISelectionBehavior
 {
-    public string displayName => throw new System.NotImplementedException();
 
     public ShopItem thisItem;
 
@@ -17,7 +16,11 @@ public class Buy : MonoBehaviour, ISelectionBehavior
 
             //A copy of the item should probably be made here.
 
-            PartyManager.AddItemToCurrentParty(thisItem.itemDef.item);
+            Item tempItem = new Item(thisItem.itemDef.item);
+
+            tempItem.sellPrice = thisItem.price / 2;
+
+            PartyManager.AddItemToCurrentParty(tempItem);
 
             //Make item factor to create item for inventory
         }

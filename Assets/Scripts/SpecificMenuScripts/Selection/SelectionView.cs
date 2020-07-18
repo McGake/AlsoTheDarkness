@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SelectionView : MonoBehaviour, ISelectionView
 {
-    
+#pragma warning disable 649
     public List<GameObject> selections;
 
     [SerializeField]
@@ -19,7 +19,7 @@ public class SelectionView : MonoBehaviour, ISelectionView
 
     [SerializeField]
     private GameObject layoutObject;
-
+#pragma warning restore 649
 
 
     public void OpenView(List<GameObject> tempSelections)
@@ -53,45 +53,8 @@ public class SelectionView : MonoBehaviour, ISelectionView
 
 
     public void RepopulateSelections(List<GameObject> selections)
-    {
-        List<string> selectionsText = new List<string>();
-        for (int i = 0; i <= selections.Count; i++)
-        {
-            selectionsText.Add(selections[i].GetComponent<ISelectionBehavior>().displayName);
-        }
-        int numberToCreate = 0;
-        if(this.selections.Count < selections.Count)
-        {
-            numberToCreate = selections.Count - this.selections.Count;
-        }
+    { 
 
-        for(int i = 0; i< this.selections.Count; i++)
-        {
-            this.selections[i].GetComponentInChildren<Text>().text = selectionsText[i];
-        }
-
-        for(int j = 0; j < numberToCreate; j++)
-        {
-            GameObject tempButton = Instantiate(buttonPrefab);
-            tempButton.GetComponent<Text>().text = selectionsText[this.selections.Count + j];
-            this.selections.Add(tempButton);
-        }
-
-        for(int x = 0; x < this.selections.Count; x++)
-        {
-            this.selections[x].transform.SetParent(layoutObject.transform);
-        }
-
-    //    int numberToDestroy= 0;
-    //    if(selectableButtons.Count > selections.Count)
-    //    {
-    //        numberToDestroy = selectableButtons.Count - selections.Count;
-    //    }
-
-    //    for (int i = 0; i < numberToDestroy; i++)
-    //    {
-    //        selectableButtons.RemoveAt(selectableButtons.Count - 1);
-    //    }
     }
 
 }

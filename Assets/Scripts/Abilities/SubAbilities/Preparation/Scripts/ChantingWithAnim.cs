@@ -7,7 +7,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ChantingWithAnim", menuName = "SubAbilities/Prep/ChantingWithAnim", order = 1)]
 public class ChantingWithAnim : SubAbility
 {
-
+#pragma warning disable 649
     [SerializeField]
     private float prepTime = 0f;
 
@@ -17,6 +17,7 @@ public class ChantingWithAnim : SubAbility
     private GameObject animObjectInsp;
 
     private GameObject animObject;
+#pragma warning restore 649
 
     public override void DoInitialSubAbility(Ability ab)
     {

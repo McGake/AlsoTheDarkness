@@ -11,7 +11,7 @@ public class RandomTwoDirections : SubAbility
 
     private int randomNum;
 
-    private bool skip = true;
+    //private bool skip = true;
 
     public override void DoInitialSubAbility(Ability ab)
     {

@@ -29,18 +29,21 @@ public class SelectionController : MonoBehaviour, ISelectionController
     private int indx;
 
     private List<GameObject> selections;
-    private List<string> selectionsText;
 
     public GameObject returnPage;
 
+    public GameObject topLevelPage;
 
-
-    public void RepopulateSelections(List<GameObject> sT)
+    public void RepopulateSelections()
     {
-        selections = sT;
-        selectionsText.Clear();
+        selections = selectionModel.GetSelections();
 
-        selectionView.RepopulateSelections(selections);
+        if(indx >= selections.Count)
+        {
+            indx = selections.Count - 1;
+        }
+
+        //selectionView.RepopulateSelections(selections);
     }
 
     public void Select(int indx)
@@ -54,9 +57,10 @@ public class SelectionController : MonoBehaviour, ISelectionController
     }
 
     public void StartSelection(/*List<GameObject> sT, ISelectionModel iSM*/)
-    {   
+    {
         //selectionModel = iSM;        
         //RepopulateSelections(sT);
+        TownMovement.inMenu = true;
         selectionModel = GetComponent<ISelectionModel>();
         selections = selectionModel.GetSelections();
         indx = 0;
@@ -73,9 +77,19 @@ public class SelectionController : MonoBehaviour, ISelectionController
     public void EndSelection()
     {
         selectionView.CloseView();
+    }
+
+    public void Backout()
+    {
+        selectionView.CloseView();
         if (returnPage != null)
         {
             returnPage.SetActive(true);
+        }
+        else
+        {
+            TownMovement.inMenu = false;
+            topLevelPage.SetActive(false); //This is a dumb hack
         }
     }
 
@@ -111,7 +125,7 @@ public class SelectionController : MonoBehaviour, ISelectionController
         }
         if(Input.GetButtonDown("B"))
         {
-            EndSelection();
+            Backout();
         }
     }
 

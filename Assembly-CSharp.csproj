@@ -172,6 +172,8 @@
     <Compile Include="Assets\Scripts\SpecificMenuScripts\SelectionBehaviors\SelectBuyMenu.cs" />
     <Compile Include="Assets\Scripts\SpecificMenuScripts\SelectionBehaviors\SelectExit.cs" />
     <Compile Include="Assets\Scripts\SpecificMenuScripts\SelectionBehaviors\SelectSellMenu.cs" />
+    <Compile Include="Assets\Scripts\SpecificMenuScripts\SelectionBehaviors\Sell.cs" />
+    <Compile Include="Assets\Scripts\SpecificMenuScripts\SellModel.cs" />
     <Compile Include="Assets\Scripts\SpecificMenuScripts\StaticSelectionView.cs" />
     <Compile Include="Assets\Scripts\SpecificMenuScripts\StoreModel.cs" />
     <Compile Include="Assets\Scripts\SpecificMenuScripts\TownMenuManager.cs" />

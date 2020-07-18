@@ -13,7 +13,7 @@ public class FlipBetweenMiniGame : SubAbility
 
     private int curSelection = 0;
 
-    private float inputDelay = 0f;
+    //private float inputDelay = 0f;
 
     private bool skip = false;
 

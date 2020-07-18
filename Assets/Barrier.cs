@@ -32,8 +32,8 @@ public void OnTriggerEnter2D(Collider2D col)
 
         float smallestDist = 100000f;
 
-        float setX = 0f;
-        float setY = 0f;
+       // float setX = 0f;
+       // float setY = 0f;
 
         Vector3 valToSet = Vector3.zero;
 

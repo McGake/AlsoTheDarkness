@@ -61,7 +61,7 @@ public interface ISelectionController
 {
     void StartSelection();
 
-    void RepopulateSelections(List<GameObject> selectionTexts);
+    void RepopulateSelections();
 
     void ChangeSelection(int indxChange);
 
@@ -78,7 +78,6 @@ public interface ISelectionModel
 
 public interface ISelectionBehavior
 {
-    string displayName { get; }
     void DoSelectionBehavior();
 }
 

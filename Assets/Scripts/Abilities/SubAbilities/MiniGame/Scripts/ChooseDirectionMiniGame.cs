@@ -15,7 +15,7 @@ public class ChooseDirectionMiniGame : SubAbility
 
     private float inputDelay = 0f;
 
-    private bool skip = true;
+    //private bool skip = true;
 
     [System.Serializable]
     public class MGSeleciton

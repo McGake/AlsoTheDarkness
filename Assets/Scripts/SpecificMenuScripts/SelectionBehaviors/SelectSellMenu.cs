@@ -6,9 +6,14 @@ public class SelectSellMenu : MonoBehaviour, ISelectionBehavior
 {
     public string displayName => "Sell";
 
+    public GameObject uiToOpen;
+
+    public GameObject uiToClose;
+
     public void DoSelectionBehavior()
     {
-        throw new System.NotImplementedException();
+        uiToClose.GetComponent<ISelectionController>().EndSelection();
+        uiToOpen.SetActive(true);
     }
 
 }

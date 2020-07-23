@@ -3,16 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SelectionView : MonoBehaviour, ISelectionView
+public class SelectionView : MonoBehaviour
 {
 #pragma warning disable 649
-    public List<GameObject> selections;
+    private List<GameObject> selections;
 
-    [SerializeField]
     private GameObject cursor;
-
-    [SerializeField]
-    private GameObject buttonPrefab;
 
     [SerializeField]
     private Vector3 cursorOffset;
@@ -21,9 +17,20 @@ public class SelectionView : MonoBehaviour, ISelectionView
     private GameObject layoutObject;
 #pragma warning restore 649
 
+    public void Awake()
+    {
+        cursor = GameObject.Find("Pointer");
+    }
+
+    public void Start()
+    {
+        cursor = GameObject.Find("Pointer");
+    }
 
     public void OpenView(List<GameObject> tempSelections)
     {
+        cursor = GameObject.Find("Pointer");
+        Debug.Log(gameObject + " " + "Found" + cursor.name);
         layoutObject.SetActive(true);
         gameObject.SetActive(true);
         selections = tempSelections;
@@ -41,8 +48,13 @@ public class SelectionView : MonoBehaviour, ISelectionView
     public void CloseView()
     {
         gameObject.SetActive(false);
-        cursor.SetActive(false);
+        
         //MoveCursorToIndex(0);
+    }
+
+    public void LeaveMenus()
+    {
+        cursor.SetActive(false);
     }
 
     public void MoveCursorToIndex(int indx)

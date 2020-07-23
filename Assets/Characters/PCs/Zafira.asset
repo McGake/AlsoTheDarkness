@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: Zafira
   m_EditorClassIdentifier: 
   displayName: Zafira
-  health: 20
-  lvl: 2
-  atk: 7
-  sprite: {fileID: 0}
+  battlePC: {fileID: 41676277608416386, guid: 14ebc9ca3834d2b47ad3850f7fc31b8c, type: 3}
+  portrait: {fileID: 21300000, guid: 10ac700050963dd418d481ea785bbbf2, type: 3}
   battleAnimOverride: {fileID: 22100000, guid: 5a98bd197e0b87241a202172916f3614, type: 2}
   overworldAnimOverride: {fileID: 22100000, guid: a2a53df497a6d2a4a9570b4e2dcbf50e,
     type: 2}

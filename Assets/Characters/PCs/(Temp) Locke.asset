@@ -13,12 +13,7 @@ MonoBehaviour:
   m_Name: (Temp) Locke
   m_EditorClassIdentifier: 
   displayName: Locke
-  health: 192
-  lvl: 1
-  atk: 9
-  sprite: {fileID: 0}
-  attack: {fileID: 0}
-  cast: {fileID: 0}
-  phyAttackPrep: {fileID: 0}
-  majAttackPrep: {fileID: 0}
-  injuredPrep: {fileID: 0}
+  battlePC: {fileID: 0}
+  portrait: {fileID: 21300000, guid: d9e7f73de6b0e1943a61e4a159ae2c99, type: 3}
+  battleAnimOverride: {fileID: 0}
+  overworldAnimOverride: {fileID: 0}

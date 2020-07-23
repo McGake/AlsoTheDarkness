@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Yohan
   m_EditorClassIdentifier: 
   displayName: Yohan
-  health: 25
-  lvl: 1
-  atk: 6
-  sprite: {fileID: 0}
+  battlePC: {fileID: 5635463596502817444, guid: e77b749c5148c3f4aa9659530da98ec3,
+    type: 3}
+  portrait: {fileID: 21300000, guid: 9b61fb20c7b96354597bec3aa2c8312c, type: 3}
   battleAnimOverride: {fileID: 22100000, guid: 4f94fc14cbc297848987bcf3908a3eff, type: 2}
   overworldAnimOverride: {fileID: 22100000, guid: 4146a6dba3cbb1540a6fea4760286134,
     type: 2}

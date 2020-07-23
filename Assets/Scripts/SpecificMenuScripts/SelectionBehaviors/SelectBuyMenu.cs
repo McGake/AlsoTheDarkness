@@ -12,7 +12,7 @@ public class SelectBuyMenu : MonoBehaviour, ISelectionBehavior
 
     public void DoSelectionBehavior()
     {
-        uiToClose.GetComponent<ISelectionController>().EndSelection();
+        uiToClose.GetComponent<SelectionController>().EndSelection();
         uiToOpen.SetActive(true);
     }
 

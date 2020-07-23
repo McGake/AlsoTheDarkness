@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: Suki
   m_EditorClassIdentifier: 
   displayName: Suki
-  health: 17
-  lvl: 2
-  atk: 11
-  sprite: {fileID: 0}
+  battlePC: {fileID: 263639194357805292, guid: bdb4104189656af41a7f10b21660fa19, type: 3}
+  portrait: {fileID: 21300000, guid: 241e4bdf6ba09b74486ebbf566dd550a, type: 3}
   battleAnimOverride: {fileID: 22100000, guid: 7ee4d6d8e6fe9e24e83206d761699f05, type: 2}
   overworldAnimOverride: {fileID: 22100000, guid: 4302c9ae6a916b84787419ed1358cb22,
     type: 2}

@@ -68,6 +68,10 @@ public interface ISelectionController
     void EndSelection();
 
     void Select(int indx);
+
+    void Pause();
+
+    void Unpause();
 }
 
 public interface ISelectionModel

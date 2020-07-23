@@ -284,8 +284,8 @@ MonoBehaviour:
   displayName: 
   battleActorView: {fileID: 8844169639533487354}
   stats:
-    maxHP: 0
-    hP: 0
+    maxHP: 37
+    hP: 37
     maxMana: 0
     mana: 0
     speed: 0

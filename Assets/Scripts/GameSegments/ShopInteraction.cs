@@ -91,28 +91,7 @@ public class shop
     public List<ShopItem> shopItems;
 }
 
-[System.Serializable]
-public class Item
-{
-    public string listName;
-    //public Sprite icon;
-    public int sellPrice;
-    public UseItemInOverworld useItem;
 
-    public Item(Item itemToCopy)
-    {
-        listName = itemToCopy.listName;
-       // icon = itemToCopy.icon;
-        sellPrice = itemToCopy.sellPrice;
-        useItem = itemToCopy.useItem;
-    }
-
-    public Item()
-    {
-
-    }
-    //this will be the parent class for all equipment and items in the game. place hoder for now.
-}
 
 [System.Serializable]
 public class ShopItem
@@ -122,22 +101,6 @@ public class ShopItem
     public int numberInInventory;
 }
 
-public abstract class UseItemInOverworld : MonoBehaviour
-{
-    public virtual void UseItem()
-    {
-
-    }
-}
 
 
-public class TempHealingItem:UseItemInOverworld
-{
-    public float healing;
 
-    public override void UseItem()
-    {
-        Debug.Log("start player selection screen here");
-        //Start player selection screen
-    }
-}

@@ -16,18 +16,15 @@ MonoBehaviour:
   encounterProb: 2
   enemyMixTypesProb:
   - enemyMix:
-      name: 
       encounterMonsters:
-      - muppets
+      - {fileID: 1853974824209273933, guid: 4d9dcb86e5818e24f93ad740a20035bc, type: 3}
     prob: 20
   - enemyMix:
-      name: 
       encounterMonsters:
-      - Go-Bots
+      - {fileID: 1853974824209273933, guid: 4d9dcb86e5818e24f93ad740a20035bc, type: 3}
     prob: 20
   - enemyMix:
-      name: 
       encounterMonsters:
-      - Theatans
+      - {fileID: 1853974824209273933, guid: 4d9dcb86e5818e24f93ad740a20035bc, type: 3}
     prob: 20
   encounterTypesProb: []

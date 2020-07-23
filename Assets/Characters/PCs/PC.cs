@@ -6,11 +6,9 @@ using UnityEngine;
 public class PC : ScriptableObject
 {
     public string displayName;
-    public int health;
-    public int lvl;
-    public int atk;
+    public BattlePC battlePC;
 
-    public Sprite sprite;
+    public Sprite portrait;
 
     public AnimatorOverrideController battleAnimOverride;
 

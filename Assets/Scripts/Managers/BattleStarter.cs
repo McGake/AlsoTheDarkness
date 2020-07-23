@@ -46,7 +46,7 @@ public class BattleStarter : MonoBehaviour
 
         if(objectsInBattle.enemiesInBattle.Count <= 0)//TEMP:this is only here till we get our event system in place. then replace this with an all enemies dead listener
         {
-            ExitBattle();
+            //ExitBattle();
         }
     }
 
@@ -135,10 +135,12 @@ public class BattleStarter : MonoBehaviour
     private void SetupMonsters()
     {
         List<GameObject> encounterMonsters = bd.enemyMix.encounterMonsters;
+
+        GameObject curMonster;
         for(int i = 0; i < encounterMonsters.Count; i++)
         {
-            encounterMonsters[i] = Instantiate(encounterMonsters[i]);
-            encounterMonsters[i].transform.position = TakeRandomPosition(possibleMonsterStartPositions);
+            curMonster = Instantiate(encounterMonsters[i]);
+            curMonster.transform.position = TakeRandomPosition(possibleMonsterStartPositions);
         }
     }
 

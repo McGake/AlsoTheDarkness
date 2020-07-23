@@ -7,4 +7,9 @@ public class ItemDef : ScriptableObject
 {
     public Item item;
 
+    public void Test()
+    {
+        item.useScript.DoSelectionBehavior();
+    }
+
 }

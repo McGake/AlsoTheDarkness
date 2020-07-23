@@ -4,18 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class StoreModel : MonoBehaviour, ISelectionModel
+public class StoreModel : GeneralSelectionModel
 {
-    public List<GameObject> selections;
-
-    public GameObject buttonTemplate;
 
     List<ShopItem> shopItems;
 
-
-
-
-    public List<GameObject> GetSelections()
+    public override List<GameObject> GetSelections()
     {
         CreateButtonsForItems();
         return selections;

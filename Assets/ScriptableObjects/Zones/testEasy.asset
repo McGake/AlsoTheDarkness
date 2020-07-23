@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: testEasy
   m_EditorClassIdentifier: 
   zoneName: Green3
-  encounterProb: 20
+  encounterProb: 10
   enemyMixTypesProb:
   - enemyMix:
       encounterMonsters:
       - {fileID: 8844169639533487329, guid: bd4b75f9dc605f447bcd0309e9922de2, type: 3}
       - {fileID: 8844169639533487329, guid: bd4b75f9dc605f447bcd0309e9922de2, type: 3}
       - {fileID: 8844169639533487329, guid: bd4b75f9dc605f447bcd0309e9922de2, type: 3}
-    prob: 40
+    prob: 10
   - enemyMix:
       encounterMonsters:
       - {fileID: 1853974824209273933, guid: 4d9dcb86e5818e24f93ad740a20035bc, type: 3}
       - {fileID: 1853974824209273933, guid: 4d9dcb86e5818e24f93ad740a20035bc, type: 3}
-    prob: 60
+    prob: 5
   encounterTypesProb:
   - encounterType: 1
     prob: 80

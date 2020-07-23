@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class SelectionController : MonoBehaviour, ISelectionController
+public class SelectionController : MonoBehaviour
 {
 
     public bool incrementOnHorizontal;
@@ -17,14 +17,14 @@ public class SelectionController : MonoBehaviour, ISelectionController
     [SerializeField]
     private float sensitivity = .1f;
     [SerializeField]
-    private float refractoryInterval = .1f;
+    private float refractoryInterval = .2f;
 
     private float nextInputTime= 0;
 
     [SerializeField]
-    private ISelectionView selectionView;
+    private SelectionView selectionView;
 
-    private ISelectionModel selectionModel;
+    private GeneralSelectionModel selectionModel;
 
     private int indx;
 
@@ -32,7 +32,7 @@ public class SelectionController : MonoBehaviour, ISelectionController
 
     public GameObject returnPage;
 
-    public GameObject topLevelPage;
+    private bool paused = false;
 
     public void RepopulateSelections()
     {
@@ -44,6 +44,16 @@ public class SelectionController : MonoBehaviour, ISelectionController
         }
 
         //selectionView.RepopulateSelections(selections);
+    }
+
+    public void Pause()
+    {
+        paused = true;
+    }
+
+    public void Unpause()
+    {
+        paused = false;
     }
 
     public void Select(int indx)
@@ -61,10 +71,10 @@ public class SelectionController : MonoBehaviour, ISelectionController
         //selectionModel = iSM;        
         //RepopulateSelections(sT);
         TownMovement.inMenu = true;
-        selectionModel = GetComponent<ISelectionModel>();
+        selectionModel = GetComponent<GeneralSelectionModel>();
         selections = selectionModel.GetSelections();
         indx = 0;
-        selectionView = GetComponent<ISelectionView>();
+        selectionView = GetComponent<SelectionView>();
 
         Debug.Log("Positions");
         foreach(GameObject s in selections)
@@ -88,8 +98,9 @@ public class SelectionController : MonoBehaviour, ISelectionController
         }
         else
         {
-            TownMovement.inMenu = false;
-            topLevelPage.SetActive(false); //This is a dumb hack
+            selectionView.LeaveMenus();
+            TownMovement.inMenu = false;//This is a dumb hack
+            gameObject.transform.gameObject.SetActive(false); 
         }
     }
 
@@ -108,24 +119,27 @@ public class SelectionController : MonoBehaviour, ISelectionController
     // Update is called once per frame
     void Update()
     {
-        axisVal = Input.GetAxis(axis);
-        //Debug.Log(axisVal);
-        if(axisVal > sensitivity)
-        {           
-            ChangeSelection(1);            
-        }
-        else if(axisVal< -sensitivity)
+        if (paused == false)
         {
-            ChangeSelection(-1);
-        }
+            axisVal = Input.GetAxis(axis);
+            //Debug.Log(axisVal);
+            if (axisVal > sensitivity)
+            {
+                ChangeSelection(1);
+            }
+            else if (axisVal < -sensitivity)
+            {
+                ChangeSelection(-1);
+            }
 
-        if(Input.GetButtonDown("A"))
-        {
-            Select(indx);
-        }
-        if(Input.GetButtonDown("B"))
-        {
-            Backout();
+            if (Input.GetButtonDown("A"))
+            {
+                Select(indx);
+            }
+            if (Input.GetButtonDown("B"))
+            {
+                Backout();
+            }
         }
     }
 
@@ -151,6 +165,5 @@ public class SelectionController : MonoBehaviour, ISelectionController
             nextInputTime = Time.time + refractoryInterval;
         }
     }
-
 
 }

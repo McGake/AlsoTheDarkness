@@ -5,16 +5,12 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEditor.Animations;
 
-public class SellModel : MonoBehaviour, ISelectionModel
+public class SellModel : GeneralSelectionModel
 {
-    public List<GameObject> selections;
-
-    public GameObject buttonTemplate;
 
     List<Item> sellItems;
 
-
-    public List<GameObject> GetSelections()
+    public override List<GameObject> GetSelections()
     {
         CreateButtonsForItems();
         return selections;

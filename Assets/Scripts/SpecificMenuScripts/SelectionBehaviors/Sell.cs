@@ -7,11 +7,11 @@ public class Sell : MonoBehaviour, ISelectionBehavior
 
     public Item sellItem;
 
-    public ISelectionController selectionBehavior;
+    private SelectionController selectionController;
 
     public void Start()
     {
-        selectionBehavior = gameObject.GetComponentInParent<ISelectionController>();
+        selectionController = gameObject.GetComponentInParent<SelectionController>();
 
     }
 
@@ -21,6 +21,6 @@ public class Sell : MonoBehaviour, ISelectionBehavior
 
         PartyManager.curParty.items.Remove(sellItem);
 
-        selectionBehavior.RepopulateSelections();
+        selectionController.RepopulateSelections();
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: testEasy
   m_EditorClassIdentifier: 
   zoneName: Green3
-  encounterProb: 10
+  encounterProb: 60
   enemyMixTypesProb:
   - enemyMix:
       encounterMonsters:

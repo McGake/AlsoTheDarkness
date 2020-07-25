@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: MoveForward2-5Quck
   m_EditorClassIdentifier: 
   moveSpeed: 7.5
-  distanceToMove: {x: -2.5, y: 0, z: 0}
+  distanceToMove: {x: 2.5, y: 0, z: 0}

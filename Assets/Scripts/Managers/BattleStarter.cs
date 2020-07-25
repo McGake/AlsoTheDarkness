@@ -10,7 +10,7 @@ public class BattleStarter : MonoBehaviour
 
     public List<GameObject> pcBlanks;
 
-    private BattleDef bd;
+    private BattleDef battleDef;
 
     public ObjectsInBattle objectsInBattle;
 
@@ -52,7 +52,7 @@ public class BattleStarter : MonoBehaviour
 
     public void SendBattleDef(BattleDef recivedBattleDef)
     {
-        bd = recivedBattleDef;
+        battleDef = recivedBattleDef;
     }
 
     public void TurnOnBattleScene()
@@ -64,9 +64,9 @@ public class BattleStarter : MonoBehaviour
     public void SetUpBattle()
     {
         
-        if(bd==null)
+        if(battleDef==null)
         {
-            bd = defaultBd;
+            battleDef = defaultBd;
         }
         SetupBackground();
         SetupEncounter();
@@ -95,17 +95,19 @@ public class BattleStarter : MonoBehaviour
 
     private void SetupEncounter()
     {
-        if(bd.encounterType == EncounterTypes.standard)
+        if(battleDef.encounterType == EncounterTypes.standard)
         {
             possiblePCStartPositions = rightSideStartPositions;
             possibleMonsterStartPositions = leftSideStartPositions;
         }
-        else if(bd.encounterType == EncounterTypes.surrounded)
+        else if(battleDef.encounterType == EncounterTypes.surrounded)
         {
             possiblePCStartPositions = centerSurroundedStartPositions;
             possibleMonsterStartPositions.AddRange(leftSideStartPositions);
             possibleMonsterStartPositions.AddRange(rightSideStartPositions);
         }
+
+        Debug.Log(possiblePCStartPositions[0]);
     }
 
     private void SetupSituations()
@@ -116,14 +118,20 @@ public class BattleStarter : MonoBehaviour
     private void SetupPCBlanks()
     {
         int curPCBlankIndex = 0;
-        foreach (PC pc in bd.pcsInBattle)
+        foreach (PC pc in battleDef.pcsInBattle)
         {
-            pcBlanks[curPCBlankIndex].transform.position = TakeRandomPosition(possiblePCStartPositions);
+            Debug.Log(pc);
+
+            Debug.Log(pc.battler);
+
+            pc.battler.transform.position = TakeRandomPosition(possiblePCStartPositions);
+            //pcBlanks[curPCBlankIndex].transform.position = TakeRandomPosition(possiblePCStartPositions);
+
+            //pcBlanks[curPCBlankIndex].GetComponent<Animator>().runtimeAnimatorController = pc.battleAnimOverride;
+
+            pcBlanks[curPCBlankIndex] = pc.battler;
+            objectsInBattle.AddPCToList(pcBlanks[curPCBlankIndex]);
             pcBlanks[curPCBlankIndex].SetActive(true);
-            
-            Debug.Log(pc.name);
-            Debug.Log(pc.battleAnimOverride);
-            pcBlanks[curPCBlankIndex].GetComponent<Animator>().runtimeAnimatorController = pc.battleAnimOverride;
             curPCBlankIndex++;
             if(curPCBlankIndex >= maxBlanksCount)
             {
@@ -134,7 +142,7 @@ public class BattleStarter : MonoBehaviour
 
     private void SetupMonsters()
     {
-        List<GameObject> encounterMonsters = bd.enemyMix.encounterMonsters;
+        List<GameObject> encounterMonsters = battleDef.enemyMix.encounterMonsters;
 
         GameObject curMonster;
         for(int i = 0; i < encounterMonsters.Count; i++)

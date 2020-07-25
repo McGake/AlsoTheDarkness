@@ -9,13 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d021fdac7c6122449d7923ad6a2df3b, type: 3}
+  m_Script: {fileID: 11500000, guid: d60543ea08f39cd46bbeda7c53bc3de8, type: 3}
   m_Name: Yohan
   m_EditorClassIdentifier: 
-  displayName: Yohan
-  battlePC: {fileID: 5635463596502817444, guid: e77b749c5148c3f4aa9659530da98ec3,
-    type: 3}
-  portrait: {fileID: 21300000, guid: 9b61fb20c7b96354597bec3aa2c8312c, type: 3}
-  battleAnimOverride: {fileID: 22100000, guid: 4f94fc14cbc297848987bcf3908a3eff, type: 2}
-  overworldAnimOverride: {fileID: 22100000, guid: 4146a6dba3cbb1540a6fea4760286134,
-    type: 2}
+  displayName: 
+  battler: {fileID: 6153274688811415322, guid: 2b4fa6277a6f9b2409a6c1f07859c089, type: 3}
+  portrait: {fileID: 21300000, guid: 241e4bdf6ba09b74486ebbf566dd550a, type: 3}
+  battleAnimOverride: {fileID: 0}
+  overworldAnimOverride: {fileID: 0}

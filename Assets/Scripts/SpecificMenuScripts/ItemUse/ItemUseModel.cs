@@ -30,7 +30,7 @@ public class ItemUseModel : GeneralSelectionModel
             PC pc = pcs[i];
             selections[i].GetComponentInChildren<Image>().sprite = pc.portrait;
 
-            selections[i].GetComponentInChildren<TextMeshProUGUI>().text = pc.name + "/n HP:" + pc.battlePC.stats.hP + "/" + pc.battlePC.stats.maxHP + "/n MP:" + pc.battlePC.stats.mana + "/" + pc.battlePC.stats.maxMana; 
+            selections[i].GetComponentInChildren<TextMeshProUGUI>().text = pc.displayName + "/n HP:" + pc.battler.GetComponent<BattlePC>().stats.hP + "/" + pc.battler.GetComponent<BattlePC>().stats.maxHP + "/n MP:" + pc.battler.GetComponent<BattlePC>().stats.mana + "/" + pc.battler.GetComponent<BattlePC>().stats.maxMana; 
 
           //  selections[i].GetComponent<SelectPartyAssignMenu>().item = ;
 

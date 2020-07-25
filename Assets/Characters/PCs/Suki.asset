@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d021fdac7c6122449d7923ad6a2df3b, type: 3}
+  m_Script: {fileID: 11500000, guid: d60543ea08f39cd46bbeda7c53bc3de8, type: 3}
   m_Name: Suki
   m_EditorClassIdentifier: 
-  displayName: Suki
-  battlePC: {fileID: 263639194357805292, guid: bdb4104189656af41a7f10b21660fa19, type: 3}
-  portrait: {fileID: 21300000, guid: 241e4bdf6ba09b74486ebbf566dd550a, type: 3}
-  battleAnimOverride: {fileID: 22100000, guid: 7ee4d6d8e6fe9e24e83206d761699f05, type: 2}
-  overworldAnimOverride: {fileID: 22100000, guid: 4302c9ae6a916b84787419ed1358cb22,
-    type: 2}
+  displayName: 
+  battler: {fileID: 6075349493845273620, guid: 11bd94e50193ec84ebdbb28c4403469a, type: 3}
+  portrait: {fileID: 21300000, guid: 10ac700050963dd418d481ea785bbbf2, type: 3}
+  battleAnimOverride: {fileID: 0}
+  overworldAnimOverride: {fileID: 0}

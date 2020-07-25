@@ -39,6 +39,8 @@ public class MoveInDirection : SubAbility
         if(totalMovement.sqrMagnitude > sqrDistance)
         {
             ab.pcAnimator.SetBool("walk", false);
+            ab.pcAnimator.SetBool("stand", true);
+
             EndSubAbility();
         }
 

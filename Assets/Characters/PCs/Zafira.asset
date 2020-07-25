@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d021fdac7c6122449d7923ad6a2df3b, type: 3}
+  m_Script: {fileID: 11500000, guid: d60543ea08f39cd46bbeda7c53bc3de8, type: 3}
   m_Name: Zafira
   m_EditorClassIdentifier: 
-  displayName: Zafira
-  battlePC: {fileID: 41676277608416386, guid: 14ebc9ca3834d2b47ad3850f7fc31b8c, type: 3}
-  portrait: {fileID: 21300000, guid: 10ac700050963dd418d481ea785bbbf2, type: 3}
-  battleAnimOverride: {fileID: 22100000, guid: 5a98bd197e0b87241a202172916f3614, type: 2}
-  overworldAnimOverride: {fileID: 22100000, guid: a2a53df497a6d2a4a9570b4e2dcbf50e,
-    type: 2}
+  displayName: 
+  battler: {fileID: 5538948435053456338, guid: 1c50415461f69244896b8e5f3e31033e, type: 3}
+  portrait: {fileID: 21300000, guid: 241e4bdf6ba09b74486ebbf566dd550a, type: 3}
+  battleAnimOverride: {fileID: 0}
+  overworldAnimOverride: {fileID: 0}

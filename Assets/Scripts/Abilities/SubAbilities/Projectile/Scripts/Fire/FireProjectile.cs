@@ -31,6 +31,8 @@ public class FireProjectile : SubProjectileAbility
     public override void DoProjectileSubAbility(ProjectileAbility pa)
     {
         //GameObject.Instantiate(projectilePrefab, pa.sources[0].position, pa.quatProjectileFireAngle);
+        Debug.Log(projectiles[pa.projectilesFired].transform.position);
+        Debug.Log(pa.sources[0].position);
 
         
         projectiles[pa.projectilesFired].transform.position = pa.sources[0].position;

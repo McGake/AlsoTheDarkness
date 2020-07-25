@@ -32,7 +32,7 @@ public class SelectHeroToApplyModel : GeneralSelectionModel
             Debug.Log(pc.portrait);
             selections[i].GetComponentInChildren<Image>().sprite = pc.portrait;
 
-            selections[i].GetComponentInChildren<TextMeshProUGUI>().text = pc.name + "\nHP:" + pc.battlePC.stats.hP + "/" + pc.battlePC.stats.maxHP + "\nMP:" + pc.battlePC.stats.mana + "/" + pc.battlePC.stats.maxMana;
+            selections[i].GetComponentInChildren<TextMeshProUGUI>().text = pc.displayName + "\nHP:" + pc.battler.GetComponent<BattlePC>().stats.hP + "/" + pc.battler.GetComponent<BattlePC>().stats.maxHP + "\nMP:" + pc.battler.GetComponent<BattlePC>().stats.mana + "/" + pc.battler.GetComponent<BattlePC>().stats.maxMana;
 
             selections[i].GetComponentInChildren<UseItemFromMenu>().itemToUse = itemToUse;
 

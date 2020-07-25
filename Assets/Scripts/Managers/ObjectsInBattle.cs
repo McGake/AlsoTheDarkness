@@ -20,14 +20,18 @@ public class ObjectsInBattle : MonoBehaviour
 
     public Dictionary<Type, List<GameObject>> objectsInBattleDict = new Dictionary<Type, List<GameObject>>();
 
-
-    public void CollectObjectsInBattle()
+    public void Awake()
     {
-        pcsInBattle.Clear();
+        objectsInBattleDict.Add(typeof(BaseEnemy), enemiesInBattle);
+        objectsInBattleDict.Add(typeof(BattlePC), pcsInBattle);
+    }
+    public void CollectObjectsInBattle() //this is in the process of being replaced by adding the pcs and enemies directly when they are added.
+    {
+       // pcsInBattle.Clear();
         enemiesInBattle.Clear();
         objectsInBattle = this;
+        Debug.Log("rand find pcs in battle!!!");
         tempPCs = FindObjectsOfType<BattlePC>();
-        Debug.Log(tempPCs.Length + " pcs found");
         foreach (BattlePC bpc in tempPCs)
         {
             bpc.GetComponent<BaseBattleActor>().OnDeathCallback = OnPCDeath;
@@ -43,8 +47,17 @@ public class ObjectsInBattle : MonoBehaviour
             
         }
 
-        objectsInBattleDict.Add(typeof(BaseEnemy), enemiesInBattle);
-        objectsInBattleDict.Add(typeof(BattlePC), pcsInBattle);
+        
+        //objectsInBattleDict.Add(typeof(BaseEnemy), enemiesInBattle);
+        //objectsInBattleDict.Add(typeof(BattlePC), pcsInBattle);
+    }
+
+    public void AddPCToList(GameObject newPC)
+    {
+        Debug.Log("add to list was called");
+        newPC.GetComponent<BaseBattleActor>().OnDeathCallback = OnPCDeath;
+        pcsInBattle.Add(newPC);
+        
     }
 
 

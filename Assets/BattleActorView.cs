@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditor.Animations;
 
 public class BattleActorView : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class BattleActorView : MonoBehaviour
 
     [SerializeField]
     private Animator animator;
+
+    [SerializeField]
+    private List<Animator> oneTimeEffectAnimators;
 
     [SerializeField]
     private SpriteRenderer spriteRenderer;
@@ -31,7 +35,7 @@ public class BattleActorView : MonoBehaviour
 
     private void SetupBattleActorView()
     {
-
+        worldSpaceCanvas = GameObject.Find("WorldSpaceUI");
     }
 
     public void Update()
@@ -63,6 +67,27 @@ public class BattleActorView : MonoBehaviour
     {
         string statusName = statusToRemove.GetType().ToString();
         animator.SetBool(statusName, false);
+    }
+
+    public void ShowOneTimeEffect(AnimatorOverrideController oneTimeAnimatorController)
+    {
+        oneTimeEffectAnimators[0].runtimeAnimatorController = oneTimeAnimatorController;
+
+        oneTimeEffectAnimators[0].Play("OneTimeEffect", 0, 0f);
+        //oneTimeEffectAnimators[0].SetBool("OneTimeEffect", true);
+        //make the game instantiate more oneTimeEffectAnimators if there are not enough here rather than interupting animations in progress
+
+    }
+
+    public void ShowOneTimeCast(AnimatorOverrideController oneTimeAnimatorController)
+    {
+        oneTimeEffectAnimators[0].runtimeAnimatorController = oneTimeAnimatorController;
+       
+
+        oneTimeEffectAnimators[0].Play("ShowOneTimeCast", 0, 0f);
+        //oneTimeEffectAnimators[0].SetBool("OneTimeEffect", true);
+        //make the game instantiate more oneTimeEffectAnimators if there are not enough here rather than interupting animations in progress
+
     }
 
     private float nextBlinkTime;

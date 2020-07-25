@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: -5688973393482642584}
   - component: {fileID: 2361612476304597977}
   - component: {fileID: 3647189363385741791}
+  - component: {fileID: 6347571256851577744}
+  - component: {fileID: 5636238242059870710}
   m_Layer: 11
   m_Name: NewSystemTestFireball
   m_TagString: Untagged
@@ -135,6 +137,8 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 0
+  continuous: 0
+  repeatInterval: 0
 --- !u!50 &3647189363385741791
 Rigidbody2D:
   serializedVersion: 4
@@ -156,3 +160,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6347571256851577744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5800589841093965516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6885b93b06a560441b7258c143703bb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5636238242059870710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5800589841093965516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 677a383675dbd4b4a902143b8fece2a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTime: 2.5

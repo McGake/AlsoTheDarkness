@@ -136,6 +136,8 @@ public class BattleMenuManager : GameSegment
     #region SwitchingHero
     void SwitchHero()
     {
+        Debug.Log("cur hero indx " + curHeroIndx);
+        Debug.Log(objectsInBattle.pcsInBattle[curHeroIndx].name);
         curHero = objectsInBattle.pcsInBattle[curHeroIndx];
         cursor.transform.position = curHero.transform.position + new Vector3(-.33f, .3f,0f);
     }

@@ -22,7 +22,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2596663859561486746
 Transform:
   m_ObjectHideFlags: 0
@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973093122631595663}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.15, y: -3.5900002, z: 10}
+  m_LocalPosition: {x: -800.9, y: -3.0300002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2106389647675269096}
@@ -130,9 +130,9 @@ MonoBehaviour:
     armor: 0
   curStatuses: []
   inspectorAbilities:
-  - {fileID: 11400000, guid: 76e3795f9a443774db7410197ca2d7cd, type: 2}
-  - {fileID: 11400000, guid: e9434c0dee7e31342866192801c3160f, type: 2}
-  - {fileID: 11400000, guid: 0c29f9c9b337a1f4a9a4dd2a7c85f79a, type: 2}
+  - {fileID: 11400000, guid: 1899c97b0be57974b915df7db7829917, type: 2}
+  - {fileID: 11400000, guid: a05f0db0b1bafa247ada82b0827ef00b, type: 2}
+  - {fileID: 11400000, guid: c91821ce54c284141abb0fa139fa23c5, type: 2}
 --- !u!95 &8597349826562483918
 Animator:
   serializedVersion: 3
@@ -143,7 +143,7 @@ Animator:
   m_GameObject: {fileID: 1973093122631595663}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 047d546f2ecc9344282dd8c8d8ed4239, type: 2}
+  m_Controller: {fileID: 22100000, guid: 4f94fc14cbc297848987bcf3908a3eff, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

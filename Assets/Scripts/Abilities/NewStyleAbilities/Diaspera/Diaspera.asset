@@ -13,16 +13,13 @@ MonoBehaviour:
   m_Name: Diaspera
   m_EditorClassIdentifier: 
   _displayName: Diaspera
-  onEnemy: 0
+  cooldownTime: 3
   objectTargets: []
   positionTargets: []
   inspectorSubAbilities:
   - {fileID: 11400000, guid: 21ff1ae028cd1be4ab5f1fed914a86cf, type: 2}
   - {fileID: 11400000, guid: 4d5f23fd32115b6468b7507ae6e04b75, type: 2}
   - {fileID: 11400000, guid: e384e129fcdab314eb722bd4d8fdf21a, type: 2}
-  - {fileID: 11400000, guid: f6a908b9f30ddb8479aa6cc29c610440, type: 2}
-  - {fileID: 11400000, guid: b29c1070d3fe482438c2f1b2ffbd47f4, type: 2}
   - {fileID: 11400000, guid: 1ecdbf3908725dd43a6477dc25ab9662, type: 2}
   - {fileID: 11400000, guid: 200e160e75203b84dab81ce5abc745b7, type: 2}
   curSubAbilityIndx: 3
-  cooldownTime: 7

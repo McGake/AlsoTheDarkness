@@ -21,6 +21,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 07df29c41f01f8a479bf389a7df7d539, type: 2}
   - {fileID: 11400000, guid: e384e129fcdab314eb722bd4d8fdf21a, type: 2}
   - {fileID: 11400000, guid: 6e3051ae69b0a984995774a1fb00b496, type: 2}
-  - {fileID: 11400000, guid: 07e308d678f40434786997d692df4b84, type: 2}
+  - {fileID: 11400000, guid: c98dab6dad21d83449415fa391f85714, type: 2}
   - {fileID: 11400000, guid: 200e160e75203b84dab81ce5abc745b7, type: 2}
   curSubAbilityIndx: 3

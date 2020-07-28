@@ -132,6 +132,11 @@ MonoBehaviour:
   otherCollideableTypes: []
   inspectorStatusesToAdd:
   - {fileID: 11400000, guid: 1de6d6285809560419ed390fb67a00e8, type: 2}
+  mask:
+    serializedVersion: 2
+    m_Bits: 4096
+  continuous: 0
+  repeatInterval: 0
 --- !u!50 &3647189363385741791
 Rigidbody2D:
   serializedVersion: 4

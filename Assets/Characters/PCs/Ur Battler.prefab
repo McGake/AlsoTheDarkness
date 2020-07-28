@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4917500864058311447}
   - component: {fileID: 5877051349137970836}
   m_Layer: 8
-  m_Name: Suki Battler
+  m_Name: Ur Battler
   m_TagString: PC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135,6 +135,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a05f0db0b1bafa247ada82b0827ef00b, type: 2}
   - {fileID: 11400000, guid: a79c40d379e7db54291386397e1a1cfc, type: 2}
   - {fileID: 11400000, guid: d09fed92cab9f27408f98b210897dcfc, type: 2}
+  deathStatus: {fileID: 11400000, guid: dd57c05caf4264e408ec76f5d6761502, type: 2}
 --- !u!95 &8391154108370637472
 Animator:
   serializedVersion: 3

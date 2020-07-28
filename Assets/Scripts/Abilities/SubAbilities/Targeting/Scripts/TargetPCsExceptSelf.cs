@@ -24,6 +24,7 @@ public class TargetPCsExceptSelf : SubAbility
 
     public override void OnSelectionFinished(List<GameObject> selectedObjects)
     {
+        Debug.Log("selection FINISHED");
         ability.objectTargets.AddRange(selectedObjects);
         EndSubAbility();
     }

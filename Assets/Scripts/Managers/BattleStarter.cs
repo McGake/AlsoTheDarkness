@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class BattleStarter : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class BattleStarter : MonoBehaviour
 
     public List<Transform> possibleMonsterStartPositions;
 
-    public void Update()
+      public void Update()
     {
         if(Input.GetButtonDown("Start"))//this is temporary test code
         {
@@ -80,7 +81,6 @@ public class BattleStarter : MonoBehaviour
         battleFolder.SetActive(true);
         objectsInBattle.CollectObjectsInBattle();
         overworldFolder.SetActive(false);
-
     }
 
     public void OnEnable()
@@ -106,8 +106,6 @@ public class BattleStarter : MonoBehaviour
             possibleMonsterStartPositions.AddRange(leftSideStartPositions);
             possibleMonsterStartPositions.AddRange(rightSideStartPositions);
         }
-
-        Debug.Log(possiblePCStartPositions[0]);
     }
 
     private void SetupSituations()
@@ -120,10 +118,6 @@ public class BattleStarter : MonoBehaviour
         int curPCBlankIndex = 0;
         foreach (PC pc in battleDef.pcsInBattle)
         {
-            Debug.Log(pc);
-
-            Debug.Log(pc.battler);
-
             pc.battler.transform.position = TakeRandomPosition(possiblePCStartPositions);
             //pcBlanks[curPCBlankIndex].transform.position = TakeRandomPosition(possiblePCStartPositions);
 

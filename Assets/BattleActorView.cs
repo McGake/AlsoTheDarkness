@@ -84,7 +84,7 @@ public class BattleActorView : MonoBehaviour
         oneTimeEffectAnimators[0].runtimeAnimatorController = oneTimeAnimatorController;
        
 
-        oneTimeEffectAnimators[0].Play("ShowOneTimeCast", 0, 0f);
+        oneTimeEffectAnimators[0].Play("OneTimeCast", 0, 0f);
         //oneTimeEffectAnimators[0].SetBool("OneTimeEffect", true);
         //make the game instantiate more oneTimeEffectAnimators if there are not enough here rather than interupting animations in progress
 

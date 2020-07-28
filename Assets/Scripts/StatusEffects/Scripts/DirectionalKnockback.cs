@@ -22,7 +22,6 @@ public class DirectionalKnockback : Status //TODO: perhaps to turn this and thin
 
     public override void SetUpStatus(Ability sourceAbility, GameObject deliveryObject)
     {
-        Debug.Log("set up knockbakc "  +deliveryObject);
         retainedDeliveryObject = deliveryObject;
 
     }

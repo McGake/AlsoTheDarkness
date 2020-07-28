@@ -24,16 +24,9 @@ public class PowerBarMG : SubProjectileAbility
 
     private Transform ownerTransform;
 
-    public void Awake()
-    {
-        Debug.Log("awake called");
-
-    }
-
     public void OnEnable()
     {
         powerContainerInstance = null;
-        Debug.Log("onenable called");
     }
 
 
@@ -42,7 +35,6 @@ public class PowerBarMG : SubProjectileAbility
     public override void DoInitialProjectileSubAbility(ProjectileAbility pa)
     {
         ownerTransform = pa.ability.owner.transform;
-        Debug.Log("initial projectile SUB ability ran");
 
         Image[] images;
         if(powerContainerInstance == null)

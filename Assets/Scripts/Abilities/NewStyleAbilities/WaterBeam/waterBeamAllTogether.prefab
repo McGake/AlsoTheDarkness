@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6940833461940338091}
   - component: {fileID: 4106134839340103918}
   - component: {fileID: 203153174963557559}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: waterBeamAllTogether
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1de6d6285809560419ed390fb67a00e8, type: 2}
   mask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   continuous: 1
   repeatInterval: 0.25
 --- !u!114 &203153174963557559
@@ -144,6 +144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ab29bd5c65ace4fac7249b98c7afbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootTime: 25
+  shootTime: 5
   shootLength: 16
   sR: {fileID: 3566616413592520061}

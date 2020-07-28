@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1331757902572097441}
   - component: {fileID: 8175712870742506398}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: waterBeamPrep
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -205,6 +205,7 @@
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\DirectionalKnockback.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\InstantDamage.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\MultiplyMagicalPower.cs" />
+    <Compile Include="Assets\Scripts\StatusEffects\Scripts\PCDown.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\ResistEffects.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\ShowingDamage.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\Status.cs" />

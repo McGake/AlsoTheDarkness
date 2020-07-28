@@ -310,7 +310,9 @@ MonoBehaviour:
   curStatuses: []
   inspectorAbilities:
   - {fileID: 11400000, guid: 9363c311d2df6074eaab8ea215ea05b6, type: 2}
-  abilityIntervalMax: 4
+  - {fileID: 11400000, guid: fef5c55e2826bcc42a8e7672acf2cbb4, type: 2}
+  deathStatus: {fileID: 0}
+  abilityIntervalMax: 1000
   abilityIntervalMin: 0.5
 --- !u!60 &8844169639533487357
 PolygonCollider2D:
@@ -392,6 +394,7 @@ MonoBehaviour:
     type: 3}
   worldSpaceCanvas: {fileID: 0}
   animator: {fileID: 8844169638778732439}
+  oneTimeEffectAnimators: []
   spriteRenderer: {fileID: 8844169639533487359}
 --- !u!95 &1245474386
 Animator:

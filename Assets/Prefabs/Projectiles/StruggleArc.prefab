@@ -55,7 +55,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 756703b2e8ebfed4584df5db4515266b, type: 2}
   mask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   continuous: 0
   repeatInterval: 0
 --- !u!70 &4066576929478435795

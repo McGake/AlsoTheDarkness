@@ -19,7 +19,6 @@ public class PartyManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        Debug.Log("Party on awake" + parties[curPartyIndx].partyMembers.Count);
         curParty = parties[curPartyIndx];
         InitializeParties();
     }

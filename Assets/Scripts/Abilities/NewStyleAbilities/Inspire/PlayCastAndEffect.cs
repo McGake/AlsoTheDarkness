@@ -19,9 +19,6 @@ public class PlayCastAndEffect : SubAbility
     private AnimatorOverrideController animOverrideController;
 
     [SerializeField]
-    private float overlapTime;
-
-    [SerializeField]
     private float effectStartDelay;
 #pragma warning restore 649
     private float endTime;
@@ -39,6 +36,8 @@ public class PlayCastAndEffect : SubAbility
         effectStartTime = Time.time + effectStartDelay;
         
             endTime = (effectStartDelay) + animOverrideController.animationClips[1].length + Time.time;
+
+        ab.owner.GetComponent<BattleActorView>().ShowOneTimeCast(animOverrideController);
         
     }
 
@@ -48,7 +47,7 @@ public class PlayCastAndEffect : SubAbility
         {
             EndSubAbility();
         }
-        else if(Time.time> effectStartDelay && animationTriggered == false)
+        else if(Time.time> effectStartTime && animationTriggered == false)
         {
             animationTriggered = true;
             foreach (GameObject gO in ab.objectTargets)

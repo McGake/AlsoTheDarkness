@@ -18,7 +18,6 @@ public class Attacking : SubAbility
         if (ab.pcAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f && ab.pcAnimator.GetCurrentAnimatorStateInfo(0).IsName("attack")) //TODO: turn this into a utility that can call back on end of animation or just check on update
         {
             SetNewAnimation("stand", ab);
-            Debug.Log("attack notices over");
             EndSubAbility();           
         }
     }

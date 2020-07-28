@@ -52,10 +52,8 @@ AnimationClip:
     script: {fileID: 0}
   - curve:
     - time: 0
-      value: {fileID: 0}
-    - time: 1
       value: {fileID: 21300000, guid: f68c75966d2c24b48be0bc29d24283d7, type: 3}
-    - time: 1.25
+    - time: 1
       value: {fileID: 0}
     attribute: m_Sprite
     path: Effect
@@ -97,7 +95,6 @@ AnimationClip:
     - {fileID: 8352879907788478393, guid: 35261458f7b03a348ad5ee6a2d640cc3, type: 3}
     - {fileID: -6050983469917200698, guid: 35261458f7b03a348ad5ee6a2d640cc3, type: 3}
     - {fileID: 3233183736930639016, guid: 35261458f7b03a348ad5ee6a2d640cc3, type: 3}
-    - {fileID: 0}
     - {fileID: 0}
     - {fileID: 21300000, guid: f68c75966d2c24b48be0bc29d24283d7, type: 3}
     - {fileID: 0}

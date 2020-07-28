@@ -30,14 +30,13 @@ public class ObjectsInBattle : MonoBehaviour
        // pcsInBattle.Clear();
         enemiesInBattle.Clear();
         objectsInBattle = this;
-        Debug.Log("rand find pcs in battle!!!");
-        tempPCs = FindObjectsOfType<BattlePC>();
-        foreach (BattlePC bpc in tempPCs)
-        {
-            bpc.GetComponent<BaseBattleActor>().OnDeathCallback = OnPCDeath;
-            pcsInBattle.Add(bpc.gameObject);
+        //tempPCs = FindObjectsOfType<BattlePC>();
+        //foreach (BattlePC bpc in tempPCs)
+        //{
+        //    bpc.GetComponent<BaseBattleActor>().OnDeathCallback = OnPCDeath;
+        //    pcsInBattle.Add(bpc.gameObject);
             
-        }
+        //}
 
         tempEnemies = FindObjectsOfType<BaseEnemy>();
         foreach(BaseEnemy be in tempEnemies)
@@ -54,7 +53,6 @@ public class ObjectsInBattle : MonoBehaviour
 
     public void AddPCToList(GameObject newPC)
     {
-        Debug.Log("add to list was called");
         newPC.GetComponent<BaseBattleActor>().OnDeathCallback = OnPCDeath;
         pcsInBattle.Add(newPC);
         
@@ -127,6 +125,18 @@ public class ObjectsInBattle : MonoBehaviour
 
     public void OnPCDeath(GameObject pc)
     {
-        pcsInBattle.Remove(pc);
+        if (pcsInBattle.Contains(pc))
+        {
+            pcsInBattle.Remove(pc);
+        }
+        else
+        {
+            pcsInBattle.Add(pc);
+        }
+
+        if(pcsInBattle.Count == 0)
+        {
+
+        }
     }
 }

@@ -42,14 +42,6 @@ public class OverworldMovement : GameSegment
         anim = GetComponent<Animator>();
         GetPartyMembers();
         mask = 1;
-        Debug.Log(mask.value + "layer");
-
-       // mask = LayerMask.GetMask("Default","trigger");
-        //curState = TownStates.walking;
-        //tMM = GameObject.FindObjectOfType<TownMenuManager>();
-        //tSM = GameObject.FindObjectOfType<TownStateMachine>();
-        //tSM.SetDefualtInteraction(this);
-
     }
 
     void OnEnable()

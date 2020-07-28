@@ -53,19 +53,11 @@ public class BaseBattleActor :MonoBehaviour
     public delegate void DelOnDeathCallback(GameObject gO);
     public DelOnDeathCallback OnDeathCallback;
 
+    public Status deathStatus;
+
     public virtual void Awake()
     {
         SetUpAbilities();
-
-    }
-
-
-    void Start()
-    {
-
-        //allClips = GetComponent<Animator>().runtimeAnimatorController.animationClips;
-
-
 
     }
 
@@ -245,6 +237,7 @@ public class BaseBattleActor :MonoBehaviour
     public virtual void Die()
     {
         OnDeathCallback(gameObject);
+        AddStatus(deathStatus);
         gameObject.SetActive(false); //TODO: flesh this out with arbitrary animation and make it part of a pooling system. PC's and monsters will of course have their own thing but should implement the base class if possible.
     }
 }

@@ -47,10 +47,13 @@ public class EffectOnContact : StatusDeliverer
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("trigger enter!!!!!!");
-        ApplyEffect(col);
-        objectsHit.Add(col.gameObject);
-        nextInterval = Time.time + repeatInterval;
+        if(((mask >> col.gameObject.layer)) == 1)
+            {
+            ApplyEffect(col);
+            objectsHit.Add(col.gameObject);
+            nextInterval = Time.time + repeatInterval;
+        }
+
     }
 
     public void OnTriggerStay2D(Collider2D col)
@@ -60,9 +63,11 @@ public class EffectOnContact : StatusDeliverer
 
             if (nextInterval < Time.time)
             {
-                
-                ApplyEffect(col);
-                nextInterval = Time.time + repeatInterval;
+                if (((mask >> col.gameObject.layer)) == 1)
+                {
+                    ApplyEffect(col);
+                    nextInterval = Time.time + repeatInterval;
+                }
                 
             }
         }
@@ -74,10 +79,13 @@ public class EffectOnContact : StatusDeliverer
         BaseBattleActor actorToAddEffectTo;
         actorToAddEffectTo = col.GetComponent<BaseBattleActor>();
         //Debug.Log("effect applying");
-        foreach(Status status in statusesToAdd)
-        {
-            actorToAddEffectTo.AddStatus(status);
-        }
+        //if (actorToAddEffectTo != null)
+        //{
+            foreach (Status status in statusesToAdd)
+            {
+                actorToAddEffectTo.AddStatus(status);
+            }
+        //}
     }
 
     private void OnHitOther(Collider2D col)

@@ -25,7 +25,6 @@ public class PlayOneTimeEffectAnimationOnMultiple : SubAbility
             //statusToAddInstance = Instantiate(statusToAdd);
             //gO.GetComponent<BaseBattleActor>().AddStatus(statusToAddInstance);
         }
-        Debug.Log(animOverrideController.animationClips[0].name + " Info!!!");
         endTime = animOverrideController.animationClips[0].length + Time.time;
         
     }

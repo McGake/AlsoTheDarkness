@@ -136,8 +136,6 @@ public class BattleMenuManager : GameSegment
     #region SwitchingHero
     void SwitchHero()
     {
-        Debug.Log("cur hero indx " + curHeroIndx);
-        Debug.Log(objectsInBattle.pcsInBattle[curHeroIndx].name);
         curHero = objectsInBattle.pcsInBattle[curHeroIndx];
         cursor.transform.position = curHero.transform.position + new Vector3(-.33f, .3f,0f);
     }
@@ -191,17 +189,17 @@ public class BattleMenuManager : GameSegment
         }
         if (Input.GetButtonDown("X"))
         {
-            Debug.Log("x");
+          //  Debug.Log("x");
             TriggerAbilityByIndex(xIndx);
         }
         if (Input.GetButtonDown("Y"))
         {
-            Debug.Log("y");
+          //  Debug.Log("y");
             TriggerAbilityByIndex(yIndx);
         }
         if (Input.GetButtonDown("B"))
         {
-            Debug.Log("b");
+           // Debug.Log("b");
             TriggerAbilityByIndex(bIndx);
         }
     }
@@ -297,7 +295,7 @@ public class BattleMenuManager : GameSegment
 
     private const float delaySwitchTime = .5f;
 
-    private float nextLegalSwitch = 0f;
+    private float nextSwitchAllowedTime = 0f;
 
 
 
@@ -305,12 +303,12 @@ public class BattleMenuManager : GameSegment
     {
         float yVal = Input.GetAxis("Vertical");
         
-        if (Time.time > nextLegalSwitch && preventCharacterSwitch == false)
+        if (Time.time > nextSwitchAllowedTime && preventCharacterSwitch == false)
         {
             if (yVal > 0f)
             {
 
-                nextLegalSwitch += Time.time + delaySwitchTime;
+                nextSwitchAllowedTime += Time.time + delaySwitchTime;
                 curHeroIndx++;
                 if(curHeroIndx > objectsInBattle.pcsInBattle.Count -1)
                 {
@@ -321,12 +319,13 @@ public class BattleMenuManager : GameSegment
             }
             else if (yVal < 0f)
             {
-                nextLegalSwitch = Time.time + delaySwitchTime;
+                nextSwitchAllowedTime = Time.time + delaySwitchTime;
                 curHeroIndx--;
                 if (curHeroIndx < 0)
                 {
                     curHeroIndx = objectsInBattle.pcsInBattle.Count -1;
                 }
+                
                 SwitchHero();
                 PopulateHeroMenu();
             }
@@ -334,7 +333,7 @@ public class BattleMenuManager : GameSegment
 
         if(yVal == 0)
         {
-            nextLegalSwitch = Time.time - .01f; ;
+            nextSwitchAllowedTime = Time.time - .01f; ;
         }
 
         TriggerAbilityOnInput();
@@ -509,12 +508,12 @@ public class BattleMenuManager : GameSegment
     {
         float yVal = Input.GetAxis("Vertical");
 
-        if (Time.time > nextLegalSwitch)
+        if (Time.time > nextSwitchAllowedTime)
         {
 
             if (yVal > 0f)
             {
-                nextLegalSwitch = Time.time + delaySwitchTime;
+                nextSwitchAllowedTime = Time.time + delaySwitchTime;
                genericSwitchIndx++;
                 if (genericSwitchIndx > objectsToSwtichBetween.Count - 1)
                 {
@@ -524,7 +523,7 @@ public class BattleMenuManager : GameSegment
             }
             else if (yVal < 0f)
             {
-                nextLegalSwitch = Time.time + delaySwitchTime;
+                nextSwitchAllowedTime = Time.time + delaySwitchTime;
                 genericSwitchIndx--;
                 if (genericSwitchIndx < 0)
                 {

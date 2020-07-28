@@ -83,3 +83,8 @@ MonoBehaviour:
   inspectorStatusesToAdd:
   - {fileID: 11400000, guid: 1835e310515904f4dbf4094bc46a6409, type: 2}
   - {fileID: 11400000, guid: 6e2295f6ff445404997e1bb232fc12db, type: 2}
+  mask:
+    serializedVersion: 2
+    m_Bits: 4096
+  continuous: 0
+  repeatInterval: 0

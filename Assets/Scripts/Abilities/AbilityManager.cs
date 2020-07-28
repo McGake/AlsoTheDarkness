@@ -61,7 +61,6 @@ public class AbilityManager : MonoBehaviour
             Ability abilityToAdd;
             abilityToAdd = ab;
 
-            Debug.Log("ability " + ab.DisplayName + " added by " + ab.owner.name);
             abilitiesInUse.Add(abilityToAdd);
             ab.StartAbility();
         }

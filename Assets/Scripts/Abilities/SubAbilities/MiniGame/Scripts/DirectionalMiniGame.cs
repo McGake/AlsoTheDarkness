@@ -19,7 +19,6 @@ public class DirectionalMiniGame : SubAbility
     public void OnEnable()
     {
         joystickIconInstance = null;
-        Debug.Log("onenable called");
     }
 
 

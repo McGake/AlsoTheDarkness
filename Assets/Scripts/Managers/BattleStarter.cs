@@ -76,7 +76,7 @@ public class BattleStarter : MonoBehaviour
         SetupMonsters();
 
 
-
+        objectsInBattle.ExitBattle = ExitBattle;
 
         battleFolder.SetActive(true);
         objectsInBattle.CollectObjectsInBattle();

@@ -20,6 +20,9 @@ public class ObjectsInBattle : MonoBehaviour
 
     public Dictionary<Type, List<GameObject>> objectsInBattleDict = new Dictionary<Type, List<GameObject>>();
 
+    public delegate void DelExitBattle();
+    public DelExitBattle ExitBattle;
+
     public void Awake()
     {
         objectsInBattleDict.Add(typeof(BaseEnemy), enemiesInBattle);
@@ -119,7 +122,7 @@ public class ObjectsInBattle : MonoBehaviour
         enemiesInBattle.Remove(monster);
         if(enemiesInBattle.Count <= 0)
         {
-            //Call all monsters dead event
+            ExitBattle();
         }
     }
 
@@ -134,9 +137,9 @@ public class ObjectsInBattle : MonoBehaviour
             pcsInBattle.Add(pc);
         }
 
-        if(pcsInBattle.Count == 0)
+        if(pcsInBattle.Count <= 0)
         {
-
+            ExitBattle();
         }
     }
 }

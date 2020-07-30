@@ -27,7 +27,6 @@ public class DirectionalMiniGame : SubAbility
     public override void DoInitialSubAbility(Ability ab)
     {
         ownerTransform = ab.owner.transform;
-        Debug.Log("initial projectile SUB ability ran");
         if(joystickIconInstance == null)
         {
             joystickIconInstance = ab.InstantiateInWorldSpaceCanvas(joysticIcon, ownerTransform.position);

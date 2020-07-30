@@ -16,5 +16,5 @@ MonoBehaviour:
   intervalLength: 0
   nextInterval: 0
   endTime: 0
-  duration: 0
+  duration: 1000
   dontAddStatus: 0

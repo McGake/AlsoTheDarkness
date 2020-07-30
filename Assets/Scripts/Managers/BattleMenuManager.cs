@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using TMPro;
-
+using UnityEngine.EventSystems;
 
 public class BattleMenuManager : GameSegment
 {
@@ -50,7 +50,10 @@ public class BattleMenuManager : GameSegment
         AddAbilityClustersToDictionary();
         AddAllAbilitybuttonsToListInProperOrder();
         AddCallbacksToAbilities();
-        SwitchHero();
+
+        curHero = objectsInBattle.pcsInBattle[curHeroIndx];
+        cursor.transform.position = curHero.transform.position + new Vector3(-.33f, .3f, 0f);
+        modifiedSelectionConeAngle = selectionConeAngle;
         PopulateHeroMenu();
 
     }
@@ -134,11 +137,7 @@ public class BattleMenuManager : GameSegment
     private DelCurSelectionBehavior CurSelectionBehavior;
 
     #region SwitchingHero
-    void SwitchHero()
-    {
-        curHero = objectsInBattle.pcsInBattle[curHeroIndx];
-        cursor.transform.position = curHero.transform.position + new Vector3(-.33f, .3f,0f);
-    }
+
 
     List<Ability> curCombatAbilities = new List<Ability>();
     void PopulateHeroMenu()
@@ -298,44 +297,168 @@ public class BattleMenuManager : GameSegment
     private float nextSwitchAllowedTime = 0f;
 
 
+    private bool CheckIfInsideCone(GameObject target, Vector3 inputDir, float coneAngleSize)
+    {
+        Vector3 normalizedDir = FindDirectionOfTarget(target);
+   
+        inputDir.Normalize();
 
+        Debug.DrawRay(curHero.transform.position, (inputDir*3) , Color.green, .5f);
+        
+
+        Vector3 outsideVec = Quaternion.AngleAxis(35, Vector3.forward) * inputDir;
+
+        Vector3 outsideVec2 = Quaternion.AngleAxis(-35, Vector3.forward) * inputDir;
+
+        Debug.DrawRay(curHero.transform.position, (outsideVec * 3), Color.red, .5f);
+
+        Debug.DrawRay(curHero.transform.position, (outsideVec2 * 3), Color.red, .5f);
+
+        float dotProduct = Vector3.Dot(normalizedDir, inputDir);
+
+        float degrees = Mathf.Rad2Deg * Mathf.Acos(dotProduct);
+
+
+        if (degrees < coneAngleSize)
+        {
+            //Debug.Log("Normalized Direction of object " + normalizedDir);
+            //Debug.Log("Normalized Joystick " + inputDir);
+            //Debug.Log("is Inside!!!");
+            //Debug.Log("dot Product angle " + degrees);
+            //Debug.Log("cone angle size " + coneAngleSize);
+            //Debug.Log("target position " + target.name + " " + target.transform.position);
+            //Debug.Log("");
+            return (true);
+        }
+        else
+        {
+            //Debug.Log("not inside!!!");
+            return (false);
+        }
+    }
+
+    private Vector3 FindDirectionOfTarget(GameObject target)
+    {
+        Vector3 dir =   target.transform.position - curHero.transform.position;
+
+        //Debug.Log(target.name + " target position is " + target.transform.position);
+
+        //Debug.Log(target.name + "unormalized dirction is " + dir);
+
+        dir.Normalize();
+
+        //Debug.Log(target.name + " direction is " + dir);
+
+        return (dir);
+    }
+
+    GameObject curClosest;
+
+    GameObject potentialClosest;
+
+    public float selectionSensitivityThreshhold = 0.1f;
+
+    public float selectionRepeatDealy = 0.25f;
+
+    public float selectionConeAngle = 35f;
+
+    public float selectionConeAngleExapnsionIncrement = 35f;
+
+    private float modifiedSelectionConeAngle;
     public void SwitchHeroOnInput()
     {
-        float yVal = Input.GetAxis("Vertical");
-        
+        //float yVal = Input.GetAxis("Vertical");
+
+        //if (Time.time > nextSwitchAllowedTime && preventCharacterSwitch == false)
+        //{
+        //    if (yVal > 0f)
+        //    {
+
+        //        nextSwitchAllowedTime += Time.time + delaySwitchTime;
+        //        curHeroIndx++;
+        //        if(curHeroIndx > objectsInBattle.pcsInBattle.Count -1)
+        //        {
+        //            curHeroIndx = 0;
+        //        }
+        //        SwitchHero();
+        //        PopulateHeroMenu();
+        //    }
+        //    else if (yVal < 0f)
+        //    {
+        //        nextSwitchAllowedTime = Time.time + delaySwitchTime;
+        //        curHeroIndx--;
+        //        if (curHeroIndx < 0)
+        //        {
+        //            curHeroIndx = objectsInBattle.pcsInBattle.Count -1;
+        //        }
+
+        //        SwitchHero();
+        //        PopulateHeroMenu();
+        //    }
+        //}
+
+        //if(yVal == 0)
+        //{
+        //    nextSwitchAllowedTime = Time.time - .01f; ;
+        //}
+
+
+
         if (Time.time > nextSwitchAllowedTime && preventCharacterSwitch == false)
         {
-            if (yVal > 0f)
-            {
+            float yVal = Input.GetAxis("Vertical");
+            float xVal = Input.GetAxis("Horizontal");
 
-                nextSwitchAllowedTime += Time.time + delaySwitchTime;
-                curHeroIndx++;
-                if(curHeroIndx > objectsInBattle.pcsInBattle.Count -1)
-                {
-                    curHeroIndx = 0;
-                }
-                SwitchHero();
-                PopulateHeroMenu();
-            }
-            else if (yVal < 0f)
+            if (Mathf.Abs(yVal) + Mathf.Abs(xVal) > selectionSensitivityThreshhold)
             {
-                nextSwitchAllowedTime = Time.time + delaySwitchTime;
-                curHeroIndx--;
-                if (curHeroIndx < 0)
+                curClosest = null;
+                potentialClosest = null;
+                for (int i = 0; i < objectsInBattle.pcsInBattle.Count; i++)
                 {
-                    curHeroIndx = objectsInBattle.pcsInBattle.Count -1;
+                    if (objectsInBattle.pcsInBattle[i] != curHero)
+                    {
+                        if (CheckIfInsideCone(objectsInBattle.pcsInBattle[i], new Vector3(xVal, yVal), modifiedSelectionConeAngle))
+                        {
+
+                            if (curClosest == null)
+                            {
+                                curClosest = objectsInBattle.pcsInBattle[i];
+                            }
+                            else
+                            {
+                                potentialClosest = objectsInBattle.pcsInBattle[i];
+                                if (Vector3.SqrMagnitude(curHero.transform.position - curClosest.transform.position) > Vector3.SqrMagnitude(curHero.transform.position - potentialClosest.transform.position))
+                                {
+                                    curClosest = potentialClosest;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (curClosest != null)
+                {
+                    curHero = curClosest;
+                    cursor.transform.position = curHero.transform.position + new Vector3(-.33f, .3f, 0f);
+                    nextSwitchAllowedTime = Time.time + selectionRepeatDealy;
+                    PopulateHeroMenu();
+                    modifiedSelectionConeAngle = selectionConeAngle;
+                }
+                else if(modifiedSelectionConeAngle <= 89f)
+                {
+                    if(selectionConeAngleExapnsionIncrement <= 1)
+                    {
+                        Debug.LogError("Expansion angle too small ");
+                        return;
+                    }
+                    modifiedSelectionConeAngle += selectionConeAngleExapnsionIncrement;
+                    modifiedSelectionConeAngle = Mathf.Clamp(modifiedSelectionConeAngle, 0f, 90f);
+                    SwitchHeroOnInput();
                 }
                 
-                SwitchHero();
-                PopulateHeroMenu();
             }
         }
-
-        if(yVal == 0)
-        {
-            nextSwitchAllowedTime = Time.time - .01f; ;
-        }
-
+        modifiedSelectionConeAngle = selectionConeAngle;
         TriggerAbilityOnInput();
         UpdateAbilityMenu();
     }
@@ -497,7 +620,6 @@ public class BattleMenuManager : GameSegment
 
     private void EndSelection(List<GameObject> selectedObjects)
     {
-        Debug.Log("End Selection");
         OnSelectionFinished(selectedObjects);
         CurSelectionBehavior = SwitchHeroOnInput;
         secondaryCursor.SetActive(false);

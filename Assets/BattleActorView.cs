@@ -16,6 +16,10 @@ public class BattleActorView : MonoBehaviour
     [SerializeField]
     private Animator animator;
 
+
+    [SerializeField]
+    private Animator pcAnimator;
+
     [SerializeField]
     private List<Animator> oneTimeEffectAnimators;
 
@@ -88,6 +92,11 @@ public class BattleActorView : MonoBehaviour
         //oneTimeEffectAnimators[0].SetBool("OneTimeEffect", true);
         //make the game instantiate more oneTimeEffectAnimators if there are not enough here rather than interupting animations in progress
 
+    }
+
+    public void PlayInteruptingCharacterAnimation(string stateName)
+    {
+        pcAnimator.Play("down", 0, 0f);
     }
 
     private float nextBlinkTime;

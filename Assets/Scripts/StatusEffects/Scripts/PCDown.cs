@@ -14,7 +14,7 @@ public class PCDown : Status //TODO: perhaps to turn this and things like this t
     public override void DoStatusInitialEffect(BaseBattleActor bbA)
     {
 
-        bbA.battleActorView.ShowStatus(this);
+        bbA.battleActorView.PlayInteruptingCharacterAnimation("down");
         bbA.gameObject.GetComponent<Collider2D>().enabled = false;
         AbilityManager.abManager.StopAllAbilitiesFromCharacter(bbA.gameObject);
     }

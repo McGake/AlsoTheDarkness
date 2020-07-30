@@ -43,13 +43,6 @@ public class MoveInDirection : SubAbility
 
             EndSubAbility();
         }
-
-        //else
-        //{
-
-        //    EndSubAbility();      
-        //    ab.pcAnimator.SetBool("walk", false); 
-        //}    
     }
 
 

@@ -31,7 +31,6 @@ public class TargetEnemiesByRelativePos : SubAbility
 
     public override void OnSelectionFinished(List<GameObject> selectedObjects)
     {
-        Debug.Log(selectedObjects.Count + " objects retuned");
         tempEnemies.AddRange(selectedObjects);
         Vector3 pos = abilty.owner.transform.position;
 

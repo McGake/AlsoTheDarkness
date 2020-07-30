@@ -13,14 +13,14 @@ public class Barrier : MonoBehaviour
     }
 public void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("entered " + col.gameObject.name);
+
         
-        col.transform.position = GetClosestBound(col);
+        //col.transform.position = GetClosestBound(col);
     }
 
     public void OnTriggerStay2D(Collider2D col)
     {
-        col.transform.position = GetClosestBound(col);
+        //col.transform.position = GetClosestBound(col);
     }
 
     private Vector3 GetClosestBound(Collider2D col)

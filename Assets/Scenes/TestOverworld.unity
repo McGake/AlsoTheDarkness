@@ -20379,7 +20379,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25728557}
   m_AnchorMax: {x: 1, y: 0.8346511}
-  m_AnchoredPosition: {x: 0, y: -37.000015}
+  m_AnchoredPosition: {x: 0, y: -37.000008}
   m_SizeDelta: {x: 0, y: 74.03633}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &887276708
@@ -40302,6 +40302,10 @@ MonoBehaviour:
   popoutTextBoxPrefab: {fileID: 6423017878613679728, guid: 30e4bbdb33221ac4db91eab7fcd690ba,
     type: 3}
   worldSpaceCanvas: {fileID: 1736787083}
+  selectionSensitivityThreshhold: 0.1
+  selectionRepeatDealy: 0.25
+  selectionConeAngle: 35
+  selectionConeAngleExapnsionIncrement: 35
   miniGames: []
   genericSwitchIndx: 0
 --- !u!114 &1343185344
@@ -47570,7 +47574,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25728557}
   m_AnchorMax: {x: 1, y: 0.8346511}
-  m_AnchoredPosition: {x: 0, y: -37.000015}
+  m_AnchoredPosition: {x: 0, y: -37.000008}
   m_SizeDelta: {x: 0, y: 74.03633}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1965026103

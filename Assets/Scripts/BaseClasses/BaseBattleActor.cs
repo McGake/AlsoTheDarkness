@@ -238,7 +238,7 @@ public class BaseBattleActor :MonoBehaviour
     {
         OnDeathCallback(gameObject);
         AddStatus(deathStatus);
-        gameObject.SetActive(false); //TODO: flesh this out with arbitrary animation and make it part of a pooling system. PC's and monsters will of course have their own thing but should implement the base class if possible.
+        //gameObject.SetActive(false); //TODO: flesh this out with arbitrary animation and make it part of a pooling system. PC's and monsters will of course have their own thing but should implement the base class if possible.
     }
 }
 

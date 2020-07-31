@@ -8,6 +8,7 @@ public class BattleStarter : MonoBehaviour
 
     public GameObject battleFolder;
     public GameObject overworldFolder;
+    public BattleMenuManager battleMenuManager;
 
     public List<GameObject> pcBlanks;
 
@@ -58,6 +59,7 @@ public class BattleStarter : MonoBehaviour
 
     public void TurnOnBattleScene()
     {
+        SetUpBattle();
         battleFolder.SetActive(true);
         overworldFolder.SetActive(false);
     }
@@ -80,12 +82,13 @@ public class BattleStarter : MonoBehaviour
 
         battleFolder.SetActive(true);
         objectsInBattle.CollectObjectsInBattle();
+        battleMenuManager.SetUpBattleMenuManager();
         overworldFolder.SetActive(false);
     }
 
     public void OnEnable()
     {
-        SetUpBattle();
+        //SetUpBattle();
     }
 
     private void SetupBackground()
@@ -118,7 +121,10 @@ public class BattleStarter : MonoBehaviour
         int curPCBlankIndex = 0;
         foreach (PC pc in battleDef.pcsInBattle)
         {
-            pc.battler.transform.position = TakeRandomPosition(possiblePCStartPositions);
+            Transform startPosition = TakeRandomPosition(possiblePCStartPositions);
+
+            pc.battler.transform.position = startPosition.position;
+            pc.battler.transform.rotation = startPosition.rotation;
             //pcBlanks[curPCBlankIndex].transform.position = TakeRandomPosition(possiblePCStartPositions);
 
             //pcBlanks[curPCBlankIndex].GetComponent<Animator>().runtimeAnimatorController = pc.battleAnimOverride;
@@ -142,18 +148,22 @@ public class BattleStarter : MonoBehaviour
         for(int i = 0; i < encounterMonsters.Count; i++)
         {
             curMonster = Instantiate(encounterMonsters[i]);
-            curMonster.transform.position = TakeRandomPosition(possibleMonsterStartPositions);
+
+            Transform position;
+            position= TakeRandomPosition(possibleMonsterStartPositions);
+            curMonster.transform.position = position.position;
+            curMonster.transform.rotation = position.rotation;
         }
     }
 
 
-    private Vector3 TakeRandomPosition(List<Transform> transforms)
+    private Transform TakeRandomPosition(List<Transform> transforms)
     {
-        Vector3 returnVector;
+        Transform returnTransform;
         int randPosIndx = Random.Range(0, transforms.Count);
-        returnVector = transforms[randPosIndx].position;
+        returnTransform = transforms[randPosIndx];
         transforms.RemoveAt(randPosIndx);
-        return (returnVector);
+        return (returnTransform);
     }
 
 

@@ -41,12 +41,24 @@ public class BattleMenuManager : GameSegment
 
     void Awake()
     {
-        battleMenuManager = this;
-        objectsInBattle = FindObjectOfType<ObjectsInBattle>();//cant I just set this in the inspcetor? 
+
     }
 
     void Start()
     {
+
+    }
+
+    public void OnEnable()
+    {
+
+    }
+
+    public void SetUpBattleMenuManager()
+    {
+        battleMenuManager = this;
+        objectsInBattle = FindObjectOfType<ObjectsInBattle>();//cant I just set this in the inspcetor? 
+
         AddAbilityClustersToDictionary();
         AddAllAbilitybuttonsToListInProperOrder();
         AddCallbacksToAbilities();
@@ -56,13 +68,10 @@ public class BattleMenuManager : GameSegment
         modifiedSelectionConeAngle = selectionConeAngle;
         PopulateHeroMenu();
 
-    }
-
-    public void OnEnable()
-    {
         gameStateMachine.SetCurrentGameSegment(this); //this is what actually kicks off the battle being updated. I wonder if I should somehow put this in the battle start script
         gameStateMachine.SetDefaultGameSegment(this);
         CurSelectionBehavior = SwitchHeroOnInput;
+
     }
 
     #region OneShotFunctions

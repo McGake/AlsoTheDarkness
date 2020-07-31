@@ -62,7 +62,7 @@ public class AbilityManager : MonoBehaviour
             abilityToAdd = ab;
 
             abilitiesInUse.Add(abilityToAdd);
-            ab.StartAbility();
+            ab.ReadyAbility();
         }
     }
 

@@ -85,9 +85,9 @@ public class Ability:ScriptableObject
 
     public Type actorType;
 
-
     public delegate GameObject DelInstantiateInWorldSpaceCanvas(GameObject go, Vector3 position);
     public DelInstantiateInWorldSpaceCanvas InstantiateInWorldSpaceCanvas;
+
 
 
     public void SetupAbility(GameObject inOwner)
@@ -114,12 +114,7 @@ public class Ability:ScriptableObject
         }
     }
 
-
-
-
-
-
-    public virtual void StartAbility()
+    public virtual void ReadyAbility()
     {
         //useable = false;
         abilityOver = false;
@@ -129,7 +124,6 @@ public class Ability:ScriptableObject
         positionTargets.Clear();
         SetUpNextSubAb();
         curCooldownEndTime = cooldownTime + Time.time;
-
     }
 
     public bool IsAbilityOver()
@@ -137,11 +131,9 @@ public class Ability:ScriptableObject
         return (abilityOver);
     }
 
-    public void AbilityStateMachine()
+    public void AbilityStateMachine()//This is called on update by the ability manager
     {
-        //Debug.Log( " ownder: " + owner.name+ " indx: " + curSubAbilityIndx + " ability: " + DisplayName + " sub abilities: " + subAbilities.Count + " isfinsihed: " + abilityOver);
         subAbilities[curSubAbilityIndx].DoSubAbility(this);
-
     }
 
     

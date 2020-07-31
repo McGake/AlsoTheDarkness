@@ -17,13 +17,15 @@ public class MoveInDirection : SubAbility
 
     private Vector3 totalMovement;
 
+    private int flipValue = 1;
     public override void DoInitialSubAbility(Ability ab)
     {
         SetNewAnimation("walk", ab);
         direction = ab.positionTargets[0];
         direction.z = ab.owner.transform.position.z;
         totalMovement = Vector3.zero;
-        sqrDistance = Mathf.Pow(distance, 2);        
+        sqrDistance = Mathf.Pow(distance, 2);
+        previousRotation = ab.owner.transform.rotation;
     }
 
     public override void DoSubAbility(Ability ab)
@@ -32,9 +34,12 @@ public class MoveInDirection : SubAbility
         //{
         //    MoveToTarget(ab.owner, moveTarget);
         //}
-        movementThisFrame = direction * moveSpeed * Time.deltaTime;
+
+        ChangeDirectionOnRotationChange(ab);
+
+        movementThisFrame =  (direction * flipValue) * moveSpeed * Time.deltaTime;
         ab.owner.transform.position += movementThisFrame;
-        totalMovement += movementThisFrame;
+        totalMovement += new Vector3(Mathf.Abs(movementThisFrame.x), Mathf.Abs(movementThisFrame.y), Mathf.Abs(movementThisFrame.z));
 
         if(totalMovement.sqrMagnitude > sqrDistance)
         {
@@ -58,5 +63,15 @@ public class MoveInDirection : SubAbility
 
 
         return (Vector3)target == owner.transform.position;
+    }
+
+    private Quaternion previousRotation;
+    private void ChangeDirectionOnRotationChange(Ability ab)
+    {
+        if(previousRotation != ab.owner.transform.rotation)
+        {
+            direction = direction * -1;
+            previousRotation = ab.owner.transform.rotation;
+        }
     }
 }

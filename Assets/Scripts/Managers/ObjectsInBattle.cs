@@ -142,4 +142,16 @@ public class ObjectsInBattle : MonoBehaviour
             ExitBattle();
         }
     }
+
+    public bool IsPCUpAndInBattle(GameObject pc)
+    {
+        if(pcsInBattle.Contains(pc))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

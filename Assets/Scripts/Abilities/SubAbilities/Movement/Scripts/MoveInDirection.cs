@@ -68,8 +68,9 @@ public class MoveInDirection : SubAbility
     private Quaternion previousRotation;
     private void ChangeDirectionOnRotationChange(Ability ab)
     {
-        if(previousRotation != ab.owner.transform.rotation)
+        if(previousRotation.eulerAngles.y != ab.owner.transform.rotation.eulerAngles.y)
         {
+            Debug.Log("rotation change " + previousRotation + " " + ab.owner.transform.rotation);
             direction = direction * -1;
             previousRotation = ab.owner.transform.rotation;
         }

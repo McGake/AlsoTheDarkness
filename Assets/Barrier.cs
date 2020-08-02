@@ -153,6 +153,5 @@ public class Barrier : MonoBehaviour
 
         }
 
-        Debug.Log("direction chosen " + dirToRestrict);
     }
 }

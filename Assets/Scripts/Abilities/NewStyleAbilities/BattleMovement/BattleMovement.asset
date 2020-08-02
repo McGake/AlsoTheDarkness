@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BattleMovement
   m_EditorClassIdentifier: 
   _displayName: BattleMovement
-  cooldownTime: 4.5
+  cooldownTime: 1.2
   objectTargets: []
   positionTargets: []
   inspectorSubAbilities:

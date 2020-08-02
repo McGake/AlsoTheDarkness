@@ -8,6 +8,8 @@ public class DestroyAfterSeconds : MonoBehaviour
 
     private float destroyTime;
 
+    public GameObject turnOnOnDestroy = null;
+
     public void Start()
     {
         destroyTime = Time.time + destroyAfterSeconds;
@@ -17,6 +19,11 @@ public class DestroyAfterSeconds : MonoBehaviour
     {
         if(Time.time >= destroyTime)
         {
+            if(turnOnOnDestroy != null)
+            {
+                turnOnOnDestroy.transform.SetParent(null);
+                turnOnOnDestroy.SetActive(true);
+            }
             GameObject.Destroy(gameObject);
         }
     }

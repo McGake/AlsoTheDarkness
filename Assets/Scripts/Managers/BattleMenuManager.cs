@@ -38,22 +38,6 @@ public class BattleMenuManager : GameSegment
 
     public Transform worldSpaceCanvas;
 
-
-    void Awake()
-    {
-
-    }
-
-    void Start()
-    {
-
-    }
-
-    public void OnEnable()
-    {
-
-    }
-
     public void SetUpBattleMenuManager()
     {
         battleMenuManager = this;
@@ -227,7 +211,7 @@ public class BattleMenuManager : GameSegment
         {
             Debug.LogError("We just called a null ability from the menu. did the hero get switched or the ability list change?");
         }
-        if (AbilityManager.abManager.IsCharacterCurrentlyDoingAbility(curHero) == false) //another way to do this would be just to check current heros abilities to see if he has any that are currently set to not finished.
+        if (AbilityManager.abManager.IsCharacterCurrentlyDoingAbility(curHero) == false && objectsInBattle.IsPCUpAndInBattle(curHero)) //another way to do this would be just to check current heros abilities to see if he has any that are currently set to not finished.
         {
             CurSelectionBehavior = SwitchHeroOnInput;//WaitForAbilityAndUpdateDisplay;
             curHero.GetComponent<BaseBattleActor>().DoAbility(abilityToPass);
@@ -280,12 +264,6 @@ public class BattleMenuManager : GameSegment
     }
     #endregion HeroSelected
 
-    #region NoHeroSelected
-    void CheckForHeroAutoSelect()
-    {
-
-    }
-    #endregion NoHeroSelected
 
     #region BattleEnd
     void StartFinalStatsDisplay()
@@ -462,7 +440,7 @@ public class BattleMenuManager : GameSegment
                     }
                     modifiedSelectionConeAngle += selectionConeAngleExapnsionIncrement;
                     modifiedSelectionConeAngle = Mathf.Clamp(modifiedSelectionConeAngle, 0f, 90f);
-                    SwitchHeroOnInput();
+                    SwitchHeroOnInput(); //TODO: make this recursion a while loop instead. more better.
                 }
                 
             }
@@ -470,6 +448,11 @@ public class BattleMenuManager : GameSegment
         modifiedSelectionConeAngle = selectionConeAngle;
         TriggerAbilityOnInput();
         UpdateAbilityMenu();
+    }
+
+    public void SwitchHeroOnCharacterDeath()
+    {
+
     }
 
     public void WaitForAbilityAndUpdateDisplay()

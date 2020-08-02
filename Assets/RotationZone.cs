@@ -8,7 +8,9 @@ public class RotationZone : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D col)
     {
+
         Quaternion rot = Quaternion.Euler(0, rotation, 0);
-        col.transform.SetPositionAndRotation(col.transform.position, rot);
+
+        col.transform.rotation = rot;
     }
 }

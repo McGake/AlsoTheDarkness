@@ -30,13 +30,13 @@ public class HeatMapTileInfo : MonoBehaviour
 
         Vector3Int tilePos = new Vector3Int();
 
-        Debug.Log(worldPos + "world pos");
+        //Debug.Log(worldPos + "world pos");
 
-        Debug.Log(heatMap + " heat map");
+        //Debug.Log(heatMap + " heat map");
 
-        Debug.Log(heatMap.layoutGrid + "layoutgrid");
+        //Debug.Log(heatMap.layoutGrid + "layoutgrid");
 
-        Debug.Log(worldPos + "worldPos");
+        //Debug.Log(worldPos + "worldPos");
 
         tilePos = heatMap.layoutGrid.WorldToCell(worldPos);
 

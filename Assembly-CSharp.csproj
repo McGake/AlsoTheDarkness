@@ -116,12 +116,15 @@
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\DeterminAngle\DeterminAngleCenterSpread.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\DeterminAngle\DeterminAngleEdgeSpread.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\DeterminAngle\DeterminAngleSimpleSetting.cs" />
+    <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\DeterminAngle\SimpleSetAnglePlusFacing.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\Fire\FireCallbackOnDisable.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\Fire\FireProjectile.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\Fire\FireProjectileAndWaitForDisable.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\Fire\FireProjectileWithForce.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\Fire\FireReturningTargetsProjectile.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\IntervalTimer\IntervalTimeBased.cs" />
+    <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\OnHitStuff\EffectOnContact.cs" />
+    <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\OnHitStuff\TurnOnSecondaryOnContact.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\ProjectileAbility.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\SetSource\SetProjSourceRelativePrefabs.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\SetSource\SetProjSourceSelfCenter.cs" />
@@ -197,7 +200,6 @@
     <Compile Include="Assets\Scripts\SpecificMenuScripts\TownMenuManager.cs" />
     <Compile Include="Assets\Scripts\SpecificMenuScripts\ghk.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\EffectDefiner.cs" />
-    <Compile Include="Assets\Scripts\StatusEffects\EffectOnContact.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\BuffArmor.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\BuffArmorAndMagDef.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\BuffPhysicalPowerAndHeal.cs" />

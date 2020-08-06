@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: HeardDown
   m_EditorClassIdentifier: 
   _displayName: 
+  maxUses: 12
+  uses: 0
+  cooldownTime: 0
   objectTargets: []
   positionTargets: []
   inspectorSubAbilities:
   - {fileID: 11400000, guid: eb5d3a5cdac580e46a30fcb9bbdbe77b, type: 2}
   - {fileID: 11400000, guid: a49c207b1f153f94b8862e428deb7bbe, type: 2}
   curSubAbilityIndx: 0
-  cooldownTime: 0

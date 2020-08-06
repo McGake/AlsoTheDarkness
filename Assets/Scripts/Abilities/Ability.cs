@@ -31,6 +31,9 @@ public class Ability:ScriptableObject
 
     public bool useable { get; set; } = true; //change name of this variable to better indicate that it is checking wheather anything is preventing this ability from being used including cooldown
 
+    public int maxUses;
+
+    public int uses = 0;
     public GameObject owner { get; protected set; }
 
     public float cooldownTime;
@@ -124,6 +127,7 @@ public class Ability:ScriptableObject
         positionTargets.Clear();
         SetUpNextSubAb();
         curCooldownEndTime = cooldownTime + Time.time;
+        uses++;
     }
 
     public bool IsAbilityOver()

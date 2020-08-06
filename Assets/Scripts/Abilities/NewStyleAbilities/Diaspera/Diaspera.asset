@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Diaspera
   m_EditorClassIdentifier: 
   _displayName: Diaspera
+  maxUses: 3
+  uses: 0
   cooldownTime: 3
   objectTargets: []
   positionTargets: []

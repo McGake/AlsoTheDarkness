@@ -130,6 +130,12 @@ PrefabInstance:
       propertyPath: pcAnimator
       value: 
       objectReference: {fileID: 4062743351366138965}
+    - target: {fileID: 8391154108370637472, guid: 4b7a659fa64a9fd47a82e72e5d901049,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 0b83a675a4a6482409d30e4f7a44e59a,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b7a659fa64a9fd47a82e72e5d901049, type: 3}
 --- !u!1 &6075349493845273620 stripped

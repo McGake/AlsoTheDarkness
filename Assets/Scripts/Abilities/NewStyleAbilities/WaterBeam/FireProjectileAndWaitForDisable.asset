@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 726419609655774066, guid: 669015313f2bd0d4aa1c854f26caaabf,
     type: 3}
+  xOffset: 0

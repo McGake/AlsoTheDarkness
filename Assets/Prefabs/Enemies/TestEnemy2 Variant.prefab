@@ -26,7 +26,7 @@ PrefabInstance:
     - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
         type: 3}
       propertyPath: abilityIntervalMax
-      value: 2000
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8844169639533487329, guid: bd4b75f9dc605f447bcd0309e9922de2,
         type: 3}
@@ -97,7 +97,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 064c230b6b5ec2d46a82e6ce4befd666,
+      objectReference: {fileID: 21300000, guid: 1ebce16c0c584d04c888a3fca0571088,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd4b75f9dc605f447bcd0309e9922de2, type: 3}

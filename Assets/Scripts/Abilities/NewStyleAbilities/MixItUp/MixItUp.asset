@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: MixItUp
   m_EditorClassIdentifier: 
   _displayName: MixItUp
+  maxUses: 9
+  uses: 0
+  cooldownTime: 0
   objectTargets: []
   positionTargets: []
   inspectorSubAbilities:
@@ -23,4 +26,3 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3bb0ca607d36e3f4aabfc264e3328b39, type: 2}
   - {fileID: 11400000, guid: edb0930a8fa09674ba21d375f84370a2, type: 2}
   curSubAbilityIndx: 3
-  cooldownTime: 0

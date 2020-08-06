@@ -25,9 +25,8 @@ public class ChantingWithAnim : SubAbility
         SetNewAnimation("chantSpell", ab);
         if(animObject == null)
         {
-            animObject = Instantiate(animObjectInsp);
-            animObject.transform.SetParent(ab.owner.transform);
-            animObject.transform.position = ab.owner.transform.position;
+            animObject = Instantiate(animObjectInsp, ab.owner.transform,false);
+            //animObject.transform.position = ab.owner.transform.position;
         }
         
         animObject.SetActive(true);

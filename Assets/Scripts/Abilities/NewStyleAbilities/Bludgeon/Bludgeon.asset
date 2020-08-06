@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Bludgeon
   m_EditorClassIdentifier: 
   _displayName: ExploitWeakness
+  maxUses: 12
+  uses: 0
+  cooldownTime: 0
   objectTargets: []
   positionTargets: []
   inspectorSubAbilities:
   - {fileID: 11400000, guid: 96cb515c07ee2d7448c11488326907c9, type: 2}
   - {fileID: 11400000, guid: e7fe006563a8d4b4f89a1c827dbc1db8, type: 2}
   curSubAbilityIndx: 3
-  cooldownTime: 0

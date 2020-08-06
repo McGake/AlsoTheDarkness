@@ -24,6 +24,8 @@ public class OverworldMovement : GameSegment
 
     public LayerMask mask;
 
+    public static bool inMenu = false;
+
     public enum TownStates
     {
         none = 0,
@@ -69,8 +71,11 @@ public class OverworldMovement : GameSegment
 
     public override void UpdateGameSegment()
     {
-        WalkingBehavior();
-        SwitchingCharacterDisplayBehavior();
+        if (inMenu == false)
+        {
+            WalkingBehavior();
+            SwitchingCharacterDisplayBehavior();
+        }
     }
 
     void SetMovement(string newDir)
@@ -134,7 +139,6 @@ public class OverworldMovement : GameSegment
         anim.enabled = true;
         if (Input.GetAxis("Vertical") > 0.1f)
         {
-       
             curDirection = Vector3.up;
             if (pos == transform.position)
             {
@@ -149,7 +153,6 @@ public class OverworldMovement : GameSegment
         }
         else if (Input.GetAxis("Vertical") < -0.1f)
         {
-            
             curDirection = Vector3.down;
             if (pos == transform.position)
             {
@@ -164,7 +167,6 @@ public class OverworldMovement : GameSegment
         }
         else if (Input.GetAxis("Horizontal") > 0.1f)
         {
-         
             curDirection = Vector3.right;
             if (pos == transform.position)
             {
@@ -185,7 +187,6 @@ public class OverworldMovement : GameSegment
         }
         else if (Input.GetAxis("Horizontal") < -0.1f)
         {
-           
             curDirection = curDirection = Vector3.left;
             if (pos == transform.position)
             {

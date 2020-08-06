@@ -21,6 +21,7 @@ public class AbilityCluster : MonoBehaviour
 public class AbilityButton
 {
     public GameObject uIButton;
+    public AbilityView abilityView;
     public Image radialProgress;
     public GameObject greyMask;
     public Ability ability;

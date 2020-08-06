@@ -258,7 +258,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c13f6885a37a5ea449f232a745d55cd6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1ebce16c0c584d04c888a3fca0571088, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -312,8 +312,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9363c311d2df6074eaab8ea215ea05b6, type: 2}
   - {fileID: 11400000, guid: fef5c55e2826bcc42a8e7672acf2cbb4, type: 2}
   deathStatus: {fileID: 0}
-  abilityIntervalMax: 2000
-  abilityIntervalMin: 0.5
+  abilityIntervalMax: 3
+  abilityIntervalMin: 3
 --- !u!60 &8844169639533487357
 PolygonCollider2D:
   m_ObjectHideFlags: 0

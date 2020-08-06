@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: HeardingCrook
   m_EditorClassIdentifier: 
   _displayName: HeadingCrook
+  maxUses: 12
+  uses: 0
+  cooldownTime: 0
   objectTargets: []
   positionTargets: []
   inspectorSubAbilities:
@@ -20,4 +23,3 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 72ffc41ae8b92e84a9132a3f5f454838, type: 2}
   - {fileID: 11400000, guid: 295f9693932b3e64cab5042b04342877, type: 2}
   curSubAbilityIndx: 0
-  cooldownTime: 0

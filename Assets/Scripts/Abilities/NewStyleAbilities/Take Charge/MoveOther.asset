@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: MoveOther
   m_EditorClassIdentifier: 
   _displayName: 
-  onEnemy: 0
+  maxUses: 10
+  uses: 0
+  cooldownTime: 0
   objectTargets: []
   positionTargets: []
   inspectorSubAbilities:
   - {fileID: 11400000, guid: 992ee3dafdfc3754b81b97faee8e8fa0, type: 2}
   curSubAbilityIndx: 0
-  cooldownTime: 0

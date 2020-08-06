@@ -205,6 +205,10 @@ public class BaseBattleActor :MonoBehaviour
             {
                 ab.useable = false;
             }
+            else if(ab.uses >= ab.maxUses)
+            {
+                ab.useable = false;
+            }
         }
     }
     #endregion AbilityManagement

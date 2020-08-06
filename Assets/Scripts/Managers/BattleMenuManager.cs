@@ -152,14 +152,15 @@ public class BattleMenuManager : GameSegment
         for(int i = 0; i < curCombatAbilities.Count; i++)
         {
             allAbilityButtons[i].uIButton.SetActive(true);
-            allAbilityButtons[i].uIButton.GetComponentInChildren<Text>().text = curCombatAbilities[i].DisplayName;
+            allAbilityButtons[i].abilityView = allAbilityButtons[i].uIButton.GetComponentInChildren<AbilityView>();
+            allAbilityButtons[i].abilityView.SetButtonLabel(curCombatAbilities[i].DisplayName);
+            allAbilityButtons[i].abilityView.SetUsesLeft((curCombatAbilities[i].maxUses - curCombatAbilities[i].uses).ToString());
             allAbilityButtons[i].ability = curCombatAbilities[i];
             //put other image changes here when you have them
         }
 
         for (int i = curCombatAbilities.Count; i < allAbilityButtons.Count; i++)
         {
-
             allAbilityButtons[i].uIButton.SetActive(false);
         }
     }
@@ -223,7 +224,7 @@ public class BattleMenuManager : GameSegment
     }
 
 
-    void UpdateAbilityMenu()
+    void UpdateAbilityMenu()//ToDo: move setting the actual circle and such to the AbilityView. Time till cooldown end should probably still be calculated here or perhaps on the ability itself
     {
         //AbilityCluster tempCluster;
         AbilityButton curButton;
@@ -246,7 +247,6 @@ public class BattleMenuManager : GameSegment
                     {
                         fillPercentage = 1;
                     }
-
                     curButton.radialProgress.fillAmount = fillPercentage;
                     if (curButton.ability.useable == false)
                     {
@@ -258,26 +258,14 @@ public class BattleMenuManager : GameSegment
                     }
                 }
 
-
+                curButton.abilityView.SetUsesLeft((curButton.ability.maxUses - curButton.ability.uses).ToString());//TODO: change this to trigger when the ability acctually gets used to avoid this calculation all the time
             }
         }
     }
     #endregion HeroSelected
 
 
-    #region BattleEnd
-    void StartFinalStatsDisplay()
-    {
 
-    }
-    #endregion BattleEnd
-
-    #region DisplayFinalStats
-    void DisplayFinalStats()
-    {
-
-    }
-    #endregion DisplayFinalStats
 
     private const float delaySwitchTime = .5f;
 
@@ -354,43 +342,6 @@ public class BattleMenuManager : GameSegment
     private float modifiedSelectionConeAngle;
     public void SwitchHeroOnInput()
     {
-        //float yVal = Input.GetAxis("Vertical");
-
-        //if (Time.time > nextSwitchAllowedTime && preventCharacterSwitch == false)
-        //{
-        //    if (yVal > 0f)
-        //    {
-
-        //        nextSwitchAllowedTime += Time.time + delaySwitchTime;
-        //        curHeroIndx++;
-        //        if(curHeroIndx > objectsInBattle.pcsInBattle.Count -1)
-        //        {
-        //            curHeroIndx = 0;
-        //        }
-        //        SwitchHero();
-        //        PopulateHeroMenu();
-        //    }
-        //    else if (yVal < 0f)
-        //    {
-        //        nextSwitchAllowedTime = Time.time + delaySwitchTime;
-        //        curHeroIndx--;
-        //        if (curHeroIndx < 0)
-        //        {
-        //            curHeroIndx = objectsInBattle.pcsInBattle.Count -1;
-        //        }
-
-        //        SwitchHero();
-        //        PopulateHeroMenu();
-        //    }
-        //}
-
-        //if(yVal == 0)
-        //{
-        //    nextSwitchAllowedTime = Time.time - .01f; ;
-        //}
-
-
-
         if (Time.time > nextSwitchAllowedTime && preventCharacterSwitch == false)
         {
             float yVal = Input.GetAxis("Vertical");

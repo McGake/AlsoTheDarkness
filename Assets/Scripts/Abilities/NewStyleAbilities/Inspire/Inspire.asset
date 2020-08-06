@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Inspire
   m_EditorClassIdentifier: 
   _displayName: Inspire
+  maxUses: 6
+  uses: 0
   cooldownTime: 4.5
   objectTargets: []
   positionTargets: []

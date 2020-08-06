@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Stubborn
   m_EditorClassIdentifier: 
   _displayName: Stubborn
+  maxUses: 4
+  uses: 0
+  cooldownTime: 0
   objectTargets: []
   positionTargets: []
   inspectorSubAbilities:
   - {fileID: 11400000, guid: f6a908b9f30ddb8479aa6cc29c610440, type: 2}
-  - {fileID: 11400000, guid: 4fb962b04abc7b242917647ed6ee06a3, type: 2}
+  - {fileID: 0}
   - {fileID: 11400000, guid: 876c765a8f335d84183204cb566eabca, type: 2}
   curSubAbilityIndx: 3
-  cooldownTime: 0

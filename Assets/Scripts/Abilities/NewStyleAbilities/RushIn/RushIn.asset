@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: RushIn
   m_EditorClassIdentifier: 
   _displayName: Rush In
+  maxUses: 7
+  uses: 0
   cooldownTime: 2.75
   objectTargets: []
   positionTargets: []

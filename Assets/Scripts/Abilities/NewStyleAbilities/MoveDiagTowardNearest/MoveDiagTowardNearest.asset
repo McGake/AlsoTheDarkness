@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: MoveDiagTowardNearest
   m_EditorClassIdentifier: 
   _displayName: 
+  maxUses: 1000
+  uses: 0
   cooldownTime: 5
   objectTargets: []
   positionTargets: []

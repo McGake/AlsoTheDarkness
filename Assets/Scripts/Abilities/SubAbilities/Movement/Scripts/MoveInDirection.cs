@@ -30,13 +30,7 @@ public class MoveInDirection : SubAbility
 
     public override void DoSubAbility(Ability ab)
     {
-        //if (ArrivedAtTarget(ab.owner,moveTarget) == false)
-        //{
-        //    MoveToTarget(ab.owner, moveTarget);
-        //}
-
         ChangeDirectionOnRotationChange(ab);
-
         movementThisFrame =  (direction * flipValue) * moveSpeed * Time.deltaTime;
         ab.owner.transform.position += movementThisFrame;
         totalMovement += new Vector3(Mathf.Abs(movementThisFrame.x), Mathf.Abs(movementThisFrame.y), Mathf.Abs(movementThisFrame.z));
@@ -45,7 +39,6 @@ public class MoveInDirection : SubAbility
         {
             ab.pcAnimator.SetBool("walk", false);
             ab.pcAnimator.SetBool("stand", true);
-
             EndSubAbility();
         }
     }
@@ -60,8 +53,6 @@ public class MoveInDirection : SubAbility
 
     private bool ArrivedAtTarget(GameObject owner, Vector2 target)
     {
-
-
         return (Vector3)target == owner.transform.position;
     }
 

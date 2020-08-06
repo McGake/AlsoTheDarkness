@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: WaterBeam
   m_EditorClassIdentifier: 
   _displayName: WaterBeam
+  maxUses: 1000
+  uses: 0
   cooldownTime: 2.5
   objectTargets: []
   positionTargets: []
   inspectorSubAbilities:
-  - {fileID: 11400000, guid: 69a35cd3f5171e04195ac9ee8ac89e69, type: 2}
   - {fileID: 11400000, guid: f42fe2e861aed6b40a29dbcad4327463, type: 2}
   curSubAbilityIndx: 3

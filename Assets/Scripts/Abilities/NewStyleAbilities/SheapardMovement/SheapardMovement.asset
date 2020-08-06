@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: SheapardMovement
   m_EditorClassIdentifier: 
   _displayName: SheapardMovement
+  maxUses: 12
+  uses: 0
+  cooldownTime: 0
   objectTargets: []
   positionTargets: []
   inspectorSubAbilities:
   - {fileID: 11400000, guid: 93385d409bd3ee34db2f95487eb5a97d, type: 2}
   - {fileID: 11400000, guid: ac1a9e2925e234c438f16bb07c3aa7a1, type: 2}
   curSubAbilityIndx: 3
-  cooldownTime: 0

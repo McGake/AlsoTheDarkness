@@ -8,8 +8,15 @@ public class UseItemFromMenu : MonoBehaviour, ISelectionBehavior
 
     public Item itemToUse;
     public PC referencedPC;
+    SelectHeroToApplyModel sHAM;
     public void DoSelectionBehavior()
     {
-        itemToUse.useScript.UseItem(referencedPC);
+        if (PartyManager.curParty.items.Contains(itemToUse))
+        {
+            itemToUse.useScript.UseItem(referencedPC);
+            PartyManager.curParty.items.Remove(itemToUse);
+            GetComponentInParent<SelectHeroToApplyModel>().RefreshHeros();
+            itemToUse = null;
+        }
     }
 }

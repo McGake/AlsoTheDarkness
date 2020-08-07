@@ -51,12 +51,23 @@ public class SelectHeroToApplyModel : GeneralSelectionModel
         //}
     }
 
-
-    public void Update()
+    public void RefreshHeros()
     {
-        //if (selections.Count != PartyManager.curParty.items.Count)
-        //{
+        for (int i = 0; i < selections.Count; i++)
+        {
 
-        //}
+            PC pc = pcs[i];
+            Debug.Log(pc.portrait);
+            selections[i].GetComponentInChildren<Image>().sprite = pc.portrait;
+
+            selections[i].GetComponentInChildren<TextMeshProUGUI>().text = pc.displayName + "\nHP:" + pc.battler.GetComponent<BattlePC>().stats.hP + "/" + pc.battler.GetComponent<BattlePC>().stats.maxHP + "\nMP:" + pc.battler.GetComponent<BattlePC>().stats.mana + "/" + pc.battler.GetComponent<BattlePC>().stats.maxMana;
+
+            selections[i].GetComponentInChildren<UseItemFromMenu>().referencedPC = pc;
+            //  selections[i].GetComponent<SelectPartyAssignMenu>().item = ;
+
+            //  selections[i].GetComponentInChildren<TextMeshProUGUI>().text = item.listName;
+        }
     }
+
+
 }

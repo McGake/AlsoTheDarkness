@@ -7,7 +7,7 @@ using UnityEngine;
 [System.Serializable]
 public abstract class UseItemScript : ScriptableObject, ISelectionBehavior
 {
-    public void DoSelectionBehavior()
+    public virtual void DoSelectionBehavior()
     {
         throw new System.NotImplementedException();
     }

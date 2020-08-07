@@ -26,6 +26,10 @@ public class BattleActorView : MonoBehaviour
     [SerializeField]
     private SpriteRenderer spriteRenderer;
 
+    private float stopBlinkTime;
+
+    private float blinkDuration = 2f;
+
     private delegate void DelOngoingDisplayBehavior();
     private DelOngoingDisplayBehavior OngoingDisplaybehavior;//TODO: if needed, make this a list of behaviors
 
@@ -54,8 +58,8 @@ public class BattleActorView : MonoBehaviour
         explodingText.GetComponent<TextMeshProUGUI>().text = damageAsInt.ToString();
         Collider2D tempCollider = transform.GetChild(0).GetComponent<Collider2D>();
 
-        explodingText.GetComponent<OnlyCollideWithOneThing>().thingToCollideWith = tempCollider;
-        Vector2 force = new Vector2(Random.Range(-35f, 35f), 75f);
+        explodingText.GetComponent<OnlyCollideWithOneThing>().SetThingToCollideWith(tempCollider);
+        Vector2 force = new Vector2(Random.Range(-25f, 25f), 75f);
         force.Normalize();
         explodingText.GetComponent<Rigidbody2D>().AddForce(force * 250);
     }
@@ -100,11 +104,12 @@ public class BattleActorView : MonoBehaviour
     }
 
     private float nextBlinkTime;
-    private float blinkInterval = .25f;
+    private float blinkInterval = .18f;
 
     public void StartBlink()
     {
         nextBlinkTime = Time.time;
+        stopBlinkTime = Time.time + blinkDuration;
         OngoingDisplaybehavior = Blink;
     }
 
@@ -115,6 +120,11 @@ public class BattleActorView : MonoBehaviour
             spriteRenderer.enabled = !spriteRenderer.enabled;
             nextBlinkTime = Time.time + blinkInterval;
             
+        }
+
+        if(Time.time >= stopBlinkTime)
+        {
+            StopBlink();
         }
     }
 

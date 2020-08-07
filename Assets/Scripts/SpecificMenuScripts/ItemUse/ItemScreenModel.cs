@@ -21,6 +21,7 @@ public class ItemScreenModel : GeneralSelectionModel
 
     public void CreateButtonsForItems()
     {
+        
         itmes = PartyManager.curParty.items;
         for(int i =0; i < itmes.Count; i++)
         {
@@ -42,12 +43,11 @@ public class ItemScreenModel : GeneralSelectionModel
             selections[i].GetComponentInChildren<SelectPartyAssignMenu>().uiToClose = itemSelectionScreen;
         }
 
-        for(int j = itmes.Count-1; j < selections.Count-1; j++ )
+        for(int j = itmes.Count; j < selections.Count; j++ )
         {
-            Destroy(selections[j]);
+            GameObject tempObjectRef = selections[j];               
             selections.RemoveAt(j);
-            
-            
+            Destroy(tempObjectRef);
         }
     }
 

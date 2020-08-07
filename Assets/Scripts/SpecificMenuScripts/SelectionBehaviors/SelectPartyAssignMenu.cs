@@ -16,7 +16,7 @@ public class SelectPartyAssignMenu : MonoBehaviour, ISelectionBehavior
     {
         uiToClose.GetComponent<SelectionController>().EndSelection();
         uiToOpen.itemToUse = item;
-        uiToOpen.gameObject.SetActive(true);
+        uiToOpen.GetComponent<SelectionController>().StartSelection();
     }
 
 }

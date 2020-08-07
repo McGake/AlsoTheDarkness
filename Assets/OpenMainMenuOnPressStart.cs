@@ -11,7 +11,7 @@ public class OpenMainMenuOnPressStart : MonoBehaviour
     {
         if(Input.GetButtonDown("Start"))
         {
-            topMenu.SetActive(true);
+            topMenu.GetComponent<SelectionController>().StartSelection();
         }
     }
 }

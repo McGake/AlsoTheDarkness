@@ -58,31 +58,34 @@ public class SelectionController : MonoBehaviour
 
     public void Select(int indx)
     {
-        selections[indx].GetComponent<ISelectionBehavior>().DoSelectionBehavior();
+        if (selections[indx].GetComponent<ISelectionBehavior>() != null)
+        {
+            selections[indx].GetComponent<ISelectionBehavior>().DoSelectionBehavior();
+        }
+        else
+        {
+            Debug.LogError("no selection behavior attached to button");
+        }
+        
     }
 
-    public void OnEnable()
-    {
-        StartSelection();
-    }
+
 
     public void StartSelection(/*List<GameObject> sT, ISelectionModel iSM*/)
     {
         //selectionModel = iSM;        
         //RepopulateSelections(sT);
+        gameObject.SetActive(true);
         TownMovement.inMenu = true;
         OverworldMovement.inMenu = true;
         selectionModel = GetComponent<GeneralSelectionModel>();
         selections = selectionModel.GetSelections();
         indx = 0;
+        
         selectionView = GetComponent<SelectionView>();
-
-        Debug.Log("Positions");
-        foreach(GameObject s in selections)
-        {
-            Debug.Log(s.transform.position);
-        }
-        selectionView.OpenView(selections);
+        selectionView.OpenView(selections);       
+        Unpause();
+       // selectionView.MoveCursorToIndex(indx);
     }
 
     public void EndSelection()
@@ -95,7 +98,7 @@ public class SelectionController : MonoBehaviour
         selectionView.CloseView();
         if (returnPage != null)
         {
-            returnPage.SetActive(true);
+            returnPage.GetComponent<SelectionController>().StartSelection();
         }
         else
         {
@@ -149,6 +152,7 @@ public class SelectionController : MonoBehaviour
     {
         if(Time.time > nextInputTime)
         {
+            Debug.Log("change");
             if(invertCounting)
             {
                 indxChange *= -1;

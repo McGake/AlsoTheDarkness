@@ -75,7 +75,9 @@
     <Compile Include="Assets\DestroyAfterSeconds.cs" />
     <Compile Include="Assets\HeatMapTileInfo.cs" />
     <Compile Include="Assets\MagicSetup.cs" />
+    <Compile Include="Assets\MoveChildWithParentSprite.cs" />
     <Compile Include="Assets\MoveForward.cs" />
+    <Compile Include="Assets\MoveWithObjectOnStay.cs" />
     <Compile Include="Assets\OnlyCollideWithOneThing.cs" />
     <Compile Include="Assets\OpenMainMenuOnPressStart.cs" />
     <Compile Include="Assets\OverworldStarter.cs" />
@@ -158,6 +160,7 @@
     <Compile Include="Assets\Scripts\Items\ItemFactory.cs" />
     <Compile Include="Assets\Scripts\Items\TempHealingItem.cs" />
     <Compile Include="Assets\Scripts\Items\UseItemScript.cs" />
+    <Compile Include="Assets\Scripts\Items\UseItemScripts\Heal1.cs" />
     <Compile Include="Assets\Scripts\Managers\BattleMenuManager.cs" />
     <Compile Include="Assets\Scripts\Managers\BattleStarter.cs" />
     <Compile Include="Assets\Scripts\Managers\LevelManager.cs" />

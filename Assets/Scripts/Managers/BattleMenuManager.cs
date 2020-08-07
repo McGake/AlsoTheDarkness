@@ -58,21 +58,6 @@ public class BattleMenuManager : GameSegment
 
     }
 
-    #region OneShotFunctions
-    public void ExplodeDamageText(float damage, GameObject damagedObject)
-    {
-        GameObject explodingText = GameObject.Instantiate(popoutTextBoxPrefab, damagedObject.transform.position, Quaternion.identity, worldSpaceCanvas.transform);
-        int damageAsInt = Mathf.RoundToInt(damage);
-        explodingText.GetComponent<TextMeshProUGUI>().text = damageAsInt.ToString();
-        Collider2D tempCollider = damagedObject.transform.GetChild(0).GetComponent<Collider2D>();
-        
-        explodingText.GetComponent<OnlyCollideWithOneThing>().thingToCollideWith = tempCollider;
-        Vector2 force = new Vector2(UnityEngine.Random.Range(-35f, 35f), 75f);
-        force.Normalize();
-        explodingText.GetComponent<Rigidbody2D>().AddForce(force * 250);
-    }
-    #endregion OneShotFunctions
-
     void AddAbilityClustersToDictionary()
     {
         //this will eventually add all the ability button clusters open, righ trigger down, left trigger down, and both down

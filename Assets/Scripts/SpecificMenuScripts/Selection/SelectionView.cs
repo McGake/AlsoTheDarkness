@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,9 +41,11 @@ public class SelectionView : MonoBehaviour
             selection.transform.localScale = new Vector3(1, 1, 1);
             selection.SetActive(true);
         }
-
-        cursor.SetActive(true);
-        MoveCursorToIndex(0);
+        if (selections.Count > 0)
+        {
+            cursor.SetActive(true);
+            MoveCursorToIndex(0);
+        }
     }
 
     public void CloseView()
@@ -59,6 +62,7 @@ public class SelectionView : MonoBehaviour
 
     public void MoveCursorToIndex(int indx)
     {
+        
         cursor.transform.position = selections[indx].transform.position + cursorOffset;
     }
 

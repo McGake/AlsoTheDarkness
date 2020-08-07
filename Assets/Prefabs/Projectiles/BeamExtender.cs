@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BeamExtender : MonoBehaviour
 {
+    public float chargeTime;
+
     public float extentionTime;
 
     public float sustainTime;
@@ -11,6 +13,8 @@ public class BeamExtender : MonoBehaviour
     public float extentionLength;
 
     public float startLength;
+
+    private float endChargeTime;
 
     private float endExtentionTime;
 
@@ -26,13 +30,18 @@ public class BeamExtender : MonoBehaviour
     public void OnEnable()
     {
         startTime = Time.time;
-        endExtentionTime = startTime + extentionTime;
+        endChargeTime = startTime + chargeTime;
+        endExtentionTime = endChargeTime + extentionTime;
         endSustainTime = endExtentionTime + sustainTime;        
     }
 
     public void Update()
     {
-        if (Time.time <= endExtentionTime)
+        if(Time.time <= endChargeTime)
+        {
+            sR.size = new Vector2(startLength, sR.size.y);
+        }
+        else if (Time.time <= endExtentionTime)
         {
             lerpVal = (endExtentionTime - Time.time) / extentionTime;
             curLength = Mathf.Lerp(extentionLength, startLength, lerpVal);

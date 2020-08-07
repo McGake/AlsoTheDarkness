@@ -10,7 +10,7 @@ public class SelectItems : MonoBehaviour, ISelectionBehavior
     public GameObject selectionControllerToPause;
     public void DoSelectionBehavior()
     {
-        uiToOpen.SetActive(true);
+        uiToOpen.GetComponent<SelectionController>().StartSelection();
         selectionControllerToPause.GetComponent<SelectionController>().Pause();
     }
 }

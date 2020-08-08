@@ -68,6 +68,7 @@
     <Compile Include="Assets\Art\TileMaps\PlaceHoderTiles\Scriptable TilesBrushes\TransitionZoneDef.cs" />
     <Compile Include="Assets\Barrier.cs" />
     <Compile Include="Assets\BattleActorView.cs" />
+    <Compile Include="Assets\Bounce.cs" />
     <Compile Include="Assets\CallbackOnDisable.cs" />
     <Compile Include="Assets\ChangeLevelOnTouch.cs" />
     <Compile Include="Assets\Characters\PCs\PCDef.cs" />

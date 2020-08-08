@@ -4,6 +4,15 @@ using UnityEngine;
 using TMPro;
 using UnityEditor.Animations;
 
+
+public enum BuffStyle
+{
+    None = 0,
+    Positive = 1,
+    Negative = 2,
+    Warning = 3,
+
+}
 public class BattleActorView : MonoBehaviour
 {
 #pragma warning disable 649
@@ -62,6 +71,11 @@ public class BattleActorView : MonoBehaviour
         Vector2 force = new Vector2(Random.Range(-25f, 25f), 75f);
         force.Normalize();
         explodingText.GetComponent<Rigidbody2D>().AddForce(force * 250);
+    }
+
+    public void ShowBuff(int buffAmount, string textDesignation, BuffStyle buffStyle)
+    {
+
     }
 
 

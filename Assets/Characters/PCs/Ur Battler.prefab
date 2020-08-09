@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75fa0ae5a1155ac40b8c218edf30cfc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popoutTextBoxPrefab: {fileID: 6423017878613679728, guid: 30e4bbdb33221ac4db91eab7fcd690ba,
+  popoutTextBoxPrefab: {fileID: 6423017878613679728, guid: 9c319d77b31b08447ac8982d5379c8c5,
     type: 3}
   worldSpaceCanvas: {fileID: 0}
   animator: {fileID: 8642023059864021518}

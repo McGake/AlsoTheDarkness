@@ -59,18 +59,21 @@ public class BattleActorView : MonoBehaviour
     {
         OngoingDisplaybehavior();
     }
-
+    int damageCalledTimes = 0;
     public void ShowDamage(int damage)
     {
-        GameObject explodingText = GameObject.Instantiate(popoutTextBoxPrefab, transform.position, Quaternion.identity, worldSpaceCanvas.transform);
+        Debug.Log("show damage called " + damageCalledTimes + "times ");
+        damageCalledTimes++;
+        GameObject explodingText = GameObject.Instantiate(popoutTextBoxPrefab, transform.position, Quaternion.identity, transform);
         int damageAsInt = Mathf.RoundToInt(damage);
-        explodingText.GetComponent<TextMeshProUGUI>().text = damageAsInt.ToString();
-        Collider2D tempCollider = transform.GetChild(0).GetComponent<Collider2D>();
+        explodingText.GetComponent<TextMeshPro>().text = damageAsInt.ToString();
+        //explodingText.transform.SetParent(transform);
+        //Collider2D tempCollider = transform.GetChild(0).GetComponent<Collider2D>();
 
-        explodingText.GetComponent<OnlyCollideWithOneThing>().SetThingToCollideWith(tempCollider);
-        Vector2 force = new Vector2(Random.Range(-25f, 25f), 75f);
-        force.Normalize();
-        explodingText.GetComponent<Rigidbody2D>().AddForce(force * 250);
+        //explodingText.GetComponent<OnlyCollideWithOneThing>().SetThingToCollideWith(tempCollider);
+       // Vector2 force = new Vector2(Random.Range(-25f, 25f), 75f);
+       // force.Normalize();
+       // explodingText.GetComponent<Rigidbody2D>().AddForce(force * 250);
     }
 
     public void ShowBuff(int buffAmount, string textDesignation, BuffStyle buffStyle)

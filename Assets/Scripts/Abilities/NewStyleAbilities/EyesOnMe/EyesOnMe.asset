@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: EyesOnMe
   m_EditorClassIdentifier: 
   _displayName: EyesOnMe
-  maxUses: 7
+  maxUses: 700
   uses: 0
   cooldownTime: 0
   objectTargets: []
   positionTargets: []
   inspectorSubAbilities:
-  - {fileID: 11400000, guid: 34d00554411cccd45be2c857dfbbf169, type: 2}
+  - {fileID: 11400000, guid: 59ed52f5c1d5c6940b3ae3b282bf7993, type: 2}
+  - {fileID: 11400000, guid: 59389d2579092254f8616cf2a38486e6, type: 2}
   curSubAbilityIndx: 0

@@ -16,6 +16,7 @@ public class BaseEnemy : BaseBattleActor
     public float abilityIntervalMin;
 
     private float nextAbilityInterval;
+
     public override void Awake()
     {
         base.Awake();
@@ -31,7 +32,7 @@ public class BaseEnemy : BaseBattleActor
                 return;
             }
             else
-            {
+            {          
                 nextAbilityInterval = Time.time + Random.Range(abilityIntervalMin, abilityIntervalMax);
                 int randAbilIndx = Random.Range(0, abilities.Count);
                 AbilityManager.abManager.TurnOnAbility(abilities[randAbilIndx]);

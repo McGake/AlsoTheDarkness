@@ -11,7 +11,8 @@ public class Attacking : SubAbility
     private bool skipFrame = true;
     public override void DoInitialSubAbility(Ability ab)
     {
-        ab.pcAnimator.Play("attack",0,0f);
+        SetNewAnimation("attack",ab);
+        //ab.pcAnimator.Play("attack", 0, 0f);
         skipFrame = true;
     }
 
@@ -19,9 +20,10 @@ public class Attacking : SubAbility
     {
         if (skipFrame == false)
         {
-            if (ab.pcAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= .7f && ab.pcAnimator.GetCurrentAnimatorStateInfo(0).IsName("attack")) //TODO: make this an event on the animation or just find some better way to do this
+            if (ab.pcAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= .8f && ab.pcAnimator.GetCurrentAnimatorStateInfo(0).IsName("attack")) //TODO: make this an event on the animation or just find some better way to do this
             {
                 Debug.Log("ended");
+                EndLastAnimation(ab);
                 EndSubAbility();
             }
         }
@@ -29,6 +31,5 @@ public class Attacking : SubAbility
         {
             skipFrame = false;
         }
-        Debug.Log("doing attack ability " + ab.pcAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime + " " + ab.pcAnimator.GetCurrentAnimatorStateInfo(0).IsName("attack"));
     }
 }

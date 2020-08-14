@@ -1,45 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-1893629974328597196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6153274688811415322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a98125502f715b4b83cfb77b434e436, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
-    m_PressedColor: {r: 0.75977135, g: 0, b: 1, a: 1}
-    m_SelectedColor: {r: 0, g: 1, b: 0.24696851, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
 --- !u!1001 &5564678023795537403
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63,6 +23,18 @@ PrefabInstance:
       propertyPath: stats.hP
       value: 114
       objectReference: {fileID: 0}
+    - target: {fileID: 263639194357805292, guid: 4b7a659fa64a9fd47a82e72e5d901049,
+        type: 3}
+      propertyPath: inspectorAbilities.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6e6481e3617b1f048aa9a3b5ebdfef97,
+        type: 2}
+    - target: {fileID: 263639194357805292, guid: 4b7a659fa64a9fd47a82e72e5d901049,
+        type: 3}
+      propertyPath: inspectorAbilities.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: aa7b8d23ff8a3d446ad59801aa0f8fb1,
+        type: 2}
     - target: {fileID: 1755673316737204961, guid: 4b7a659fa64a9fd47a82e72e5d901049,
         type: 3}
       propertyPath: m_Name
@@ -123,11 +95,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3441415216121684335, guid: 4b7a659fa64a9fd47a82e72e5d901049,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3441415216121684335, guid: 4b7a659fa64a9fd47a82e72e5d901049,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 5293048358426419750, guid: 4b7a659fa64a9fd47a82e72e5d901049,
         type: 3}
       propertyPath: m_SortingOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5293048358426419750, guid: 4b7a659fa64a9fd47a82e72e5d901049,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -3557351073649649620, guid: 32361de804d373f4f8abcd6587653ace,
+        type: 3}
     - target: {fileID: 6106325878547815955, guid: 4b7a659fa64a9fd47a82e72e5d901049,
         type: 3}
       propertyPath: pcAnimator
@@ -137,16 +125,10 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 22100000, guid: e8aa6d9aca2da4647bf1b9875af8c508,
+      objectReference: {fileID: 22100000, guid: 4f94fc14cbc297848987bcf3908a3eff,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b7a659fa64a9fd47a82e72e5d901049, type: 3}
---- !u!1 &6153274688811415322 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1755673316737204961, guid: 4b7a659fa64a9fd47a82e72e5d901049,
-    type: 3}
-  m_PrefabInstance: {fileID: 5564678023795537403}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &4128370505562236763 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8391154108370637472, guid: 4b7a659fa64a9fd47a82e72e5d901049,

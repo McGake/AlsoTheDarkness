@@ -19,10 +19,24 @@ public abstract class SubAbility : ScriptableObject
     {
         if (ab.actorType == typeof(BattlePC))//TODO: this is temp code that must be modified if we want enemies to be able to use same sub abilities as pcs
         {
-            ab.pcAnimator.SetBool(ab.lastAnimSet, false);
-            ab.pcAnimator.SetBool(newAnim, true);
-            ab.lastAnimSet = newAnim;
+            ab.battleActorView.PlayCharacterAnimation(newAnim);
+
         }
+    }
+
+    protected void SetNewAnimationAtSpeed(string newAnim, Ability ab, float speed)
+    {
+
+        if (ab.actorType == typeof(BattlePC))//TODO: this is temp code that must be modified if we want enemies to be able to use same sub abilities as pcs
+        {
+            ab.battleActorView.PlayCharacterAnimationAtSpeed(newAnim,speed);
+
+        }
+    }
+
+    protected void EndLastAnimation(Ability ab)
+    {
+        ab.pcAnimator.SetBool(ab.lastAnimSet, false); ;
     }
 
     protected void SetNewSpecialAnimation(AnimationClip anim, Ability ab)

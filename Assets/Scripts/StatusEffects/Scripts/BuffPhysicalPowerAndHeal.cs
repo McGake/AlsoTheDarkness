@@ -19,10 +19,8 @@ public class BuffPhysicalPowerAndHeal : Status
     public override void DoStatusInitialEffect(BaseBattleActor bbA)
     {
         bbA.ChangeHp(healthBuff);
-
-
-
         bbA.stats.physicalPower += physicalPowerBuff;
+        bbA.battleActorView.ShowBuff(physicalPowerBuff, "PWR", BuffStyle.Positive);
     }
     public override void DoStatus(BaseBattleActor bbA)
     {

@@ -8,8 +8,9 @@ using UnityEngine;
 public class AddStatusToMultiple : SubAbility
 {
 
-    [SerializeField]
+
 #pragma warning disable 649
+    [SerializeField]
     private Status statusToAdd;
 #pragma warning restore 649
 

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3ed3a95ccbfe204cb8ca769f48bc50b, type: 3}
   m_Name: FireAttackArcTimed 1
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 8515647366171059885, guid: e692d54b0cecd4d4283ecda0145cb8a7,
+  projectilePrefab: {fileID: 8515647366171059885, guid: dc3da9e542db76c4196d21aa60945672,
     type: 3}

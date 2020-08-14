@@ -27,6 +27,8 @@ public class Ability:ScriptableObject
 
     public Animator pcAnimator { get; private set; }
 
+    public BattleActorView battleActorView { get; private set; }
+
     public bool abilityOver { get; private set; } = true;
 
     public bool useable { get; set; } = true; //change name of this variable to better indicate that it is checking wheather anything is preventing this ability from being used including cooldown
@@ -97,6 +99,7 @@ public class Ability:ScriptableObject
     {
         owner = inOwner;
         pcAnimator = owner.GetComponent<Animator>();
+        battleActorView = owner.GetComponent<BattleActorView>();
         if(owner.GetComponent<BaseEnemy>() != null)
         {
             actorType = typeof(BaseEnemy);

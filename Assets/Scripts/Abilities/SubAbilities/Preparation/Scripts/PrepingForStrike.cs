@@ -23,7 +23,6 @@ public class PrepingForStrike : SubAbility
         if (endPrepTime <= Time.time)
         {
             EndSubAbility();
-            ab.pcAnimator.SetBool("chantSpell", false);
         }
     }
 }

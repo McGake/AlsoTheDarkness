@@ -222,19 +222,20 @@ public class BaseBattleActor :MonoBehaviour
         {
             stats.hP = stats.maxHP;
         }
-
-
-
         if (stats.hP <= 0)
         {
             Die();
         }
-
         if(amount <0)
         {
             battleActorView.ShowDamage(amount);
             battleActorView.StartBlink();
         }
+        else if(amount >=0)
+        {
+            battleActorView.ShowHeal(amount);
+        }
+        battleActorView.UpdateHealthBar(stats.hP, stats.maxHP);
     }
 
 

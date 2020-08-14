@@ -19,10 +19,9 @@ MonoBehaviour:
   objectTargets: []
   positionTargets: []
   inspectorSubAbilities:
-  - {fileID: 11400000, guid: 21ff1ae028cd1be4ab5f1fed914a86cf, type: 2}
-  - {fileID: 11400000, guid: f6d72b6b68323d240ab22a0ca58826aa, type: 2}
-  - {fileID: 11400000, guid: 3bb0ca607d36e3f4aabfc264e3328b39, type: 2}
-  - {fileID: 11400000, guid: f6a908b9f30ddb8479aa6cc29c610440, type: 2}
-  - {fileID: 11400000, guid: b29c1070d3fe482438c2f1b2ffbd47f4, type: 2}
+  - {fileID: 11400000, guid: a68f7b9f94c907a4dbd346beb14703d1, type: 2}
+  - {fileID: 11400000, guid: 557c4532504d42640967752061312f05, type: 2}
+  - {fileID: 11400000, guid: 4ca5668883b564945874a85976ca95f0, type: 2}
   - {fileID: 11400000, guid: 794e94185eb391c46aae062be4ea7850, type: 2}
+  - {fileID: 11400000, guid: 50488d960bcbd0048b2b5286e5b59420, type: 2}
   curSubAbilityIndx: 3

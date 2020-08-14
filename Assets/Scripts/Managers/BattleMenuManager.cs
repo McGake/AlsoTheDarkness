@@ -259,7 +259,7 @@ public class BattleMenuManager : GameSegment
 
     private bool CheckIfInsideCone(GameObject target, Vector3 inputDir, float coneAngleSize)
     {
-        Vector3 normalizedDir = FindDirectionOfTarget(target);
+        Vector3 normalizedTargetDir = FindDirectionOfTarget(target);
    
         inputDir.Normalize();
 
@@ -274,25 +274,17 @@ public class BattleMenuManager : GameSegment
 
         Debug.DrawRay(curHero.transform.position, (outsideVec2 * 3), Color.red, .5f);
 
-        float dotProduct = Vector3.Dot(normalizedDir, inputDir);
+        float dotProduct = Vector3.Dot(normalizedTargetDir, inputDir);
 
         float degrees = Mathf.Rad2Deg * Mathf.Acos(dotProduct);
 
-
         if (degrees < coneAngleSize)
         {
-            //Debug.Log("Normalized Direction of object " + normalizedDir);
-            //Debug.Log("Normalized Joystick " + inputDir);
-            //Debug.Log("is Inside!!!");
-            //Debug.Log("dot Product angle " + degrees);
-            //Debug.Log("cone angle size " + coneAngleSize);
-            //Debug.Log("target position " + target.name + " " + target.transform.position);
-            //Debug.Log("");
+
             return (true);
         }
         else
         {
-            //Debug.Log("not inside!!!");
             return (false);
         }
     }
@@ -301,13 +293,7 @@ public class BattleMenuManager : GameSegment
     {
         Vector3 dir =   target.transform.position - curHero.transform.position;
 
-        //Debug.Log(target.name + " target position is " + target.transform.position);
-
-        //Debug.Log(target.name + "unormalized dirction is " + dir);
-
         dir.Normalize();
-
-        //Debug.Log(target.name + " direction is " + dir);
 
         return (dir);
     }

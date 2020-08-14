@@ -9,12 +9,20 @@ public class TargetEnemiesByRelativePos : SubAbility
     public bool noUp;
     public bool noDown;
 
-    private List<GameObject> tempEnemies = new List<GameObject>();
+    public bool noFacingAway;
+    public bool noFacingToward;
+
+
+    
+    private List<GameObject> selectedEnemies = new List<GameObject>();
+    private List<GameObject> finalTargetedEnemies = new List<GameObject>();
 
     private Ability abilty;
 
     public override void DoInitialSubAbility(Ability ab)
     {
+        selectedEnemies.Clear();
+        finalTargetedEnemies.Clear();
         abilty = ab;
         ab.StartSelectAllEnemeies(this, ab.actorType);
     }
@@ -31,7 +39,9 @@ public class TargetEnemiesByRelativePos : SubAbility
 
     public override void OnSelectionFinished(List<GameObject> selectedObjects)
     {
-        tempEnemies.AddRange(selectedObjects);
+        selectedEnemies.AddRange(selectedObjects);
+        finalTargetedEnemies.AddRange(selectedObjects);
+        Debug.Log("number of enemies selected " + selectedEnemies.Count);
         Vector3 pos = abilty.owner.transform.position;
 
         Vector3 forward = abilty.owner.transform.right;
@@ -39,52 +49,75 @@ public class TargetEnemiesByRelativePos : SubAbility
         Vector3 up = abilty.owner.transform.up;
         Vector3 down = -1f * abilty.owner.transform.up;
 
+        Transform ownerTransform = abilty.owner.transform;
 
-        for (int i = 0; i < tempEnemies.Count; i++)
+        
+
+        for (int i = 0; i < selectedEnemies.Count; i++)
         {
+            Transform enemyTransform = selectedEnemies[i].transform;
+            Debug.Log("enemy number " + i + " at " + enemyTransform.position + " recheck enemy count: " + selectedEnemies.Count);
+
+
+            Vector3 enemyDirection = enemyTransform.position - ownerTransform.position;
+            Vector3 playerDirection = ownerTransform.position - enemyTransform.position;
+
+
+            Debug.DrawRay(enemyTransform.position, (enemyTransform.right * 3), Color.blue, 1f);
+            Debug.DrawRay(enemyTransform.position, playerDirection, Color.white, 1.5f);
             if (noBackward)
             {
-                if (Vector3.Dot(backward, abilty.owner.transform.InverseTransformPoint(tempEnemies[i].transform.position)) > 0)
+                if (Vector3.Dot(backward, enemyDirection) > 0)
                 {
-                    tempEnemies.Remove(tempEnemies[i]);
-                    //Destroy(tempEnemies[i]);
+                    finalTargetedEnemies.Remove(selectedEnemies[i]);
                 }
             }
-            else if (noForward)
+            if (noForward)
             {
-                if (Vector3.Dot(forward, abilty.owner.transform.InverseTransformPoint(tempEnemies[i].transform.position)) > 0)
+                if (Vector3.Dot(forward, enemyDirection) > 0)
                 {
-                    tempEnemies.Remove(tempEnemies[i]);
-                    //Destroy(tempEnemies[i]);
+                    finalTargetedEnemies.Remove(selectedEnemies[i]);
                 }
             }
-            else if(noUp)
+            if(noUp)
             {
-                if (Vector3.Dot(up, abilty.owner.transform.InverseTransformPoint(tempEnemies[i].transform.position)) > 0)
+                if (Vector3.Dot(up, enemyDirection) > 0)
                 {
-                    tempEnemies.Remove(tempEnemies[i]);
-                    //Destroy(tempEnemies[i]);
+                    finalTargetedEnemies.Remove(selectedEnemies[i]);
                 }
             }
-            else if (noDown)
+            if (noDown)
             {
-                if (Vector3.Dot(up, abilty.owner.transform.InverseTransformPoint(tempEnemies[i].transform.position)) > 0)
+                if (Vector3.Dot(down, enemyDirection) > 0)
                 {
-                    tempEnemies.Remove(tempEnemies[i]);
-                    //Destroy(tempEnemies[i]);
+                    finalTargetedEnemies.Remove(selectedEnemies[i]);
                 }
             }
 
+            if(noFacingAway)
+            {
+                if (Vector3.Dot(enemyTransform.right * -1, playerDirection) > 0)
+                {
+                    finalTargetedEnemies.Remove(selectedEnemies[i]);
+                }
+            }
+            if (noFacingToward)
+            {
+                if (Vector3.Dot(enemyTransform.right, playerDirection) > 0)
+                {
+                    finalTargetedEnemies.Remove(selectedEnemies[i]);
+                }
+            }
         }
-        if (tempEnemies.Count > 0)
+        if (selectedEnemies.Count > 0)
         {
-            abilty.objectTargets.AddRange(tempEnemies);
+            abilty.objectTargets.AddRange(finalTargetedEnemies);
         }
         else
         {
 
         }
-
+        Debug.Log("target enemies selection finished on " + abilty.owner.name);
         EndSubAbility();
     }
 }

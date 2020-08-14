@@ -15,7 +15,6 @@ public class MoveWithObjectOnStay : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Pushey tempPushey = new Pushey();
-        Debug.Log(transform.position.x + " " + collision.transform.position.x);
         tempPushey.xDist = collision.transform.position.x - transform.position.x;
         tempPushey.pushey = collision.transform;
         pushies.Add(tempPushey);

@@ -92,8 +92,10 @@
     <Compile Include="Assets\Scripts\Abilities\Defs\ItemDef.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Inspire\PlayCastAndEffect.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Inspire\PlayOneTimeEffectAnimationOnMultiple.cs" />
+    <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\MixItUp\SubAbilities\WaitForAttackAnimEnd.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Take Charge\InteruptAbilitiesOfTarget.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Take Charge\RunAbilityOnTarget.cs" />
+    <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\WaterBeam\TelegraphWithFlash.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\AddStatus\Scripts\AddStatusToMultiple.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\AddStatus\Scripts\AddStatusToSingle.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\AgressiveMovement\MoveAllTargets.cs" />
@@ -109,7 +111,9 @@
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Movement\Scripts\M_MoveDistanceFromCurPos.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Movement\Scripts\MoveInArcToCharacter.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Movement\Scripts\MoveInDirection.cs" />
+    <Compile Include="Assets\Scripts\Abilities\SubAbilities\Movement\Scripts\MoveInInspectorDirection.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Movement\Scripts\RandomTwoDirections.cs" />
+    <Compile Include="Assets\Scripts\Abilities\SubAbilities\Preparation\Scripts\AttackAtSpeed.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Preparation\Scripts\Attacking.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Preparation\Scripts\Casting.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Preparation\Scripts\ChantingWithAnim.cs" />
@@ -218,8 +222,10 @@
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\Status.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\Stun.cs" />
     <Compile Include="Assets\Scripts\Utilities\Timer.cs" />
+    <Compile Include="Assets\Scripts\Utilities\TimerManager.cs" />
     <Compile Include="Assets\SpawnManagerScriptableObject.cs" />
     <Compile Include="Assets\SubAbilityWindow.cs" />
+    <Compile Include="Assets\TestAnimBehavior.cs" />
     <Compile Include="Assets\TestCollision.cs" />
     <Compile Include="Assets\TestHandles.cs" />
     <Compile Include="Assets\TestMagicAim.cs" />

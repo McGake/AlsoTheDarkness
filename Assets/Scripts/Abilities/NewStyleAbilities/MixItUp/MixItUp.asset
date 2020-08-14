@@ -21,8 +21,11 @@ MonoBehaviour:
   inspectorSubAbilities:
   - {fileID: 11400000, guid: 3bb0ca607d36e3f4aabfc264e3328b39, type: 2}
   - {fileID: 11400000, guid: e55491fe88abff34dbb3897478980ea1, type: 2}
+  - {fileID: 11400000, guid: c389ec65a3cf3ee4da8f57a538cdc1dc, type: 2}
   - {fileID: 11400000, guid: 3bb0ca607d36e3f4aabfc264e3328b39, type: 2}
   - {fileID: 11400000, guid: 213777f7a84ae6c4499737637769b7e4, type: 2}
+  - {fileID: 11400000, guid: c389ec65a3cf3ee4da8f57a538cdc1dc, type: 2}
   - {fileID: 11400000, guid: 3bb0ca607d36e3f4aabfc264e3328b39, type: 2}
   - {fileID: 11400000, guid: edb0930a8fa09674ba21d375f84370a2, type: 2}
+  - {fileID: 11400000, guid: c389ec65a3cf3ee4da8f57a538cdc1dc, type: 2}
   curSubAbilityIndx: 3

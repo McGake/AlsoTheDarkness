@@ -26,7 +26,7 @@ PrefabInstance:
     - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
         type: 3}
       propertyPath: abilityIntervalMax
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8844169639533487329, guid: bd4b75f9dc605f447bcd0309e9922de2,
         type: 3}

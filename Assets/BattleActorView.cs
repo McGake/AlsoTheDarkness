@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEditor.Animations;
-
+using UnityEngine.UI;
 
 public enum BuffStyle
 {
@@ -42,6 +42,10 @@ public class BattleActorView : MonoBehaviour
     private delegate void DelOngoingDisplayBehavior();
     private DelOngoingDisplayBehavior OngoingDisplaybehavior;//TODO: if needed, make this a list of behaviors
 
+
+    [SerializeField]
+    private Image healthBar;
+
 #pragma warning restore 649
 
     public void Start()
@@ -59,26 +63,56 @@ public class BattleActorView : MonoBehaviour
     {
         OngoingDisplaybehavior();
     }
-    int damageCalledTimes = 0;
     public void ShowDamage(int damage)
     {
-        Debug.Log("show damage called " + damageCalledTimes + "times ");
-        damageCalledTimes++;
-        GameObject explodingText = GameObject.Instantiate(popoutTextBoxPrefab, transform.position, Quaternion.identity, transform);
         int damageAsInt = Mathf.RoundToInt(damage);
-        explodingText.GetComponent<TextMeshPro>().text = damageAsInt.ToString();
-        //explodingText.transform.SetParent(transform);
-        //Collider2D tempCollider = transform.GetChild(0).GetComponent<Collider2D>();
+        ExplodeText(damageAsInt.ToString(), Color.red);
+    }
 
-        //explodingText.GetComponent<OnlyCollideWithOneThing>().SetThingToCollideWith(tempCollider);
-       // Vector2 force = new Vector2(Random.Range(-25f, 25f), 75f);
-       // force.Normalize();
-       // explodingText.GetComponent<Rigidbody2D>().AddForce(force * 250);
+    public void ShowHeal(int healing)
+    {
+        ExplodeText(healing.ToString(), Color.green);
     }
 
     public void ShowBuff(int buffAmount, string textDesignation, BuffStyle buffStyle)
     {
+        string buffText = buffAmount.ToString() + "\n" + textDesignation;
+        Color textColor = ReturnColorFromBuffStyle(buffStyle);
+        ExplodeText(buffText, textColor);
+    }
 
+    private void ExplodeText(string text, Color color)
+    {
+        GameObject explodingText = GameObject.Instantiate(popoutTextBoxPrefab, transform.position, Quaternion.identity, transform);
+        TextMeshPro textMesh = explodingText.GetComponent<TextMeshPro>();
+        textMesh.text = text;
+        textMesh.color = color;
+        textMesh.faceColor = color;
+
+    }
+
+    private Color ReturnColorFromBuffStyle(BuffStyle buffStyle)
+    {
+        switch (buffStyle)
+        {
+            case BuffStyle.Positive:
+                Debug.Log("Positive");
+                return Color.green;
+                break;
+            case BuffStyle.Negative:
+                return Color.yellow;
+                break;
+            case BuffStyle.Warning:
+                return Color.white;
+                break;
+        }
+        return Color.gray;
+    }
+
+    public void UpdateHealthBar(int curHealth, int maxHealth)
+    {
+        float test =(float)curHealth / maxHealth;
+        healthBar.fillAmount = (float)curHealth / maxHealth;
     }
 
 
@@ -120,6 +154,30 @@ public class BattleActorView : MonoBehaviour
         pcAnimator.Play("down", 0, 0f);
     }
 
+    private string lastAnimSet;
+    public void PlayCharacterAnimation(string stateName)
+    {
+        pcAnimator.SetBool(lastAnimSet, false);
+        pcAnimator.SetBool(stateName, true);
+        lastAnimSet = stateName;
+    }
+
+    public void PlayCharacterAnimationAtSpeed(string stateName, float speed)
+    {
+        PlayCharacterAnimation(stateName);
+        pcAnimator.speed = speed;
+        OngoingDisplaybehavior += SetSpeedToDefaultOnAnimDone;
+    }
+
+    private void SetSpeedToDefaultOnAnimDone()
+    {
+        if(pcAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= .99f)
+        {
+            pcAnimator.speed = 1f;
+            OngoingDisplaybehavior -= SetSpeedToDefaultOnAnimDone;
+        }
+    }
+
     private float nextBlinkTime;
     private float blinkInterval = .18f;
 
@@ -127,7 +185,7 @@ public class BattleActorView : MonoBehaviour
     {
         nextBlinkTime = Time.time;
         stopBlinkTime = Time.time + blinkDuration;
-        OngoingDisplaybehavior = Blink;
+        OngoingDisplaybehavior += Blink;
     }
 
     private void Blink()
@@ -148,6 +206,63 @@ public class BattleActorView : MonoBehaviour
     public void StopBlink()
     {
         spriteRenderer.enabled = true;
+        OngoingDisplaybehavior = Nothing;
+    }
+
+    private float nextFlashTime = 0;
+
+    private Color flashColor = new Color(255f, 0f, 0f);
+
+    private float flashInterval;
+
+    private int timesToFlash;
+
+    private int flashes;
+
+    private float flashDuration = .15f;
+
+    private float nextFlashDuration =0f;
+
+    private bool turnOnFlash = true;
+    public void StartFlash(int times = 2, float interval = .2f)
+    {
+        OngoingDisplaybehavior += Flash;
+        nextFlashTime = 0f;
+        flashes = 0;
+        timesToFlash = times;
+        flashInterval = interval;
+        Flash();
+    }
+    private void Flash() //ToDo: Implement timer and redo this convolution
+    {
+        if(Time.time >= nextFlashTime)
+        {
+            if (turnOnFlash == true)
+            {
+                spriteRenderer.color = flashColor;
+                nextFlashDuration = Time.time + flashDuration;
+                turnOnFlash = false;
+            }
+
+            if (Time.time >= nextFlashDuration)
+            {
+                spriteRenderer.color = Color.white;
+                nextFlashTime = Time.time + flashInterval;
+                flashes++;
+                turnOnFlash = true;
+            }
+
+            if (flashes >= timesToFlash)
+            {
+                spriteRenderer.color = Color.white;
+                StopFlash();
+            }
+        }
+
+    }
+
+    private void StopFlash()
+    {
         OngoingDisplaybehavior = Nothing;
     }
 

@@ -38,6 +38,8 @@ public class BattleMenuManager : GameSegment
 
     public Transform worldSpaceCanvas;
 
+    private Vector3 cursorOffset = new Vector3(-.66f, .22f, 0f);
+
     public void SetUpBattleMenuManager()
     {
         battleMenuManager = this;
@@ -48,7 +50,7 @@ public class BattleMenuManager : GameSegment
         AddCallbacksToAbilities();
 
         curHero = objectsInBattle.pcsInBattle[curHeroIndx];
-        cursor.transform.position = curHero.transform.position + new Vector3(-.33f, .3f, 0f);
+        cursor.transform.position = curHero.transform.position +cursorOffset;
         modifiedSelectionConeAngle = selectionConeAngle;
         PopulateHeroMenu();
 
@@ -348,7 +350,9 @@ public class BattleMenuManager : GameSegment
                 if (curClosest != null)
                 {
                     curHero = curClosest;
-                    cursor.transform.position = curHero.transform.position + new Vector3(-.33f, .3f, 0f);
+                    cursor.SetActive(true);
+                    cursor.transform.position = curHero.transform.position + cursorOffset;
+                    cursor.transform.SetParent(curHero.transform);
                     nextSwitchAllowedTime = Time.time + selectionRepeatDealy;
                     PopulateHeroMenu();
                     modifiedSelectionConeAngle = selectionConeAngle;
@@ -567,7 +571,7 @@ public class BattleMenuManager : GameSegment
                 }
                 
             }
-            secondaryCursor.transform.position = objectsToSwtichBetween[genericSwitchIndx].transform.position;
+            secondaryCursor.transform.position = objectsToSwtichBetween[genericSwitchIndx].transform.position + cursorOffset;
         }
         if(Input.GetButtonDown("A"))
         {
@@ -588,7 +592,7 @@ public class BattleMenuManager : GameSegment
     private void OneGroupSelection() //this is the old school way of doing this. need to make partially see through selection indicators and turn them on and off or move all of them. This does nothing except visually show the selection and wait for confirmation
     {
         
-        secondaryCursor.transform.position = objectsToSwtichBetween[genericSwitchIndx].transform.position;
+        secondaryCursor.transform.position = objectsToSwtichBetween[genericSwitchIndx].transform.position +cursorOffset;
         genericSwitchIndx++;
         if (genericSwitchIndx >= objectsToSwtichBetween.Count)
         {

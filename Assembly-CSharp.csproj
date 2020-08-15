@@ -116,6 +116,7 @@
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Preparation\Scripts\AttackAtSpeed.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Preparation\Scripts\Attacking.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Preparation\Scripts\Casting.cs" />
+    <Compile Include="Assets\Scripts\Abilities\SubAbilities\Preparation\Scripts\CastingForTime.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Preparation\Scripts\ChantingWithAnim.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Preparation\Scripts\P_Chanting.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Preparation\Scripts\PrepingForStrike.cs" />

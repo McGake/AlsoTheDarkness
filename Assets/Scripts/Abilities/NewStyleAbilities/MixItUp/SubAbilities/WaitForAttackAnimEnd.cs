@@ -8,9 +8,9 @@ public class WaitForAttackAnimEnd : SubAbility
 {
     public override void DoSubAbility(Ability ab)
     {
-            if (!ab.pcAnimator.GetCurrentAnimatorStateInfo(0).IsName("attack")) 
+            if (ab.pcAnimator.GetCurrentAnimatorStateInfo(0).IsName("attack") && ab.pcAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= .99f) 
             {
-                Debug.Log("ended");
+                Debug.Log("ended attack animat");
                 EndSubAbility();
             }
     }

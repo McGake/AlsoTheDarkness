@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inspectorProjectileSubAbilities:
   - {fileID: 11400000, guid: d8fd674252cc8674d844a8404c402859, type: 2}
-  - {fileID: 11400000, guid: 81138e3215ed4fb459daa1921c12e4f0, type: 2}
+  - {fileID: 11400000, guid: 807eb4734897cc546b15cd94182da674, type: 2}
   - {fileID: 11400000, guid: 380ca3d249776a44a9f8b9d7d32a31f9, type: 2}
   ability: {fileID: 0}
   sources: []

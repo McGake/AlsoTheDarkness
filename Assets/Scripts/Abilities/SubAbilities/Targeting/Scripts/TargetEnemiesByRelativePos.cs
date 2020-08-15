@@ -41,27 +41,18 @@ public class TargetEnemiesByRelativePos : SubAbility
     {
         selectedEnemies.AddRange(selectedObjects);
         finalTargetedEnemies.AddRange(selectedObjects);
-        Debug.Log("number of enemies selected " + selectedEnemies.Count);
         Vector3 pos = abilty.owner.transform.position;
-
         Vector3 forward = abilty.owner.transform.right;
         Vector3 backward =-1f * abilty.owner.transform.right;
         Vector3 up = abilty.owner.transform.up;
         Vector3 down = -1f * abilty.owner.transform.up;
-
         Transform ownerTransform = abilty.owner.transform;
-
-        
 
         for (int i = 0; i < selectedEnemies.Count; i++)
         {
             Transform enemyTransform = selectedEnemies[i].transform;
-            Debug.Log("enemy number " + i + " at " + enemyTransform.position + " recheck enemy count: " + selectedEnemies.Count);
-
-
             Vector3 enemyDirection = enemyTransform.position - ownerTransform.position;
             Vector3 playerDirection = ownerTransform.position - enemyTransform.position;
-
 
             Debug.DrawRay(enemyTransform.position, (enemyTransform.right * 3), Color.blue, 1f);
             Debug.DrawRay(enemyTransform.position, playerDirection, Color.white, 1.5f);

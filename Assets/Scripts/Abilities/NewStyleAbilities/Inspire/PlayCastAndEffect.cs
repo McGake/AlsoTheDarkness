@@ -52,9 +52,8 @@ public class PlayCastAndEffect : SubAbility
             animationTriggered = true;
             foreach (GameObject gO in ab.objectTargets)
             {
+                Debug.Log(gO.name + " sent animation to");
                 gO.GetComponent<BattleActorView>().ShowOneTimeEffect(animOverrideController);
-                //statusToAddInstance = Instantiate(statusToAdd);
-                //gO.GetComponent<BaseBattleActor>().AddStatus(statusToAddInstance);
             }
         }
     }

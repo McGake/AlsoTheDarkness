@@ -96,7 +96,6 @@ public class BattleActorView : MonoBehaviour
         switch (buffStyle)
         {
             case BuffStyle.Positive:
-                Debug.Log("Positive");
                 return Color.green;
                 break;
             case BuffStyle.Negative:
@@ -154,9 +153,10 @@ public class BattleActorView : MonoBehaviour
         pcAnimator.Play("down", 0, 0f);
     }
 
-    private string lastAnimSet;
+    private string lastAnimSet = "stand";
     public void PlayCharacterAnimation(string stateName)
     {
+        pcAnimator.CrossFade(stateName, 0f);
         pcAnimator.SetBool(lastAnimSet, false);
         pcAnimator.SetBool(stateName, true);
         lastAnimSet = stateName;

@@ -20,13 +20,9 @@ public class P_Chanting : SubAbility
 
     public override void DoSubAbility(Ability ab)
     {
-         
         if (endPrepTime <= Time.time)
         {
-           
             EndSubAbility();
-
-
         }
     }
 }

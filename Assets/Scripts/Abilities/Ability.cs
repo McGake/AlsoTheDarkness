@@ -133,6 +133,11 @@ public class Ability:ScriptableObject
         uses++;
     }
 
+    public void UpdateAbility()
+    {
+        
+    }
+
     public bool IsAbilityOver()
     {
         return (abilityOver);
@@ -141,6 +146,7 @@ public class Ability:ScriptableObject
     public void AbilityStateMachine()//This is called on update by the ability manager
     {
         subAbilities[curSubAbilityIndx].DoSubAbility(this);
+        UpdateAbility();
     }
 
     

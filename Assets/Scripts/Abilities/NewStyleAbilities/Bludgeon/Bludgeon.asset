@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0813aa6ae5d9981478de0b1cc8605322, type: 3}
   m_Name: Bludgeon
   m_EditorClassIdentifier: 
-  _displayName: ExploitWeakness
+  _displayName: Bludgeon
   maxUses: 12
   uses: 0
   cooldownTime: 0

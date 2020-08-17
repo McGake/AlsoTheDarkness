@@ -100,6 +100,7 @@
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\AddStatus\Scripts\AddStatusToSingle.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\AgressiveMovement\MoveAllTargets.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\AgressiveMovement\MoveAllTargetsCrook.cs" />
+    <Compile Include="Assets\Scripts\Abilities\SubAbilities\AssignSpell\Scripts\CreateAtObjectTarget.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\AssignSpell\Scripts\ObjectAssignSpell.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\AttackZone\Scripts\InstantDamageZone.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\MiniGame\Scripts\ChooseDirectionMiniGame.cs" />

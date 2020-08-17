@@ -110,8 +110,10 @@ public class BattleActorView : MonoBehaviour
 
     public void UpdateHealthBar(int curHealth, int maxHealth)
     {
-        float test =(float)curHealth / maxHealth;
-        healthBar.fillAmount = (float)curHealth / maxHealth;
+        if (healthBar != null)
+        {
+            healthBar.fillAmount = (float)curHealth / maxHealth;
+        }
     }
 
 
@@ -211,7 +213,7 @@ public class BattleActorView : MonoBehaviour
 
     private float nextFlashTime = 0;
 
-    private Color flashColor = new Color(255f, 0f, 0f);
+    private Color flashColor = new Color(255f, 191f, 81f);
 
     private float flashInterval;
 

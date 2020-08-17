@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87bc50bbd39306446a42a32cbbeb9bcf, type: 3}
   m_Name: ReadyTech(EyesOnMe)
   m_EditorClassIdentifier: 
-  prepTime: 3.2
+  prepTime: 5.2

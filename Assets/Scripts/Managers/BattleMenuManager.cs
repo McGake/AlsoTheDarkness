@@ -215,10 +215,6 @@ public class BattleMenuManager : GameSegment
     {
         //AbilityCluster tempCluster;
         AbilityButton curButton;
-        float coolDownEndTime;
-        float coolDown;
-        float fillPercentage;
-
         //this will grey out abilities that are curently not useable and update a recharge bar
         for(int i = 0; i < abilityClusters.Count; i++)
         {
@@ -227,25 +223,8 @@ public class BattleMenuManager : GameSegment
                 curButton = abilityClusters[i].abilityButtons[j];
                 if (curButton.uIButton.activeSelf)
                 {
-                    coolDownEndTime = curButton.ability.curCooldownEndTime;
-                    coolDown = curButton.ability.cooldownTime;
-                    fillPercentage = (coolDownEndTime - Time.time) / coolDown;
-                    if (fillPercentage > 1)
-                    {
-                        fillPercentage = 1;
-                    }
-                    curButton.radialProgress.fillAmount = fillPercentage;
-                    if (curButton.ability.useable == false)
-                    {
-                        curButton.greyMask.SetActive(true);
-                    }
-                    else
-                    {
-                        curButton.greyMask.SetActive(false);
-                    }
+                    curButton.abilityView.UpdateAbility(curButton.ability);
                 }
-
-                curButton.abilityView.SetUsesLeft((curButton.ability.maxUses - curButton.ability.uses).ToString());//TODO: change this to trigger when the ability acctually gets used to avoid this calculation all the time
             }
         }
     }

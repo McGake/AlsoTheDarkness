@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0813aa6ae5d9981478de0b1cc8605322, type: 3}
   m_Name: TakeCharge
   m_EditorClassIdentifier: 
-  _displayName: TakeCharge
-  onEnemy: 0
+  _displayName: Take Charge
+  maxUses: 0
+  uses: 0
+  cooldownTime: 5
   objectTargets: []
   positionTargets: []
   inspectorSubAbilities:
@@ -21,4 +23,3 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5dd78961110bf364085790d29631a635, type: 2}
   - {fileID: 11400000, guid: c40bf24d45e91604ebeb21f55c89397b, type: 2}
   curSubAbilityIndx: 3
-  cooldownTime: 5

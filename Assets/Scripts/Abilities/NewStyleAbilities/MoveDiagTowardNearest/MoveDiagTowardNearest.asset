@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0813aa6ae5d9981478de0b1cc8605322, type: 3}
   m_Name: MoveDiagTowardNearest
   m_EditorClassIdentifier: 
-  _displayName: 
+  _displayName: Move Diag Toward Nearest
   maxUses: 1000
   uses: 0
   cooldownTime: 5

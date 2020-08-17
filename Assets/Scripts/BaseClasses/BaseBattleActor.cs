@@ -61,6 +61,11 @@ public class BaseBattleActor :MonoBehaviour
 
     }
 
+    public void OnEnable()
+    {
+        battleActorView.UpdateHealthBar(stats.hP, stats.maxHP);
+    }
+
     protected virtual void SetUpAbilities()
     {
         foreach (Ability aB in inspectorAbilities)

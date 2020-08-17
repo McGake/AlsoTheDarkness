@@ -15,7 +15,7 @@ MonoBehaviour:
   _displayName: Inspire
   maxUses: 6
   uses: 0
-  cooldownTime: 4.5
+  cooldownTime: 12.1
   objectTargets: []
   positionTargets: []
   inspectorSubAbilities:

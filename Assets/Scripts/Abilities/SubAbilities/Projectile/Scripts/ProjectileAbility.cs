@@ -66,10 +66,7 @@ public class ProjectileAbility : SubAbility
 
     public override void DoSubAbility(Ability ab)
     {
-        
         projectileSubAbilities[curSubAbility].DoProjectileSubAbility(this);
-
-      
     }
 
     public void ProjectileSubAbOver()

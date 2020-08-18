@@ -116,26 +116,40 @@ public class Ability:ScriptableObject
         curSubAbilityIndx = 0;
         for(int i = 0; i < inspectorSubAbilities.Count; i++)
         {
+            Debug.Log(DisplayName);
             subAbilities.Add(Instantiate(inspectorSubAbilities[i]));
         }
+
+        
     }
 
-    public virtual void ReadyAbility()
+    public virtual void ReadyAbility()//TODO: Rename this
     {
-        //useable = false;
         abilityOver = false;
         lastAnimSet = "stand";
         curSubAbilityIndx = 0;
         objectTargets.Clear();
         positionTargets.Clear();
         SetUpNextSubAb();
-        curCooldownEndTime = cooldownTime + Time.time;
+        
         uses++;
+        useable = false;
+        
     }
 
-    public void UpdateAbility()
+    public void UpdateCooldown()
     {
-        
+        if (curCooldownEndTime < Time.time)
+        {
+            if (uses < maxUses)
+            {
+                if (abilityOver == true)
+                {
+                    useable = true;
+                }
+            }
+            AbilityManager.abManager.UnregisterAbilityForCooldown(this);
+        }
     }
 
     public bool IsAbilityOver()
@@ -146,7 +160,7 @@ public class Ability:ScriptableObject
     public void AbilityStateMachine()//This is called on update by the ability manager
     {
         subAbilities[curSubAbilityIndx].DoSubAbility(this);
-        UpdateAbility();
+        
     }
 
     
@@ -183,6 +197,8 @@ public class Ability:ScriptableObject
     private void EndAbility()
     {
         //Debug.Log("end ability called");
+        AbilityManager.abManager.RegisterAbilityForCooldown(this);
+        curCooldownEndTime = cooldownTime + Time.time;
         abilityOver = true;
     }
 

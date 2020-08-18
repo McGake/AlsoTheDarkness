@@ -9,8 +9,6 @@ public class BattleStats
     public int maxHP;
     public int hP;
 
-    
-
     public int maxMana;
     public int mana;
 
@@ -24,8 +22,8 @@ public class BattleStats
     public int physicalPower;
 
     public int armor;
-
 }
+
 [System.Serializable]
 public class BaseBattleActor :MonoBehaviour
 {
@@ -77,14 +75,11 @@ public class BaseBattleActor :MonoBehaviour
         {
             aB.SetupAbility(gameObject);
         }
-
     }
 
     public virtual void Update()
     {
         RunStatuses();
-
-        SetAbilityUsable();//TODO:temp
     }
     #region StatusManagement
     public virtual void AddStatus(Status status)
@@ -199,23 +194,6 @@ public class BaseBattleActor :MonoBehaviour
         return false;
     }
 
-
-
-    void SetAbilityUsable()
-    {
-        foreach (Ability ab in abilities) //TODO: make this a part of the ability itself. Why should it be handled here? 
-        {
-            ab.useable = true;
-            if (ab.curCooldownEndTime > Time.time)
-            {
-                ab.useable = false;
-            }
-            else if(ab.uses >= ab.maxUses)
-            {
-                ab.useable = false;
-            }
-        }
-    }
     #endregion AbilityManagement
 
 

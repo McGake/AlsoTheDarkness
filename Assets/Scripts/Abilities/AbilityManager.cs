@@ -14,10 +14,30 @@ public class AbilityManager : MonoBehaviour
     public List<Ability> abilitiesInUse = new List<Ability>();
     private List<Ability> abilitiesToRemove = new List<Ability>();
 
+
+    private List<Ability> abilitiesToCooldown = new List<Ability>();
+
+    public void RegisterAbilityForCooldown(Ability ab)
+    {
+        abilitiesToCooldown.Add(ab);
+    }
+    public void UnregisterAbilityForCooldown(Ability ab)
+    {
+        abilitiesToCooldown.Remove(ab);
+    }
+
+    private void UpdateCooldowns()
+    {
+        for(int i =0; i < abilitiesToCooldown.Count; i++)
+        {
+            abilitiesToCooldown[i].UpdateCooldown();
+        }
+    }
     void Update()
     {
         RemoveFinishedAbilities();
         RunAbilities();
+        UpdateCooldowns();
         
     }
 

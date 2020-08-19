@@ -31,7 +31,42 @@ public class AbilityView : MonoBehaviour, iAbilityView
     }
     private void StartFlashOnTrunsUsable()
     {
-        
+        ongoingDisplayBehavior += Flash;
+        nextFlash = 0f;
+        timesFlashed = 0;
+    }
+    private float flashSpeed;
+
+    private float flashDuration;
+
+    private float flashEnd;
+
+    private Color flashColor = Color.green;
+
+    private int timesToFalsh = 2;
+
+    private int timesFlashed = 0;
+
+    private float nextFlash;
+    private void Flash()
+    {
+        if(Time.time > nextFlash)
+        {
+            timesFlashed++;
+            flashEnd = Time.time + flashDuration;
+            UsingHighlight.SetActive(false);
+        }
+
+        if(Time.time > flashEnd)
+        {
+            nextFlash = Time.time + flashSpeed;
+            UsingHighlight.SetActive(true);
+
+            if(timesFlashed >= timesToFalsh)
+            {
+                ongoingDisplayBehavior -= Flash;
+            }
+        }
     }
 
     public void SetButtonLabel(string inLabel)
@@ -56,17 +91,25 @@ public class AbilityView : MonoBehaviour, iAbilityView
     private float fillPercentage;
 
     private Image[] highlights;
+
+    private bool useableWasFalse = true;
     public void UpdateAbility(Ability ab)
     {
         if(ab.useable == false)
         {
             SetHighlightColor(Color.red);
             greyMask.SetActive(true);
+            useableWasFalse = true;
         }
         else
         {
             greyMask.SetActive(false);
             SetHighlightColor(Color.green);
+            if(useableWasFalse)
+            {
+                useableWasFalse = false;
+                OnAbilityTurnsUsable();//TODO: get rid of this mess and add an event system
+            }
         }
 
 
@@ -93,6 +136,11 @@ public class AbilityView : MonoBehaviour, iAbilityView
 
         }
         SetUsesLeft((ab.maxUses - ab.uses).ToString()); //TODO: make this calculation happen on ability used so that we dont have to do this every frame
+    }
+
+    public void FlashOnReady()
+    {
+        throw new NotImplementedException();
     }
 }
 

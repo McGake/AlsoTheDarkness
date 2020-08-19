@@ -20,5 +20,5 @@ MonoBehaviour:
   positionTargets: []
   inspectorSubAbilities:
   - {fileID: 11400000, guid: 9f13ea9bccf5d79418df6dda4bd402be, type: 2}
-  - {fileID: 11400000, guid: ac1a9e2925e234c438f16bb07c3aa7a1, type: 2}
+  - {fileID: 11400000, guid: a9f310e5bb7f4034292a3c9ee644633e, type: 2}
   curSubAbilityIndx: 3

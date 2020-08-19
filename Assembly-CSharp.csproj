@@ -76,6 +76,7 @@
     <Compile Include="Assets\DestroyAfterSeconds.cs" />
     <Compile Include="Assets\HeatMapTileInfo.cs" />
     <Compile Include="Assets\MagicSetup.cs" />
+    <Compile Include="Assets\MaintainWorldRotation.cs" />
     <Compile Include="Assets\MoveChildWithParentSprite.cs" />
     <Compile Include="Assets\MoveForward.cs" />
     <Compile Include="Assets\MoveWithObjectOnStay.cs" />
@@ -90,11 +91,13 @@
     <Compile Include="Assets\Scripts\Abilities\AbilityManager.cs" />
     <Compile Include="Assets\Scripts\Abilities\Defs\DangerZoneDef.cs" />
     <Compile Include="Assets\Scripts\Abilities\Defs\ItemDef.cs" />
+    <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Flustered Indecision\ClearDirTargets.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Inspire\PlayCastAndEffect.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Inspire\PlayOneTimeEffectAnimationOnMultiple.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\MixItUp\SubAbilities\WaitForAttackAnimEnd.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Take Charge\InteruptAbilitiesOfTarget.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Take Charge\RunAbilityOnTarget.cs" />
+    <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Unplanned Follow\ObjectTargetToDirection.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\WaterBeam\TelegraphWithFlash.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\AddStatus\Scripts\AddStatusToMultiple.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\AddStatus\Scripts\AddStatusToSingle.cs" />

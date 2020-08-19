@@ -94,7 +94,6 @@ public class Ability:ScriptableObject
     public DelInstantiateInWorldSpaceCanvas InstantiateInWorldSpaceCanvas;
 
 
-
     public void SetupAbility(GameObject inOwner)
     {
         owner = inOwner;

@@ -8,7 +8,7 @@ public class FireCallbackOnDisable : SubProjectileAbility
 {
     public GameObject projectilePrefab;
 
-    public EffectOnContact eOC;
+    public EffectOnContact effectOnContact;
 
     private List<GameObject> projectiles = new List<GameObject>(); 
 
@@ -23,10 +23,10 @@ public class FireCallbackOnDisable : SubProjectileAbility
             GameObject tempProjectile;
             for (int i = 0; i < pa.numberOfProjectiles; i++)
             {
-                tempProjectile = Instantiate(eOC.gameObject);
+                tempProjectile = Instantiate(effectOnContact.gameObject);
                 Debug.Log(tempProjectile.name + " created");
-                eOC = tempProjectile.GetComponent<EffectOnContact>();
-                eOC.SendObjectsHit = ReceiveObjectsHit;
+                effectOnContact = tempProjectile.GetComponent<EffectOnContact>();
+                effectOnContact.SendObjectsHit = ReceiveObjectsHit;
 
                 tempProjectile.SetActive(false);
                 projectiles.Add(tempProjectile);

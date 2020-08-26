@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EffectOnContact : StatusDeliverer
+public class EffectOnContact : Fireable
 {
-    public List<string> targetTypes;
-    public List<string> otherCollideableTypes;
 
 #pragma warning disable 649
     [SerializeField]
@@ -26,12 +24,26 @@ public class EffectOnContact : StatusDeliverer
     public float repeatInterval;
     private float nextInterval;
 
+    protected List<Status> statusesToAdd = new List<Status>();
+
     public void OnEnable()
     {
         objectsHit.Clear();
         GetInspectorStatuses();
         SetUpStatuses();
     }
+
+    public void SetUpStatuses()
+    {
+        foreach (Status status in statusesToAdd)
+        {
+            status.SetUpStatus(sourceAbility, gameObject);
+        }
+    }
+
+
+
+
 
     private void GetInspectorStatuses()
     {
@@ -109,39 +121,6 @@ public class EffectOnContact : StatusDeliverer
 
 }
 
-public class StatusDeliverer:MonoBehaviour
-{
-    public Ability sourceAbility;
 
-    public void SetSourceAbility(Ability newSource)
-    {
-        sourceAbility = newSource;
-        SetPhysicsLayer();
-    }
 
-    public void SetUpStatuses()
-    {
-        foreach (Status status in statusesToAdd)
-        {
-            status.SetUpStatus(sourceAbility, gameObject);
-        }
-    }
 
-    private void SetPhysicsLayer()
-    {
-        if (sourceAbility.actorType != null)
-        {
-            if (sourceAbility.actorType == typeof(BattlePC))
-            {
-                gameObject.layer = LayerMask.NameToLayer("PCProjectile");
-            }
-            else if (sourceAbility.actorType == typeof(BaseEnemy))
-            {
-                gameObject.layer = LayerMask.NameToLayer("EnemyProjectile");
-            }
-        }
-
-    }
-
-    protected List<Status> statusesToAdd = new List<Status>();
-}

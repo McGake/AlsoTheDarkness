@@ -61,6 +61,8 @@ public class Ability:ScriptableObject
     [HideInInspector]
     public List<Vector3> positionTargets = new List<Vector3>();
 
+    public Action projectileCallbacks { get; private set; }
+
     [SerializeField]
     public List<SubAbility> inspectorSubAbilities;
 
@@ -93,6 +95,16 @@ public class Ability:ScriptableObject
     public delegate GameObject DelInstantiateInWorldSpaceCanvas(GameObject go, Vector3 position);
     public DelInstantiateInWorldSpaceCanvas InstantiateInWorldSpaceCanvas;
 
+    
+    public void SubscribeToProjectileCallback(Action callbackToSubscribe)
+    {
+        projectileCallbacks += callbackToSubscribe;
+    }
+
+    public void UnsubscribeToProjectileCallback(Action callbackToUnsubscribe)
+    {
+        projectileCallbacks -= callbackToUnsubscribe;
+    }
 
     public void SetupAbility(GameObject inOwner)
     {
@@ -108,14 +120,15 @@ public class Ability:ScriptableObject
             actorType = typeof(BattlePC);
         }
         subAbilities.Clear();
+        
         abilityOver = true;
         useable = true;
         curCooldownEndTime = 0f;
         lastAnimSet = "stand";
         curSubAbilityIndx = 0;
+        Debug.Log("ability: " + DisplayName);
         for(int i = 0; i < inspectorSubAbilities.Count; i++)
         {
-            Debug.Log(DisplayName);
             subAbilities.Add(Instantiate(inspectorSubAbilities[i]));
         }
 

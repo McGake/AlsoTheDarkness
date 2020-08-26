@@ -10089,7 +10089,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &338699781
 Transform:
   m_ObjectHideFlags: 0
@@ -11624,7 +11624,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &427998756
 Transform:
   m_ObjectHideFlags: 0
@@ -30019,7 +30019,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1146310698
 Transform:
   m_ObjectHideFlags: 0
@@ -31523,7 +31523,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1281605144
 Transform:
   m_ObjectHideFlags: 0
@@ -56051,7 +56051,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 191c842a068e1bb48b884063e4908ccf, type: 2}
+      objectReference: {fileID: 9100000, guid: 047d546f2ecc9344282dd8c8d8ed4239, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14ebc9ca3834d2b47ad3850f7fc31b8c, type: 3}
 --- !u!1001 &3950224250872952265
@@ -56960,8 +56960,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 22100000, guid: 7ee4d6d8e6fe9e24e83206d761699f05,
-        type: 2}
+      objectReference: {fileID: 9100000, guid: fa90900960b965b45a38c99396106ee1, type: 2}
     - target: {fileID: 8392901246054387514, guid: 6ab34b4387ee52f46b3af5c5c19d91aa,
         type: 3}
       propertyPath: worldSpaceCanvas

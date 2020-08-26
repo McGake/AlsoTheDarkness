@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -161,6 +162,20 @@ public class BaseBattleActor :MonoBehaviour
     {
         status.nextInterval = Time.time + status.intervalLength;
         status.DoStatus(this);
+    }
+
+    public bool HasStatus(Status status)
+    {
+        for (int i = 0; i<curStatuses.Count; i++)
+        {
+            if (curStatuses[i].GetType() == status.GetType())
+            {
+                return true;
+            }
+            
+        }
+
+        return false;
     }
 
     #endregion StatusManagement

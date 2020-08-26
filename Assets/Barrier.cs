@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO: consider putting this as a behavior on the battle actors themselves
 public class Barrier : MonoBehaviour
 {
 
@@ -11,7 +12,7 @@ public class Barrier : MonoBehaviour
 
     private List<StopInfo> stopInfos;
 
-
+    private CanPassBarriers canPassStatus;
     public enum DirectionToRestrict
     {
         none= 0,
@@ -49,10 +50,17 @@ public class Barrier : MonoBehaviour
     private DirectionToRestrict dirToRestrict;
     public void OnTriggerEnter2D(Collider2D col)
     {
-        GetClosestBound(col);
-        curSettingPosition = closestBounds;
-        col.transform.position = curSettingPosition;
-        stopInfos.Add(new StopInfo (col.transform, curSettingPosition, dirToRestrict));
+
+        if (col.GetComponent<BaseBattleActor>() != null)
+        {
+            if (col.GetComponent<BaseBattleActor>().HasStatus(canPassStatus) == false)
+            {
+                GetClosestBound(col);
+                curSettingPosition = closestBounds;
+                col.transform.position = curSettingPosition;
+                stopInfos.Add(new StopInfo(col.transform, curSettingPosition, dirToRestrict));
+            }
+        }
     }
 
     public void OnTriggerStay2D(Collider2D col)

@@ -74,6 +74,7 @@
     <Compile Include="Assets\Characters\PCs\PCDef.cs" />
     <Compile Include="Assets\ControllerCheck.cs" />
     <Compile Include="Assets\DestroyAfterSeconds.cs" />
+    <Compile Include="Assets\DestroyOnCallback.cs" />
     <Compile Include="Assets\HeatMapTileInfo.cs" />
     <Compile Include="Assets\MagicSetup.cs" />
     <Compile Include="Assets\MaintainWorldRotation.cs" />
@@ -92,6 +93,9 @@
     <Compile Include="Assets\Scripts\Abilities\Defs\DangerZoneDef.cs" />
     <Compile Include="Assets\Scripts\Abilities\Defs\ItemDef.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Flustered Indecision\ClearDirTargets.cs" />
+    <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Hop\FireProjectileCallbacks.cs" />
+    <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Hop\Fireable.cs" />
+    <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Hop\SetCurPositionAsTarget.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Inspire\PlayCastAndEffect.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Inspire\PlayOneTimeEffectAnimationOnMultiple.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\MixItUp\SubAbilities\WaitForAttackAnimEnd.cs" />
@@ -112,10 +116,11 @@
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\MiniGame\Scripts\MiniGameLauncher.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\MiniGame\Scripts\PowerBarMG.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Movement\Scripts\ChooseDirectionOnRelativeY.cs" />
-    <Compile Include="Assets\Scripts\Abilities\SubAbilities\Movement\Scripts\M_MoveDistanceFromCurPos.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Movement\Scripts\MoveInArcToCharacter.cs" />
-    <Compile Include="Assets\Scripts\Abilities\SubAbilities\Movement\Scripts\MoveInDirection.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Movement\Scripts\MoveInInspectorDirection.cs" />
+    <Compile Include="Assets\Scripts\Abilities\SubAbilities\Movement\Scripts\MoveToPositionTarget.cs" />
+    <Compile Include="Assets\Scripts\Abilities\SubAbilities\Movement\Scripts\MoveToPositionTargetY.cs" />
+    <Compile Include="Assets\Scripts\Abilities\SubAbilities\Movement\Scripts\MoveTowardPositionTarget.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Movement\Scripts\RandomTwoDirections.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Preparation\Scripts\AttackAtSpeed.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Preparation\Scripts\Attacking.cs" />
@@ -149,7 +154,7 @@
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Targeting\Scripts\TargetSelf.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Targeting\Scripts\TargetSingle.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Targeting\Scripts\TargetSingleEnemy.cs" />
-    <Compile Include="Assets\Scripts\Abilities\SubAbilities\Test\Scripts\DelayAndPlayScpecialAnim.cs" />
+    <Compile Include="Assets\Scripts\Abilities\SubAbilities\Test\Scripts\PlayAnimForTime.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Test\Scripts\TestSpecialAnim.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbility.cs" />
     <Compile Include="Assets\Scripts\AbilityCluster.cs" />
@@ -217,6 +222,7 @@
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\BuffArmor.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\BuffArmorAndMagDef.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\BuffPhysicalPowerAndHeal.cs" />
+    <Compile Include="Assets\Scripts\StatusEffects\Scripts\CanPassBarriers.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\DefensivePosture.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\DirectionalKnockback.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\InstantDamage.cs" />
@@ -229,6 +235,7 @@
     <Compile Include="Assets\Scripts\Utilities\Timer.cs" />
     <Compile Include="Assets\Scripts\Utilities\TimerManager.cs" />
     <Compile Include="Assets\SpawnManagerScriptableObject.cs" />
+    <Compile Include="Assets\StayWithXPositionOfObject.cs" />
     <Compile Include="Assets\SubAbilityWindow.cs" />
     <Compile Include="Assets\TestAnimBehavior.cs" />
     <Compile Include="Assets\TestCollision.cs" />

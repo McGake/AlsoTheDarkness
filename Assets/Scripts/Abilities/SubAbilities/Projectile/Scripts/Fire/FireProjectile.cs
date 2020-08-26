@@ -12,14 +12,14 @@ public class FireProjectile : SubProjectileAbility
 
     public override void DoInitialProjectileSubAbility(ProjectileAbility pa)
     {
-       
+        projectiles.Clear();
         if (projectiles.Count == 0)
         {
             GameObject tempProjectile;
             for (int i = 0; i < pa.numberOfProjectiles; i++)
             {
                 tempProjectile = GameObject.Instantiate(projectilePrefab);
-                tempProjectile.GetComponent<EffectOnContact>().SetSourceAbility(pa.ability); //TODO: make factory for projectile creation
+                tempProjectile.GetComponent<Fireable>().SetSourceAbility(pa.ability); //TODO: make factory for projectile creation
                 tempProjectile.SetActive(false);
                 projectiles.Add(tempProjectile);
             }

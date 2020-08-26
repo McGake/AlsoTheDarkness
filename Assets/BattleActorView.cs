@@ -67,6 +67,7 @@ public class BattleActorView : MonoBehaviour
     {
         int damageAsInt = Mathf.RoundToInt(damage);
         ExplodeText(damageAsInt.ToString(), Color.red);
+        pcAnimator.Play("freak" , 0, 0f);
     }
 
     public void ShowHeal(int healing)
@@ -192,16 +193,16 @@ public class BattleActorView : MonoBehaviour
 
     private void Blink()
     {
-        if(Time.time >= nextBlinkTime)
+
+        if (Time.time >= stopBlinkTime)
+        {
+            StopBlink();
+            return;
+        }
+        if (Time.time >= nextBlinkTime)
         {
             spriteRenderer.enabled = !spriteRenderer.enabled;
             nextBlinkTime = Time.time + blinkInterval;
-            
-        }
-
-        if(Time.time >= stopBlinkTime)
-        {
-            StopBlink();
         }
     }
 

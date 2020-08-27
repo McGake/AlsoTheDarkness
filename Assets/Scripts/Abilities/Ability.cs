@@ -120,7 +120,6 @@ public class Ability:ScriptableObject
             actorType = typeof(BattlePC);
         }
         subAbilities.Clear();
-        
         abilityOver = true;
         useable = true;
         curCooldownEndTime = 0f;

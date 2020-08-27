@@ -20,8 +20,9 @@ public class MoveToPositionTargetY : SubAbility
     private int flipValue = 1;
     public override void DoInitialSubAbility(Ability ab)
     {
+        Debug.Log("position target for " + ab.owner.name + " is " + ab.positionTargets[0]);
         SetNewAnimation("walk", ab);
-        direction = new Vector3(0, ab.owner.transform.position.y - ab.positionTargets[0].y, 0);
+        direction = new Vector3(0, ab.positionTargets[0].y - ab.owner.transform.position.y, 0);
        // direction.z = ab.owner.transform.position.z;
         totalMovement = Vector3.zero;
         distance = ab.owner.transform.position.y - ab.positionTargets[0].y;

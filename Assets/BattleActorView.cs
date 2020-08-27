@@ -67,7 +67,10 @@ public class BattleActorView : MonoBehaviour
     {
         int damageAsInt = Mathf.RoundToInt(damage);
         ExplodeText(damageAsInt.ToString(), Color.red);
-        pcAnimator.Play("freak" , 0, 0f);
+        if (pcAnimator != null) //TODO: change all of these to account for pcs vs enemies without using if statements like this.
+        {
+            pcAnimator.Play("freak", 0, 0f);
+        }
     }
 
     public void ShowHeal(int healing)

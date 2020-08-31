@@ -39,14 +39,10 @@ public class MoveToPositionTargetY : SubAbility
 
         if (totalMovement.sqrMagnitude > sqrDistance)
         {
+            ab.owner.transform.position = new Vector3(ab.owner.transform.position.x, ab.positionTargets[0].y, 0);
             SetNewAnimation("stand", ab);
             EndSubAbility();
         }
-    }
-
-    private void MoveToTarget(GameObject owner, Vector2 target)
-    {
-        owner.transform.position = Vector3.MoveTowards(owner.transform.position, target, moveSpeed * Time.deltaTime);
     }
 
     private Quaternion previousRotation;

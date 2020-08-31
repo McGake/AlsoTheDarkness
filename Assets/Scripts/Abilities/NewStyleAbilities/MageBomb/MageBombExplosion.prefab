@@ -48,12 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sourceAbility: {fileID: 0}
-  targetTypes:
-  - Monster
-  otherCollideableTypes: []
   inspectorStatusesToAdd:
   - {fileID: 11400000, guid: 73a089b06e2c7324a90bec358ce18267, type: 2}
-  - {fileID: 11400000, guid: 1b527e2e0a528dd4b8a0730ee5bc1c95, type: 2}
   mask:
     serializedVersion: 2
     m_Bits: 4096

@@ -149,6 +149,17 @@ public class BaseBattleActor :MonoBehaviour
         curStatuses.Remove(status);
     }
 
+    public void FinishAllStatusesOfType(Status status)
+    {
+        for(int i = curStatuses.Count-1; i >= 0; i--)
+        {
+            if(curStatuses[i].GetType() == status.GetType())
+            {
+                FinishStatus(curStatuses[i]);
+            }
+        }
+    }
+
     private bool IsTimeToRunStatus(Status status)
     {
         if(status.nextInterval <= Time.time)
@@ -168,7 +179,15 @@ public class BaseBattleActor :MonoBehaviour
     {
         for (int i = 0; i<curStatuses.Count; i++)
         {
-            if (curStatuses[i].GetType() == status.GetType())
+            Debug.Log(status);
+
+            Debug.Log(curStatuses);
+
+            Debug.Log("status count " +curStatuses.Count);
+
+            System.Type type1 = status.GetType();
+            System.Type type2 = curStatuses[i].GetType();
+            if (type1 == type2)
             {
                 return true;
             }

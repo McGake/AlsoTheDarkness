@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97ee91b4c27756347bc9e369e8eae3fe, type: 3}
+  m_Name: FastDamageZoneKnockBack(OneTwo)
+  m_EditorClassIdentifier: 
+  inspectorProjectileSubAbilities:
+  - {fileID: 11400000, guid: d8fd674252cc8674d844a8404c402859, type: 2}
+  - {fileID: 11400000, guid: 8fe1527f6ac63f249a99bc431e0159e5, type: 2}
+  - {fileID: 11400000, guid: a6c5115cf2aa8da46b30fc317f2029ca, type: 2}
+  ability: {fileID: 0}
+  sources: []
+  numberOfProjectiles: 1
+  projectilesFired: 0
+  quatProjectileFireAngle: {x: 0, y: 0, z: 0, w: 0}
+  power: 0

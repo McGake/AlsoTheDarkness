@@ -17,14 +17,52 @@ MonoBehaviour:
   enemyMixTypesProb:
   - enemyMix:
       encounterMonsters:
-      - {fileID: 8844169639533487329, guid: bd4b75f9dc605f447bcd0309e9922de2, type: 3}
-      - {fileID: 8844169639533487329, guid: bd4b75f9dc605f447bcd0309e9922de2, type: 3}
-      - {fileID: 8844169639533487329, guid: bd4b75f9dc605f447bcd0309e9922de2, type: 3}
+      - {fileID: 1853974824209273933, guid: 4d9dcb86e5818e24f93ad740a20035bc, type: 3}
+      - {fileID: 1853974824209273933, guid: ff2a93b6fda9813408a40666694a3b72, type: 3}
+      - {fileID: 1853974824209273933, guid: 4d9dcb86e5818e24f93ad740a20035bc, type: 3}
     prob: 10
+  - enemyMix:
+      encounterMonsters:
+      - {fileID: 1853974824209273933, guid: ff2a93b6fda9813408a40666694a3b72, type: 3}
+      - {fileID: 1853974824209273933, guid: ff2a93b6fda9813408a40666694a3b72, type: 3}
+    prob: 5
+  - enemyMix:
+      encounterMonsters:
+      - {fileID: 1853974824209273933, guid: c41ba63de0c132147a2ebbc6e9dd79f8, type: 3}
+      - {fileID: 1853974824209273933, guid: c41ba63de0c132147a2ebbc6e9dd79f8, type: 3}
+      - {fileID: 1853974824209273933, guid: c41ba63de0c132147a2ebbc6e9dd79f8, type: 3}
+      - {fileID: 1853974824209273933, guid: c41ba63de0c132147a2ebbc6e9dd79f8, type: 3}
+    prob: 5
   - enemyMix:
       encounterMonsters:
       - {fileID: 1853974824209273933, guid: 4d9dcb86e5818e24f93ad740a20035bc, type: 3}
       - {fileID: 1853974824209273933, guid: 4d9dcb86e5818e24f93ad740a20035bc, type: 3}
+      - {fileID: 1853974824209273933, guid: ff2a93b6fda9813408a40666694a3b72, type: 3}
+      - {fileID: 1853974824209273933, guid: ff2a93b6fda9813408a40666694a3b72, type: 3}
+      - {fileID: 1853974824209273933, guid: c41ba63de0c132147a2ebbc6e9dd79f8, type: 3}
+      - {fileID: 1853974824209273933, guid: c41ba63de0c132147a2ebbc6e9dd79f8, type: 3}
+    prob: 5
+  - enemyMix:
+      encounterMonsters:
+      - {fileID: 1853974824209273933, guid: 4d9dcb86e5818e24f93ad740a20035bc, type: 3}
+      - {fileID: 1853974824209273933, guid: 4d9dcb86e5818e24f93ad740a20035bc, type: 3}
+      - {fileID: 1853974824209273933, guid: c41ba63de0c132147a2ebbc6e9dd79f8, type: 3}
+      - {fileID: 1853974824209273933, guid: c41ba63de0c132147a2ebbc6e9dd79f8, type: 3}
+      - {fileID: 1853974824209273933, guid: c41ba63de0c132147a2ebbc6e9dd79f8, type: 3}
+      - {fileID: 1853974824209273933, guid: c41ba63de0c132147a2ebbc6e9dd79f8, type: 3}
+    prob: 5
+  - enemyMix:
+      encounterMonsters:
+      - {fileID: 1853974824209273933, guid: c41ba63de0c132147a2ebbc6e9dd79f8, type: 3}
+      - {fileID: 1853974824209273933, guid: ff2a93b6fda9813408a40666694a3b72, type: 3}
+      - {fileID: 1853974824209273933, guid: c41ba63de0c132147a2ebbc6e9dd79f8, type: 3}
+    prob: 5
+  - enemyMix:
+      encounterMonsters:
+      - {fileID: 1853974824209273933, guid: ff2a93b6fda9813408a40666694a3b72, type: 3}
+      - {fileID: 1853974824209273933, guid: ff2a93b6fda9813408a40666694a3b72, type: 3}
+      - {fileID: 1853974824209273933, guid: ff2a93b6fda9813408a40666694a3b72, type: 3}
+      - {fileID: 1853974824209273933, guid: c41ba63de0c132147a2ebbc6e9dd79f8, type: 3}
     prob: 5
   encounterTypesProb:
   - encounterType: 1

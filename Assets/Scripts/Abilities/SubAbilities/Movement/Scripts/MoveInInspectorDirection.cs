@@ -25,12 +25,10 @@ public override void DoInitialSubAbility(Ability ab)
 {
         if(ab.owner.transform.rotation.eulerAngles.y>178f )//TODO: figure out the correct way to do this and make it an subability utility if neccesary
         {
-            Debug.Log("greater than 178");
             flipValue = -1;
         }
         else if(ab.owner.transform.rotation.eulerAngles.y < 2f)
         {
-            Debug.Log("less than 178");
             flipValue = 1;
         }
             SetNewAnimation("walk", ab);

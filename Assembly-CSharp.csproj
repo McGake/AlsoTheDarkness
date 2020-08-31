@@ -64,7 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\AbilityView.cs" />
-    <Compile Include="Assets\Art\Characters\Loke\TestAddAnim.cs" />
+    <Compile Include="Assets\Art\Characters\OldTestCharacter\Loke\TestAddAnim.cs" />
     <Compile Include="Assets\Art\TileMaps\PlaceHoderTiles\Scriptable TilesBrushes\TransitionZoneDef.cs" />
     <Compile Include="Assets\Barrier.cs" />
     <Compile Include="Assets\BattleActorView.cs" />
@@ -93,14 +93,19 @@
     <Compile Include="Assets\Scripts\Abilities\Defs\DangerZoneDef.cs" />
     <Compile Include="Assets\Scripts\Abilities\Defs\ItemDef.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Flustered Indecision\ClearDirTargets.cs" />
+    <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Hop\AddStatusToSelf.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Hop\FireProjectileCallbacks.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Hop\Fireable.cs" />
+    <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Hop\RemoveStatusTypeFromSelf.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Hop\SetCurPositionAsTarget.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Inspire\PlayCastAndEffect.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Inspire\PlayOneTimeEffectAnimationOnMultiple.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\MixItUp\SubAbilities\WaitForAttackAnimEnd.cs" />
+    <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\OneTwo\Delay.cs" />
+    <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\PaceUpAndDown\RandomYPositionTarget.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Take Charge\InteruptAbilitiesOfTarget.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Take Charge\RunAbilityOnTarget.cs" />
+    <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\TwistingDodge\ScaleOverTime.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Unplanned Follow\ObjectTargetToDirection.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\WaterBeam\TelegraphWithFlash.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\AddStatus\Scripts\AddStatusToMultiple.cs" />
@@ -225,6 +230,7 @@
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\CanPassBarriers.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\DefensivePosture.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\DirectionalKnockback.cs" />
+    <Compile Include="Assets\Scripts\StatusEffects\Scripts\Heal.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\InstantDamage.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\MultiplyMagicalPower.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\PCDown.cs" />

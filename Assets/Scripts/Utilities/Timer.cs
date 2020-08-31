@@ -5,13 +5,10 @@ using UnityEngine;
 
 public class Timer
 {
-
-    
     //public float PercentComplete { get { return _timer / Duration; } }
     public float Duration { get; private set; }
 
     private bool resetTimerOnComplete;
-    private float _timer;
     private float endTime;
 
     private Action onCompleteCallback;
@@ -25,11 +22,6 @@ public class Timer
         this.onCompleteCallback = onCompleteCallback;
         this.onUpdateCallback = onUpdateCallback;
         TimerManager.TurnOnTimer(this);
-    }
-
-    public void DoActionOnCondition(bool condition, Action onCompleteCallback, Action onUpdateCallback = null)
-    {
-
     }
 
     public void ResetTimer()

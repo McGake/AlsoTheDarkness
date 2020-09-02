@@ -9,7 +9,6 @@ public class SetCurPositionAsTarget : SubAbility
     public override void DoInitialSubAbility(Ability ab)
     {
         ab.positionTargets.Add(ab.owner.transform.position);
-        Debug.Log("start pos for " + ab.owner.name + " " + ab.owner.transform.position);
         EndSubAbility();
     }
     public override void DoSubAbility(Ability ab)

@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 6106325878547815955}
   - component: {fileID: 4917500864058311447}
   - component: {fileID: 5877051349137970836}
+  - component: {fileID: -115912129451122426}
   m_Layer: 8
   m_Name: Ur Battler
   m_TagString: PC
@@ -321,6 +322,20 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &-115912129451122426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755673316737204961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b18b2e05103ec3447becf70f15b467ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCollider: {fileID: 3441415216121684335}
+  stayInBounds: 0
 --- !u!1 &2618486503363941199
 GameObject:
   m_ObjectHideFlags: 0

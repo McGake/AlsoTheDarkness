@@ -108,7 +108,6 @@ public class TargetEnemiesByRelativePos : SubAbility
         {
 
         }
-        Debug.Log("target enemies selection finished on " + abilty.owner.name);
         EndSubAbility();
     }
 }

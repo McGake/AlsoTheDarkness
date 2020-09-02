@@ -125,7 +125,7 @@ public class Ability:ScriptableObject
         curCooldownEndTime = 0f;
         lastAnimSet = "stand";
         curSubAbilityIndx = 0;
-        Debug.Log("ability: " + DisplayName);
+       // Debug.Log("ability: " + DisplayName);
         for(int i = 0; i < inspectorSubAbilities.Count; i++)
         {
             subAbilities.Add(Instantiate(inspectorSubAbilities[i]));

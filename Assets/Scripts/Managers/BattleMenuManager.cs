@@ -5,18 +5,23 @@ using UnityEngine.UI;
 using System;
 using TMPro;
 using UnityEngine.EventSystems;
+using System.Xml;
+
+
 
 public class BattleMenuManager : GameSegment
 {
     public static BattleMenuManager battleMenuManager;
 
-    public GameObject cursor;
+    public GameObject primaryCursor;
 
     public GameObject secondaryCursor;
 
     ObjectsInBattle objectsInBattle;
 
     public GameObject curHero;
+
+    public GameObject curSecondarySelection;
 
     public GameObject abilityButtonDisplay; //figure some way to get this without using drag and drop or finding by string perhaps tag or singleton
 
@@ -26,15 +31,7 @@ public class BattleMenuManager : GameSegment
 
     public List<AbilityButton> allAbilityButtons = new List<AbilityButton>();
 
-    public int curHeroIndx = 0;
-
     public AbilityCluster curCluster;
-
-    public List<GameObject> selectorPool;
-
-    public bool preventCharacterSwitch;
-
-    public GameObject popoutTextBoxPrefab;
 
     public Transform worldSpaceCanvas;
 
@@ -49,14 +46,13 @@ public class BattleMenuManager : GameSegment
         AddAllAbilitybuttonsToListInProperOrder();
         AddCallbacksToAbilities();
 
-        curHero = objectsInBattle.pcsInBattle[curHeroIndx];
-        cursor.transform.position = curHero.transform.position +cursorOffset;
+        curHero = objectsInBattle.pcsInBattle[0];
+        primaryCursor.transform.position = curHero.transform.position +cursorOffset;
         modifiedSelectionConeAngle = selectionConeAngle;
         PopulateHeroMenu();
 
         gameStateMachine.SetCurrentGameSegment(this); //this is what actually kicks off the battle being updated. I wonder if I should somehow put this in the battle start script
         gameStateMachine.SetDefaultGameSegment(this);
-        CurSelectionBehavior = SwitchHeroOnInput;
 
     }
 
@@ -85,11 +81,11 @@ public class BattleMenuManager : GameSegment
            tempListToSet = pc.GetComponent<BattlePC>().abilities; //TODO: Decouple this
             foreach (Ability aB in tempListToSet)
             {
-                aB.StartSelectFromPCs = StartSelectFromFriendlies;
-                aB.StartSelectFromEnemies = StartSelectFromOpponents;
-                aB.StartSelectAllPCs = StartSelectAllFriendlies;
-                aB.StartSelectAllEnemeies = StartSelectAllOpponents;
-                aB.StartSelectAllPCsButCurrent = StartSelectAllFriendliesButCurrent;               
+                aB.StartSelectFromPCs = ManualSelectFriend;
+                aB.StartSelectFromEnemies = ManualSelectEnemy;
+                aB.StartSelectAllPCs = ManualSelectAllFriends;
+                aB.StartSelectAllEnemeies = ManualSelectAllEnemies;
+                aB.StartSelectAllPCsButCurrent = ManualSelectAllFriendsButCurrent;               
                 aB.InstantiateInWorldSpaceCanvas = InstantiateInWorldSpaceCanvas;
             }
         }  
@@ -98,11 +94,10 @@ public class BattleMenuManager : GameSegment
             tempListToSet = en.GetComponent<BaseEnemy>().abilities; //TODO: Decouple this
             foreach (Ability aB in tempListToSet)
             {
-                aB.StartSelectFromPCs = StartSelectFromFriendlies_AI;
-                aB.StartSelectFromEnemies = StartSelectFromOpponents_AI;
-                aB.StartSelectAllPCs = StartSelectAllFriendlies_AI;
-                aB.StartSelectAllEnemeies = StartSelectAllOpponents_AI;
-                aB.StartSelectAllPCsButCurrent = StartSelectAllFriendliesButCurrent_AI;
+                aB.StartSelectFromPCs = AutoSelectFriend;
+                aB.StartSelectFromEnemies = AutoSelectEnemy;
+                aB.StartSelectAllPCs = AutoSelectAllFriends;
+                aB.StartSelectAllEnemeies = AutoSelectAllEnemies;
                 aB.InstantiateInWorldSpaceCanvas = InstantiateInWorldSpaceCanvas;
             }
         }
@@ -110,11 +105,25 @@ public class BattleMenuManager : GameSegment
 
     public override void UpdateGameSegment()
     {
-        CurSelectionBehavior();
+        if(CurManualSelectionBehavior == null)
+        {
+            SwitchHeroBehavior();
+        }
+        else
+        {
+            CurManualSelectionBehavior?.Invoke(); //The null operator is used to be thread safe. I don't quite understand it. I don't think it will be too big of a problem if Switch hero 
+        }
+
+        CurAutoSelectionBehaviors?.Invoke();
+        //CurSelectionBehavior ? CurSelectionBehavior() : SwitchHeroBehavior();
+        UpdateAbilityMenu();
     }
 
-    private delegate void DelCurSelectionBehavior();
-    private DelCurSelectionBehavior CurSelectionBehavior;
+    private delegate void DelCurManualSelectionBehavior();
+    private DelCurManualSelectionBehavior CurManualSelectionBehavior;
+
+    private delegate void DelCurAutoSelectionBehaviors();
+    private DelCurAutoSelectionBehaviors CurAutoSelectionBehaviors;
 
     #region SwitchingHero
 
@@ -129,7 +138,6 @@ public class BattleMenuManager : GameSegment
     void GetBattleAbilities()
     {
         List<Ability> allAbilitiesOnPC = curHero.GetComponent<BattlePC>().abilities;
-
         curCombatAbilities = Ability.NewRetrunOnlyAbilitiesOfContext( UsableContexts.battleAbilityMenu, allAbilitiesOnPC);
     }
 
@@ -201,7 +209,7 @@ public class BattleMenuManager : GameSegment
         }
         if (AbilityManager.abManager.IsCharacterCurrentlyDoingAbility(curHero) == false && objectsInBattle.IsPCUpAndInBattle(curHero)) //another way to do this would be just to check current heros abilities to see if he has any that are currently set to not finished.
         {
-            CurSelectionBehavior = SwitchHeroOnInput;//WaitForAbilityAndUpdateDisplay;
+            //CurSelectionBehavior += SwitchHeroBehavior;//WaitForAbilityAndUpdateDisplay;
             curHero.GetComponent<BaseBattleActor>().DoAbility(abilityToPass);
            
             
@@ -238,50 +246,17 @@ public class BattleMenuManager : GameSegment
     private float nextSwitchAllowedTime = 0f;
 
 
-    private bool CheckIfInsideCone(GameObject target, Vector3 inputDir, float coneAngleSize)
-    {
-        Vector3 normalizedTargetDir = FindDirectionOfTarget(target);
    
-        inputDir.Normalize();
 
-        Debug.DrawRay(curHero.transform.position, (inputDir*3) , Color.green, .5f);
-        
-
-        Vector3 outsideVec = Quaternion.AngleAxis(35, Vector3.forward) * inputDir;
-
-        Vector3 outsideVec2 = Quaternion.AngleAxis(-35, Vector3.forward) * inputDir;
-
-        Debug.DrawRay(curHero.transform.position, (outsideVec * 3), Color.red, .5f);
-
-        Debug.DrawRay(curHero.transform.position, (outsideVec2 * 3), Color.red, .5f);
-
-        float dotProduct = Vector3.Dot(normalizedTargetDir, inputDir);
-
-        float degrees = Mathf.Rad2Deg * Mathf.Acos(dotProduct);
-
-        if (degrees < coneAngleSize)
-        {
-
-            return (true);
-        }
-        else
-        {
-            return (false);
-        }
-    }
-
-    private Vector3 FindDirectionOfTarget(GameObject target)
+    public void SwitchHeroBehavior()
     {
-        Vector3 dir =   target.transform.position - curHero.transform.position;
-
-        dir.Normalize();
-
-        return (dir);
+        curHero = SwitchObjectOnInput(objectsInBattle.pcsInBattle, primaryCursor , curHero); //We could get rid of this check by haveing an overall cur selected object that the method modifies only when a new selection was successfull
+        PopulateHeroMenu();
+        TriggerAbilityOnInput();
+        //UpdateAbilityMenu();
     }
 
-    GameObject curClosest;
 
-    GameObject potentialClosest;
 
     public float selectionSensitivityThreshhold = 0.1f;
 
@@ -292,79 +267,124 @@ public class BattleMenuManager : GameSegment
     public float selectionConeAngleExapnsionIncrement = 35f;
 
     private float modifiedSelectionConeAngle;
-    public void SwitchHeroOnInput()
+
+    
+
+    private GameObject selectedObject;
+
+    public GameObject SwitchObjectOnInput(List<GameObject> objectsToSwitch, GameObject cursor, GameObject curSelected)
     {
-        if (Time.time > nextSwitchAllowedTime && preventCharacterSwitch == false)
+        if(SwitchDelayOver())
         {
             float yVal = Input.GetAxis("Vertical");
             float xVal = Input.GetAxis("Horizontal");
 
-            if (Mathf.Abs(yVal) + Mathf.Abs(xVal) > selectionSensitivityThreshhold)
+            if (OverSensitivityThreshold(xVal, yVal))
             {
-                curClosest = null;
-                potentialClosest = null;
-                for (int i = 0; i < objectsInBattle.pcsInBattle.Count; i++)
-                {
-                    if (objectsInBattle.pcsInBattle[i] != curHero)
-                    {
-                        if (CheckIfInsideCone(objectsInBattle.pcsInBattle[i], new Vector3(xVal, yVal), modifiedSelectionConeAngle))
-                        {
+                GameObject curClosest = null;
+                GameObject newSelection = null;
 
-                            if (curClosest == null)
-                            {
-                                curClosest = objectsInBattle.pcsInBattle[i];
-                            }
-                            else
-                            {
-                                potentialClosest = objectsInBattle.pcsInBattle[i];
-                                if (Vector3.SqrMagnitude(curHero.transform.position - curClosest.transform.position) > Vector3.SqrMagnitude(curHero.transform.position - potentialClosest.transform.position))
-                                {
-                                    curClosest = potentialClosest;
-                                }
-                            }
+                for (int i = 0; i < objectsToSwitch.Count; i++)
+                {
+                    if(NotCurrentSelection(curSelected, objectsToSwitch[i]))
+                    {
+                        Vector3 normalizedTargetDir = FindDirectionOfTarget(objectsToSwitch[i], curSelected);
+
+                        Vector3 normalizedInputDir = NormalizeInputDirection(xVal,yVal);
+
+                        float degrees = FindDegreesToCheckAgainstAngle(normalizedTargetDir, normalizedInputDir);
+
+                        if (InsideCone(degrees, modifiedSelectionConeAngle))
+                        {
+                            curClosest = GetClosest(curSelected, curClosest, objectsToSwitch[i]);
                         }
                     }
                 }
+                newSelection = curClosest;
 
-                if (curClosest != null)
+                if(newSelection != null)
                 {
-                    curHero = curClosest;
-                    cursor.SetActive(true);
-                    cursor.transform.position = curHero.transform.position + cursorOffset;
-                    cursor.transform.SetParent(curHero.transform);
+                    
+                    
+                    cursor.transform.position = newSelection.transform.position + cursorOffset;
+                    cursor.transform.SetParent(newSelection.transform);
                     nextSwitchAllowedTime = Time.time + selectionRepeatDealy;
-                    PopulateHeroMenu();
+
                     modifiedSelectionConeAngle = selectionConeAngle;
+                    return newSelection;
                 }
-                else if(modifiedSelectionConeAngle <= 89f)
+                else if (modifiedSelectionConeAngle <= 89f)
                 {
-                    if(selectionConeAngleExapnsionIncrement <= 1)
+                    if (selectionConeAngleExapnsionIncrement <= 1)
                     {
                         Debug.LogError("Expansion angle too small ");
-                        return;
+
                     }
                     modifiedSelectionConeAngle += selectionConeAngleExapnsionIncrement;
                     modifiedSelectionConeAngle = Mathf.Clamp(modifiedSelectionConeAngle, 0f, 90f);
-                    SwitchHeroOnInput(); //TODO: make this recursion a while loop instead. more better.
+                    newSelection = SwitchObjectOnInput(objectsToSwitch, cursor, curSelected); //TODO: make this recursion a while loop instead. more better.
+                    return newSelection;
                 }
-                
             }
         }
-        modifiedSelectionConeAngle = selectionConeAngle;
-        TriggerAbilityOnInput();
-        UpdateAbilityMenu();
+        return curSelected;
     }
 
-    public void SwitchHeroOnCharacterDeath()
+    #region SwitchObjectOnInputMethods
+    private bool SwitchDelayOver()
     {
-
+        return (Time.time > nextSwitchAllowedTime);
     }
-
-    public void WaitForAbilityAndUpdateDisplay()
+    private bool OverSensitivityThreshold(float yVal, float xVal)
     {
-        UpdateAbilityMenu();
+        return Mathf.Abs(yVal) + Mathf.Abs(xVal) > selectionSensitivityThreshhold;
     }
-
+    private bool NotCurrentSelection(GameObject curSelection, GameObject objectToCheck)
+    {
+        return curSelection != objectToCheck;
+    }
+    private Vector3 FindDirectionOfTarget(GameObject target, GameObject curSelected)
+    {
+        Vector3 dir = target.transform.position - curSelected.transform.position;
+        dir.Normalize();
+        return (dir);
+    }
+    private Vector3 NormalizeInputDirection(float xVal, float yVal)
+    {
+        return new Vector3(xVal, yVal).normalized;
+    }
+    private float FindDegreesToCheckAgainstAngle(Vector3 normalizedTargetDir, Vector3 normalizedInputDir)
+    {
+        float dotProduct = Vector3.Dot(normalizedTargetDir, normalizedInputDir);
+        return Mathf.Rad2Deg * Mathf.Acos(dotProduct);
+    }
+    private bool InsideCone(float degrees, float coneAngleSize)
+    {
+        if (degrees < coneAngleSize)
+        {
+            return (true);
+        }
+        else
+        {
+            return (false);
+        }
+    }
+    private GameObject GetClosest(GameObject curSelected, GameObject curClosest, GameObject possibleClosest)
+    {
+        if (curClosest == null)
+        {
+            curClosest = possibleClosest;
+        }
+        else
+        {
+            if (Vector3.SqrMagnitude(curSelected.transform.position - curClosest.transform.position) > Vector3.SqrMagnitude(curSelected.transform.position - possibleClosest.transform.position))
+            {
+                return possibleClosest;
+            }
+        }
+        return curClosest;
+    }
+    #endregion SwitchObjectOnInputMethods
 
     #region Managers
 
@@ -383,14 +403,6 @@ public class BattleMenuManager : GameSegment
     #region ExternalMethods
     public int genericSwitchIndx = 0;
 
-    public void TurnOnSecondaryPointer()
-    {
-        secondaryCursor.SetActive(true);
-    }
-    public void TurnOffSecondaryPointer()
-    {
-        secondaryCursor.SetActive(false);
-    }
 
     #region SelectionMethods
 
@@ -407,10 +419,66 @@ public class BattleMenuManager : GameSegment
 
     private delegate List<GameObject> DelGetRelations(Type requesterType);
 
-    private void BaseSelection(SubAbility subAb, Type requesterType, DelCurSelectionBehavior SelectionBehavior, DelGetRelations GetRelations)
+
+    #region ManualSelectionMethods
+    private void ManualSelectFriend(SubAbility subAb, Type requesterType)
+    {
+        BaseSelection(subAb, requesterType, SecondarySelection, objectsInBattle.GetFriendsOfType);
+    }
+
+    private void ManualSelectEnemy(SubAbility subAb, Type requesterType)
+    {
+        BaseSelection(subAb, requesterType, SecondarySelection, objectsInBattle.GetOpponentsOfType);
+    }
+    private void ManualSelectAllFriends(SubAbility subAb, Type requesterType)
+    {
+        BaseSelection(subAb, requesterType, OneGroupSelection, objectsInBattle.GetFriendsOfType);
+    }
+    private void ManualSelectAllEnemies(SubAbility subAb, Type requesterType)
+    {
+        BaseSelection(subAb, requesterType, OneGroupSelection, objectsInBattle.GetOpponentsOfType);
+    }
+    private void ManualSelectAllFriendsButCurrent(SubAbility subAb, Type requesterType)//TODO: maybe Just make this a call back rather than passing the whole sub ability
+    {
+        InitializeSelection(subAb);
+        objectsToSwtichBetween = new List<GameObject>(objectsInBattle.GetFriendsOfType(requesterType));
+        for (int i = 0; i < objectsToSwtichBetween.Count; i++)
+        {
+
+            if (objectsToSwtichBetween[i] == curHero)
+            {
+                objectsToSwtichBetween.RemoveAt(i);
+                break;
+            }
+        }
+    }
+    #endregion ManualSelectionMethods
+
+    #region AutoSelectionMethods
+    private void AutoSelectEnemy(SubAbility subAb, Type requesterType)
+    {
+        BaseSelection(subAb, requesterType, AISingleRandomSelection, objectsInBattle.GetOpponentsOfType);
+    }
+    private void AutoSelectFriend(SubAbility subAb, Type requesterType)
+    {
+        BaseSelection(subAb, requesterType, AISingleRandomSelection, objectsInBattle.GetFriendsOfType);
+    }
+    private void AutoSelectAllFriends(SubAbility subAb, Type requesterType)
+    {
+        BaseSelection(subAb, requesterType, AIOneGroupSelection, objectsInBattle.GetFriendsOfType);
+    }
+    private void AutoSelectAllEnemies(SubAbility subAb, Type requesterType)
+    {
+        BaseSelection(subAb, requesterType, AIOneGroupSelection, objectsInBattle.GetOpponentsOfType);
+    }
+
+
+
+    #endregion AutoSelectionMethods
+
+    private void BaseSelection(SubAbility subAb, Type requesterType, DelCurManualSelectionBehavior SelectionBehavior, DelGetRelations GetRelations)
     {
         objectsToSwtichBetween = GetRelations(requesterType);
-        CurSelectionBehavior = SelectionBehavior;
         if(requesterType == typeof(BattlePC))
         {
             InitializeSelection(subAb);
@@ -423,141 +491,32 @@ public class BattleMenuManager : GameSegment
         }
     }
 
-    private void StartSelectFromFriendlies(SubAbility subAb, Type requesterType)
-    {
-        BaseSelection(subAb, requesterType, LinearSelection, objectsInBattle.GetFriendsOfType);
-
-        //InitializeSelection(subAb);
-        //objectsToSwtichBetween = objectsInBattle.GetFriendsOfType(requesterType);
-
-        //CurSelectionBehavior = LinearSelection;
-    }
-
-    private void StartSelectFromOpponents(SubAbility subAb, Type requesterType)
-    {
-        BaseSelection(subAb, requesterType, LinearSelection, objectsInBattle.GetOpponentsOfType);
-        //InitializeSelection(subAb);
-        //objectsToSwtichBetween = objectsInBattle.GetOpponentsOfType(requesterType);
-        //CurSelectionBehavior = LinearSelection;
-    }
-
-    private void StartSelectFromOpponents_AI(SubAbility subAb, Type requesterType)
-    {
-        BaseSelection(subAb, requesterType, AISingleRandomSelection, objectsInBattle.GetOpponentsOfType);
-    }
-
-    private void StartSelectFromFriendlies_AI(SubAbility subAb, Type requesterType)
-    {
-        BaseSelection(subAb, requesterType, AISingleRandomSelection, objectsInBattle.GetFriendsOfType);
-    }
-
-
-    private void StartSelectAllFriendlies(SubAbility subAb,Type requesterType)
-    {
-        BaseSelection(subAb, requesterType, OneGroupSelection, objectsInBattle.GetFriendsOfType);
-        //InitializeSelection(subAb);
-        //objectsToSwtichBetween = objectsInBattle.pcsInBattle;
-        //CurSelectionBehavior = OneGroupSelection;
-
-    }
-
-    private void StartSelectAllFriendlies_AI(SubAbility subAb, Type requesterType)
-    {
-        BaseSelection(subAb, requesterType, AIOneGroupSelection, objectsInBattle.GetFriendsOfType);
-        //InitializeSelection(subAb);
-        //objectsToSwtichBetween = objectsInBattle.pcsInBattle;
-        //CurSelectionBehavior = OneGroupSelection;
-
-    }
-
-    private void StartSelectAllOpponents(SubAbility subAb, Type requesterType)
-    {
-        BaseSelection(subAb, requesterType, OneGroupSelection, objectsInBattle.GetOpponentsOfType);
-        //InitializeSelection(subAb);
-        //objectsToSwtichBetween = objectsInBattle.GetOpponentsOfType(requesterType);        
-        //CurSelectionBehavior = OneGroupSelection;
-    }
-
-
-    private void StartSelectAllOpponents_AI(SubAbility subAb, Type requesterType)
-    {
-        BaseSelection(subAb, requesterType, AIOneGroupSelection, objectsInBattle.GetOpponentsOfType);
-        //InitializeSelection(subAb);
-        //objectsToSwtichBetween = objectsInBattle.GetOpponentsOfType(requesterType);        
-        //CurSelectionBehavior = OneGroupSelection;
-    }
-
-
-    private void StartSelectAllFriendliesButCurrent(SubAbility subAb, Type requesterType)//TODO: maybe Just make this a call back rather than passing the whole sub ability
-    {
-        InitializeSelection(subAb);
-        objectsToSwtichBetween = new List<GameObject> (objectsInBattle.GetFriendsOfType(requesterType));
-        for(int i = 0; i < objectsToSwtichBetween.Count; i++)
-        {
-
-            if(objectsToSwtichBetween[i] == curHero)
-            {
-                objectsToSwtichBetween.RemoveAt(i);
-                break;
-            }
-        }
-        CurSelectionBehavior = OneGroupSelection;
-    }
-
-    private void StartSelectAllFriendliesButCurrent_AI(SubAbility subAb, Type requesterType)//TODO: maybe Just make this a call back rather than passing the whole sub ability
-    {
-        Debug.LogError("Method Not Created For AI. Please Write this method");
-    }
-
     private void InitializeSelection(SubAbility subAb)
     {
         OnSelectionFinished = subAb.OnSelectionFinished;
+        curSecondarySelection = curHero;
+        secondaryCursor.transform.position = curSecondarySelection.transform.position + cursorOffset;
+        
         secondaryCursor.SetActive(true);
     }
 
-    private void EndSelection(List<GameObject> selectedObjects)
+    private void EndSelection(List<GameObject> selectedObjects, DelCurManualSelectionBehavior selectionBehavior)
     {
+        Debug.Log("end selection was run");
         OnSelectionFinished(selectedObjects);
-        CurSelectionBehavior = SwitchHeroOnInput;
-        secondaryCursor.SetActive(false);
-        
+        //secondaryCursor.SetActive(false);
     }
-
-    public void LinearSelection()
+    public void SecondarySelection()
     {
-        float yVal = Input.GetAxis("Vertical");
-
-        if (Time.time > nextSwitchAllowedTime)
+        curSecondarySelection = SwitchObjectOnInput(objectsToSwtichBetween, secondaryCursor, curSecondarySelection);
+        if (Input.GetButtonDown("A"))
         {
-
-            if (yVal > 0f)
-            {
-                nextSwitchAllowedTime = Time.time + delaySwitchTime;
-               genericSwitchIndx++;
-                if (genericSwitchIndx > objectsToSwtichBetween.Count - 1)
-                {
-                    genericSwitchIndx = 0;
-                }
-                
-            }
-            else if (yVal < 0f)
-            {
-                nextSwitchAllowedTime = Time.time + delaySwitchTime;
-                genericSwitchIndx--;
-                if (genericSwitchIndx < 0)
-                {
-                    genericSwitchIndx = objectsToSwtichBetween.Count - 1;
-                }
-                
-            }
-            secondaryCursor.transform.position = objectsToSwtichBetween[genericSwitchIndx].transform.position + cursorOffset;
-        }
-        if(Input.GetButtonDown("A"))
-        {
+            Debug.Log("a secondary selection was made");
             List<GameObject> tempSelectedObjects = new List<GameObject>();
-            tempSelectedObjects.Add(objectsToSwtichBetween[genericSwitchIndx]);
-            EndSelection(tempSelectedObjects);
-        }        
+            tempSelectedObjects.Add(curSecondarySelection);
+            EndSelection(tempSelectedObjects, SecondarySelection);
+            secondaryCursor.SetActive(false);
+        }
     }
 
     public void AISingleRandomSelection()
@@ -565,7 +524,8 @@ public class BattleMenuManager : GameSegment
         int randomOpponentIndx = UnityEngine.Random.Range(0, objectsToSwtichBetween.Count);
         List<GameObject> tempSelectedObjects = new List<GameObject>();
         tempSelectedObjects.Add(objectsToSwtichBetween[randomOpponentIndx]);
-        EndSelection(tempSelectedObjects);
+        Debug.Log("single random");
+        EndSelection(tempSelectedObjects, AISingleRandomSelection);
     }
 
     private void OneGroupSelection() //this is the old school way of doing this. need to make partially see through selection indicators and turn them on and off or move all of them. This does nothing except visually show the selection and wait for confirmation
@@ -579,14 +539,17 @@ public class BattleMenuManager : GameSegment
         }
         if (Input.GetButtonDown("A"))
         {
-
-            EndSelection(objectsToSwtichBetween);
+            Debug.Log("end on group");
+            EndSelection(objectsToSwtichBetween, OneGroupSelection);
+            secondaryCursor.SetActive(false);
         }
     }
 
     private void AIOneGroupSelection()
     {
-        EndSelection(objectsToSwtichBetween);
+        Debug.Log("end on AI One Group");
+        EndSelection(objectsToSwtichBetween, AIOneGroupSelection);
+
     }
 
     #endregion SelectionMethods

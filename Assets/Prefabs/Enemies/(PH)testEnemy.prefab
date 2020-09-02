@@ -458,6 +458,7 @@ GameObject:
   - component: {fileID: 8844169639533487355}
   - component: {fileID: 8844169639533487354}
   - component: {fileID: 1245474386}
+  - component: {fileID: -2067011781891661233}
   m_Layer: 12
   m_Name: (PH)testEnemy
   m_TagString: Monster
@@ -680,3 +681,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-2067011781891661233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8844169639533487329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b18b2e05103ec3447becf70f15b467ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCollider: {fileID: 8844169639533487357}
+  stayInBounds: 1

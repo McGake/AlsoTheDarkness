@@ -40,4 +40,10 @@ public class BaseEnemy : BaseBattleActor
         }
     }
 
+
+    public override void Die()
+    {
+        OnDeathCallback(gameObject);
+        gameObject.SetActive(false);
+    }
 }

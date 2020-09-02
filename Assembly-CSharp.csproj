@@ -69,6 +69,7 @@
     <Compile Include="Assets\Barrier.cs" />
     <Compile Include="Assets\BattleActorView.cs" />
     <Compile Include="Assets\Bounce.cs" />
+    <Compile Include="Assets\Boundary.cs" />
     <Compile Include="Assets\CallbackOnDisable.cs" />
     <Compile Include="Assets\ChangeLevelOnTouch.cs" />
     <Compile Include="Assets\Characters\PCs\PCDef.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Assets\Scripts\Abilities\Defs\ItemDef.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Flustered Indecision\ClearDirTargets.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Hop\AddStatusToSelf.cs" />
+    <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Hop\AllowLeavingBoundaries.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Hop\FireProjectileCallbacks.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Hop\Fireable.cs" />
     <Compile Include="Assets\Scripts\Abilities\NewStyleAbilities\Hop\RemoveStatusTypeFromSelf.cs" />
@@ -166,6 +168,7 @@
     <Compile Include="Assets\Scripts\AvatarScripts\EncounterRoller.cs" />
     <Compile Include="Assets\Scripts\BaseClasses\BaseBattleActor.cs" />
     <Compile Include="Assets\Scripts\BaseClasses\BaseEnemy.cs" />
+    <Compile Include="Assets\Scripts\BaseClasses\BaseObjectInBattle.cs" />
     <Compile Include="Assets\Scripts\BaseClasses\BattlePC.cs" />
     <Compile Include="Assets\Scripts\Classes\EncounterClasses.cs" />
     <Compile Include="Assets\Scripts\EditorScripts\AngleAttribute.cs" />
@@ -241,6 +244,7 @@
     <Compile Include="Assets\Scripts\Utilities\Timer.cs" />
     <Compile Include="Assets\Scripts\Utilities\TimerManager.cs" />
     <Compile Include="Assets\SpawnManagerScriptableObject.cs" />
+    <Compile Include="Assets\StayInBounds.cs" />
     <Compile Include="Assets\StayWithXPositionOfObject.cs" />
     <Compile Include="Assets\SubAbilityWindow.cs" />
     <Compile Include="Assets\TestAnimBehavior.cs" />

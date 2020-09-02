@@ -22,11 +22,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3388e4107075c2e4a97c126d23221813, type: 2}
   - {fileID: 11400000, guid: 27f47e3e2498d3c4c892504dd0b3bef9, type: 2}
   - {fileID: 11400000, guid: bbfc91f969a7cca4dbb3dd19fb64acfa, type: 2}
-  - {fileID: 11400000, guid: 4597611f0e5ebc34d92102f5a978964e, type: 2}
+  - {fileID: 11400000, guid: 2ba5a9e228653314c88e4c63b92f85e6, type: 2}
   - {fileID: 11400000, guid: b14461372711e2c418c3e14ebde8ab3f, type: 2}
   - {fileID: 11400000, guid: d2d7dad95eca8564fa9c49aa2b49fe53, type: 2}
   - {fileID: 11400000, guid: d17894dbec18d4e4c8d452aacf6b71a2, type: 2}
   - {fileID: 11400000, guid: fa75c48de2ea44a4a9f3423c4788edbf, type: 2}
   - {fileID: 11400000, guid: 495269efb8039ee47ae8ca659c9ecfa7, type: 2}
-  - {fileID: 11400000, guid: cabf306dc8490f54ca60d1844c3425eb, type: 2}
   curSubAbilityIndx: 3

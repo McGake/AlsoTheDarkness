@@ -6,6 +6,11 @@ using UnityEngine;
 public class Barrier : MonoBehaviour
 {
 
+    private float xClampVal;
+
+    private float yClampVal;
+
+
     public BoxCollider2D bC2D;
 
     private Vector3 curSettingPosition;

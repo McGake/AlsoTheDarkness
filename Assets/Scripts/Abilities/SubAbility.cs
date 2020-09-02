@@ -43,10 +43,10 @@ public abstract class SubAbility : ScriptableObject
     {
         AnimatorOverrideController aOC;
         aOC = ab.pcAnimator.runtimeAnimatorController as AnimatorOverrideController;
-        Debug.Log("aoc is " + aOC.name);
+        //Debug.Log("aoc is " + aOC.name);
         ab.pcAnimator.runtimeAnimatorController = aOC;
-        Debug.Log(aOC["special"].name);
-        Debug.Log(anim.name);
+        //Debug.Log(aOC["special"].name);
+        //Debug.Log(anim.name);
         aOC["special"] = anim;
         SetNewAnimation("special", ab);
     }   

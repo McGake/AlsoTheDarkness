@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 5270359477181549525}
   - component: {fileID: 5270359477181549524}
   - component: {fileID: 5270359477181549527}
-  - component: {fileID: 1202200738770557244}
   - component: {fileID: 2038851629}
   - component: {fileID: 9016763078396216097}
   - component: {fileID: 4551797001391026243}
   - component: {fileID: 6757303951520988050}
+  - component: {fileID: 879630989413812019}
   m_Layer: 8
   m_Name: TempShield
   m_TagString: Barrier
@@ -122,56 +122,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sourceAbility: {fileID: 0}
-  targetTypes:
-  - EnemyProjectile
-  otherCollideableTypes: []
   inspectorStatusesToAdd: []
   mask:
     serializedVersion: 2
     m_Bits: 0
   continuous: 0
   repeatInterval: 0
---- !u!114 &1202200738770557244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5270359477181549522}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad390455aa5e48444a5813f224ccff2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  displayName: Barrier Shield
-  battleActorView: {fileID: 6757303951520988050}
-  stats:
-    maxHP: 0
-    hP: 0
-    maxMana: 0
-    mana: 0
-    speed: 0
-    quckness: 0
-    magicalPower: 0
-    magicalSkill: 0
-    physicalSkill: 0
-    physicalPower: 0
-    armor: 0
-  modifiedStats:
-    maxHP: 0
-    hP: 0
-    maxMana: 0
-    mana: 0
-    speed: 0
-    quckness: 0
-    magicalPower: 0
-    magicalSkill: 0
-    physicalSkill: 0
-    physicalPower: 0
-    armor: 0
-  curStatuses: []
-  inspectorAbilities: []
-  deathStatus: {fileID: 0}
 --- !u!60 &2038851629
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -182,7 +138,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -259,10 +215,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75fa0ae5a1155ac40b8c218edf30cfc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popoutTextBoxPrefab: {fileID: 0}
+  popoutTextBoxPrefab: {fileID: 6423017878613679728, guid: 30e4bbdb33221ac4db91eab7fcd690ba,
+    type: 3}
   worldSpaceCanvas: {fileID: 0}
   animator: {fileID: 0}
   pcAnimator: {fileID: 0}
   oneTimeEffectAnimators: []
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 5270359477181549525}
   healthBar: {fileID: 0}
+--- !u!114 &879630989413812019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5270359477181549522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90b64bf907e97eb4e9818a5f073ab468, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayName: 
+  battleActorView: {fileID: 6757303951520988050}
+  stats:
+    maxHP: 22
+    hP: 22
+    maxMana: 0
+    mana: 0
+    speed: 0
+    quckness: 0
+    magicalPower: 0
+    magicalSkill: 0
+    physicalSkill: 0
+    physicalPower: 0
+    armor: 0
+  modifiedStats:
+    maxHP: 0
+    hP: 0
+    maxMana: 0
+    mana: 0
+    speed: 0
+    quckness: 0
+    magicalPower: 0
+    magicalSkill: 0
+    physicalSkill: 0
+    physicalPower: 0
+    armor: 0
+  curStatuses: []
+  inspectorAbilities: []
+  deathStatus: {fileID: 0}

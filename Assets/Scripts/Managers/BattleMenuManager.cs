@@ -37,6 +37,28 @@ public class BattleMenuManager : GameSegment
 
     private Vector3 cursorOffset = new Vector3(-.66f, .22f, 0f);
 
+
+    public delegate void DelCurSelectionBehavior(SelectionTask selectionTask);
+    public delegate void DelSelectionFinishedCallback(List<GameObject> selectedObjects);
+    
+    public class SelectionTask
+    {
+
+        public DelCurSelectionBehavior CurSelectionBehavior;
+        public DelSelectionFinishedCallback SelectionFinishedCallback;
+        public List<GameObject> objectsForSelection;
+
+        public SelectionTask(DelCurSelectionBehavior CurSelectionBehavior, List<GameObject> objectsForSelection, DelSelectionFinishedCallback SelectionFinishedCallback)
+        {
+            this.CurSelectionBehavior = CurSelectionBehavior;
+            this.objectsForSelection = objectsForSelection;
+            this.SelectionFinishedCallback = SelectionFinishedCallback;
+        }
+    }
+
+    private List<SelectionTask> AutoSelectionTasks = new List<SelectionTask>();
+    private List<SelectionTask> ManualSelectionTasks = new List<SelectionTask>();
+
     public void SetUpBattleMenuManager()
     {
         battleMenuManager = this;
@@ -105,25 +127,30 @@ public class BattleMenuManager : GameSegment
 
     public override void UpdateGameSegment()
     {
-        if(CurManualSelectionBehavior == null)
+        if(ManualSelectionTasks.Count == 0)
         {
             SwitchHeroBehavior();
         }
         else
         {
-            CurManualSelectionBehavior?.Invoke(); //The null operator is used to be thread safe. I don't quite understand it. I don't think it will be too big of a problem if Switch hero 
+            for(int i = 0; i < ManualSelectionTasks.Count; i++)
+            {
+                ManualSelectionTasks[i].CurSelectionBehavior(ManualSelectionTasks[i]);
+            }
         }
 
-        CurAutoSelectionBehaviors?.Invoke();
-        //CurSelectionBehavior ? CurSelectionBehavior() : SwitchHeroBehavior();
+
+        for (int j = AutoSelectionTasks.Count -1; j >= 0 ; j--)
+        {
+            AutoSelectionTasks[j].CurSelectionBehavior(AutoSelectionTasks[j]);
+        }
+
         UpdateAbilityMenu();
     }
 
-    private delegate void DelCurManualSelectionBehavior();
-    private DelCurManualSelectionBehavior CurManualSelectionBehavior;
 
-    private delegate void DelCurAutoSelectionBehaviors();
-    private DelCurAutoSelectionBehaviors CurAutoSelectionBehaviors;
+
+
 
     #region SwitchingHero
 
@@ -406,150 +433,163 @@ public class BattleMenuManager : GameSegment
 
     #region SelectionMethods
 
-    List<GameObject> objectsToSwtichBetween = new List<GameObject>();
+    //List<GameObject> objectsToSwtichBetween = new List<GameObject>();
 
-    private GameObject tempTarget;
 
-    private List<GameObject> tempGroupTarget;
-
-    private SubAbility selectingSubAbility;
-
-    private delegate void DelOnSelectionFinished(List<GameObject> selectedObjects);
-    DelOnSelectionFinished OnSelectionFinished;
 
     private delegate List<GameObject> DelGetRelations(Type requesterType);
+
+
+        
 
 
     #region ManualSelectionMethods
     private void ManualSelectFriend(SubAbility subAb, Type requesterType)
     {
-        BaseSelection(subAb, requesterType, SecondarySelection, objectsInBattle.GetFriendsOfType);
+        List<GameObject> objectsForSelection;
+        objectsForSelection = objectsInBattle.GetFriendsOfType(requesterType);
+        StartManualSelection(subAb, SecondarySelection, objectsForSelection);
     }
 
     private void ManualSelectEnemy(SubAbility subAb, Type requesterType)
     {
-        BaseSelection(subAb, requesterType, SecondarySelection, objectsInBattle.GetOpponentsOfType);
+        List<GameObject> objectsForSelection;
+        objectsForSelection = objectsInBattle.GetOpponentsOfType(requesterType);
+        StartManualSelection(subAb, SecondarySelection, objectsForSelection);
     }
     private void ManualSelectAllFriends(SubAbility subAb, Type requesterType)
     {
-        BaseSelection(subAb, requesterType, OneGroupSelection, objectsInBattle.GetFriendsOfType);
+        List<GameObject> objectsForSelection;
+        objectsForSelection = objectsInBattle.GetFriendsOfType(requesterType);
+        StartManualSelection(subAb, OneGroupSelection, objectsForSelection);
     }
     private void ManualSelectAllEnemies(SubAbility subAb, Type requesterType)
     {
-        BaseSelection(subAb, requesterType, OneGroupSelection, objectsInBattle.GetOpponentsOfType);
+        List<GameObject> objectsForSelection;
+        objectsForSelection = objectsInBattle.GetOpponentsOfType(requesterType);
+        StartManualSelection(subAb, OneGroupSelection, objectsForSelection);
     }
     private void ManualSelectAllFriendsButCurrent(SubAbility subAb, Type requesterType)//TODO: maybe Just make this a call back rather than passing the whole sub ability
     {
-        InitializeSelection(subAb);
-        objectsToSwtichBetween = new List<GameObject>(objectsInBattle.GetFriendsOfType(requesterType));
-        for (int i = 0; i < objectsToSwtichBetween.Count; i++)
-        {
+        List<GameObject> objectsForSelection;
 
-            if (objectsToSwtichBetween[i] == curHero)
+        objectsForSelection = new List<GameObject>(objectsInBattle.GetFriendsOfType(requesterType));
+
+        for (int i = 0; i < objectsForSelection.Count; i++)
+        {
+            if (objectsForSelection[i] == curHero)
             {
-                objectsToSwtichBetween.RemoveAt(i);
+                objectsForSelection.RemoveAt(i);
                 break;
             }
         }
+
+        StartManualSelection(subAb, OneGroupSelection, objectsForSelection);
     }
     #endregion ManualSelectionMethods
 
     #region AutoSelectionMethods
-    private void AutoSelectEnemy(SubAbility subAb, Type requesterType)
-    {
-        BaseSelection(subAb, requesterType, AISingleRandomSelection, objectsInBattle.GetOpponentsOfType);
-    }
     private void AutoSelectFriend(SubAbility subAb, Type requesterType)
     {
-        BaseSelection(subAb, requesterType, AISingleRandomSelection, objectsInBattle.GetFriendsOfType);
+        List<GameObject> objectsForSelection;
+        objectsForSelection = objectsInBattle.GetFriendsOfType(requesterType);
+        StartAutoSelection(subAb, AISingleRandomSelection, objectsForSelection);
     }
+    private void AutoSelectEnemy(SubAbility subAb, Type requesterType)
+    {
+        List<GameObject> objectsForSelection;
+        objectsForSelection = objectsInBattle.GetOpponentsOfType(requesterType);
+        StartAutoSelection(subAb, AISingleRandomSelection, objectsForSelection);
+    }
+
+
+
     private void AutoSelectAllFriends(SubAbility subAb, Type requesterType)
     {
-        BaseSelection(subAb, requesterType, AIOneGroupSelection, objectsInBattle.GetFriendsOfType);
+        List<GameObject> objectsForSelection;
+        objectsForSelection = objectsInBattle.GetFriendsOfType(requesterType);
+        StartAutoSelection(subAb, AIOneGroupSelection, objectsForSelection);
     }
     private void AutoSelectAllEnemies(SubAbility subAb, Type requesterType)
     {
-        BaseSelection(subAb, requesterType, AIOneGroupSelection, objectsInBattle.GetOpponentsOfType);
+        List<GameObject> objectsForSelection;
+        objectsForSelection = objectsInBattle.GetOpponentsOfType(requesterType);
+        StartAutoSelection(subAb, AIOneGroupSelection, objectsForSelection);
     }
 
 
 
     #endregion AutoSelectionMethods
 
-    private void BaseSelection(SubAbility subAb, Type requesterType, DelCurManualSelectionBehavior SelectionBehavior, DelGetRelations GetRelations)
-    {
-        objectsToSwtichBetween = GetRelations(requesterType);
-        if(requesterType == typeof(BattlePC))
-        {
-            InitializeSelection(subAb);
-            
 
-        }
-        else if(requesterType == typeof(BaseEnemy))
-        {
-            OnSelectionFinished = subAb.OnSelectionFinished;
-        }
-    }
 
-    private void InitializeSelection(SubAbility subAb)
+    private void StartManualSelection(SubAbility subAb, DelCurSelectionBehavior SelectionBehavior, List<GameObject> objectsForSelection)
     {
-        OnSelectionFinished = subAb.OnSelectionFinished;
-        curSecondarySelection = curHero;
+        curSecondarySelection = curHero; //This seems like a bad side effect. Any way to integrate this with the rest of what is going on
         secondaryCursor.transform.position = curSecondarySelection.transform.position + cursorOffset;
-        
         secondaryCursor.SetActive(true);
+        SelectionTask selection = new SelectionTask(SelectionBehavior, objectsForSelection, subAb.OnSelectionFinished);
+        ManualSelectionTasks.Add(selection);
+
     }
 
-    private void EndSelection(List<GameObject> selectedObjects, DelCurManualSelectionBehavior selectionBehavior)
+    private void StartAutoSelection(SubAbility subAb, DelCurSelectionBehavior SelectionBehavior, List<GameObject> objectsForSelection)
     {
-        Debug.Log("end selection was run");
-        OnSelectionFinished(selectedObjects);
-        //secondaryCursor.SetActive(false);
+        SelectionTask selection = new SelectionTask(SelectionBehavior, objectsForSelection, subAb.OnSelectionFinished);
+        AutoSelectionTasks.Add(selection);
+
     }
-    public void SecondarySelection()
+
+    private void EndAutoSelection(SelectionTask selectionTask, List<GameObject> tempSelectedObjects)
     {
-        curSecondarySelection = SwitchObjectOnInput(objectsToSwtichBetween, secondaryCursor, curSecondarySelection);
+        selectionTask.SelectionFinishedCallback(tempSelectedObjects);
+        AutoSelectionTasks.Remove(selectionTask);
+    }
+
+    private void EndManualSelection(SelectionTask selectionTask, List<GameObject> tempSelectedObjects)
+    {
+        selectionTask.SelectionFinishedCallback(tempSelectedObjects);
+        ManualSelectionTasks.Remove(selectionTask);
+    }
+    public void SecondarySelection(SelectionTask selectionTask)
+    {
+        curSecondarySelection = SwitchObjectOnInput(selectionTask.objectsForSelection, secondaryCursor, curSecondarySelection);
         if (Input.GetButtonDown("A"))
         {
-            Debug.Log("a secondary selection was made");
             List<GameObject> tempSelectedObjects = new List<GameObject>();
             tempSelectedObjects.Add(curSecondarySelection);
-            EndSelection(tempSelectedObjects, SecondarySelection);
+            EndManualSelection(selectionTask, tempSelectedObjects);
             secondaryCursor.SetActive(false);
         }
     }
 
-    public void AISingleRandomSelection()
+    public void AISingleRandomSelection(SelectionTask selectionTask)
     {
-        int randomOpponentIndx = UnityEngine.Random.Range(0, objectsToSwtichBetween.Count);
+        int randomOpponentIndx = UnityEngine.Random.Range(0, selectionTask.objectsForSelection.Count);
         List<GameObject> tempSelectedObjects = new List<GameObject>();
-        tempSelectedObjects.Add(objectsToSwtichBetween[randomOpponentIndx]);
-        Debug.Log("single random");
-        EndSelection(tempSelectedObjects, AISingleRandomSelection);
+        tempSelectedObjects.Add(selectionTask.objectsForSelection[randomOpponentIndx]);
+        EndAutoSelection(selectionTask,tempSelectedObjects);
     }
 
-    private void OneGroupSelection() //this is the old school way of doing this. need to make partially see through selection indicators and turn them on and off or move all of them. This does nothing except visually show the selection and wait for confirmation
+    private void OneGroupSelection(SelectionTask selectionTask) //this is the old school way of doing this. need to make partially see through selection indicators and turn them on and off or move all of them. This does nothing except visually show the selection and wait for confirmation
     {
         
-        secondaryCursor.transform.position = objectsToSwtichBetween[genericSwitchIndx].transform.position +cursorOffset;
+        secondaryCursor.transform.position = selectionTask.objectsForSelection[genericSwitchIndx].transform.position +cursorOffset;
         genericSwitchIndx++;
-        if (genericSwitchIndx >= objectsToSwtichBetween.Count)
+        if (genericSwitchIndx >= selectionTask.objectsForSelection.Count)
         {
             genericSwitchIndx = 0;
         }
         if (Input.GetButtonDown("A"))
         {
-            Debug.Log("end on group");
-            EndSelection(objectsToSwtichBetween, OneGroupSelection);
+            EndManualSelection(selectionTask, selectionTask.objectsForSelection);
             secondaryCursor.SetActive(false);
         }
     }
 
-    private void AIOneGroupSelection()
+    private void AIOneGroupSelection(SelectionTask selectionTask)
     {
-        Debug.Log("end on AI One Group");
-        EndSelection(objectsToSwtichBetween, AIOneGroupSelection);
-
+        EndAutoSelection(selectionTask,selectionTask.objectsForSelection);
     }
 
     #endregion SelectionMethods
@@ -560,73 +600,6 @@ public class BattleMenuManager : GameSegment
         mG.StartMiniGame(this);
     }
 
-
-    #region SubAbilityMethods
-
-
-
-    //public GameObject UserSelectPC()//This might now work. use UserSelectFromCategory as your model
-    //{
-    //    secondaryPointer.transform.position = objectsToSwtichBetween[genericSwitchIndx].transform.position;
-    //    return UserSelectFromCategory(SelectionCategories.PCs);
-    //}
-
-    //public GameObject UserSelectFromCategory(SelectionCategories sC)
-    //{
-    //    objectsToSwtichBetween = SwitchObdjectsToSwitchBetweenByEnum(sC);
-    //    tempTarget = LinearSelection(objectsToSwtichBetween);
-
-    //    if (Input.GetButtonDown("A"))
-    //    {
-    //        EndLinearSwitchSelection();
-    //        return tempTarget;
-    //    }
-    //    else
-    //    {
-    //        return null;
-    //    }   
-    //}
-
-    //public List<GameObject> UserSelectEntireCategory(SelectionCategories sC)
-    //{
-        
-    //    objectsToSwtichBetween = SwitchObdjectsToSwitchBetweenByEnum(sC);
-    //    tempGroupTarget = OneGroupSelection(objectsToSwtichBetween);
-
-    //    if(Input.GetButtonDown("A"))
-    //    {
-    //        EndLinearSwitchSelection();
-    //        return tempGroupTarget;
-    //    }
-    //    else
-    //    {
-    //        return null;
-    //    }
-    //}
-
-    //public List<GameObject> UserSelectEntireCategoryButOne(SelectionCategories sC, GameObject objectToOmit)
-    //{
-    //    Debug.Log("select entire category but one");
-    //    objectsToSwtichBetween = SwitchObdjectsToSwitchBetweenByEnum(sC);
-    //    tempGroupTarget = OneGroupSelection(objectsToSwtichBetween);
-
-    //    if (Input.GetButtonDown("A"))
-    //    {
-    //        //tempGroupTarget.Remove(objectToOmit);
-    //        EndLinearSwitchSelection();
-    //        return tempGroupTarget;
-    //    }
-    //    else
-    //    {
-    //        return null;
-    //    }
-    //}
-
-
-    #endregion SubAbilityMethods
-
-    /* external methods that battle ui should have
-    */
     #region ExternalUIMethods
     public GameObject InstantiateInWorldSpaceCanvas(GameObject toInstantiate, Vector3 position)
     {
@@ -637,13 +610,6 @@ public class BattleMenuManager : GameSegment
     #endregion ExternalUIMethods
     #endregion ExternalMethods
 
-}
-
-public enum SelectionCategories
-{
-    Enemies = 1,
-    PCs = 2,
-    Everyone = 3,
 }
 
 public abstract class MiniGame:ScriptableObject

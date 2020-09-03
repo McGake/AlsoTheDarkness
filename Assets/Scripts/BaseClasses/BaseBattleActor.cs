@@ -111,7 +111,7 @@ public class BaseBattleActor :MonoBehaviour
     {
         for(int i = 0; i<curStatuses.Count; i++)
         {
-            if(IsStatusFinished(curStatuses[i]))
+            if(IsStatusFinished(curStatuses[i])) //TODO: Statuses should probably finish themselves. Not all statuses will finish due to time
             {
                 EndStatus(curStatuses[i]);
                 RemoveStatus(curStatuses[i]);

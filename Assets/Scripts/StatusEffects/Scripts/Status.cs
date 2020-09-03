@@ -50,22 +50,27 @@ public abstract class Status : ScriptableObject
 
     }
 
-    public void CleanUpStatusIfLastOne(BaseBattleActor bbA)
+    public void CleanUpStatus(BaseBattleActor bbA)
     {
-        foreach(Status status in bbA.curStatuses) //if there is another status of this type and if it is not actually this status and if the status is not going to end on the same frame as this then don't do anything because one of the statuses is still ongoing
+        bbA.battleActorView.StopShowStatus(this);//otherwise stop showing the status. Consider doing all this just after status removeal?
+    }
+
+    public bool IsOnlyStatusOfType(BaseBattleActor bbA)
+    {
+        foreach (Status status in bbA.curStatuses) //if there is another status of this type and if it is not actually this status and if the status is not going to end on the same frame as this then don't do anything because one of the statuses is still ongoing
         {
-            if(status.GetType() == this.GetType())
+            if (status.GetType() == this.GetType())
             {
                 if (status != this)
                 {
-                    if(status.endTime < Time.time)
+                    if (status.endTime > Time.time)
                     {
-                        return;
-                    }                    
+                        return false;
+                    }
                 }
             }
         }
-        bbA.battleActorView.StopShowStatus(this);//otherwise stop showing the status. Consider doing all this just after status removeal?
 
+        return true;
     }
 }

@@ -101,13 +101,13 @@ public class BattleActorView : MonoBehaviour
         {
             case BuffStyle.Positive:
                 return Color.green;
-                break;
+              //  break;
             case BuffStyle.Negative:
                 return Color.yellow;
-                break;
+             //   break;
             case BuffStyle.Warning:
                 return Color.white;
-                break;
+             //   break;
         }
         return Color.gray;
     }

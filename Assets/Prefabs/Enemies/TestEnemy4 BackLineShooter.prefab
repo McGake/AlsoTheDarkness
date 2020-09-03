@@ -16,7 +16,7 @@ PrefabInstance:
         type: 3}
       propertyPath: inspectorAbilities.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 3ad345e7faca6d441a9a2a61088cfe89,
+      objectReference: {fileID: 11400000, guid: aa3373b0ea86b5b478a0ecabffcce0ec,
         type: 2}
     - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
         type: 3}
@@ -43,7 +43,7 @@ PrefabInstance:
         type: 3}
       propertyPath: inspectorAbilities.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: aa3373b0ea86b5b478a0ecabffcce0ec,
+      objectReference: {fileID: 11400000, guid: 3ad345e7faca6d441a9a2a61088cfe89,
         type: 2}
     - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
         type: 3}

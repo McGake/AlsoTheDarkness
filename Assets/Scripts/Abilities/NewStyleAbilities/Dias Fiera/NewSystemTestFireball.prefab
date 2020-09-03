@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a738b18d12f65744886b492d7db38f6f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ba222fdab73180a47a2afc8ea6fb0945, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -129,9 +129,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sourceAbility: {fileID: 0}
-  targetTypes:
-  - Monster
-  otherCollideableTypes: []
   inspectorStatusesToAdd:
   - {fileID: 11400000, guid: 1de6d6285809560419ed390fb67a00e8, type: 2}
   mask:

@@ -22,12 +22,24 @@ public class Stun : Status //TODO: perhaps to turn this and things like this to 
     //Right now the actuall prevention of action is handled by checking if a stun is in the characters statuses on BaseBattleActor. 
     public override void DoStatus(BaseBattleActor bbA)
     {
-        
+        SetAbilityUseablility(false, bbA);
     }
 
     public override void DoStatusEnd(BaseBattleActor bbA)
     {
         Debug.Log("stun status end");
-        CleanUpStatusIfLastOne(bbA);
+        if (IsOnlyStatusOfType(bbA))
+        {
+            SetAbilityUseablility(true, bbA);
+            CleanUpStatus(bbA);
+        }
+    }
+
+    private void SetAbilityUseablility(bool useableValue, BaseBattleActor bbA)
+    {
+        for (int i = 0; i < bbA.abilities.Count; i++)
+        {
+            bbA.abilities[i].useable = useableValue;
+        }
     }
 }

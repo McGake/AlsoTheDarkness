@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PaceUpAndDown
   m_EditorClassIdentifier: 
   _displayName: 
-  maxUses: 0
+  maxUses: 1000
   uses: 0
   cooldownTime: 0.2
   objectTargets: []

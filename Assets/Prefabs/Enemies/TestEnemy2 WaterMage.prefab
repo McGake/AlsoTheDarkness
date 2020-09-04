@@ -9,6 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
         type: 3}
+      propertyPath: inspectorAbilities.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
+        type: 3}
       propertyPath: inspectorAbilities.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 4d5b8e8bc91a9d9429d2fa30d81088b4,
@@ -38,6 +43,12 @@ PrefabInstance:
       propertyPath: inspectorAbilities.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: fef5c55e2826bcc42a8e7672acf2cbb4,
+        type: 2}
+    - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
+        type: 3}
+      propertyPath: inspectorAbilities.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 966eac77120ec8b44b42b34c406e3fbd,
         type: 2}
     - target: {fileID: 8844169639533487329, guid: bd4b75f9dc605f447bcd0309e9922de2,
         type: 3}

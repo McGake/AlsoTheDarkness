@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8768842215406324125}
   - component: {fileID: -8051463342737056930}
   - component: {fileID: 3956833911011369666}
-  - component: {fileID: 5876856626060728603}
+  - component: {fileID: 6317437744135764285}
   m_Layer: 13
   m_Name: DamageTextExpoldingBoxNoPhysics 1
   m_TagString: Untagged
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70746a108b554274a82099b6fd74ea12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5876856626060728603
+--- !u!114 &6317437744135764285
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -231,8 +231,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6423017878613679728}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11012becc91e37a4ab69acb12466d392, type: 3}
+  m_Script: {fileID: 11500000, guid: 677a383675dbd4b4a902143b8fece2a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyAfterSeconds: 3.2
-  turnOnOnDestroy: {fileID: 0}
+  lifeTime: 1.75

@@ -125,9 +125,6 @@ public class BattleStarter : MonoBehaviour
 
             pc.battler.transform.position = startPosition.position;
             pc.battler.transform.rotation = startPosition.rotation;
-            //pcBlanks[curPCBlankIndex].transform.position = TakeRandomPosition(possiblePCStartPositions);
-
-            //pcBlanks[curPCBlankIndex].GetComponent<Animator>().runtimeAnimatorController = pc.battleAnimOverride;
 
             pcBlanks[curPCBlankIndex] = pc.battler;
             objectsInBattle.AddPCToList(pcBlanks[curPCBlankIndex]);

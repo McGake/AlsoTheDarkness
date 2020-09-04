@@ -23,7 +23,7 @@ public class FireCallbackOnDisable : SubProjectileAbility
             GameObject tempProjectile;
             for (int i = 0; i < pa.numberOfProjectiles; i++)
             {
-                tempProjectile = Instantiate(effectOnContact.gameObject);
+                tempProjectile = pa.ability.battlePooler.ProduceObject(effectOnContact.gameObject);
                 Debug.Log(tempProjectile.name + " created");
                 effectOnContact = tempProjectile.GetComponent<EffectOnContact>();
                 effectOnContact.SendObjectsHit = ReceiveObjectsHit;

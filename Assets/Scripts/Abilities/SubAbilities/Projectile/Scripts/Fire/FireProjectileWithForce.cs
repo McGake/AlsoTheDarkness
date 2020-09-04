@@ -11,7 +11,7 @@ public class FireProjectileWithForce : SubProjectileAbility
 
     public override void DoProjectileSubAbility(ProjectileAbility pa)
     {
-        projectileInst = GameObject.Instantiate(projectilePrefab, pa.sources[0].position, pa.quatProjectileFireAngle);
+        projectileInst = pa.ability.battlePooler.ProduceObject(projectilePrefab, pa.sources[0].position, pa.quatProjectileFireAngle);
   
         projectileInst.GetComponent<Rigidbody2D>().AddForce(projectileInst.transform.right*pa.power, ForceMode2D.Impulse);
         pa.projectilesFired++;

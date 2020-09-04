@@ -24,7 +24,6 @@ public class MoveToPositionTargetY : SubAbility
         direction = new Vector3(0, ab.positionTargets[0].y - ab.owner.transform.position.y, 0);
        // direction.z = ab.owner.transform.position.z;
         totalMovement = Vector3.zero;
-        Debug.Log("number of position targets from Pace ability " + ab.positionTargets.Count);
         distance = ab.owner.transform.position.y - ab.positionTargets[0].y;
         sqrDistance = Mathf.Pow(distance, 2);
         previousRotation = ab.owner.transform.rotation;

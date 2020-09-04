@@ -44,6 +44,8 @@ public class Ability:ScriptableObject
 
     public string lastAnimSet { get; set; } = "stand";
 
+    public BattlePooler battlePooler;
+
     public GameObject singleObjectTarget //this avoids using a majic number in every subability that only has one target while also avoiding having a seperate variable for single and multiple targets. In other words, single targeting abilities always use the first object slot in objectTargets
     {
         get
@@ -61,7 +63,7 @@ public class Ability:ScriptableObject
     [HideInInspector]
     public List<Vector3> positionTargets = new List<Vector3>();
 
-    public Action projectileCallbacks { get; private set; }
+    public List<Action> projectileCallbacks { get; private set; } = new List<Action>();
 
     [SerializeField]
     public List<SubAbility> inspectorSubAbilities;
@@ -98,12 +100,20 @@ public class Ability:ScriptableObject
     
     public void SubscribeToProjectileCallback(Action callbackToSubscribe)
     {
-        projectileCallbacks += callbackToSubscribe;
+        projectileCallbacks.Add(callbackToSubscribe);
     }
 
     public void UnsubscribeToProjectileCallback(Action callbackToUnsubscribe)
     {
-        projectileCallbacks -= callbackToUnsubscribe;
+        projectileCallbacks.Remove(callbackToUnsubscribe);
+    }
+
+    public void RunProjectileCallbacks()
+    {
+        for(int i = 0; i < projectileCallbacks.Count; i++)
+        {
+            projectileCallbacks[i]();
+        }
     }
 
     public void SetupAbility(GameObject inOwner)

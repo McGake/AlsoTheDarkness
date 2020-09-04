@@ -74,8 +74,7 @@
     <Compile Include="Assets\ChangeLevelOnTouch.cs" />
     <Compile Include="Assets\Characters\PCs\PCDef.cs" />
     <Compile Include="Assets\ControllerCheck.cs" />
-    <Compile Include="Assets\DestroyAfterSeconds.cs" />
-    <Compile Include="Assets\DestroyOnCallback.cs" />
+    <Compile Include="Assets\DeactivateOnCallback.cs" />
     <Compile Include="Assets\HeatMapTileInfo.cs" />
     <Compile Include="Assets\MagicSetup.cs" />
     <Compile Include="Assets\MaintainWorldRotation.cs" />
@@ -241,6 +240,7 @@
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\ShowingDamage.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\Status.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\Stun.cs" />
+    <Compile Include="Assets\Scripts\Utilities\BattlePooler.cs" />
     <Compile Include="Assets\Scripts\Utilities\Timer.cs" />
     <Compile Include="Assets\Scripts\Utilities\TimerManager.cs" />
     <Compile Include="Assets\SpawnManagerScriptableObject.cs" />
@@ -254,6 +254,7 @@
     <Compile Include="Assets\TestScript.cs" />
     <Compile Include="Assets\TestTriggerEnter.cs" />
     <Compile Include="Assets\TownStateMachine.cs" />
+    <Compile Include="Assets\TurnOnSecondaryOnTime.cs" />
     <Compile Include="Assets\UseItemFromMenu.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />

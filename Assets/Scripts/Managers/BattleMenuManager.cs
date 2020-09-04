@@ -62,7 +62,7 @@ public class BattleMenuManager : GameSegment
     public void SetUpBattleMenuManager()
     {
         battleMenuManager = this;
-        objectsInBattle = FindObjectOfType<ObjectsInBattle>();//cant I just set this in the inspcetor? 
+        objectsInBattle = FindObjectOfType<ObjectsInBattle>();//cant I just set this in the inspcetor? Not if I want multiple battles ongoing at one time i cant... Unless I make the entire battle structure a prefab which might just be crazy enough to work.
 
         AddAbilityClustersToDictionary();
         AddAllAbilitybuttonsToListInProperOrder();

@@ -32,6 +32,9 @@ public class PCDown : Status //TODO: perhaps to turn this and things like this t
         bbA.gameObject.GetComponent<Collider2D>().enabled = true;
 
         bbA.battleActorView.StopShowStatus(this);
-        CleanUpStatusIfLastOne(bbA);
+        if (IsOnlyStatusOfType(bbA))
+        {
+            CleanUpStatus(bbA);
+        }
     }
 }

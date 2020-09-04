@@ -8,7 +8,7 @@ public class FireProjectileCallbacks : SubAbility
 {
     public override void DoInitialSubAbility(Ability ab)
     {
-        ab.projectileCallbacks();
+        ab.RunProjectileCallbacks();
         EndSubAbility();
     }
     public override void DoSubAbility(Ability ab)

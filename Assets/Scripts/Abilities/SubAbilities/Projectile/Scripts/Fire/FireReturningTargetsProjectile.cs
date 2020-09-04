@@ -23,7 +23,7 @@ public class FireReturningTargetsProjectile : SubProjectileAbility
             GameObject tempProjectile;
             for (int i = 0; i < pa.numberOfProjectiles; i++)
             {
-                tempProjectile = Instantiate(eOC.gameObject);
+                tempProjectile = pa.ability.battlePooler.ProduceObject(eOC.gameObject);
                 Debug.Log(tempProjectile.name + " created");
                 eOC = tempProjectile.GetComponent<EffectOnContact>();
                 eOC.SendObjectsHit = ReceiveObjectsHit;

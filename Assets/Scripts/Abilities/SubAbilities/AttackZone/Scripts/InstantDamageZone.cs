@@ -16,14 +16,14 @@ public class InstantDamageZone : SubAbility
 
     public void Awake()
     {
-        damageZone = GameObject.Instantiate(damageZonePrfb);
-        damageZone.SetActive(false);
+
     }
 
     public override void DoInitialSubAbility(Ability ab)
     {
+        damageZone = ab.battlePooler.ProduceObject(damageZonePrfb);
         damageZone.transform.position = ab.owner.transform.position;
-        damageZone.SetActive(true);
+        //damageZone.SetActive(true);
         WaitForMinimumExposure();
 
     }

@@ -31,7 +31,7 @@ public class ChooseDirectionMiniGame : SubAbility
     {
         for(int i = 0; i < mgSelections.Count; i ++)
         {
-            mgSelections[i].display = Instantiate(mgSelections[i].display);
+            mgSelections[i].display = ab.battlePooler.ProduceObject(mgSelections[i].display);
             mgSelections[i].sR = mgSelections[i].display.GetComponent<SpriteRenderer>();
             mgSelections[i].sR.color = greyedOutColor;
         }

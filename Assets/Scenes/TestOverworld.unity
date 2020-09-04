@@ -10164,6 +10164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 344167790}
   - component: {fileID: 344167789}
+  - component: {fileID: 344167791}
   m_Layer: 0
   m_Name: SecondaryCursor
   m_TagString: Untagged
@@ -10235,6 +10236,18 @@ Transform:
   m_Father: {fileID: 898838322}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &344167791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344167788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c38f5dbd0d84b9549bd35c0b98b9a976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &349671288
 GameObject:
   m_ObjectHideFlags: 0
@@ -19962,6 +19975,7 @@ GameObject:
   m_Component:
   - component: {fileID: 923279056}
   - component: {fileID: 923279055}
+  - component: {fileID: 923279057}
   m_Layer: 0
   m_Name: PrimaryCursor
   m_TagString: Untagged
@@ -20033,6 +20047,18 @@ Transform:
   m_Father: {fileID: 898838322}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &923279057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923279054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c38f5dbd0d84b9549bd35c0b98b9a976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &928547058
 GameObject:
   m_ObjectHideFlags: 0
@@ -39218,6 +39244,7 @@ GameObject:
   - component: {fileID: 1343185344}
   - component: {fileID: 1343185343}
   - component: {fileID: 1343185350}
+  - component: {fileID: 1343185346}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -39240,15 +39267,11 @@ MonoBehaviour:
   primaryCursor: {fileID: 923279054}
   secondaryCursor: {fileID: 344167788}
   curHero: {fileID: 0}
+  curSecondarySelection: {fileID: 0}
   abilityButtonDisplay: {fileID: 648871271}
   abilityClusters: []
   allAbilityButtons: []
-  curHeroIndx: 0
   curCluster: {fileID: 0}
-  selectorPool: []
-  preventCharacterSwitch: 0
-  popoutTextBoxPrefab: {fileID: 6423017878613679728, guid: 30e4bbdb33221ac4db91eab7fcd690ba,
-    type: 3}
   worldSpaceCanvas: {fileID: 1736787083}
   selectionSensitivityThreshhold: 0.1
   selectionRepeatDealy: 0.25
@@ -39286,6 +39309,18 @@ Transform:
   m_Father: {fileID: 898838322}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1343185346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343185342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2df8acc46e522cf42bb8c5973cfc35d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1343185350
 MonoBehaviour:
   m_ObjectHideFlags: 0

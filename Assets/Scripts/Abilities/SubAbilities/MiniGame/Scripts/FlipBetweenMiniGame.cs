@@ -40,7 +40,7 @@ public class FlipBetweenMiniGame : SubAbility
 
             for (int i = 0; i < mgSelections.Count; i++)
             {
-                mgSelections[i].display = GameObject.Instantiate(mgSelections[i].display, ab.owner.transform);
+                mgSelections[i].display = ab.battlePooler.ProduceObject(mgSelections[i].display, ab.owner.transform);
             mgSelections[i].display.transform.position += new Vector3(0f,1f, 0f); 
                 //mgSelections[i].sR = mgSelections[i].display.GetComponent<SpriteRenderer>();
                 //mgSelections[i].sR.color = greyedOutColor;

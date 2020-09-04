@@ -30,7 +30,10 @@ public class ResistEffects : Status //TODO: perhaps to turn this and things like
     public override void DoStatusEnd(BaseBattleActor bbA)
     {
         Debug.Log("stun status end");
-        CleanUpStatusIfLastOne(bbA);
+        if (IsOnlyStatusOfType(bbA))
+        {
+            CleanUpStatus(bbA);
+        }
     }
 
     public override bool OnStatusAdded(BaseBattleActor bbA, Status statusAdded)

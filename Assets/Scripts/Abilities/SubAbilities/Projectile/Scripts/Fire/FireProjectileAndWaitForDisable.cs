@@ -13,7 +13,7 @@ public class FireProjectileAndWaitForDisable : SubProjectileAbility
     {
         if (curProjectile == null)
         {
-            curProjectile = GameObject.Instantiate(projectilePrefab);
+            curProjectile = pa.ability.battlePooler.ProduceObject(projectilePrefab);
         }
         curProjectile.transform.position = pa.sources[0].position;
         curProjectile.transform.rotation = pa.quatProjectileFireAngle;

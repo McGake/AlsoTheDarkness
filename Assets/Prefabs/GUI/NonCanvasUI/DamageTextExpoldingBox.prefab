@@ -11,14 +11,12 @@ GameObject:
   - component: {fileID: 6423017878613679729}
   - component: {fileID: 6423017878613679735}
   - component: {fileID: 1387243706557072045}
-  - component: {fileID: -4080844826798653064}
   - component: {fileID: -660150615862565840}
   - component: {fileID: 4054558998955773766}
   - component: {fileID: -6002961268324496303}
   - component: {fileID: 4699822423114895369}
   - component: {fileID: -3871599910107855733}
   - component: {fileID: 3984095549015096713}
-  - component: {fileID: 6419742923630557600}
   m_Layer: 13
   m_Name: DamageTextExpoldingBox
   m_TagString: Untagged
@@ -74,20 +72,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-4080844826798653064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6423017878613679728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11012becc91e37a4ab69acb12466d392, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyAfterSeconds: 4
-  turnOnOnDestroy: {fileID: 0}
 --- !u!114 &-660150615862565840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,17 +281,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70746a108b554274a82099b6fd74ea12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6419742923630557600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6423017878613679728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11012becc91e37a4ab69acb12466d392, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyAfterSeconds: 2
-  turnOnOnDestroy: {fileID: 0}

@@ -42,6 +42,11 @@ public class DeterminAngleCenterSpread : SubProjectileAbility
 
         float angleToFireAt = projectileFireAngle + ((angleIndexMultiplyer * sizeOfDivisions) * invertingValue);
 
+        if(float.IsNaN(angleToFireAt))
+        {
+            angleToFireAt = 180f * invertingValue;
+        }
+
         pa.quatProjectileFireAngle = Quaternion.Euler(0f, 0f, angleToFireAt);
 
         EndProjectileSubAbility();

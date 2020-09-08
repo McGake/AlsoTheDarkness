@@ -23,27 +23,27 @@ private Vector3 totalMovement;
 private int flipValue = 1;
 public override void DoInitialSubAbility(Ability ab)
 {
-        if(ab.owner.transform.rotation.eulerAngles.y>178f )//TODO: figure out the correct way to do this and make it an subability utility if neccesary
+        if(ab.Owner.transform.rotation.eulerAngles.y>178f )//TODO: figure out the correct way to do this and make it an subability utility if neccesary
         {
             flipValue = -1;
         }
-        else if(ab.owner.transform.rotation.eulerAngles.y < 2f)
+        else if(ab.Owner.transform.rotation.eulerAngles.y < 2f)
         {
             flipValue = 1;
         }
             SetNewAnimation("walk", ab);
         adjustedDirection = direction.normalized;
-    adjustedDirection.z = ab.owner.transform.position.z;
+    adjustedDirection.z = ab.Owner.transform.position.z;
     totalMovement = Vector3.zero;
     sqrDistance = Mathf.Pow(distance, 2);
-    previousRotation = ab.owner.transform.rotation;
+    previousRotation = ab.Owner.transform.rotation;
 }
 
 public override void DoSubAbility(Ability ab)
 {
     ChangeDirectionOnRotationChange(ab);
     movementThisFrame = new Vector3((adjustedDirection.x * flipValue) * moveSpeed * Time.deltaTime, adjustedDirection.y *moveSpeed * Time.deltaTime, 0);
-    ab.owner.transform.position += movementThisFrame;
+    ab.Owner.transform.position += movementThisFrame;
     totalMovement += new Vector3(Mathf.Abs(movementThisFrame.x), Mathf.Abs(movementThisFrame.y), Mathf.Abs(movementThisFrame.z));
 
     if (totalMovement.sqrMagnitude > sqrDistance)
@@ -55,11 +55,11 @@ public override void DoSubAbility(Ability ab)
 private Quaternion previousRotation;
 private void ChangeDirectionOnRotationChange(Ability ab)
 {
-    if (previousRotation.eulerAngles.y != ab.owner.transform.rotation.eulerAngles.y)
+    if (previousRotation.eulerAngles.y != ab.Owner.transform.rotation.eulerAngles.y)
     {
-        Debug.Log("rotation change " + previousRotation + " " + ab.owner.transform.rotation);
+        Debug.Log("rotation change " + previousRotation + " " + ab.Owner.transform.rotation);
         flipValue = flipValue * -1;
-        previousRotation = ab.owner.transform.rotation;
+        previousRotation = ab.Owner.transform.rotation;
     }
 }
 }

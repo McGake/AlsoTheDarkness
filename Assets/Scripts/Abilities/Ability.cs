@@ -3,77 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-
-
-
-public enum UsableContexts
-{
-    none = 0,
-    battleAbilityMenu = 1,
-    partyMenu = 2,
-    passive = 3,
-    projectile = 4,
-}
-
-
-
 [System.Serializable]
 [CreateAssetMenu(fileName = "NameThisAbility", menuName = "ScriptableObjects/Ability", order = 1)]
 public class Ability:ScriptableObject
 {
     [SerializeField]
     private string _displayName;
-    public string DisplayName { get { return _displayName; } set { _displayName = value; } }
-
-    public Animator pcAnimator { get; private set; }
-
-    public BattleActorView battleActorView { get; private set; }
-
-    public bool abilityOver { get; private set; } = true;
-
-    public bool useable { get; set; } = true; //change name of this variable to better indicate that it is checking wheather anything is preventing this ability from being used including cooldown
-
+    public string DisplayName { get { return _displayName; }}
     public int maxUses;
-
     public int uses = 0;
-    public GameObject owner { get; protected set; }
-
     public float cooldownTime;
+    [SerializeField]
+    public List<SubAbility> inspectorSubAbilities;
 
-    public float curCooldownEndTime { get; private set; } = 0f;
-
-    public string lastAnimSet { get; set; } = "stand";
-
-    public BattlePooler battlePooler;
-
-    public GameObject singleObjectTarget //this avoids using a majic number in every subability that only has one target while also avoiding having a seperate variable for single and multiple targets. In other words, single targeting abilities always use the first object slot in objectTargets
-    {
-        get
-        {
-            return objectTargets[0];
-        }
-        set
-        {
-            objectTargets[0] = value;
-        }
-    }
+    public Type ActorType { get; private set; }
+    public Animator PCAnimator { get; private set; }
+    public BattleActorView BattleActorView { get; private set; }
+    public bool AbilityOver { get; private set; } = true;
+    public bool Useable { get; set; } = true;
+    public GameObject Owner { get; private set; }
+    public float CurCooldownEndTime { get; private set; } = 0f;
+    public string LastAnimSet { get; set; } = "stand";
+    public GameObject singleObjectTarget  {get { return objectTargets[0]; } set{ objectTargets[0] = value; } }
 
     [HideInInspector]
     public List<GameObject> objectTargets = new List<GameObject>();
     [HideInInspector]
     public List<Vector3> positionTargets = new List<Vector3>();
-
+    [HideInInspector]
     public List<Action> projectileCallbacks { get; private set; } = new List<Action>();
-
-    [SerializeField]
-    public List<SubAbility> inspectorSubAbilities;
-
     [System.NonSerialized]
     private List<SubAbility> subAbilities = new List<SubAbility>();
-
     [HideInInspector]
     public int curSubAbilityIndx = 0;
-
+    
+    #region Temp"Interface"
     public delegate void DelStartSelectFromPCs(SubAbility subAb,Type requesterType);
     public DelStartSelectFromPCs StartSelectFromPCs; //TODO: this is temporary untill I can put in a proper event system
 
@@ -92,102 +56,58 @@ public class Ability:ScriptableObject
     public delegate void DelKickOffMinigame(MiniGame mG);
     public DelKickOffMinigame KickOffMiniGame;
 
-    public Type actorType;
-
     public delegate GameObject DelInstantiateInWorldSpaceCanvas(GameObject go, Vector3 position);
     public DelInstantiateInWorldSpaceCanvas InstantiateInWorldSpaceCanvas;
+    #endregion Temp"Interface"
 
-    
-    public void SubscribeToProjectileCallback(Action callbackToSubscribe)
+    public void SetupAbility(GameObject owner)
     {
-        projectileCallbacks.Add(callbackToSubscribe);
-    }
-
-    public void UnsubscribeToProjectileCallback(Action callbackToUnsubscribe)
-    {
-        projectileCallbacks.Remove(callbackToUnsubscribe);
-    }
-
-    public void RunProjectileCallbacks()
-    {
-        for(int i = 0; i < projectileCallbacks.Count; i++)
-        {
-            projectileCallbacks[i]();
-        }
-    }
-
-    public void SetupAbility(GameObject inOwner)
-    {
-        owner = inOwner;
-        pcAnimator = owner.GetComponent<Animator>();
-        battleActorView = owner.GetComponent<BattleActorView>();
-        if(owner.GetComponent<BaseEnemy>() != null)
-        {
-            actorType = typeof(BaseEnemy);
-        }
-        else if(owner.GetComponent<BattlePC>() != null)
-        {
-            actorType = typeof(BattlePC);
-        }
-        subAbilities.Clear();
-        abilityOver = true;
-        useable = true;
-        curCooldownEndTime = 0f;
-        lastAnimSet = "stand";
+        this.Owner = owner;
+        PCAnimator = Owner.GetComponent<Animator>();
+        BattleActorView = Owner.GetComponent<BattleActorView>();
+        AbilityOver = true;
+        Useable = true;
+        CurCooldownEndTime = 0f;
+        LastAnimSet = "stand";
         curSubAbilityIndx = 0;
-       // Debug.Log("ability: " + DisplayName);
-        for(int i = 0; i < inspectorSubAbilities.Count; i++)
+        SetupActorType();
+        InstantiateScriptableObjects();
+    }
+
+    private void SetupActorType()
+    {
+        if (Owner.GetComponent<BaseEnemy>() != null)
+        {
+            ActorType = typeof(BaseEnemy);
+        }
+        else if (Owner.GetComponent<BattlePC>() != null)
+        {
+            ActorType = typeof(BattlePC);
+        }
+    }
+    private void InstantiateScriptableObjects()
+    {
+        for (int i = 0; i < inspectorSubAbilities.Count; i++)
         {
             subAbilities.Add(Instantiate(inspectorSubAbilities[i]));
         }
-
-        
     }
-
-    public virtual void ReadyAbility()//TODO: Rename this
+    public virtual void ResetAbilityForImediateUse()
     {
-        abilityOver = false;
-        lastAnimSet = "stand";
+        AbilityOver = false;
+        LastAnimSet = "stand";
         curSubAbilityIndx = 0;
         objectTargets.Clear();
         positionTargets.Clear();
         SetUpNextSubAb();
-        
         uses++;
-        useable = false;
-        
+        Useable = false;
     }
-
-    public void UpdateCooldown()
-    {
-        if (curCooldownEndTime < Time.time)
-        {
-            if (uses < maxUses)
-            {
-                if (abilityOver == true)
-                {
-                    useable = true;
-                }
-            }
-            AbilityManager.abManager.UnregisterAbilityForCooldown(this);
-        }
-    }
-
-    public bool IsAbilityOver()
-    {
-        return (abilityOver);
-    }
-
-    public void AbilityStateMachine()//This is called on update by the ability manager
-    {
-        subAbilities[curSubAbilityIndx].DoSubAbility(this);
-        
-    }
-
     
     public void OnSubAbilityOver()//Called by sub ability delegate
     {
-        FinishLastSubAb();
+        RunSubAbilityFinish();
+
         IncrementCurSubAb();
 
         if (SubAbilitesAreFinished())
@@ -197,6 +117,7 @@ public class Ability:ScriptableObject
         else
         {
             SetUpNextSubAb();
+            RunSubAbilityInitial();
         }
     }
 
@@ -204,7 +125,6 @@ public class Ability:ScriptableObject
     {
         curSubAbilityIndx++;
     }
-
     private bool SubAbilitesAreFinished()
     {
         if (curSubAbilityIndx >= subAbilities.Count)
@@ -214,29 +134,43 @@ public class Ability:ScriptableObject
         }
         return false;
     }
-
     private void EndAbility()
     {
-        //Debug.Log("end ability called");
         AbilityManager.abManager.RegisterAbilityForCooldown(this);
-        curCooldownEndTime = cooldownTime + Time.time;
-        abilityOver = true;
+        CurCooldownEndTime = cooldownTime + Time.time;
+        AbilityOver = true;
     }
-
     private void SetUpNextSubAb()
     {
         subAbilities[curSubAbilityIndx].EndSubAbility = OnSubAbilityOver;
-        subAbilities[curSubAbilityIndx].DoInitialSubAbility(this);
     }
 
-    private void FinishLastSubAb()
+    private void RunSubAbilityInitial()
+    {
+        subAbilities[curSubAbilityIndx].DoInitialSubAbility(this);
+    }
+    public void RunSubAbility()//This is called on update by the AbilityManager
+    {
+        subAbilities[curSubAbilityIndx].DoSubAbility(this);
+    }
+    private void RunSubAbilityFinish()
     {
         subAbilities[curSubAbilityIndx].DoFinishSubAbility(this);
     }
 
-    public void OnSelectionFinished(List<GameObject> selectedObjects)
+    public void UpdateCooldown()
     {
-
+        if (CurCooldownEndTime < Time.time)
+        {
+            if (uses < maxUses)
+            {
+                if (AbilityOver == true)
+                {
+                    Useable = true; //TODO: there will have to be a TrySetUseable method that checks a List to see if there is anything that is still preventing useable
+                }
+            }
+            AbilityManager.abManager.UnregisterAbilityForCooldown(this);
+        }
     }
 
     #region Utilities
@@ -256,7 +190,37 @@ public class Ability:ScriptableObject
         }
         return abilitiesOfContext;
     }
+
+    public void SubscribeToProjectileCallback(Action callbackToSubscribe)
+    {
+        projectileCallbacks.Add(callbackToSubscribe);
+    }
+
+    public void UnsubscribeToProjectileCallback(Action callbackToUnsubscribe)
+    {
+        projectileCallbacks.Remove(callbackToUnsubscribe);
+    }
+
+    public void RunProjectileCallbacks()
+    {
+        for (int i = 0; i < projectileCallbacks.Count; i++)
+        {
+            projectileCallbacks[i]();
+        }
+    }
+    public bool IsAbilityOver()
+    {
+        return (AbilityOver);
+    }
     #endregion Utilities
 }
 
 
+public enum UsableContexts
+{
+    none = 0,
+    battleAbilityMenu = 1,
+    partyMenu = 2,
+    passive = 3,
+    projectile = 4,
+}

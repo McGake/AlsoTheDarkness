@@ -39,7 +39,7 @@ public class Stun : Status //TODO: perhaps to turn this and things like this to 
     {
         for (int i = 0; i < bbA.abilities.Count; i++)
         {
-            bbA.abilities[i].useable = useableValue;
+            bbA.abilities[i].Useable = useableValue;
         }
     }
 }

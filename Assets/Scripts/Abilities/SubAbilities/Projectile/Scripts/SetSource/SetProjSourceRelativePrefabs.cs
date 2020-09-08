@@ -22,9 +22,9 @@ public class SetProjSourceRelativePrefabs : SubProjectileAbility
 
     public override void DoProjectileSubAbility(ProjectileAbility pa)
     {
-        goOfSourcePositions.transform.SetParent(pa.ability.owner.transform);
+        goOfSourcePositions.transform.SetParent(pa.ability.Owner.transform);
         goOfSourcePositions.transform.position = Vector3.zero;
-        pa.sources.Add(pa.ability.owner.transform);
+        pa.sources.Add(pa.ability.Owner.transform);
 
         EndProjectileSubAbility();
     }

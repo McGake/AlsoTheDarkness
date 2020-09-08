@@ -34,7 +34,7 @@ public class PowerBarMG : SubProjectileAbility
 
     public override void DoInitialProjectileSubAbility(ProjectileAbility pa)
     {
-        ownerTransform = pa.ability.owner.transform;
+        ownerTransform = pa.ability.Owner.transform;
 
         Image[] images;
         if(powerContainerInstance == null)

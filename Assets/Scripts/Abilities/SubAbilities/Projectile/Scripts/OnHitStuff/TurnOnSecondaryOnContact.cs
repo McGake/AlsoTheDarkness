@@ -14,7 +14,7 @@ public class TurnOnSecondaryOnContact : MonoBehaviour
     {
         if (((triggerOnEnterMask >> col.gameObject.layer)) == 1)
         {
-            BattlePooler.pool.ProduceObject(objectToTurnOn, transform.position);
+            BattlePooler.ProduceObject(objectToTurnOn, transform.position);
         }
         if(turnOffSelfOnContact)
         {

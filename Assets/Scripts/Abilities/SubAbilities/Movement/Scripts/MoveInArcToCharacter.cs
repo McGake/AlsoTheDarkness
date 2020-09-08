@@ -28,7 +28,7 @@ public class MoveInArcToCharacter : SubAbility
 
     public override void DoInitialSubAbility(Ability ab)
     {
-        startPos = ab.owner.transform.position;
+        startPos = ab.Owner.transform.position;
         targetPos = ab.objectTargets[0].transform.position;
         time = 0;
     }
@@ -37,7 +37,7 @@ public class MoveInArcToCharacter : SubAbility
     {
 
         time += Time.time * timeModifier;
-       ab.owner.transform.position= Parabola(startPos, targetPos,height, time);
+       ab.Owner.transform.position= Parabola(startPos, targetPos,height, time);
 
         //movementThisFrame.x = direction.x * horizontalSpeed * Time.deltaTime;
         //ab.owner.transform.position += movementThisFrame;

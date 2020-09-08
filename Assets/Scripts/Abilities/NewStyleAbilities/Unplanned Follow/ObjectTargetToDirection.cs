@@ -8,7 +8,7 @@ public class ObjectTargetToDirection : SubAbility
 {
     public override void DoInitialSubAbility(Ability ab)
     {
-        ab.positionTargets.Add((ab.objectTargets[0].transform.position - ab.owner.transform.position).normalized);     
+        ab.positionTargets.Add((ab.objectTargets[0].transform.position - ab.Owner.transform.position).normalized);     
     }
 
     public override void DoSubAbility(Ability ab)

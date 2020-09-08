@@ -21,8 +21,8 @@ public class ScaleOverTime : SubAbility
     public override void DoInitialSubAbility(Ability ab)
     {
         startTime = Time.time;
-        startX = ab.owner.transform.localScale.x;
-        startY = ab.owner.transform.localScale.y;
+        startX = ab.Owner.transform.localScale.x;
+        startY = ab.Owner.transform.localScale.y;
     }
 
     public override void DoSubAbility(Ability ab)
@@ -31,7 +31,7 @@ public class ScaleOverTime : SubAbility
         lerpVal = timeElapsed / timeToScale;
         float xScale = Mathf.Lerp(startX, ScaleAmount.x, lerpVal);
         float yScale = Mathf.Lerp(startY, ScaleAmount.y, lerpVal);
-        ab.owner.transform.localScale = new Vector3(xScale, yScale, 1f);
+        ab.Owner.transform.localScale = new Vector3(xScale, yScale, 1f);
 
         if(lerpVal >= 1f)
         {

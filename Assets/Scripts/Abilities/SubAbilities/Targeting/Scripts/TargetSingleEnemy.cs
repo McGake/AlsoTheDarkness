@@ -9,7 +9,7 @@ public class TargetSingleEnemy : SubAbility//TODO: THIs is no longer target sing
 
     public override void DoInitialSubAbility(Ability ab)
     {
-        ab.StartSelectFromEnemies(this, ab.actorType);
+        ab.StartSelectFromEnemies(this, ab.ActorType);
         ability = ab;
     }
 

@@ -12,7 +12,7 @@ public class RemoveStatusTypeFromSelf : SubAbility
 
     public override void DoInitialSubAbility(Ability ab)
     {
-        ab.owner.GetComponent<BaseBattleActor>().FinishAllStatusesOfType(statusOfTypeToRemove);
+        ab.Owner.GetComponent<BaseBattleActor>().FinishAllStatusesOfType(statusOfTypeToRemove);
         EndSubAbility();
     }
 

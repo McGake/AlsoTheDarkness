@@ -20,7 +20,7 @@ public class LimitToClosestTarget : SubAbility//TODO: THIs is no longer target s
         leader = null;
         for(int i = 0; i < ab.objectTargets.Count; i++)
         {
-            tempDistanceVec = ab.owner.transform.position - ab.objectTargets[i].transform.position;
+            tempDistanceVec = ab.Owner.transform.position - ab.objectTargets[i].transform.position;
             tempSqrMag = tempDistanceVec.sqrMagnitude;
 
             if(tempSqrMag < closestDistance)

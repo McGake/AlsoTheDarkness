@@ -18,7 +18,7 @@ public class ObjectAssignSpell : SubAbility
 
     public override void DoInitialSubAbility(Ability ab)
     {
-        objectToAddInstance = ab.battlePooler.ProduceObject(objectToAdd,ab.objectTargets[0].transform);
+        objectToAddInstance = BattlePooler.ProduceObject(objectToAdd,ab.objectTargets[0].transform);
         castSequence = objectToAddInstance.GetComponent<CastSequence>();
         castSequence.OnCast();
         EndSubAbility();

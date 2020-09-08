@@ -17,7 +17,7 @@ public class CreateAtObjectTarget : SubAbility
 
     public override void DoInitialSubAbility(Ability ab)
     {
-        objectToAddInstance = ab.battlePooler.ProduceObject(objectToAdd, ab.objectTargets[0].transform.position, Quaternion.identity);
+        objectToAddInstance = BattlePooler.ProduceObject(objectToAdd, ab.objectTargets[0].transform.position, Quaternion.identity);
         castSequence = objectToAddInstance.GetComponent<CastSequence>();
         castSequence.OnCast();
         EndSubAbility();

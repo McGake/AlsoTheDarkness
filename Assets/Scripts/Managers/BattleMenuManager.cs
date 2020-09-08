@@ -6,51 +6,41 @@ using System;
 using TMPro;
 using UnityEngine.EventSystems;
 using System.Xml;
+using UnityEditor;
 
-
-
-public class BattleMenuManager : GameSegment
+public class BattleMenuManager : GameSegment //TODO: I think the best way to break this class up is to make seperate monobehaviors for Manual, and Auto Selection and also a seperate mono behavior for manual selecting abilities that references the currently selected pc. The auto and manual can implement the same interface.
 {
-    public static BattleMenuManager battleMenuManager;
-
-    public GameObject primaryCursor;
-
-    public GameObject secondaryCursor;
-
-    ObjectsInBattle objectsInBattle;
-
-    public GameObject curHero;
-
-    public GameObject curSecondarySelection;
-
-    public GameObject abilityButtonDisplay; //figure some way to get this without using drag and drop or finding by string perhaps tag or singleton
-
-    //public Dictionary<AbilityClusterButton, AbilityCluster> abilityClusters = new Dictionary<AbilityClusterButton, AbilityCluster>();
-
-    public List<AbilityCluster> abilityClusters = new List<AbilityCluster>();
-
-    public List<AbilityButton> allAbilityButtons = new List<AbilityButton>();
-
-    public AbilityCluster curCluster;
-
-    public Transform worldSpaceCanvas;
-
-    private Vector3 cursorOffset = new Vector3(-.66f, .22f, 0f);
-
-
-    public delegate void DelCurSelectionBehavior(SelectionTask selectionTask);
-    public delegate void DelSelectionFinishedCallback(List<GameObject> selectedObjects);
+    [SerializeField]
+    private GameObject primaryCursor, secondaryCursor;
     
-    public class SelectionTask
-    {
+    [SerializeField]
+    private Transform worldSpaceCanvas;
 
-        public DelCurSelectionBehavior CurSelectionBehavior;
-        public DelSelectionFinishedCallback SelectionFinishedCallback;
+    [SerializeField]
+    private GameObject curHeroAbilitiesDisplay;
+
+    private ObjectsInBattle objectsInBattle;
+
+    private GameObject curHero;
+
+    private GameObject curSecondarySelection;
+
+    private SelectObject selectObject = new SelectObject();
+
+    private MenuManagerView view = new MenuManagerView();
+
+    private delegate void DelCurSelectionBehavior(SelectionTask selectionTask);
+    private delegate void DelSelectionFinishedCallback(List<GameObject> selectedObjects);
+    
+    private class SelectionTask
+    {
+        public DelCurSelectionBehavior CurSelectionTask;
         public List<GameObject> objectsForSelection;
+        public DelSelectionFinishedCallback SelectionFinishedCallback;
 
         public SelectionTask(DelCurSelectionBehavior CurSelectionBehavior, List<GameObject> objectsForSelection, DelSelectionFinishedCallback SelectionFinishedCallback)
         {
-            this.CurSelectionBehavior = CurSelectionBehavior;
+            this.CurSelectionTask = CurSelectionBehavior;
             this.objectsForSelection = objectsForSelection;
             this.SelectionFinishedCallback = SelectionFinishedCallback;
         }
@@ -59,43 +49,44 @@ public class BattleMenuManager : GameSegment
     private List<SelectionTask> AutoSelectionTasks = new List<SelectionTask>();
     private List<SelectionTask> ManualSelectionTasks = new List<SelectionTask>();
 
-    public void SetUpBattleMenuManager()
+    public void SetupBattleMenuManager()
     {
-        battleMenuManager = this;
-        objectsInBattle = FindObjectOfType<ObjectsInBattle>();//cant I just set this in the inspcetor? Not if I want multiple battles ongoing at one time i cant... Unless I make the entire battle structure a prefab which might just be crazy enough to work.
-
+        FindExternalReferences();
         AddAbilityClustersToDictionary();
         AddAllAbilitybuttonsToListInProperOrder();
         AddCallbacksToAbilities();
-
-        curHero = objectsInBattle.pcsInBattle[0];
-        primaryCursor.transform.position = curHero.transform.position +cursorOffset;
-        modifiedSelectionConeAngle = selectionConeAngle;
-        PopulateHeroMenu();
+        SetInitialPCSelectionVars();
+        view.PopulateHeroAbilityMenu(curHero);
 
         gameStateMachine.SetCurrentGameSegment(this); //this is what actually kicks off the battle being updated. I wonder if I should somehow put this in the battle start script
         gameStateMachine.SetDefaultGameSegment(this);
 
     }
 
+    #region SetupMethods
+    void FindExternalReferences()
+    {
+        objectsInBattle = FindObjectOfType<ObjectsInBattle>();
+    }
+
     void AddAbilityClustersToDictionary()
     {
         //this will eventually add all the ability button clusters open, righ trigger down, left trigger down, and both down
-        abilityClusters.Add(abilityButtonDisplay.GetComponentInChildren<AbilityCluster>()); //needs work  
-        curCluster = abilityClusters[0]; //temp code          
+        view.abilityDisplayClusters.Add(curHeroAbilitiesDisplay.GetComponentInChildren<AbilityCluster>());
+        view.curAbilityCluster = view.abilityDisplayClusters[0]; //temp code          
     }
 
     void AddAllAbilitybuttonsToListInProperOrder()
     {
         //this will eventually go through all the clusters to get all of the abilities
-        AbilityCluster tempCluster = abilityClusters[0];
+        AbilityCluster tempCluster = view.abilityDisplayClusters[0];
         foreach (AbilityButton aB in tempCluster.abilityButtons)
         {
-            allAbilityButtons.Add(aB);
+            view.allAbilityButtons.Add(aB);
         }
     }
 
-    void AddCallbacksToAbilities() //TODO: this is temporary untill we totaly fix this jumble of a UI battle system and set up a proper event system to communicate with abilities
+    void AddCallbacksToAbilities() 
     {
         List<Ability> tempListToSet = new List<Ability>();
         foreach (GameObject pc in objectsInBattle.pcsInBattle)
@@ -125,106 +116,87 @@ public class BattleMenuManager : GameSegment
         }
     }
 
+    void SetInitialPCSelectionVars()
+    {
+        curHero = objectsInBattle.pcsInBattle[0];
+        view.Highlight(curHero, primaryCursor);
+        //modifiedSelectionConeAngle = selectionConeAngle;
+    }
+    #endregion SetupMethods
     public override void UpdateGameSegment()
     {
-        if(ManualSelectionTasks.Count == 0)
+        RunCurrentMenuBehaviors();
+        view.UpdateAbilityMenu();
+    }
+
+    #region UpdateMethods
+
+    private void RunCurrentMenuBehaviors()
+    {
+        if (ManualSelectionTasks.Count == 0)
         {
-            SwitchHeroBehavior();
+            RunBaseHeroSelectionTask();
         }
         else
         {
-            for(int i = 0; i < ManualSelectionTasks.Count; i++)
-            {
-                ManualSelectionTasks[i].CurSelectionBehavior(ManualSelectionTasks[i]);
-            }
+            RunManualSelectionTasks();
         }
 
-
-        for (int j = AutoSelectionTasks.Count -1; j >= 0 ; j--)
-        {
-            AutoSelectionTasks[j].CurSelectionBehavior(AutoSelectionTasks[j]);
-        }
-
-        UpdateAbilityMenu();
+        RunAutoSelectionTasks();
+    }
+    #region RunCurrentMenuBehaviorsMethods
+    private void RunBaseHeroSelectionTask()
+    {
+        ManualSelectCurHero();
     }
 
+    public void ManualSelectCurHero()
+    {
+        Vector2 dirInput = MultiInput.GetPrimaryDirection();
+        curHero = selectObject.ByDirection(objectsInBattle.pcsInBattle, dirInput, curHero);
+        view.Highlight(curHero, primaryCursor);
+        view.PopulateHeroAbilityMenu(curHero);
+        TriggerAbilityOnInput();
+    }
 
-
-
-
-    #region SwitchingHero
-
+    #region ManualSelectCurHeroMethods
 
     List<Ability> curCombatAbilities = new List<Ability>();
-    void PopulateHeroMenu()
-    {
-        GetBattleAbilities();
-        SetDisplayToNewAbilities();        
-    }
-
-    void GetBattleAbilities()
-    {
-        List<Ability> allAbilitiesOnPC = curHero.GetComponent<BattlePC>().abilities;
-        curCombatAbilities = Ability.NewRetrunOnlyAbilitiesOfContext( UsableContexts.battleAbilityMenu, allAbilitiesOnPC);
-    }
-
-    void SetDisplayToNewAbilities()
-    {
-
-        for(int i = 0; i < curCombatAbilities.Count; i++)
-        {
-            allAbilityButtons[i].uIButton.SetActive(true);
-            allAbilityButtons[i].abilityView = allAbilityButtons[i].uIButton.GetComponentInChildren<AbilityView>();
-            allAbilityButtons[i].abilityView.SetButtonLabel(curCombatAbilities[i].DisplayName);
-            allAbilityButtons[i].abilityView.SetUsesLeft((curCombatAbilities[i].maxUses - curCombatAbilities[i].uses).ToString());
-            allAbilityButtons[i].ability = curCombatAbilities[i];
-            //put other image changes here when you have them
-        }
-
-        for (int i = curCombatAbilities.Count; i < allAbilityButtons.Count; i++)
-        {
-            allAbilityButtons[i].uIButton.SetActive(false);
-        }
-    }
-    #endregion SwitchingHero
-
-    #region HeroSelected
-
-    const int aIndx = 0;
-    const int xIndx = 1;
-    const int yIndx = 2;
-    const int bIndx = 3;
 
     void TriggerAbilityOnInput()
     {
+        const int aIndx = 0;
+        const int xIndx = 1;
+        const int yIndx = 2;
+        const int bIndx = 3;
 
-        if(Input.GetButtonDown("A"))
+        if (Input.GetButtonDown("A"))
         {
-            TriggerAbilityByIndex(aIndx);
+            StartAbilityAtIndx(aIndx);
         }
         if (Input.GetButtonDown("X"))
         {
-          //  Debug.Log("x");
-            TriggerAbilityByIndex(xIndx);
+            //  Debug.Log("x");
+            StartAbilityAtIndx(xIndx);
         }
         if (Input.GetButtonDown("Y"))
         {
-          //  Debug.Log("y");
-            TriggerAbilityByIndex(yIndx);
+            //  Debug.Log("y");
+            StartAbilityAtIndx(yIndx);
         }
         if (Input.GetButtonDown("B"))
         {
-           // Debug.Log("b");
-            TriggerAbilityByIndex(bIndx);
+            // Debug.Log("b");
+            StartAbilityAtIndx(bIndx);
         }
     }
 
-    void TriggerAbilityByIndex(int indx)
+    void StartAbilityAtIndx(int indx)
     {
         Ability abilityToPass = null;
         foreach (Ability ab in curCombatAbilities)
         {
-            if (ab == curCluster.abilityButtons[indx].ability)
+            if (ab == view.curAbilityCluster.abilityButtons[indx].ability)
             {
                 abilityToPass = ab;
                 break;
@@ -236,54 +208,265 @@ public class BattleMenuManager : GameSegment
         }
         if (AbilityManager.abManager.IsCharacterCurrentlyDoingAbility(curHero) == false && objectsInBattle.IsPCUpAndInBattle(curHero)) //another way to do this would be just to check current heros abilities to see if he has any that are currently set to not finished.
         {
-            //CurSelectionBehavior += SwitchHeroBehavior;//WaitForAbilityAndUpdateDisplay;
             curHero.GetComponent<BaseBattleActor>().DoAbility(abilityToPass);
-           
-            
-            //curState = BattleMenuStates.WaitingOnAbilitySystem;
         }
         //else just do nothing and continue
     }
+    #endregion ManualSelectuCurHero
 
-
-    void UpdateAbilityMenu()//ToDo: move setting the actual circle and such to the AbilityView. Time till cooldown end should probably still be calculated here or perhaps on the ability itself
+    private void RunManualSelectionTasks()
     {
-        //AbilityCluster tempCluster;
-        AbilityButton curButton;
-        //this will grey out abilities that are curently not useable and update a recharge bar
-        for(int i = 0; i < abilityClusters.Count; i++)
+        for (int i = 0; i < ManualSelectionTasks.Count; i++)
         {
-            for(int j = 0; j < abilityClusters[i].abilityButtons.Count; j++)
-            {
-                curButton = abilityClusters[i].abilityButtons[j];
-                if (curButton.uIButton.activeSelf)
-                {
-                    curButton.abilityView.UpdateAbility(curButton.ability);
-                }
-            }
+            ManualSelectionTasks[i].CurSelectionTask(ManualSelectionTasks[i]);
         }
     }
-    #endregion HeroSelected
+
+    private void RunAutoSelectionTasks()
+    {
+        for (int j = AutoSelectionTasks.Count - 1; j >= 0; j--)
+        {
+            AutoSelectionTasks[j].CurSelectionTask(AutoSelectionTasks[j]);
+        }
+    }
+
+    #endregion RunCurrentMenuBehaviorMethods
+
+    #endregion UpdateMethods
+
+    #region Managers
+
+    public List<MiniGame> miniGames = new List<MiniGame>();
+
+    public void UpdateMinigames()
+    {
+        foreach(MiniGame mG in miniGames)
+        {
+            mG.UpdateMiniGame();
+        }
+    }
+
+    #endregion Managers
+
+    #region SelectionMethods
+
+    private delegate List<GameObject> DelGetRelations(Type requesterType);
+
+    #region ManualSelectionMethods
+    private void ManualSelectFriend(SubAbility subAb, Type requesterType)
+    {
+        List<GameObject> objectsForSelection;
+        curSecondarySelection = curHero; //This seems like a bad side effect. Any way to integrate this with the rest of what is going on
+        view.Highlight(curSecondarySelection, secondaryCursor);
+        objectsForSelection = objectsInBattle.GetFriendsOfType(requesterType);
+        StartManualSelection(subAb, SecondarySelection, objectsForSelection);
+    }
+
+    const int defaultFirstObject = 0;
+    private void ManualSelectEnemy(SubAbility subAb, Type requesterType)
+    {
+        List<GameObject> objectsForSelection;
+        objectsForSelection = objectsInBattle.GetEnemiesOfType(requesterType);
+        curSecondarySelection = objectsForSelection[defaultFirstObject]; //This seems like a bad side effect. Any way to integrate this with the rest of what is going on
+        view.Highlight(curSecondarySelection, secondaryCursor);
+        StartManualSelection(subAb, SecondarySelection, objectsForSelection);
+    }
+    private void ManualSelectAllFriends(SubAbility subAb, Type requesterType)
+    {
+        List<GameObject> objectsForSelection;
+        objectsForSelection = objectsInBattle.GetFriendsOfType(requesterType);
+        StartManualSelection(subAb, OneGroupSelection, objectsForSelection);
+    }
+    private void ManualSelectAllEnemies(SubAbility subAb, Type requesterType)
+    {
+        List<GameObject> objectsForSelection;
+        objectsForSelection = objectsInBattle.GetEnemiesOfType(requesterType);
+        StartManualSelection(subAb, OneGroupSelection, objectsForSelection);
+    }
+    private void ManualSelectAllFriendsButCurrent(SubAbility subAb, Type requesterType)//TODO: maybe Just make this a call back rather than passing the whole sub ability
+    {
+        List<GameObject> objectsForSelection;
+
+        objectsForSelection = new List<GameObject>(objectsInBattle.GetFriendsOfType(requesterType));
+
+        for (int i = 0; i < objectsForSelection.Count; i++)
+        {
+            if (objectsForSelection[i] == curHero)
+            {
+                objectsForSelection.RemoveAt(i);
+                break;
+            }
+        }
+
+        StartManualSelection(subAb, OneGroupSelection, objectsForSelection);
+    }
+    #endregion ManualSelectionMethods
+
+    #region AutoSelectionMethods
+    private void AutoSelectFriend(SubAbility subAb, Type requesterType)
+    {
+        List<GameObject> objectsForSelection;
+        objectsForSelection = objectsInBattle.GetFriendsOfType(requesterType);
+        StartAutoSelection(subAb, AISingleRandomSelection, objectsForSelection);
+    }
+    private void AutoSelectEnemy(SubAbility subAb, Type requesterType)
+    {
+        List<GameObject> objectsForSelection;
+        objectsForSelection = objectsInBattle.GetEnemiesOfType(requesterType);
+        StartAutoSelection(subAb, AISingleRandomSelection, objectsForSelection);
+    }
 
 
 
+    private void AutoSelectAllFriends(SubAbility subAb, Type requesterType)
+    {
+        List<GameObject> objectsForSelection;
+        objectsForSelection = objectsInBattle.GetFriendsOfType(requesterType);
+        StartAutoSelection(subAb, AIOneGroupSelection, objectsForSelection);
+    }
+    private void AutoSelectAllEnemies(SubAbility subAb, Type requesterType)
+    {
+        List<GameObject> objectsForSelection;
+        objectsForSelection = objectsInBattle.GetEnemiesOfType(requesterType);
+        StartAutoSelection(subAb, AIOneGroupSelection, objectsForSelection);
+    }
+
+
+
+    #endregion AutoSelectionMethods
+
+    #region KickOffAndEndSelectionsMethods
+    private void StartManualSelection(SubAbility subAb, DelCurSelectionBehavior SelectionBehavior, List<GameObject> objectsForSelection)
+    {
+        SelectionTask selection = new SelectionTask(SelectionBehavior, objectsForSelection, subAb.OnSelectionFinished);
+        ManualSelectionTasks.Add(selection);
+    }
+
+    private void StartAutoSelection(SubAbility subAb, DelCurSelectionBehavior SelectionBehavior, List<GameObject> objectsForSelection)
+    {
+        SelectionTask selection = new SelectionTask(SelectionBehavior, objectsForSelection, subAb.OnSelectionFinished);
+        AutoSelectionTasks.Add(selection);
+    }
+
+    private void EndAutoSelection(SelectionTask selectionTask, List<GameObject> tempSelectedObjects)
+    {
+        selectionTask.SelectionFinishedCallback(tempSelectedObjects);
+        AutoSelectionTasks.Remove(selectionTask);
+    }
+
+    private void EndManualSelection(SelectionTask selectionTask, List<GameObject> tempSelectedObjects)
+    {
+        selectionTask.SelectionFinishedCallback(tempSelectedObjects);
+        ManualSelectionTasks.Remove(selectionTask);
+    }
+
+    #endregion KickOffAndEndSelectionsMethods
+
+    #region SelectionTaskDefinitions
+    private void SecondarySelection(SelectionTask selectionTask)
+    {
+        Vector2 dir = MultiInput.GetPrimaryDirection();
+        curSecondarySelection = selectObject.ByDirection(selectionTask.objectsForSelection, dir, curSecondarySelection);
+        if (Input.GetButtonDown("A"))
+        {
+            List<GameObject> tempSelectedObjects = new List<GameObject>();
+            tempSelectedObjects.Add(curSecondarySelection);
+            EndManualSelection(selectionTask, tempSelectedObjects);
+            secondaryCursor.SetActive(false);
+        }
+    }
+
+    private void AISingleRandomSelection(SelectionTask selectionTask)
+    {
+        List<GameObject> tempSelectedObjects = new List<GameObject>();
+        tempSelectedObjects.Add(selectObject.Randomly(selectionTask.objectsForSelection));
+        EndAutoSelection(selectionTask,tempSelectedObjects);
+    }
+
+    int genericSwitchIndx;
+
+    private void OneGroupSelection(SelectionTask selectionTask) 
+    {
+        
+        view.Highlight(selectionTask.objectsForSelection[genericSwitchIndx], secondaryCursor); //This switchs rapidly between to make a see through effect. we need to add see through sprites so that we dont have to do this
+        genericSwitchIndx++;
+        if (genericSwitchIndx >= selectionTask.objectsForSelection.Count)
+        {
+            genericSwitchIndx = 0;
+        }
+        if (Input.GetButtonDown("A"))
+        {
+            List<GameObject> tempSelectedObjects = new List<GameObject>();
+            tempSelectedObjects = selectObject.ByEntireGroup(selectionTask.objectsForSelection);
+            EndManualSelection(selectionTask, tempSelectedObjects);
+            secondaryCursor.SetActive(false);
+        }
+    }
+
+    private void AIOneGroupSelection(SelectionTask selectionTask)
+    {
+        List<GameObject> tempSelectedObjects = new List<GameObject>();
+        tempSelectedObjects = selectObject.ByEntireGroup(selectionTask.objectsForSelection);
+        EndAutoSelection(selectionTask,tempSelectedObjects);
+    }
+    #endregion SelectionTaskDefinitions
+
+    #endregion SelectionMethods
+
+    private void KickOffMiniGame(MiniGame mG)
+    {
+        miniGames.Add(mG);
+        mG.StartMiniGame(this);
+    }
+
+    private GameObject InstantiateInWorldSpaceCanvas(GameObject toInstantiate, Vector3 position)
+    {
+        return GameObject.Instantiate(toInstantiate, position, Quaternion.identity, worldSpaceCanvas.transform);
+    }
+}
+
+public abstract class MiniGame:ScriptableObject
+{
+    
+    public GameObject mGuI;//TODO: make this private but show it in inspector
+
+    private BattleMenuManager bMM;
+
+    private Ability aB;
+
+    public virtual void StartMiniGame(BattleMenuManager inBMM)
+    {
+        bMM = inBMM;
+   
+        isFinished = false;
+    }
+
+    public virtual void SetAbility(Ability inAB)
+    {
+        aB = inAB;
+    }
+
+    public abstract void UpdateMiniGame();
+
+    public virtual void EndMiniGame()
+    {
+        isFinished = true;
+        bMM.miniGames.Remove(this);
+    }
+
+    private bool isFinished = true;
+    public virtual bool IsFinished()//TODO: possibly make something like this a delegate that gets called on the sub ability when the mini game is finsished
+    {
+        return isFinished;
+    }
+}
+
+public class SelectObject
+{
 
     private const float delaySwitchTime = .5f;
 
     private float nextSwitchAllowedTime = 0f;
-
-
-   
-
-    public void SwitchHeroBehavior()
-    {
-        curHero = SwitchObjectOnInput(objectsInBattle.pcsInBattle, primaryCursor , curHero); //We could get rid of this check by haveing an overall cur selected object that the method modifies only when a new selection was successfull
-        PopulateHeroMenu();
-        TriggerAbilityOnInput();
-        //UpdateAbilityMenu();
-    }
-
-
 
     public float selectionSensitivityThreshhold = 0.1f;
 
@@ -295,16 +478,13 @@ public class BattleMenuManager : GameSegment
 
     private float modifiedSelectionConeAngle;
 
-    
 
-    private GameObject selectedObject;
-
-    public GameObject SwitchObjectOnInput(List<GameObject> objectsToSwitch, GameObject cursor, GameObject curSelected)
+    public GameObject ByDirection(List<GameObject> objectsToSwitch, Vector2 direction, GameObject curSelected)
     {
-        if(SwitchDelayOver())
+        if (SwitchDelayOver())
         {
-            float yVal = Input.GetAxis("Vertical");
-            float xVal = Input.GetAxis("Horizontal");
+            float yVal = direction.y;
+            float xVal = direction.x;
 
             if (OverSensitivityThreshold(xVal, yVal))
             {
@@ -313,11 +493,11 @@ public class BattleMenuManager : GameSegment
 
                 for (int i = 0; i < objectsToSwitch.Count; i++)
                 {
-                    if(NotCurrentSelection(curSelected, objectsToSwitch[i]))
+                    if (NotCurrentSelection(curSelected, objectsToSwitch[i]))
                     {
                         Vector3 normalizedTargetDir = FindDirectionOfTarget(objectsToSwitch[i], curSelected);
 
-                        Vector3 normalizedInputDir = NormalizeInputDirection(xVal,yVal);
+                        Vector3 normalizedInputDir = NormalizeInputDirection(xVal, yVal);
 
                         float degrees = FindDegreesToCheckAgainstAngle(normalizedTargetDir, normalizedInputDir);
 
@@ -329,14 +509,9 @@ public class BattleMenuManager : GameSegment
                 }
                 newSelection = curClosest;
 
-                if(newSelection != null)
+                if (newSelection != null)
                 {
-                    
-                    
-                    cursor.transform.position = newSelection.transform.position + cursorOffset;
-                    cursor.transform.SetParent(newSelection.transform);
                     nextSwitchAllowedTime = Time.time + selectionRepeatDealy;
-
                     modifiedSelectionConeAngle = selectionConeAngle;
                     return newSelection;
                 }
@@ -349,7 +524,7 @@ public class BattleMenuManager : GameSegment
                     }
                     modifiedSelectionConeAngle += selectionConeAngleExapnsionIncrement;
                     modifiedSelectionConeAngle = Mathf.Clamp(modifiedSelectionConeAngle, 0f, 90f);
-                    newSelection = SwitchObjectOnInput(objectsToSwitch, cursor, curSelected); //TODO: make this recursion a while loop instead. more better.
+                    newSelection = ByDirection(objectsToSwitch, direction, curSelected); //TODO: make this recursion a while loop instead. more better.
                     return newSelection;
                 }
             }
@@ -357,7 +532,7 @@ public class BattleMenuManager : GameSegment
         return curSelected;
     }
 
-    #region SwitchObjectOnInputMethods
+    #region ByDirectionMethods
     private bool SwitchDelayOver()
     {
         return (Time.time > nextSwitchAllowedTime);
@@ -411,239 +586,216 @@ public class BattleMenuManager : GameSegment
         }
         return curClosest;
     }
-    #endregion SwitchObjectOnInputMethods
+    #endregion ByDirectionMethods
 
-    #region Managers
-
-    public List<MiniGame> miniGames = new List<MiniGame>();
-
-    public void UpdateMinigames()
+    public GameObject Randomly(List<GameObject> objectsToSwitch)
     {
-        foreach(MiniGame mG in miniGames)
+        int randomIndx = UnityEngine.Random.Range(0, objectsToSwitch.Count);
+
+        return objectsToSwitch[randomIndx];
+    }
+
+    public List<GameObject> ByEntireGroup(List<GameObject> objectsToSwitch)
+    {
+        return objectsToSwitch;
+    }
+}
+
+public class MenuManagerView
+{
+    public List<AbilityButton> allAbilityButtons = new List<AbilityButton>();
+
+    private Vector3 cursorOffset = new Vector3(-.66f, .22f, 0f);
+
+    public List<AbilityCluster> abilityDisplayClusters = new List<AbilityCluster>();
+
+    public AbilityCluster curAbilityCluster;
+
+    public void Highlight(GameObject objectToShowSelected, GameObject cursor)
+    {
+        Highlight(objectToShowSelected, cursor, cursorOffset);
+    }
+    public void Highlight(GameObject objectToShowSelected, GameObject cursor, Vector3 offset)
+    {
+        cursor.transform.position = objectToShowSelected.transform.position + offset;
+
+        cursor.transform.parent = objectToShowSelected.transform;
+
+        if(cursor.activeSelf == false)
         {
-            mG.UpdateMiniGame();
+            cursor.SetActive(true);
         }
     }
 
-    #endregion Managers
 
-    #region ExternalMethods
-    public int genericSwitchIndx = 0;
-
-
-    #region SelectionMethods
-
-    //List<GameObject> objectsToSwtichBetween = new List<GameObject>();
-
-
-
-    private delegate List<GameObject> DelGetRelations(Type requesterType);
-
-
-        
-
-
-    #region ManualSelectionMethods
-    private void ManualSelectFriend(SubAbility subAb, Type requesterType)
+    private List<Ability> curCombatAbilities;
+    private GameObject curHero;
+    public void PopulateHeroAbilityMenu(GameObject curHero)
     {
-        List<GameObject> objectsForSelection;
-        objectsForSelection = objectsInBattle.GetFriendsOfType(requesterType);
-        StartManualSelection(subAb, SecondarySelection, objectsForSelection);
+       this.curHero = curHero;
+       GetBattleAbilities();
+       SetDisplayToNewAbilities();
     }
 
-    private void ManualSelectEnemy(SubAbility subAb, Type requesterType)
+    public void SetDisplayToNewAbilities()
     {
-        List<GameObject> objectsForSelection;
-        objectsForSelection = objectsInBattle.GetOpponentsOfType(requesterType);
-        StartManualSelection(subAb, SecondarySelection, objectsForSelection);
-    }
-    private void ManualSelectAllFriends(SubAbility subAb, Type requesterType)
-    {
-        List<GameObject> objectsForSelection;
-        objectsForSelection = objectsInBattle.GetFriendsOfType(requesterType);
-        StartManualSelection(subAb, OneGroupSelection, objectsForSelection);
-    }
-    private void ManualSelectAllEnemies(SubAbility subAb, Type requesterType)
-    {
-        List<GameObject> objectsForSelection;
-        objectsForSelection = objectsInBattle.GetOpponentsOfType(requesterType);
-        StartManualSelection(subAb, OneGroupSelection, objectsForSelection);
-    }
-    private void ManualSelectAllFriendsButCurrent(SubAbility subAb, Type requesterType)//TODO: maybe Just make this a call back rather than passing the whole sub ability
-    {
-        List<GameObject> objectsForSelection;
-
-        objectsForSelection = new List<GameObject>(objectsInBattle.GetFriendsOfType(requesterType));
-
-        for (int i = 0; i < objectsForSelection.Count; i++)
+        for (int i = 0; i < curCombatAbilities.Count; i++)
         {
-            if (objectsForSelection[i] == curHero)
+            allAbilityButtons[i].uIButton.SetActive(true);
+            allAbilityButtons[i].abilityView = allAbilityButtons[i].uIButton.GetComponentInChildren<AbilityView>();
+            allAbilityButtons[i].abilityView.SetButtonLabel(curCombatAbilities[i].DisplayName);
+            allAbilityButtons[i].abilityView.SetUsesLeft((curCombatAbilities[i].maxUses - curCombatAbilities[i].uses).ToString());
+            allAbilityButtons[i].ability = curCombatAbilities[i];
+            //put other image changes here when you have them
+        }
+
+        for (int i = curCombatAbilities.Count; i < allAbilityButtons.Count; i++)
+        {
+            allAbilityButtons[i].uIButton.SetActive(false);
+        }
+    }
+
+    public void GetBattleAbilities()
+    {
+        List<Ability> allAbilitiesOnPC = curHero.GetComponent<BattlePC>().abilities;
+        curCombatAbilities = Ability.NewRetrunOnlyAbilitiesOfContext(UsableContexts.battleAbilityMenu, allAbilitiesOnPC);
+    }
+
+    public void UpdateAbilityMenu()//ToDo: move setting the actual circle and such to the AbilityView. Time till cooldown end should probably still be calculated here or perhaps on the ability itself
+    {
+        //AbilityCluster tempCluster;
+        AbilityButton curButton;
+        //this will grey out abilities that are curently not useable and update a recharge bar
+        for (int i = 0; i < abilityDisplayClusters.Count; i++)
+        {
+            for (int j = 0; j < abilityDisplayClusters[i].abilityButtons.Count; j++)
             {
-                objectsForSelection.RemoveAt(i);
-                break;
+                curButton = abilityDisplayClusters[i].abilityButtons[j];
+                if (curButton.uIButton.activeSelf)
+                {
+                    curButton.abilityView.UpdateAbility(curButton.ability);
+                }
             }
         }
-
-        StartManualSelection(subAb, OneGroupSelection, objectsForSelection);
-    }
-    #endregion ManualSelectionMethods
-
-    #region AutoSelectionMethods
-    private void AutoSelectFriend(SubAbility subAb, Type requesterType)
-    {
-        List<GameObject> objectsForSelection;
-        objectsForSelection = objectsInBattle.GetFriendsOfType(requesterType);
-        StartAutoSelection(subAb, AISingleRandomSelection, objectsForSelection);
-    }
-    private void AutoSelectEnemy(SubAbility subAb, Type requesterType)
-    {
-        List<GameObject> objectsForSelection;
-        objectsForSelection = objectsInBattle.GetOpponentsOfType(requesterType);
-        StartAutoSelection(subAb, AISingleRandomSelection, objectsForSelection);
     }
 
-
-
-    private void AutoSelectAllFriends(SubAbility subAb, Type requesterType)
-    {
-        List<GameObject> objectsForSelection;
-        objectsForSelection = objectsInBattle.GetFriendsOfType(requesterType);
-        StartAutoSelection(subAb, AIOneGroupSelection, objectsForSelection);
-    }
-    private void AutoSelectAllEnemies(SubAbility subAb, Type requesterType)
-    {
-        List<GameObject> objectsForSelection;
-        objectsForSelection = objectsInBattle.GetOpponentsOfType(requesterType);
-        StartAutoSelection(subAb, AIOneGroupSelection, objectsForSelection);
-    }
-
-
-
-    #endregion AutoSelectionMethods
-
-
-
-    private void StartManualSelection(SubAbility subAb, DelCurSelectionBehavior SelectionBehavior, List<GameObject> objectsForSelection)
-    {
-        curSecondarySelection = curHero; //This seems like a bad side effect. Any way to integrate this with the rest of what is going on
-        secondaryCursor.transform.position = curSecondarySelection.transform.position + cursorOffset;
-        secondaryCursor.SetActive(true);
-        SelectionTask selection = new SelectionTask(SelectionBehavior, objectsForSelection, subAb.OnSelectionFinished);
-        ManualSelectionTasks.Add(selection);
-
-    }
-
-    private void StartAutoSelection(SubAbility subAb, DelCurSelectionBehavior SelectionBehavior, List<GameObject> objectsForSelection)
-    {
-        SelectionTask selection = new SelectionTask(SelectionBehavior, objectsForSelection, subAb.OnSelectionFinished);
-        AutoSelectionTasks.Add(selection);
-
-    }
-
-    private void EndAutoSelection(SelectionTask selectionTask, List<GameObject> tempSelectedObjects)
-    {
-        selectionTask.SelectionFinishedCallback(tempSelectedObjects);
-        AutoSelectionTasks.Remove(selectionTask);
-    }
-
-    private void EndManualSelection(SelectionTask selectionTask, List<GameObject> tempSelectedObjects)
-    {
-        selectionTask.SelectionFinishedCallback(tempSelectedObjects);
-        ManualSelectionTasks.Remove(selectionTask);
-    }
-    public void SecondarySelection(SelectionTask selectionTask)
-    {
-        curSecondarySelection = SwitchObjectOnInput(selectionTask.objectsForSelection, secondaryCursor, curSecondarySelection);
-        if (Input.GetButtonDown("A"))
-        {
-            List<GameObject> tempSelectedObjects = new List<GameObject>();
-            tempSelectedObjects.Add(curSecondarySelection);
-            EndManualSelection(selectionTask, tempSelectedObjects);
-            secondaryCursor.SetActive(false);
-        }
-    }
-
-    public void AISingleRandomSelection(SelectionTask selectionTask)
-    {
-        int randomOpponentIndx = UnityEngine.Random.Range(0, selectionTask.objectsForSelection.Count);
-        List<GameObject> tempSelectedObjects = new List<GameObject>();
-        tempSelectedObjects.Add(selectionTask.objectsForSelection[randomOpponentIndx]);
-        EndAutoSelection(selectionTask,tempSelectedObjects);
-    }
-
-    private void OneGroupSelection(SelectionTask selectionTask) //this is the old school way of doing this. need to make partially see through selection indicators and turn them on and off or move all of them. This does nothing except visually show the selection and wait for confirmation
-    {
-        
-        secondaryCursor.transform.position = selectionTask.objectsForSelection[genericSwitchIndx].transform.position +cursorOffset;
-        genericSwitchIndx++;
-        if (genericSwitchIndx >= selectionTask.objectsForSelection.Count)
-        {
-            genericSwitchIndx = 0;
-        }
-        if (Input.GetButtonDown("A"))
-        {
-            EndManualSelection(selectionTask, selectionTask.objectsForSelection);
-            secondaryCursor.SetActive(false);
-        }
-    }
-
-    private void AIOneGroupSelection(SelectionTask selectionTask)
-    {
-        EndAutoSelection(selectionTask,selectionTask.objectsForSelection);
-    }
-
-    #endregion SelectionMethods
-
-    private void KickOffMiniGame(MiniGame mG)
-    {
-        miniGames.Add(mG);
-        mG.StartMiniGame(this);
-    }
-
-    #region ExternalUIMethods
-    public GameObject InstantiateInWorldSpaceCanvas(GameObject toInstantiate, Vector3 position)
-    {
-        return GameObject.Instantiate(toInstantiate, position, Quaternion.identity, worldSpaceCanvas.transform);
-    }
-
-
-    #endregion ExternalUIMethods
-    #endregion ExternalMethods
 
 }
 
-public abstract class MiniGame:ScriptableObject
+
+public interface ISelect
 {
-    
-    public GameObject mGuI;//TODO: make this private but show it in inspector
 
-    private BattleMenuManager bMM;
+    GameObject FromFriends();
 
-    private Ability aB;
+    GameObject FromEnemies();
 
-    public virtual void StartMiniGame(BattleMenuManager inBMM)
+    GameObject FromPCs();
+
+    GameObject FromMonsters();
+
+    List<GameObject> AllFriends();
+
+    List<GameObject> AllEnemies();
+
+    List<GameObject> AllPCs();
+
+    List<GameObject> AllMonsters();
+
+    List<GameObject> allFriendsButCurrent();
+}
+public class PCSelectionMethods : ISelect
+{
+    public List<GameObject> AllEnemies()
     {
-        bMM = inBMM;
-   
-        isFinished = false;
+        throw new NotImplementedException();
     }
 
-    public virtual void SetAbility(Ability inAB)
+    public List<GameObject> AllFriends()
     {
-        aB = inAB;
+        throw new NotImplementedException();
     }
 
-    public abstract void UpdateMiniGame();
-
-    public virtual void EndMiniGame()
+    public List<GameObject> allFriendsButCurrent()
     {
-        isFinished = true;
-        bMM.miniGames.Remove(this);
+        throw new NotImplementedException();
     }
 
-    private bool isFinished = true;
-    public virtual bool IsFinished()//TODO: possibly make something like this a delegate that gets called on the sub ability when the mini game is finsished
+    public List<GameObject> AllMonsters()
     {
-        return isFinished;
+        throw new NotImplementedException();
+    }
+
+    public List<GameObject> AllPCs()
+    {
+        throw new NotImplementedException();
+    }
+
+    public GameObject FromEnemies()
+    {
+        throw new NotImplementedException();
+    }
+
+    public GameObject FromFriends()
+    {
+        throw new NotImplementedException();
+    }
+
+    public GameObject FromMonsters()
+    {
+        throw new NotImplementedException();
+    }
+
+    public GameObject FromPCs()
+    {
+        throw new NotImplementedException();
+    }
+}
+
+public class MonsterSelectionMethods : ISelect
+{
+    public List<GameObject> AllEnemies()
+    {
+        throw new NotImplementedException();
+    }
+
+    public List<GameObject> AllFriends()
+    {
+        throw new NotImplementedException();
+    }
+
+    public List<GameObject> allFriendsButCurrent()
+    {
+        throw new NotImplementedException();
+    }
+
+    public List<GameObject> AllMonsters()
+    {
+        throw new NotImplementedException();
+    }
+
+    public List<GameObject> AllPCs()
+    {
+        throw new NotImplementedException();
+    }
+
+    public GameObject FromEnemies()
+    {
+        throw new NotImplementedException();
+    }
+
+    public GameObject FromFriends()
+    {
+        throw new NotImplementedException();
+    }
+
+    public GameObject FromMonsters()
+    {
+        throw new NotImplementedException();
+    }
+
+    public GameObject FromPCs()
+    {
+        throw new NotImplementedException();
     }
 }

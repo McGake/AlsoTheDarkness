@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StayWithXPositionOfObject : MonoBehaviour
+public class StayWithXPositionOfObject : FireableBehavior
 {
-    Fireable fireable;
-
     GameObject objectToStayWith;
 
-    public void OnEnable()
+    public override void OnFire()
     {
-        fireable = GetComponent<Fireable>();
-        objectToStayWith = fireable.sourceAbility.owner;
+        objectToStayWith = fireable.sourceAbility.Owner;
     }
 
     public void Update()

@@ -13,7 +13,7 @@ public class TargetAllInCircle : SubAbility
     public override void DoInitialSubAbility(Ability ab)
     {
         //ab.StartSelectAllPCsButCurrent(this);
-        Collider2D[] colInCircle = Physics2D.OverlapCircleAll(ab.owner.transform.position, circleSize,mask);
+        Collider2D[] colInCircle = Physics2D.OverlapCircleAll(ab.Owner.transform.position, circleSize,mask);
 
         for(int i = 0; i < colInCircle.Length; i++)
         {

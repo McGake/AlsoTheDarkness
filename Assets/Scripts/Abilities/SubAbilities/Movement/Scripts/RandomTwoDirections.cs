@@ -18,12 +18,12 @@ public class RandomTwoDirections : SubAbility
         randomNum = Random.Range(0, 2);
         if (randomNum == 0)
         {
-            ab.positionTargets.Add(direction0.normalized *ab.owner.transform.right.x);
+            ab.positionTargets.Add(direction0.normalized *ab.Owner.transform.right.x);
             EndSubAbility();
         }
         else if (randomNum == 1)
         {
-            ab.positionTargets.Add(direction1.normalized * ab.owner.transform.right.x);
+            ab.positionTargets.Add(direction1.normalized * ab.Owner.transform.right.x);
             EndSubAbility();
         }
     }

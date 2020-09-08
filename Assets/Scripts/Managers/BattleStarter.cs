@@ -82,7 +82,7 @@ public class BattleStarter : MonoBehaviour
 
         battleFolder.SetActive(true);
         objectsInBattle.CollectObjectsInBattle();
-        battleMenuManager.SetUpBattleMenuManager();
+        battleMenuManager.SetupBattleMenuManager();
         overworldFolder.SetActive(false);
     }
 

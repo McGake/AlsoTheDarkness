@@ -5,21 +5,29 @@ using UnityEngine;
 
 public abstract class SubAbility : ScriptableObject
 {
+    //TODO: make these delegates so that I can avoid calling empty functions using the ?. operator
+    public virtual void DoInitialSubAbility(Ability ab)
+    {
+    }
+    public virtual void DoSubAbility(Ability ab)
+    {
+    }
+    public virtual void DoFinishSubAbility(Ability ab)
+    {
+    }
+    public virtual void OnSelectionFinished(List<GameObject> selectedObjects)
+    {
+    }
+
     public delegate void DelEndProjectileSubAbility();
     public DelEndProjectileSubAbility EndSubAbility; //This is set by the owning ability. call this to make the owning ability go to the next subability
 
-    public virtual void DoInitialSubAbility(Ability ab)
-    {
-
-    }
-
-    public abstract void DoSubAbility(Ability ab);
-
+    #region Utilities
     protected void SetNewAnimation(string newAnim, Ability ab)
     {
-        if (ab.actorType == typeof(BattlePC))//TODO: this is temp code that must be modified if we want enemies to be able to use same sub abilities as pcs
+        if (ab.ActorType == typeof(BattlePC))//TODO: this is temp code that must be modified if we want enemies to be able to use same sub abilities as pcs
         {
-            ab.battleActorView.PlayCharacterAnimation(newAnim);
+            ab.BattleActorView.PlayCharacterAnimation(newAnim);
 
         }
     }
@@ -27,40 +35,27 @@ public abstract class SubAbility : ScriptableObject
     protected void SetNewAnimationAtSpeed(string newAnim, Ability ab, float speed)
     {
 
-        if (ab.actorType == typeof(BattlePC))//TODO: this is temp code that must be modified if we want enemies to be able to use same sub abilities as pcs
+        if (ab.ActorType == typeof(BattlePC))//TODO: this is temp code that must be modified if we want enemies to be able to use same sub abilities as pcs
         {
-            ab.battleActorView.PlayCharacterAnimationAtSpeed(newAnim,speed);
+            ab.BattleActorView.PlayCharacterAnimationAtSpeed(newAnim,speed);
 
         }
     }
 
     protected void EndLastAnimation(Ability ab)
     {
-        ab.pcAnimator.SetBool(ab.lastAnimSet, false); ;
+        ab.PCAnimator.SetBool(ab.LastAnimSet, false); ;
     }
 
     protected void SetNewSpecialAnimation(AnimationClip anim, Ability ab)
     {
         AnimatorOverrideController aOC;
-        aOC = ab.pcAnimator.runtimeAnimatorController as AnimatorOverrideController;
-        //Debug.Log("aoc is " + aOC.name);
-        ab.pcAnimator.runtimeAnimatorController = aOC;
-        //Debug.Log(aOC["special"].name);
-        //Debug.Log(anim.name);
+        aOC = ab.PCAnimator.runtimeAnimatorController as AnimatorOverrideController;
+        ab.PCAnimator.runtimeAnimatorController = aOC;
         aOC["special"] = anim;
         SetNewAnimation("special", ab);
-    }   
-
-    public virtual void DoFinishSubAbility(Ability ab)
-    {
-
     }
-
-    public virtual void OnSelectionFinished(List <GameObject> selectedObjects)
-    {
-
-    }
-
+    #endregion Utilities
 }
 
 public abstract class SubProjectileAbility:ScriptableObject

@@ -24,7 +24,7 @@ public class TargetEnemiesByRelativePos : SubAbility
         selectedEnemies.Clear();
         finalTargetedEnemies.Clear();
         abilty = ab;
-        ab.StartSelectAllEnemeies(this, ab.actorType);
+        ab.StartSelectAllEnemeies(this, ab.ActorType);
     }
 
     public override void DoSubAbility(Ability ab)
@@ -41,12 +41,12 @@ public class TargetEnemiesByRelativePos : SubAbility
     {
         selectedEnemies.AddRange(selectedObjects);
         finalTargetedEnemies.AddRange(selectedObjects);
-        Vector3 pos = abilty.owner.transform.position;
-        Vector3 forward = abilty.owner.transform.right;
-        Vector3 backward =-1f * abilty.owner.transform.right;
-        Vector3 up = abilty.owner.transform.up;
-        Vector3 down = -1f * abilty.owner.transform.up;
-        Transform ownerTransform = abilty.owner.transform;
+        Vector3 pos = abilty.Owner.transform.position;
+        Vector3 forward = abilty.Owner.transform.right;
+        Vector3 backward =-1f * abilty.Owner.transform.right;
+        Vector3 up = abilty.Owner.transform.up;
+        Vector3 down = -1f * abilty.Owner.transform.up;
+        Transform ownerTransform = abilty.Owner.transform;
 
         for (int i = 0; i < selectedEnemies.Count; i++)
         {

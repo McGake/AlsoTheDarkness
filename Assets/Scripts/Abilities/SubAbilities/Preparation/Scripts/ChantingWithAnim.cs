@@ -25,7 +25,7 @@ public class ChantingWithAnim : SubAbility
         SetNewAnimation("chantSpell", ab);
         if(animObject == null)
         {
-            animObject = ab.battlePooler.ProduceObject(animObjectInsp, ab.owner.transform);
+            animObject = BattlePooler.ProduceObject(animObjectInsp, ab.Owner.transform);
             //animObject.transform.position = ab.owner.transform.position;
         }
         

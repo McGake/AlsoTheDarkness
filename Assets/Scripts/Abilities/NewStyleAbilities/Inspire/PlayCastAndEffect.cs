@@ -37,7 +37,7 @@ public class PlayCastAndEffect : SubAbility
         
             endTime = (effectStartDelay) + animOverrideController.animationClips[1].length + Time.time;
 
-        ab.owner.GetComponent<BattleActorView>().ShowOneTimeCast(animOverrideController);
+        ab.Owner.GetComponent<BattleActorView>().ShowOneTimeCast(animOverrideController);
         
     }
 

@@ -21,7 +21,7 @@ public class TurnOnSecondaryOnTime : MonoBehaviour
     {
         if (deathTime <= Time.time)
         {
-            BattlePooler.pool.ProduceObject(objectToTurnOn, transform.position);
+            BattlePooler.ProduceObject(objectToTurnOn, transform.position);
             if (turnOffSelfOnTime)
             {
                 gameObject.SetActive(false);

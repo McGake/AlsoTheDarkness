@@ -14,14 +14,14 @@ public class ChooseDirectionOnRelativeY : SubAbility
         if (ab.objectTargets[0] != null)
         {
 
-            if ((ab.objectTargets[0].transform.position.y - ab.owner.transform.position.y) > 0)
+            if ((ab.objectTargets[0].transform.position.y - ab.Owner.transform.position.y) > 0)
             {
-                ab.positionTargets.Add(direction0.normalized * ab.owner.transform.right.x);
+                ab.positionTargets.Add(direction0.normalized * ab.Owner.transform.right.x);
                 EndSubAbility();
             }
             else
             {
-                ab.positionTargets.Add(direction1.normalized * ab.owner.transform.right.x);
+                ab.positionTargets.Add(direction1.normalized * ab.Owner.transform.right.x);
                 EndSubAbility();
             }
         }

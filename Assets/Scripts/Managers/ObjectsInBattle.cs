@@ -91,7 +91,7 @@ public class ObjectsInBattle : MonoBehaviour
         return null;
     }
 
-    public List<GameObject> GetOpponentsOfType(Type type)
+    public List<GameObject> GetEnemiesOfType(Type type)
     {
         List<GameObject> tempList = new List<GameObject>();
         if (type == typeof(BaseEnemy))

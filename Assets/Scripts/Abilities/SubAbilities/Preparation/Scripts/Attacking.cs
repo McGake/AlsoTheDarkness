@@ -20,7 +20,7 @@ public class Attacking : SubAbility
     {
         if (skipFrame == false)
         {
-            if (ab.pcAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= .8f && ab.pcAnimator.GetCurrentAnimatorStateInfo(0).IsName("attack")) //TODO: make this an event on the animation or just find some better way to do this
+            if (ab.PCAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= .8f && ab.PCAnimator.GetCurrentAnimatorStateInfo(0).IsName("attack")) //TODO: make this an event on the animation or just find some better way to do this
             {
                 Debug.Log("ended");
                 EndLastAnimation(ab);

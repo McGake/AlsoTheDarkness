@@ -6,7 +6,7 @@ public class TargetSelf : SubAbility
 {
     public override void DoInitialSubAbility(Ability ab)
     {
-        ab.objectTargets.Add(ab.owner);
+        ab.objectTargets.Add(ab.Owner);
         EndSubAbility();
     }
 

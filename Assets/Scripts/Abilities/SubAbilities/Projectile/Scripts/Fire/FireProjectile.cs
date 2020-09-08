@@ -11,7 +11,7 @@ public class FireProjectile : SubProjectileAbility
     public override void DoInitialProjectileSubAbility(ProjectileAbility pa)
     {
         GameObject tempProjectile;
-        tempProjectile = pa.ability.battlePooler.ProduceObject(projectilePrefab);
+        tempProjectile = BattlePooler.ProduceObject(projectilePrefab);
         tempProjectile.GetComponent<Fireable>().SetSourceAbility(pa.ability); //TODO: make factory for projectile creation
         tempProjectile.transform.position = pa.sources[0].position;
         tempProjectile.transform.rotation = pa.quatProjectileFireAngle;

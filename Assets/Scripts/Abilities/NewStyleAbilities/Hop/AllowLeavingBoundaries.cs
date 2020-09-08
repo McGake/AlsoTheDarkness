@@ -9,7 +9,7 @@ public class AllowLeavingBoundaries : SubAbility
     private StayInBounds stayInBounds;
     public override void DoInitialSubAbility(Ability ab)
     {
-       stayInBounds = ab.owner.GetComponent<StayInBounds>();
+       stayInBounds = ab.Owner.GetComponent<StayInBounds>();
        stayInBounds?.SetStayInBounds(false);
         EndSubAbility();
     }

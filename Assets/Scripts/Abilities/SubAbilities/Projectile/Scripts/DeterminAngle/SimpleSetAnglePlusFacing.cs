@@ -11,7 +11,7 @@ public class SimpleSetAnglePlusFacing : SubProjectileAbility
     float dirFlip = 1;
     public override void DoProjectileSubAbility(ProjectileAbility pa)
     {
-        Vector3 rot = pa.ability.owner.transform.rotation.eulerAngles;
+        Vector3 rot = pa.ability.Owner.transform.rotation.eulerAngles;
         FlipAngleBasedOnFacing(rot);
         pa.quatProjectileFireAngle = Quaternion.Euler(0f, 0f, projectileFireAngle * dirFlip) * Quaternion.Euler(rot.x, rot.y, rot.z);
         EndProjectileSubAbility();

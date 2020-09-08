@@ -15,7 +15,7 @@ public class TelegraphWithFlash : SubProjectileAbility
 
     public override void DoInitialProjectileSubAbility(ProjectileAbility pa)
     {
-        pa.ability.battleActorView.StartFlash(numberOfFlashes, intervalBetweenFlashes);
+        pa.ability.BattleActorView.StartFlash(numberOfFlashes, intervalBetweenFlashes);
         delayOverTime = Time.time + delay;
     }
 

@@ -42,8 +42,6 @@ public class BattleActorView : MonoBehaviour
     private delegate void DelOngoingDisplayBehavior();
     private DelOngoingDisplayBehavior OngoingDisplaybehavior;//TODO: if needed, make this a list of behaviors
 
-    public BattlePooler battlePooler;
-
     [SerializeField]
     private Image healthBar;
 
@@ -89,7 +87,7 @@ public class BattleActorView : MonoBehaviour
     private void ExplodeText(string text, Color color)
     {
         Debug.Log(popoutTextBoxPrefab.name);
-        GameObject explodingText = battlePooler.ProduceObject(popoutTextBoxPrefab, transform.position, Quaternion.identity, transform);
+        GameObject explodingText = BattlePooler.ProduceObject(popoutTextBoxPrefab, transform.position, Quaternion.identity, transform);
 
         Debug.Log(explodingText.name);
 

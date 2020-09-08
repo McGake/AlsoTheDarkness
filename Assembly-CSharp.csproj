@@ -241,6 +241,7 @@
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\Status.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\Stun.cs" />
     <Compile Include="Assets\Scripts\Utilities\BattlePooler.cs" />
+    <Compile Include="Assets\Scripts\Utilities\MultiInput.cs" />
     <Compile Include="Assets\Scripts\Utilities\Timer.cs" />
     <Compile Include="Assets\Scripts\Utilities\TimerManager.cs" />
     <Compile Include="Assets\SpawnManagerScriptableObject.cs" />

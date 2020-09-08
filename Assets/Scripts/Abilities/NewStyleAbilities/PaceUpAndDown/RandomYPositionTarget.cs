@@ -18,7 +18,7 @@ public class RandomYPositionTarget : SubAbility
 
         randomDist = randomDist * RandomSignVal();
 
-        ab.positionTargets.Add(new Vector3(ab.owner.transform.position.x, ab.owner.transform.position.y + randomDist, ab.owner.transform.position.z));
+        ab.positionTargets.Add(new Vector3(ab.Owner.transform.position.x, ab.Owner.transform.position.y + randomDist, ab.Owner.transform.position.z));
         EndSubAbility();
     }
 

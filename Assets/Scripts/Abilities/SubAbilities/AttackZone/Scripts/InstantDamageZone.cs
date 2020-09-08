@@ -21,8 +21,8 @@ public class InstantDamageZone : SubAbility
 
     public override void DoInitialSubAbility(Ability ab)
     {
-        damageZone = ab.battlePooler.ProduceObject(damageZonePrfb);
-        damageZone.transform.position = ab.owner.transform.position;
+        damageZone = BattlePooler.ProduceObject(damageZonePrfb);
+        damageZone.transform.position = ab.Owner.transform.position;
         //damageZone.SetActive(true);
         WaitForMinimumExposure();
 

@@ -15,7 +15,7 @@ public class AddStatusToSelf : SubAbility
     public override void DoInitialSubAbility(Ability ab)
     {
         statusToAddInstance = Instantiate(statusToAdd);
-        ab.owner.GetComponent<BaseBattleActor>().AddStatus(statusToAddInstance);
+        ab.Owner.GetComponent<BaseBattleActor>().AddStatus(statusToAddInstance);
         EndSubAbility();
     }
 

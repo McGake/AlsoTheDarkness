@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -41,7 +42,7 @@ public class BattleStarter : MonoBehaviour
         {
             //ExitBattle();
         }
-        if(Input.GetButtonDown("A"))
+        if(MultiInput.GetAButtonDown())
         {
             //Debug.Log("a was pressed");
         }
@@ -64,9 +65,15 @@ public class BattleStarter : MonoBehaviour
         overworldFolder.SetActive(false);
     }
 
+    private void ResetBattle()
+    {
+
+
+    }
+
     public void SetUpBattle()
     {
-        
+        ResetBattle();
         if(battleDef==null)
         {
             battleDef = defaultBd;
@@ -83,6 +90,7 @@ public class BattleStarter : MonoBehaviour
         battleFolder.SetActive(true);
         objectsInBattle.CollectObjectsInBattle();
         battleMenuManager.SetupBattleMenuManager();
+
         overworldFolder.SetActive(false);
     }
 
@@ -98,6 +106,10 @@ public class BattleStarter : MonoBehaviour
 
     private void SetupEncounter()
     {
+        Debug.Log(battleDef.encounterType);
+        possiblePCStartPositions = new List<Transform>();
+        possibleMonsterStartPositions = new List<Transform>();
+        
         if(battleDef.encounterType == EncounterTypes.standard)
         {
             possiblePCStartPositions = rightSideStartPositions;
@@ -119,9 +131,15 @@ public class BattleStarter : MonoBehaviour
     private void SetupPCBlanks()
     {
         int curPCBlankIndex = 0;
+        Debug.Log("pcsinbattle count " + battleDef.pcsInBattle.Count);
         foreach (PC pc in battleDef.pcsInBattle)
         {
-            Transform startPosition = TakeRandomPosition(possiblePCStartPositions);
+
+            List<Transform> possiblePCStartPositionsCopy = new List<Transform>();
+            possiblePCStartPositionsCopy.AddRange(possiblePCStartPositions);
+
+            Debug.Log("pc start postions" + possiblePCStartPositionsCopy.Count);
+            Transform startPosition = TakeRandomPosition(possiblePCStartPositionsCopy);
 
             pc.battler.transform.position = startPosition.position;
             pc.battler.transform.rotation = startPosition.rotation;
@@ -142,12 +160,18 @@ public class BattleStarter : MonoBehaviour
         List<GameObject> encounterMonsters = battleDef.enemyMix.encounterMonsters;
 
         GameObject curMonster;
+
+        if(possibleMonsterStartPositions.Count < encounterMonsters.Count)
+        {
+            Debug.LogError("more monsters than start positions");
+        }
         for(int i = 0; i < encounterMonsters.Count; i++)
         {
             curMonster = Instantiate(encounterMonsters[i]);
-
             Transform position;
-            position= TakeRandomPosition(possibleMonsterStartPositions);
+            List<Transform> possibleMonsterStartPositionsCopy = new List<Transform>();
+            possibleMonsterStartPositionsCopy.AddRange(possibleMonsterStartPositions);
+            position= TakeRandomPosition(possibleMonsterStartPositionsCopy);
             curMonster.transform.position = position.position;
             curMonster.transform.rotation = position.rotation;
         }

@@ -80,7 +80,7 @@ public class Barrier : MonoBehaviour
     {
         for (int i = 0; i < stopInfos.Count; i++)
         {
-            if(stopInfos[i].objectToStop == col.transform)
+            if (stopInfos[i].objectToStop == col.transform)
             {
                 stopInfos.RemoveAt(i);
                 break;
@@ -96,10 +96,6 @@ public class Barrier : MonoBehaviour
         for (int i = 0; i < stopInfos.Count; i++)
         {
             clampedPosition = stopInfos[i].objectToStop.position;
-
-
-
-
         }
 
             //for (int i = 0; i < stopInfos.Count; i++)

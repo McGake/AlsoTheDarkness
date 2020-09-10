@@ -10,7 +10,6 @@ public class WaitForAttackAnimEnd : SubAbility
     {
             if (ab.PCAnimator.GetCurrentAnimatorStateInfo(0).IsName("attack") && ab.PCAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= .99f) 
             {
-                Debug.Log("ended attack animat");
                 EndSubAbility();
             }
     }

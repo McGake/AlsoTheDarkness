@@ -8,6 +8,10 @@ public class Fireable : MonoBehaviour
 
     public List<FireableBehavior> fireableBehaviors;
 
+    public void OnEnable()
+    {
+
+    }
 
     public void SetSourceAbility(Ability newSource)
     {
@@ -17,6 +21,11 @@ public class Fireable : MonoBehaviour
         foreach(FireableBehavior f in fireableBehaviors)
         {
             f.SetUpFireableBehavior(this);
+        }
+
+        foreach (FireableBehavior f in fireableBehaviors)
+        {
+            f.OnFire();
         }
     }
 

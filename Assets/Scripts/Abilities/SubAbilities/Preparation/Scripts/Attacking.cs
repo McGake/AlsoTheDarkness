@@ -12,7 +12,6 @@ public class Attacking : SubAbility
     public override void DoInitialSubAbility(Ability ab)
     {
         SetNewAnimation("attack",ab);
-        //ab.pcAnimator.Play("attack", 0, 0f);
         skipFrame = true;
     }
 
@@ -22,7 +21,6 @@ public class Attacking : SubAbility
         {
             if (ab.PCAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= .8f && ab.PCAnimator.GetCurrentAnimatorStateInfo(0).IsName("attack")) //TODO: make this an event on the animation or just find some better way to do this
             {
-                Debug.Log("ended");
                 EndLastAnimation(ab);
                 EndSubAbility();
             }

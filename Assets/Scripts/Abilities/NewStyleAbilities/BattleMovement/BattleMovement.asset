@@ -16,9 +16,9 @@ MonoBehaviour:
   maxUses: 15
   uses: 0
   cooldownTime: 1.2
-  objectTargets: []
-  positionTargets: []
   inspectorSubAbilities:
   - {fileID: 11400000, guid: ae0423beb129ed545b5b3a461071deea, type: 2}
-  - {fileID: 11400000, guid: ac1a9e2925e234c438f16bb07c3aa7a1, type: 2}
+  - {fileID: 11400000, guid: 57ab37fc370af914eafb2b5ba360dc6e, type: 2}
+  objectTargets: []
+  positionTargets: []
   curSubAbilityIndx: 3

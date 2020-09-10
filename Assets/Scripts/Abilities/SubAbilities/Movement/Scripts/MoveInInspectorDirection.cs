@@ -57,7 +57,6 @@ private void ChangeDirectionOnRotationChange(Ability ab)
 {
     if (previousRotation.eulerAngles.y != ab.Owner.transform.rotation.eulerAngles.y)
     {
-        Debug.Log("rotation change " + previousRotation + " " + ab.Owner.transform.rotation);
         flipValue = flipValue * -1;
         previousRotation = ab.Owner.transform.rotation;
     }

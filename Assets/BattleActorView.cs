@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEditor.Animations;
 using UnityEngine.UI;
 
 public enum BuffStyle
@@ -86,11 +85,7 @@ public class BattleActorView : MonoBehaviour
 
     private void ExplodeText(string text, Color color)
     {
-        Debug.Log(popoutTextBoxPrefab.name);
         GameObject explodingText = BattlePooler.ProduceObject(popoutTextBoxPrefab, transform.position, Quaternion.identity, transform);
-
-        Debug.Log(explodingText.name);
-
         TextMeshPro textMesh = explodingText.GetComponent<TextMeshPro>();
         textMesh.text = text;
         textMesh.color = color;

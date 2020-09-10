@@ -37,7 +37,7 @@ public class ShopInteraction : GameSegment
 
     //public override void UpdateGameSegment()//This gets called on update from the state machien
     //{
-    //    if(Input.GetButtonDown("B"))
+    //    if(MultiInput.GetBButtonDown())
     //    {
     //        BackOutOfCurrentMenu();
     //    }

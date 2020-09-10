@@ -32,6 +32,7 @@ public class ObjectsInBattle : MonoBehaviour
     {
        // pcsInBattle.Clear();
         enemiesInBattle.Clear();
+       // pcsInBattle.Clear();
         objectsInBattle = this;
         //tempPCs = FindObjectsOfType<BattlePC>();
         //foreach (BattlePC bpc in tempPCs)
@@ -58,6 +59,7 @@ public class ObjectsInBattle : MonoBehaviour
     {
         newPC.GetComponent<BaseBattleActor>().OnDeathCallback = OnPCDeath;
         pcsInBattle.Add(newPC);
+        Debug.Log("pc added");
         
     }
 

@@ -2,16 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeactivateOnCallback : MonoBehaviour
+public class DeactivateOnCallback : FireableBehavior
 {
-    private Fireable fireable;
-    public void OnEnable()
+    public override void OnFire()
     {
-        fireable = GetComponent<Fireable>();
-        Debug.Log(fireable.sourceAbility.name);
         fireable.sourceAbility.SubscribeToProjectileCallback(DeactivateSelf);
     }
-
     private void DeactivateSelf()
     {
         fireable.sourceAbility.UnsubscribeToProjectileCallback(DeactivateSelf);

@@ -3097,6 +3097,7 @@ GameObject:
   m_Component:
   - component: {fileID: 293290122}
   - component: {fileID: 293290121}
+  - component: {fileID: 293290120}
   m_Layer: 0
   m_Name: OverworldCamera
   m_TagString: MainCamera
@@ -3104,6 +3105,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &293290120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293290119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AssetsPPU: 32
+  m_RefResolutionX: 433
+  m_RefResolutionY: 244
+  m_UpscaleRT: 0
+  m_PixelSnapping: 0
+  m_CropFrameX: 0
+  m_CropFrameY: 0
+  m_StretchFill: 0
 --- !u!20 &293290121
 Camera:
   m_ObjectHideFlags: 0
@@ -3113,7 +3134,7 @@ Camera:
   m_GameObject: {fileID: 293290119}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -3131,7 +3152,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 4.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3141,7 +3162,7 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -12843,8 +12864,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AssetsPPU: 32
-  m_RefResolutionX: 512
-  m_RefResolutionY: 288
+  m_RefResolutionX: 433
+  m_RefResolutionY: 244
   m_UpscaleRT: 0
   m_PixelSnapping: 0
   m_CropFrameX: 0
@@ -14400,7 +14421,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -192, y: -24.549988}
+  m_AnchoredPosition: {x: -208, y: -40.5}
   m_SizeDelta: {x: 383.99902, y: 49.116745}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &648871273
@@ -19495,7 +19516,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25728557}
   m_AnchorMax: {x: 1, y: 0.8346511}
-  m_AnchoredPosition: {x: 0, y: -37.000008}
+  m_AnchoredPosition: {x: 0, y: -37}
   m_SizeDelta: {x: 0, y: 74.03633}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &887276708
@@ -19605,7 +19626,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &898838322
 Transform:
   m_ObjectHideFlags: 0
@@ -31103,7 +31124,7 @@ GameObject:
   - component: {fileID: 1241146170}
   - component: {fileID: 1241146171}
   m_Layer: 8
-  m_Name: Locke_28
+  m_Name: TempOverworldChar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31133,7 +31154,7 @@ Animator:
   m_GameObject: {fileID: 1241146162}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: a2a53df497a6d2a4a9570b4e2dcbf50e, type: 2}
+  m_Controller: {fileID: 22100000, guid: 919eeae8cf4f16e4ea5e72eb9a76a909, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -31181,7 +31202,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -7233822258645717145, guid: e4b4825f213fcb94da5d772178fe002f,
+  m_Sprite: {fileID: 8979699791473672764, guid: fd2529f63fb54154899c747fe490d64b,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -31281,7 +31302,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.75, y: 0.75}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -39266,7 +39287,7 @@ MonoBehaviour:
   primaryCursor: {fileID: 923279054}
   secondaryCursor: {fileID: 344167788}
   worldSpaceCanvas: {fileID: 1736787083}
-  curHeroAbilitiesDisplay: {fileID: 0}
+  curHeroAbilitiesDisplay: {fileID: 648871271}
   miniGames: []
 --- !u!114 &1343185344
 MonoBehaviour:
@@ -50839,7 +50860,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 5}
+  m_AnchoredPosition: {x: 0, y: 4.5}
   m_SizeDelta: {x: 30, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1941154784
@@ -51135,7 +51156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25728557}
   m_AnchorMax: {x: 1, y: 0.8346511}
-  m_AnchoredPosition: {x: 0, y: -37.000008}
+  m_AnchoredPosition: {x: 0, y: -37}
   m_SizeDelta: {x: 0, y: 74.03633}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1965026103
@@ -55638,17 +55659,17 @@ PrefabInstance:
     - target: {fileID: 2001733951133978244, guid: 6cd498081f5136e489a37327c8330fec,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2001733951133978244, guid: 6cd498081f5136e489a37327c8330fec,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2001733951133978244, guid: 6cd498081f5136e489a37327c8330fec,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2001733951133978244, guid: 6cd498081f5136e489a37327c8330fec,
         type: 3}
@@ -55683,7 +55704,7 @@ PrefabInstance:
     - target: {fileID: 2001733951133978244, guid: 6cd498081f5136e489a37327c8330fec,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -45.799995
+      value: -43.8
       objectReference: {fileID: 0}
     - target: {fileID: 2001733951133978244, guid: 6cd498081f5136e489a37327c8330fec,
         type: 3}

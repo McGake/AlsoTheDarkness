@@ -47,7 +47,7 @@ public class AbilityManager : MonoBehaviour
     {
         if (ab.Useable == true)
         {
-            ab.ResetAbilityForImediateUse();
+            ab.ResetAbilityAndStartInitial();
             abilitiesInUse.Add(ab);
         }
     }

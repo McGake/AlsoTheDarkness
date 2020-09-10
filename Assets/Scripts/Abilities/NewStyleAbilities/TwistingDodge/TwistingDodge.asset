@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: TwistingDodge
   m_EditorClassIdentifier: 
   _displayName: TwistingDodge
-  maxUses: 0
-  uses: 1000
+  maxUses: 1000
+  uses: 0
   cooldownTime: 6
-  objectTargets: []
-  positionTargets: []
   inspectorSubAbilities:
   - {fileID: 11400000, guid: b5c7e6e33196c294ca845ddf5ebfd7a1, type: 2}
   - {fileID: 11400000, guid: 2ec3694d353a6f444bb0b7424deec4b4, type: 2}
+  objectTargets: []
+  positionTargets: []
   curSubAbilityIndx: 0

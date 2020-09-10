@@ -7,6 +7,8 @@ using System;
 [CreateAssetMenu(fileName = "NameThisAbility", menuName = "ScriptableObjects/Ability", order = 1)]
 public class Ability:ScriptableObject
 {
+
+#pragma warning disable 649
     [SerializeField]
     private string _displayName;
     public string DisplayName { get { return _displayName; }}
@@ -15,7 +17,7 @@ public class Ability:ScriptableObject
     public float cooldownTime;
     [SerializeField]
     public List<SubAbility> inspectorSubAbilities;
-
+#pragma warning restore 649
     public Type ActorType { get; private set; }
     public Animator PCAnimator { get; private set; }
     public BattleActorView BattleActorView { get; private set; }
@@ -92,7 +94,7 @@ public class Ability:ScriptableObject
             subAbilities.Add(Instantiate(inspectorSubAbilities[i]));
         }
     }
-    public virtual void ResetAbilityForImediateUse()
+    public virtual void ResetAbilityAndStartInitial()
     {
         AbilityOver = false;
         LastAnimSet = "stand";
@@ -100,6 +102,7 @@ public class Ability:ScriptableObject
         objectTargets.Clear();
         positionTargets.Clear();
         SetUpNextSubAb();
+        RunSubAbilityInitial();
         uses++;
         Useable = false;
     }

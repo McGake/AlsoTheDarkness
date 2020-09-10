@@ -24,7 +24,7 @@ public class RandomYPositionTarget : SubAbility
 
     public override void DoSubAbility(Ability ab)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("this should not be called or be called only once");
     }
 
 

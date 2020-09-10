@@ -90,7 +90,7 @@ public class TownMovement : GameSegment
 
     public void WalkModeInput()
     {        
-        if(Input.GetButtonDown("A"))
+        if(MultiInput.GetAButtonDown())
         {
             CheckForInteractiveObject();
         }

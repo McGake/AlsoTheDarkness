@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class StayWithXPositionOfObject : FireableBehavior
 {
-    GameObject objectToStayWith;
-
+    private GameObject objectToStayWith;
+    bool follow = false;
     public override void OnFire()
     {
         objectToStayWith = fireable.sourceAbility.Owner;
+        follow = true;
     }
-
     public void Update()
     {
-        Vector3 tempXPos = new Vector3(objectToStayWith.transform.position.x, transform.position.y, transform.position.z);
-        transform.position = tempXPos;
+        if (follow)
+        {
+            Vector3 tempXPos = new Vector3(objectToStayWith.transform.position.x, transform.position.y, transform.position.z);
+            transform.position = tempXPos;
+        }
+    }
+    public void OnDisable()
+    {
+        follow = false;
     }
 }

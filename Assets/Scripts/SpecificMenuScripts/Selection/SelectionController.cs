@@ -137,11 +137,11 @@ public class SelectionController : MonoBehaviour
                 ChangeSelection(-1);
             }
 
-            if (Input.GetButtonDown("A"))
+            if (MultiInput.GetAButtonDown())
             {
                 Select(indx);
             }
-            if (Input.GetButtonDown("B"))
+            if (MultiInput.GetBButtonDown())
             {
                 Backout();
             }

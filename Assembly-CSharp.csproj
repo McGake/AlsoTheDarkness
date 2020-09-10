@@ -76,7 +76,6 @@
     <Compile Include="Assets\ControllerCheck.cs" />
     <Compile Include="Assets\DeactivateOnCallback.cs" />
     <Compile Include="Assets\HeatMapTileInfo.cs" />
-    <Compile Include="Assets\MagicSetup.cs" />
     <Compile Include="Assets\MaintainWorldRotation.cs" />
     <Compile Include="Assets\MoveChildWithParentSprite.cs" />
     <Compile Include="Assets\MoveForward.cs" />
@@ -171,7 +170,6 @@
     <Compile Include="Assets\Scripts\BaseClasses\BattlePC.cs" />
     <Compile Include="Assets\Scripts\Classes\EncounterClasses.cs" />
     <Compile Include="Assets\Scripts\EditorScripts\AngleAttribute.cs" />
-    <Compile Include="Assets\Scripts\EditorScripts\AngleDrawer.cs" />
     <Compile Include="Assets\Scripts\EditorScripts\TransitionGizmo.cs" />
     <Compile Include="Assets\Scripts\GUI\HeroPanelStats.cs" />
     <Compile Include="Assets\Scripts\GameSegments\GameSegmentStateMachine.cs" />
@@ -247,7 +245,6 @@
     <Compile Include="Assets\SpawnManagerScriptableObject.cs" />
     <Compile Include="Assets\StayInBounds.cs" />
     <Compile Include="Assets\StayWithXPositionOfObject.cs" />
-    <Compile Include="Assets\SubAbilityWindow.cs" />
     <Compile Include="Assets\TestAnimBehavior.cs" />
     <Compile Include="Assets\TestCollision.cs" />
     <Compile Include="Assets\TestHandles.cs" />

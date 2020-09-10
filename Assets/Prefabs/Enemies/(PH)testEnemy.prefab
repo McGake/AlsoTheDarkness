@@ -651,7 +651,7 @@ MonoBehaviour:
   battleActorView: {fileID: 8844169639533487354}
   stats:
     maxHP: 627
-    hP: 627
+    hP: 7
     maxMana: 0
     mana: 0
     speed: 0
@@ -764,7 +764,6 @@ MonoBehaviour:
   oneTimeEffectAnimators:
   - {fileID: 7804790820467365426}
   spriteRenderer: {fileID: 8844169639533487359}
-  battlePooler: {fileID: 0}
   healthBar: {fileID: 5740791215777887059}
 --- !u!95 &1245474386
 Animator:

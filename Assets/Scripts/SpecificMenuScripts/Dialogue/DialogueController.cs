@@ -15,11 +15,11 @@ public class DialogueController : MonoBehaviour, IDialogueController
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("A"))
+        if(MultiInput.GetAButtonDown())
         {
             AdvanceDialogue();
         }
-        if(Input.GetButtonDown("B"))
+        if(MultiInput.GetBButtonDown())
         {
             EndDialogue();
         }

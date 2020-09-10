@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da1bcdf33afce774c993179203f285b4, type: 3}
   m_Name: ScaleOverTime 1
   m_EditorClassIdentifier: 
-  ScaleAmount: {x: 1, y: 1, z: 1}
+  scaleAmount: {x: 1, y: 1, z: 1}
   timeToScale: 2

@@ -23,8 +23,10 @@ public class TimerManager : MonoBehaviour
             this.method = method;
         }
     }
+
+#pragma warning disable 649
     private static List<AnimItem> animItems;
-    
+#pragma warning restore 649
     public static void TurnOnTimer(Timer timerToTurnOn)
     {
         timers.Add(timerToTurnOn);

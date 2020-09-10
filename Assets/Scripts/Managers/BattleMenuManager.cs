@@ -10,6 +10,7 @@ using UnityEditor;
 
 public class BattleMenuManager : GameSegment //TODO: I think the best way to break this class up is to make seperate monobehaviors for Manual, and Auto Selection and also a seperate mono behavior for manual selecting abilities that references the currently selected pc. The auto and manual can implement the same interface.
 {
+#pragma warning disable 649
     [SerializeField]
     private GameObject primaryCursor, secondaryCursor;
     
@@ -18,6 +19,7 @@ public class BattleMenuManager : GameSegment //TODO: I think the best way to bre
 
     [SerializeField]
     private GameObject curHeroAbilitiesDisplay;
+#pragma warning restore 649
 
     private ObjectsInBattle objectsInBattle;
 
@@ -52,10 +54,12 @@ public class BattleMenuManager : GameSegment //TODO: I think the best way to bre
     public void SetupBattleMenuManager()
     {
         FindExternalReferences();
+        view.ResetView();
         AddAbilityClustersToDictionary();
         AddAllAbilitybuttonsToListInProperOrder();
         AddCallbacksToAbilities();
         SetInitialPCSelectionVars();
+
         view.PopulateHeroAbilityMenu(curHero);
 
         gameStateMachine.SetCurrentGameSegment(this); //this is what actually kicks off the battle being updated. I wonder if I should somehow put this in the battle start script
@@ -161,8 +165,6 @@ public class BattleMenuManager : GameSegment //TODO: I think the best way to bre
 
     #region ManualSelectCurHeroMethods
 
-    List<Ability> curCombatAbilities = new List<Ability>();
-
     void TriggerAbilityOnInput()
     {
         const int aIndx = 0;
@@ -170,21 +172,21 @@ public class BattleMenuManager : GameSegment //TODO: I think the best way to bre
         const int yIndx = 2;
         const int bIndx = 3;
 
-        if (Input.GetButtonDown("A"))
+        if (MultiInput.GetAButtonDown())
         {
             StartAbilityAtIndx(aIndx);
         }
-        if (Input.GetButtonDown("X"))
+        if (MultiInput.GetXButtonDown())
         {
             //  Debug.Log("x");
             StartAbilityAtIndx(xIndx);
         }
-        if (Input.GetButtonDown("Y"))
+        if (MultiInput.GetYButtonDown())
         {
             //  Debug.Log("y");
             StartAbilityAtIndx(yIndx);
         }
-        if (Input.GetButtonDown("B"))
+        if (MultiInput.GetBButtonDown())
         {
             // Debug.Log("b");
             StartAbilityAtIndx(bIndx);
@@ -194,7 +196,7 @@ public class BattleMenuManager : GameSegment //TODO: I think the best way to bre
     void StartAbilityAtIndx(int indx)
     {
         Ability abilityToPass = null;
-        foreach (Ability ab in curCombatAbilities)
+        foreach (Ability ab in view.curCombatAbilities)
         {
             if (ab == view.curAbilityCluster.abilityButtons[indx].ability)
             {
@@ -367,7 +369,7 @@ public class BattleMenuManager : GameSegment //TODO: I think the best way to bre
     {
         Vector2 dir = MultiInput.GetPrimaryDirection();
         curSecondarySelection = selectObject.ByDirection(selectionTask.objectsForSelection, dir, curSecondarySelection);
-        if (Input.GetButtonDown("A"))
+        if (MultiInput.GetAButtonDown())
         {
             List<GameObject> tempSelectedObjects = new List<GameObject>();
             tempSelectedObjects.Add(curSecondarySelection);
@@ -394,7 +396,7 @@ public class BattleMenuManager : GameSegment //TODO: I think the best way to bre
         {
             genericSwitchIndx = 0;
         }
-        if (Input.GetButtonDown("A"))
+        if (MultiInput.GetAButtonDown())
         {
             List<GameObject> tempSelectedObjects = new List<GameObject>();
             tempSelectedObjects = selectObject.ByEntireGroup(selectionTask.objectsForSelection);
@@ -610,7 +612,14 @@ public class MenuManagerView
     public List<AbilityCluster> abilityDisplayClusters = new List<AbilityCluster>();
 
     public AbilityCluster curAbilityCluster;
+    public List<Ability> curCombatAbilities;
 
+    public void ResetView()
+    {
+        allAbilityButtons.Clear();
+        abilityDisplayClusters.Clear();
+        //curCombatAbilities.Clear();
+    }
     public void Highlight(GameObject objectToShowSelected, GameObject cursor)
     {
         Highlight(objectToShowSelected, cursor, cursorOffset);
@@ -628,12 +637,11 @@ public class MenuManagerView
     }
 
 
-    private List<Ability> curCombatAbilities;
-    private GameObject curHero;
+
+
     public void PopulateHeroAbilityMenu(GameObject curHero)
     {
-       this.curHero = curHero;
-       GetBattleAbilities();
+       GetBattleAbilities(curHero);
        SetDisplayToNewAbilities();
     }
 
@@ -655,7 +663,7 @@ public class MenuManagerView
         }
     }
 
-    public void GetBattleAbilities()
+    public void GetBattleAbilities(GameObject curHero)
     {
         List<Ability> allAbilitiesOnPC = curHero.GetComponent<BattlePC>().abilities;
         curCombatAbilities = Ability.NewRetrunOnlyAbilitiesOfContext(UsableContexts.battleAbilityMenu, allAbilitiesOnPC);

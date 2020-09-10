@@ -14,8 +14,8 @@ public class AbilityView : MonoBehaviour, iAbilityView
     public GameObject greyMask;
     private Action ongoingDisplayBehavior;
 
-    private float flashSpeed;
-    private float flashDuration;
+    private float flashSpeed = .2f;
+    private float flashDuration = 1f;
     private float flashEnd;
     private Color flashColor = Color.green;
     private int timesToFalsh = 2;

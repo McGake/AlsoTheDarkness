@@ -97,6 +97,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sourceAbility: {fileID: 0}
+  fireableBehaviors:
+  - {fileID: 7629478123001773721}
+  - {fileID: -2164359179579334949}
 --- !u!114 &-2164359179579334949
 MonoBehaviour:
   m_ObjectHideFlags: 0

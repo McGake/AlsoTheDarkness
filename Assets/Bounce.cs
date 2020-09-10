@@ -30,7 +30,7 @@ public class Bounce : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y + yMovementThisTick, transform.position.z);
         curSpeed = curSpeed - gravity * Time.deltaTime;
 
-        if(bounceHeight > transform.position.y)
+        if (bounceHeight > transform.position.y)
         {
             transform.position = new Vector3(transform.position.x, bounceHeight, transform.position.z);
             curSpeed = -curSpeed - 1.75f;

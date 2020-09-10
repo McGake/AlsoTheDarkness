@@ -38,7 +38,7 @@ public class DialogueModel : GameSegment, IDialogueModel
     //public void DialogueModeInput()
     //{
     //    bool dialogueOngoing;
-    //    if (Input.GetButtonDown("A"))
+    //    if (MultiInput.GetAButtonDown())
     //    {
     //        dialogueOngoing = tMM.AdvanceDialguePanel();
     //        if (dialogueOngoing == false)

@@ -31,7 +31,7 @@ public class TestMagicAim : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("A"))
+        if(MultiInput.GetAButtonDown())
         {
             
         }

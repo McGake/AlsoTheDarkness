@@ -44,7 +44,7 @@ public class ChooseDirectionMiniGame : SubAbility
     {
         if(inputDelay < Time.time)
         {
-            if (Input.GetAxis("Horizontal") > .3f)
+            if (MultiInput.GetSecondaryDirection().x > .3f)
             {
                 inputDelay = Time.time + .3f;
 
@@ -55,7 +55,7 @@ public class ChooseDirectionMiniGame : SubAbility
                 }
             }
 
-            if (Input.GetAxis("Horizontal") < -.3f)
+            if (MultiInput.GetSecondaryDirection().x < -.3f)
             {
                 inputDelay = Time.time + .3f;
 

@@ -10,56 +10,70 @@ public static class BattlePooler
 
     public static GameObject ProduceObject(GameObject prefab)
     {
-        GameObject objectToProduce;
-
-        if (pools.ContainsKey(prefab))
-        {
-            pools.TryGetValue(prefab, out curPool);
-            objectToProduce = curPool.GetNextPooledObject();
-            objectToProduce.SetActive(true);
-            return objectToProduce;
-        }
-        else
-        {
-            pools.Add(prefab, new Pool(prefab));
-            pools.TryGetValue(prefab, out curPool);
-            return curPool.AddAdditionalObject();
-        }
+        GameObject objectToProduce = ProduceObjectUsingPooling(prefab);
+        objectToProduce.SetActive(true);
+        return objectToProduce;
     }
+
+    private static GameObject ProduceObjectUsingPooling(GameObject prefab)
+    {
+        if (pools.ContainsKey(prefab) == false)
+        {
+            CreateNewPool(prefab);
+        }
+        SetCurPool(prefab);
+        return ProduceObjectInCurPool();
+    }
+    private static void CreateNewPool(GameObject prefab)
+    {
+        pools.Add(prefab, new Pool(prefab));
+    }
+    private static void SetCurPool(GameObject prefab)
+    {
+        pools.TryGetValue(prefab, out curPool);
+    }
+    private static GameObject ProduceObjectInCurPool()
+    {
+        GameObject objectToProduce;
+        objectToProduce = curPool.GetNextPooledObject();
+        return objectToProduce;
+    }
+
+
 
     public static GameObject ProduceObject(GameObject prefab, Vector3 position)
     {
-        GameObject objectToProduce = ProduceObject(prefab);
+        GameObject objectToProduce = ProduceObjectUsingPooling(prefab);
         objectToProduce.transform.position = position;
-
+        objectToProduce.SetActive(true);
         return objectToProduce;
     }
 
     public static GameObject ProduceObject(GameObject prefab, Transform parent)
     {
-        GameObject objectToProduce = ProduceObject(prefab);
+        GameObject objectToProduce = ProduceObjectUsingPooling(prefab);
         objectToProduce.transform.position = prefab.transform.position;
         objectToProduce.transform.SetParent(parent);
-
+        objectToProduce.SetActive(true);
         return objectToProduce;
     }
 
     public static GameObject ProduceObject(GameObject prefab, Vector3 position, Quaternion rotation)
     {
-        GameObject objectToProduce = ProduceObject(prefab);
+        GameObject objectToProduce = ProduceObjectUsingPooling(prefab);
         objectToProduce.transform.rotation = rotation;
         objectToProduce.transform.position = position;
-
+        objectToProduce.SetActive(true);
         return objectToProduce;
     }
 
     public static GameObject ProduceObject(GameObject prefab, Vector3 position, Quaternion rotation, Transform parent)
     {
-        GameObject objectToProduce = ProduceObject(prefab);
+        GameObject objectToProduce = ProduceObjectUsingPooling(prefab);
         objectToProduce.transform.position = position;
         objectToProduce.transform.rotation = rotation;
         objectToProduce.transform.SetParent(parent);
-
+        objectToProduce.SetActive(true);
         return objectToProduce;
     }
 }
@@ -81,7 +95,11 @@ public class Pool
     {
         IncrementIndex();
 
-        if (pooledObjects[curIndex].activeSelf)
+        if(pooledObjects.Count == 0)
+        {
+            return AddAdditionalObject();
+        }
+        else if (pooledObjects[curIndex].activeSelf)
         {
             return AddAdditionalObject();
         }

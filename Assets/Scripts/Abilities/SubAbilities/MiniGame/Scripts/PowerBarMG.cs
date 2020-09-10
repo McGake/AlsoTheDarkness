@@ -75,7 +75,7 @@ public class PowerBarMG : SubProjectileAbility
 
         powerContainerInstance.transform.position = ownerTransform.position + mgDisplayOffset;
 
-        if(Input.GetButtonDown("A"))
+        if(MultiInput.GetAButtonDown())
         {
             powerContainerInstance.SetActive(false);
             pa.power = curPower;

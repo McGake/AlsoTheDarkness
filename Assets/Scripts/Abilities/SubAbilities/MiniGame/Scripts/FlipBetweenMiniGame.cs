@@ -50,7 +50,7 @@ public class FlipBetweenMiniGame : SubAbility
         curSelection = 0;
         mgSelections[curSelection].display.SetActive(true);
         flipInterval = startFlipInterval;
-        if(Input.GetButtonDown("A"))
+        if(MultiInput.GetAButtonDown())
         {
             skip = true;
         }
@@ -79,7 +79,7 @@ public class FlipBetweenMiniGame : SubAbility
             mgSelections[curSelection].display.SetActive(true);
         }
 
-        if(Input.GetButtonDown("A"))
+        if(MultiInput.GetAButtonDown())
         {
             ab.positionTargets.Add(mgSelections[curSelection].directionData);
             EndSubAbility();

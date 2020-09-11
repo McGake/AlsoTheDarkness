@@ -20,8 +20,6 @@ public class AttackAtSpeed : SubAbility
         {
             if (ab.PCAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= .8f && ab.PCAnimator.GetCurrentAnimatorStateInfo(0).IsName("attack")) //TODO: make this an event on the animation or just find some better way to do this
             {
-                
-                Debug.Log("ended");
                 EndLastAnimation(ab);
                 EndSubAbility();
             }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cff2c9917ca35f4aa078b6ef4671bdd, type: 3}
   m_Name: PowerBarMGMageBomb
   m_EditorClassIdentifier: 
-  maxPower: 13
+  maxPower: 9
   powerIncreaseSpeed: 12
   mgDisplayOffset: {x: -0.75, y: 1, z: 0}
   powerContainer: {fileID: 234157527744593643, guid: dc3c30bb3406ab64c96dd8843e59d031,

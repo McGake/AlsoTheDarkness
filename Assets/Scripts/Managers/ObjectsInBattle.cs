@@ -49,18 +49,12 @@ public class ObjectsInBattle : MonoBehaviour
             enemiesInBattle.Add(be.gameObject);
             
         }
-
-        
-        //objectsInBattleDict.Add(typeof(BaseEnemy), enemiesInBattle);
-        //objectsInBattleDict.Add(typeof(BattlePC), pcsInBattle);
     }
 
     public void AddPCToList(GameObject newPC)
     {
         newPC.GetComponent<BaseBattleActor>().OnDeathCallback = OnPCDeath;
         pcsInBattle.Add(newPC);
-        Debug.Log("pc added");
-        
     }
 
 

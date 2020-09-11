@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: testMedium
   m_EditorClassIdentifier: 
   zoneName: YellowRed3
-  encounterProb: 2
+  encounterProb: 0
   enemyMixTypesProb:
   - enemyMix:
       encounterMonsters:
       - {fileID: 1853974824209273933, guid: 4d9dcb86e5818e24f93ad740a20035bc, type: 3}
-    prob: 20
+    prob: 0
   - enemyMix:
       encounterMonsters:
       - {fileID: 1853974824209273933, guid: 4d9dcb86e5818e24f93ad740a20035bc, type: 3}
-    prob: 20
+    prob: 0
   - enemyMix:
       encounterMonsters:
       - {fileID: 1853974824209273933, guid: 4d9dcb86e5818e24f93ad740a20035bc, type: 3}
-    prob: 20
+    prob: 0
   encounterTypesProb: []

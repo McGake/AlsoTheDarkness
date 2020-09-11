@@ -131,19 +131,13 @@ public class BattleStarter : MonoBehaviour
     private void SetupPCBlanks()
     {
         int curPCBlankIndex = 0;
-        Debug.Log("pcsinbattle count " + battleDef.pcsInBattle.Count);
+        List<Transform> possiblePCStartPositionsCopy = new List<Transform>();
+        possiblePCStartPositionsCopy.AddRange(possiblePCStartPositions);
         foreach (PC pc in battleDef.pcsInBattle)
         {
-
-            List<Transform> possiblePCStartPositionsCopy = new List<Transform>();
-            possiblePCStartPositionsCopy.AddRange(possiblePCStartPositions);
-
-            Debug.Log("pc start postions" + possiblePCStartPositionsCopy.Count);
             Transform startPosition = TakeRandomPosition(possiblePCStartPositionsCopy);
-
             pc.battler.transform.position = startPosition.position;
             pc.battler.transform.rotation = startPosition.rotation;
-
             pcBlanks[curPCBlankIndex] = pc.battler;
             objectsInBattle.AddPCToList(pcBlanks[curPCBlankIndex]);
             pcBlanks[curPCBlankIndex].SetActive(true);
@@ -165,12 +159,15 @@ public class BattleStarter : MonoBehaviour
         {
             Debug.LogError("more monsters than start positions");
         }
-        for(int i = 0; i < encounterMonsters.Count; i++)
+
+        List<Transform> possibleMonsterStartPositionsCopy = new List<Transform>();
+        possibleMonsterStartPositionsCopy.AddRange(possibleMonsterStartPositions);
+
+        for (int i = 0; i < encounterMonsters.Count; i++)
         {
             curMonster = Instantiate(encounterMonsters[i]);
             Transform position;
-            List<Transform> possibleMonsterStartPositionsCopy = new List<Transform>();
-            possibleMonsterStartPositionsCopy.AddRange(possibleMonsterStartPositions);
+
             position= TakeRandomPosition(possibleMonsterStartPositionsCopy);
             curMonster.transform.position = position.position;
             curMonster.transform.rotation = position.rotation;

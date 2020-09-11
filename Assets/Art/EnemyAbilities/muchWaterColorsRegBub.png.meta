@@ -1,0 +1,782 @@
+fileFormatVersion: 2
+guid: 30cf319672f7d044da28ad93aa564d59
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7443246838665829197
+    second: muchWaterColorsRegBub_0
+  - first:
+      213: -9005100855110573832
+    second: muchWaterColorsRegBub_1
+  - first:
+      213: 4123529803445331575
+    second: muchWaterColorsRegBub_2
+  - first:
+      213: 5092441834705545970
+    second: muchWaterColorsRegBub_3
+  - first:
+      213: -8432275306388966732
+    second: muchWaterColorsRegBub_4
+  - first:
+      213: -4987483654947460919
+    second: muchWaterColorsRegBub_5
+  - first:
+      213: 915777280588684233
+    second: muchWaterColorsRegBub_6
+  - first:
+      213: 4638534598487600285
+    second: muchWaterColorsRegBub_7
+  - first:
+      213: 4403685074675681006
+    second: muchWaterColorsRegBub_8
+  - first:
+      213: 8775493689462018088
+    second: muchWaterColorsRegBub_9
+  - first:
+      213: 1589158509058886001
+    second: muchWaterColorsRegBub_10
+  - first:
+      213: -546616643497947530
+    second: muchWaterColorsRegBub_11
+  - first:
+      213: 4457319862861932411
+    second: muchWaterColorsRegBub_12
+  - first:
+      213: -5223884364846627845
+    second: muchWaterColorsRegBub_13
+  - first:
+      213: -5979507661284304132
+    second: muchWaterColorsRegBub_14
+  - first:
+      213: -4088285983220970941
+    second: muchWaterColorsRegBub_15
+  - first:
+      213: 2143488799026171684
+    second: muchWaterColorsRegBub_16
+  - first:
+      213: 8074909286957218238
+    second: muchWaterColorsRegBub_17
+  - first:
+      213: -7634729428697245551
+    second: muchWaterColorsRegBub_18
+  - first:
+      213: -7437292375479708412
+    second: muchWaterColorsRegBub_19
+  - first:
+      213: 3181674926465214353
+    second: muchWaterColorsRegBub_20
+  - first:
+      213: 6107900050909562726
+    second: muchWaterColorsRegBub_21
+  - first:
+      213: -4786625760073735974
+    second: muchWaterColorsRegBub_22
+  - first:
+      213: -956013111434610881
+    second: muchWaterColorsRegBub_23
+  - first:
+      213: 2874191197390376627
+    second: muchWaterColorsRegBub_24
+  - first:
+      213: 3533587527472654594
+    second: muchWaterColorsRegBub_25
+  - first:
+      213: 2442913582179358447
+    second: muchWaterColorsRegBub_0
+  - first:
+      213: -1491462512002502993
+    second: muchWaterColorsRegBub_1
+  - first:
+      213: -315869233302163285
+    second: muchWaterColorsRegBub_2
+  - first:
+      213: -9181158320172323871
+    second: muchWaterColorsRegBub_3
+  - first:
+      213: -5915225758790865368
+    second: muchWaterColorsRegBub_4
+  - first:
+      213: 686834181025355135
+    second: muchWaterColorsRegBub_5
+  - first:
+      213: 6271072766861508098
+    second: muchWaterColorsRegBub_6
+  - first:
+      213: -411776662098474926
+    second: muchWaterColorsRegBub_7
+  - first:
+      213: 8845368945194330839
+    second: muchWaterColorsRegBub_8
+  - first:
+      213: 5691557826530578651
+    second: muchWaterColorsRegBub_9
+  - first:
+      213: -2431140187919254369
+    second: muchWaterColorsRegBub_10
+  - first:
+      213: -4984811006137289380
+    second: muchWaterColorsRegBub_11
+  - first:
+      213: 1606928531257247923
+    second: muchWaterColorsRegBub_12
+  - first:
+      213: 5924836998663545447
+    second: muchWaterColorsRegBub_13
+  - first:
+      213: -1479119559686046886
+    second: muchWaterColorsRegBub_14
+  - first:
+      213: 5783528158498039548
+    second: muchWaterColorsRegBub_15
+  - first:
+      213: -661659501005660065
+    second: muchWaterColorsRegBub_16
+  - first:
+      213: 8336933926010940580
+    second: muchWaterColorsRegBub_17
+  - first:
+      213: -3757071608118743434
+    second: muchWaterColorsRegBub_18
+  - first:
+      213: 8341472139441614899
+    second: muchWaterColorsRegBub_19
+  - first:
+      213: 6652199720925264297
+    second: muchWaterColorsRegBub_20
+  - first:
+      213: -6130672462946424862
+    second: muchWaterColorsRegBub_21
+  - first:
+      213: 4369098007379893429
+    second: muchWaterColorsRegBub_22
+  - first:
+      213: 3464454359092079057
+    second: muchWaterColorsRegBub_23
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: muchWaterColorsRegBub_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 128
+        height: 64
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 20, y: 0, z: 43, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe617cab5f8f6e120800000000000000
+      internalID: 2442913582179358447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muchWaterColorsRegBub_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 320
+        width: 128
+        height: 64
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 20, y: 0, z: 43, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fae67485fb24d4be0800000000000000
+      internalID: -1491462512002502993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muchWaterColorsRegBub_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 320
+        width: 128
+        height: 64
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 20, y: 0, z: 43, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba0bc891b9ecd9bf0800000000000000
+      internalID: -315869233302163285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muchWaterColorsRegBub_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 320
+        width: 128
+        height: 64
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 20, y: 0, z: 43, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1eba183d629f59080800000000000000
+      internalID: -9181158320172323871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muchWaterColorsRegBub_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 128
+        height: 64
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 20, y: 0, z: 43, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82ea7093385e8eda0800000000000000
+      internalID: -5915225758790865368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muchWaterColorsRegBub_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 64
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 20, y: 0, z: 43, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f75dc937c00288900800000000000000
+      internalID: 686834181025355135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muchWaterColorsRegBub_6
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 128
+        height: 64
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 20, y: 0, z: 43, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20ef765b473570750800000000000000
+      internalID: 6271072766861508098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muchWaterColorsRegBub_7
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 128
+        height: 64
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 20, y: 0, z: 43, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25803d8be43194af0800000000000000
+      internalID: -411776662098474926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muchWaterColorsRegBub_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 128
+        height: 64
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 20, y: 0, z: 43, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7da649dd03011ca70800000000000000
+      internalID: 8845368945194330839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muchWaterColorsRegBub_9
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 128
+        height: 64
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 20, y: 0, z: 43, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd013f420b97cfe40800000000000000
+      internalID: 5691557826530578651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muchWaterColorsRegBub_10
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 128
+        height: 64
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 20, y: 0, z: 43, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9c75eb31ead24ed0800000000000000
+      internalID: -2431140187919254369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muchWaterColorsRegBub_11
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 128
+        height: 64
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 20, y: 0, z: 43, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c55bab2fcc462dab0800000000000000
+      internalID: -4984811006137289380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muchWaterColorsRegBub_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 64
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 20, y: 0, z: 43, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b8470d3cf4fc4610800000000000000
+      internalID: 1606928531257247923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muchWaterColorsRegBub_13
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 64
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 20, y: 0, z: 43, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 762ae61fbdf393250800000000000000
+      internalID: 5924836998663545447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muchWaterColorsRegBub_14
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 64
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 20, y: 0, z: 43, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5bb490e89c197be0800000000000000
+      internalID: -1479119559686046886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muchWaterColorsRegBub_15
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 128
+        height: 64
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 20, y: 0, z: 43, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf6aebbb738334050800000000000000
+      internalID: 5783528158498039548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muchWaterColorsRegBub_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 128
+        height: 64
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 20, y: 0, z: 43, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f50ab40803051d6f0800000000000000
+      internalID: -661659501005660065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muchWaterColorsRegBub_17
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 128
+        height: 64
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 20, y: 0, z: 43, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ace8c71c3db2b370800000000000000
+      internalID: 8336933926010940580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muchWaterColorsRegBub_18
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 64
+        width: 128
+        height: 64
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 20, y: 0, z: 43, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67e606a37433cdbc0800000000000000
+      internalID: -3757071608118743434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muchWaterColorsRegBub_19
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 64
+        width: 128
+        height: 64
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 20, y: 0, z: 43, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3303c3f37bcd2c370800000000000000
+      internalID: 8341472139441614899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muchWaterColorsRegBub_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 64
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 20, y: 0, z: 43, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a9f3bcb66c515c50800000000000000
+      internalID: 6652199720925264297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muchWaterColorsRegBub_21
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 64
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 20, y: 0, z: 43, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e72fcb60e97beaa0800000000000000
+      internalID: -6130672462946424862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muchWaterColorsRegBub_22
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 64
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 20, y: 0, z: 43, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bcdebe3d7722ac30800000000000000
+      internalID: 4369098007379893429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muchWaterColorsRegBub_23
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 64
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 20, y: 0, z: 43, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d9ac3652e6341030800000000000000
+      internalID: 3464454359092079057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -77,7 +77,7 @@ public class SelectionController : MonoBehaviour
         //RepopulateSelections(sT);
         gameObject.SetActive(true);
         TownMovement.inMenu = true;
-        OverworldMovement.inMenu = true;
+        PartyMovement.inMenu = true;
         selectionModel = GetComponent<GeneralSelectionModel>();
         selections = selectionModel.GetSelections();
         indx = 0;
@@ -104,7 +104,7 @@ public class SelectionController : MonoBehaviour
         {
             selectionView.LeaveMenus();
             TownMovement.inMenu = false;//This is a dumb hack
-            OverworldMovement.inMenu = false;
+            PartyMovement.inMenu = false;
             gameObject.transform.gameObject.SetActive(false); 
         }
     }

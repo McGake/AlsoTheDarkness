@@ -29,10 +29,10 @@ TagManager:
   - Barrier
   - RotationZone
   - WalkerPC
-  - 
-  - 
-  - 
-  - 
+  - BaseOverworldTerrain
+  - Settlement
+  - Army
+  - AIOverworldDesignations
   - 
   - 
   - 

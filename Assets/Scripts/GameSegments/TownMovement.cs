@@ -12,7 +12,7 @@ public class TownMovement : GameSegment
     private Animator anim;
     public SpriteRenderer sP;
     private TownMenuManager tMM;
-    private GameSegmentStateMachine tSM;
+    private GameManager tSM;
 
     public Transform startPos;
 
@@ -206,7 +206,7 @@ public class GameSegment:MonoBehaviour
     /// <summary>
     /// this gives all GameSegments access to to the overall state machine for the game that calls their update. 
     /// </summary>
-    public static GameSegmentStateMachine gameStateMachine; //this is currently set on awake so by the gssm itself. Maybe I should make that a singleton and maybe I should set this here on awake rather than there.
+    public static GameManager gameStateMachine; //this is currently set on awake so by the gssm itself. Maybe I should make that a singleton and maybe I should set this here on awake rather than there.
 
     public virtual GameSegment StartSegment(GameObject interactor)
     {

@@ -53,13 +53,10 @@ public class BattleStarter : MonoBehaviour
         }
     }
 
-    public void SendBattleDef(BattleDef recivedBattleDef)
+
+    public void TurnOnBattleScene(BattleDef recivedBattleDef)
     {
         battleDef = recivedBattleDef;
-    }
-
-    public void TurnOnBattleScene()
-    {
         SetUpBattle();
         battleFolder.SetActive(true);
         overworldFolder.SetActive(false);

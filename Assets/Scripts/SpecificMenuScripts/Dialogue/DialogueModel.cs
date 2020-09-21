@@ -7,13 +7,13 @@ public class DialogueModel : GameSegment, IDialogueModel
 {
     private TownMenuManager tMM;
     public List<string> dialogueText;
-    private GameSegmentStateMachine tSM;
+    private GameManager tSM;
     public DialogueController dialogueController;
 
     public void Start()
     {
         tMM = GameObject.FindObjectOfType<TownMenuManager>();
-        tSM = GameObject.FindObjectOfType<GameSegmentStateMachine>();
+        tSM = GameObject.FindObjectOfType<GameManager>();
     }
 
     public override GameSegment StartSegment(GameObject stateHub)

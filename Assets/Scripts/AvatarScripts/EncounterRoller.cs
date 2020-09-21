@@ -4,22 +4,12 @@ using UnityEngine;
 
 public class EncounterRoller : MonoBehaviour
 {
-
-    private EnemyMix selectedEnemyMix;
-
-    public GameObject battleScene;
-    public Camera overWorldCam;
-    public Camera battleCam;
-
-
-    private BattleDef battleDef;
-
     public BattleDef RollEncounter(DangerZoneDef dZ)
     {
         
         if(RollIfEncounterHappened(dZ))
         {
-            battleDef = new BattleDef();
+            BattleDef battleDef = new BattleDef();
            battleDef.encounterType = RollEncounterType(dZ);
             battleDef.enemyMix = RollEnemyMix(dZ);
             return (battleDef);
@@ -96,17 +86,5 @@ public class EncounterRoller : MonoBehaviour
         Debug.LogError("after rolling positive for encounter, we did not succesfully roll an enemy mix for the encounter. This should never happen");
         return (null);
     }
-
-    //private void LoadEncounter()
-    //{
-    //    battleDef.pcsInBattle = 
-    //    battleStarter.GetComponent<BattleStarter>().StartBattle(battleDef);
-    //    //load encounter (or switch cams if doing everything in one scene) here
-    //    Debug.Log("load encounter here");
-    //    battleScene.SetActive(true);
-    //    overWorldCam.enabled = false;
-    //    battleCam.enabled = true;
-    //}
-
 
 }

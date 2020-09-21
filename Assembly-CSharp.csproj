@@ -64,6 +64,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\AbilityView.cs" />
+    <Compile Include="Assets\ArmyBattleCreator.cs" />
+    <Compile Include="Assets\ArmyFollowPath.cs" />
     <Compile Include="Assets\Art\Characters\OldTestCharacter\Loke\TestAddAnim.cs" />
     <Compile Include="Assets\Art\TileMaps\PlaceHoderTiles\Scriptable TilesBrushes\TransitionZoneDef.cs" />
     <Compile Include="Assets\Barrier.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="Assets\OnlyCollideWithOneThing.cs" />
     <Compile Include="Assets\OpenMainMenuOnPressStart.cs" />
     <Compile Include="Assets\OverworldStarter.cs" />
+    <Compile Include="Assets\OverworldView.cs" />
     <Compile Include="Assets\Prefabs\Projectiles\BeamExtender.cs" />
     <Compile Include="Assets\Prefabs\Projectiles\DisableAfterSeconds.cs" />
     <Compile Include="Assets\Prefabs\Projectiles\WorldEffectScripts\WorldEffect.cs" />
@@ -172,8 +175,8 @@
     <Compile Include="Assets\Scripts\EditorScripts\AngleAttribute.cs" />
     <Compile Include="Assets\Scripts\EditorScripts\TransitionGizmo.cs" />
     <Compile Include="Assets\Scripts\GUI\HeroPanelStats.cs" />
-    <Compile Include="Assets\Scripts\GameSegments\GameSegmentStateMachine.cs" />
-    <Compile Include="Assets\Scripts\GameSegments\OverworldMovement.cs" />
+    <Compile Include="Assets\Scripts\GameSegments\GameManager.cs" />
+    <Compile Include="Assets\Scripts\GameSegments\PartyMovement.cs" />
     <Compile Include="Assets\Scripts\GameSegments\ShopInteraction.cs" />
     <Compile Include="Assets\Scripts\GameSegments\TownMovement.cs" />
     <Compile Include="Assets\Scripts\Items\Item.cs" />
@@ -456,6 +459,9 @@
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.4f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Pathfinding.Ionic.Zip.Reduced">
+      <HintPath>C:/Users/Jon/Documents/UnityProjects/AlsoTheDarkness/AlsoTheDarkness/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
       <HintPath>C:/Users/Jon/Documents/UnityProjects/AlsoTheDarkness/AlsoTheDarkness/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Editor.dll</HintPath>
@@ -882,9 +888,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="AstarPathfindingProject.csproj">
+      <Project>{7A4BAB65-8E31-5C4E-132B-E941130AC5FF}</Project>
+      <Name>AstarPathfindingProject</Name>
+    </ProjectReference>
+    <ProjectReference Include="PackageToolsEditor.csproj">
+      <Project>{9A6B7D24-AC6D-862F-8E14-8A890F779AE4}</Project>
+      <Name>PackageToolsEditor</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.2D.Tilemap.Extras.Editor.csproj">
       <Project>{E82254FB-8D73-30A8-CAB8-8BADC9400128}</Project>
       <Name>Unity.2D.Tilemap.Extras.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="AstarPathfindingProjectEditor.csproj">
+      <Project>{853229FC-4725-0830-D431-B9EEE8DBA1B5}</Project>
+      <Name>AstarPathfindingProjectEditor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.Tilemap.Extras.csproj">
       <Project>{DDCE5B51-5FEC-14BF-AF34-113DB623ACAC}</Project>

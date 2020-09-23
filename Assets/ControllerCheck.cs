@@ -16,6 +16,7 @@ public class ControllerCheck : MonoBehaviour
         if(MultiInput.GetAButtonDown())
         {
             Debug.Log("A button is working!!!");
+            //TurnManager.ManagerTest();
         }
         float x = MultiInput.GetSecondaryDirection().x;
         float y = MultiInput.GetSecondaryDirection().y;

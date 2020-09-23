@@ -24,15 +24,13 @@ public class EncounterRoller : MonoBehaviour
     {
         int roll = Random.Range(0, 99);
 
-        //Debug.Log("encounter rolled " + "prob: " + dZ.encounterProb + " roll " + roll);
-
-        if (roll > dZ.encounterProb)
+        if (roll < dZ.encounterProb)
         {
-            return false;
+            return true;
         }
         else
         {
-            return true;
+            return false;
         }
     }
 

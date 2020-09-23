@@ -25,16 +25,32 @@ public class ArmyFollowPath : MonoBehaviour
 
     public OverworldMovement oM;
 
+    private void Awake()
+    {
+        TurnManager.RegisterTurnTakerAsLast(this);
+
+    }
+
     void Start()
+    {
+        //seeker = GetComponent<Seeker>();
+        //oM.ownerTransform = transform;
+        
+        //StartTurn();
+    }
+
+    private void OnEnable()
     {
         seeker = GetComponent<Seeker>();
         oM.ownerTransform = transform;
+
         StartTurn();
     }
 
     void StartTurn()
     {
         movmentSoFar = 0;
+        
         seeker.StartPath(transform.position, target.position, PathFinished);
     }
 
@@ -45,6 +61,10 @@ public class ArmyFollowPath : MonoBehaviour
             path = p;
             currentWaypoint = 1;
             oM.nextCellCenter = path.vectorPath[currentWaypoint];
+
+
+            direction = oM.CalculateDirectionWithTarget(path.vectorPath[currentWaypoint]);
+            CheckForInteraction();
 
         }
     }
@@ -116,12 +136,11 @@ public class ArmyFollowPath : MonoBehaviour
     void CheckForInteraction()
     {
 
-        Debug.Log("check for interation");
        RaycastHit2D rh2d = Physics2D.Raycast(transform.position, direction,.5f, mask);
 
         if (rh2d.transform != null)
         {
-            Debug.Log("not null");
+            Debug.Log("HitSOmething "  + rh2d.transform.name);
             if (rh2d.transform.gameObject.layer == LayerMask.NameToLayer("BattlePC"))
             {
                 Debug.Log("reached battle PC!!!!!");
@@ -137,8 +156,16 @@ public class ArmyFollowPath : MonoBehaviour
                     EndTurn();
                 //Start special battle
             }
-            else if (rh2d.transform.gameObject.layer == settlement.value)
+            else if (rh2d.transform.gameObject.layer == LayerMask.NameToLayer("Settlement"))
             {
+                Debug.Log("Settlement detectedCOXOXOXOXOXOXOXOX");
+                this.enabled = false;
+                BattleArmy enemyBattleArmy = rh2d.transform.gameObject.GetComponent<BattleArmy>();
+                BattleArmy thisBattleArmy = GetComponent<BattleArmy>();
+
+                thisBattleArmy.DoAttackTurn(enemyBattleArmy);
+
+                enemyBattleArmy.DoAttackTurn(thisBattleArmy);
                 EndTurn();
                 //Resolve 1 round of strategic battle
             }
@@ -165,7 +192,7 @@ public class ArmyFollowPath : MonoBehaviour
         Debug.Log("TURN ENDED");
         direction = Vector2.zero;
         overworldView.SetAnimDirection(direction);
-        enabled = false;
+        TurnManager.EndTurn(this);
     }
 }
 
@@ -203,7 +230,6 @@ public class OverworldMovement
         Vector3Int nextCellCoords = terrainMap.WorldToCell(tempCellCenter);
         //This makes sure that the next cell position is exact
         nextCellCenter = terrainMap.GetCellCenterWorld(nextCellCoords);
-        Debug.Log("next cell center " + nextCellCenter);
         //Debug.Log("calcultate next square " + transform.position + " " + nextCellCenter + " " + tempCellCenter + " " + (direction * tileSize) + " " + direction + " " + tileSize);
     }
 

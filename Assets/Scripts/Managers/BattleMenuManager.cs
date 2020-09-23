@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 using System.Xml;
 using UnityEditor;
 
-public class BattleMenuManager : GameSegment //TODO: I think the best way to break this class up is to make seperate monobehaviors for Manual, and Auto Selection and also a seperate mono behavior for manual selecting abilities that references the currently selected pc. The auto and manual can implement the same interface.
+public class BattleMenuManager : MonoBehaviour //TODO: I think the best way to break this class up is to make seperate monobehaviors for Manual, and Auto Selection and also a seperate mono behavior for manual selecting abilities that references the currently selected pc. The auto and manual can implement the same interface.
 {
 #pragma warning disable 649
     [SerializeField]
@@ -62,8 +62,8 @@ public class BattleMenuManager : GameSegment //TODO: I think the best way to bre
 
         view.PopulateHeroAbilityMenu(curHero);
 
-        gameStateMachine.SetCurrentGameSegment(this); //this is what actually kicks off the battle being updated. I wonder if I should somehow put this in the battle start script
-        gameStateMachine.SetDefaultGameSegment(this);
+        //gameStateMachine.SetCurrentGameSegment(this); //this is what actually kicks off the battle being updated. I wonder if I should somehow put this in the battle start script
+        //gameStateMachine.SetDefaultGameSegment(this);
 
     }
 
@@ -127,7 +127,7 @@ public class BattleMenuManager : GameSegment //TODO: I think the best way to bre
         //modifiedSelectionConeAngle = selectionConeAngle;
     }
     #endregion SetupMethods
-    public override void UpdateGameSegment()
+    public void Update()
     {
         RunCurrentMenuBehaviors();
         view.UpdateAbilityMenu();

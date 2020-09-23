@@ -28,7 +28,7 @@ public class TransitionZoneDef : GridBrushBase
 
         go = Instantiate(triggerZone);
 
-        go.GetComponent<ChangeLevelOnTouch>().levelToTransitionTo = sceneToLoad;
+        go.GetComponent<Transition>().levelToTransitionTo = sceneToLoad;
 
         go.transform.SetParent(brushTarget.transform);
         go.transform.position = gridLayout.LocalToWorld(gridLayout.CellToLocalInterpolated(cellPosition) );

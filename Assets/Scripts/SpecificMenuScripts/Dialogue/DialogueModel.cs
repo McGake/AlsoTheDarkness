@@ -3,27 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueModel : GameSegment, IDialogueModel
+public class DialogueModel : MonoBehaviour, IDialogueModel
 {
     private TownMenuManager tMM;
     public List<string> dialogueText;
-    private GameManager tSM;
+   // private GameManager tSM;
     public DialogueController dialogueController;
 
     public void Start()
     {
         tMM = GameObject.FindObjectOfType<TownMenuManager>();
-        tSM = GameObject.FindObjectOfType<GameManager>();
+       // tSM = GameObject.FindObjectOfType<GameManager>();
     }
 
-    public override GameSegment StartSegment(GameObject stateHub)
-    {
-        TownMovement.inMenu = true;
-        tSM.SetCurrentGameSegment( this);
-        dialogueController.StartDialogue(dialogueText, this);
-        return (this);
+    //public override GameSegment StartSegment(GameObject stateHub)
+    //{
+    //    TownMovement.inMenu = true;
+    //    tSM.SetCurrentGameSegment( this);
+    //    dialogueController.StartDialogue(dialogueText, this);
+    //    return (this);
         
-    }
+    //}
 
     //public void DisplayDialogue()
     //{
@@ -61,6 +61,6 @@ public class DialogueModel : GameSegment, IDialogueModel
     public void EndDialogueGameSegment()
     {
         TownMovement.inMenu = false;
-        tSM.ReturnToDefaultInteraction();
+        //tSM.ReturnToDefaultInteraction();
     }
 }

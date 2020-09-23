@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using System;
 
 public class OverworldView : MonoBehaviour
 {
@@ -20,6 +21,38 @@ public class OverworldView : MonoBehaviour
     public void SetAnimDirection(Vector2 direction)
     {
         this.direction = direction;
+        if (direction.x >= velocityThreshold)
+        {
+            PlayAnimation("walkingRight");
+            transform.rotation = Quaternion.Euler(Vector2.zero);
+            return;
+        }
+        else if (direction.x <= -velocityThreshold)
+        {
+            PlayAnimation("walkingLeft");
+            transform.rotation = Quaternion.Euler(leftDir);
+            return;
+        }
+
+        if (direction.y >= velocityThreshold)
+        {
+            PlayAnimation("walkingUp");
+            transform.rotation = Quaternion.Euler(Vector2.zero);
+            return;
+        }
+        else if (direction.y <= -velocityThreshold)
+        {
+            PlayAnimation("walkingDown");
+            transform.rotation = Quaternion.Euler(Vector2.zero);
+            return;
+        }
+
+        //PlayAnimation("stopped");
+    }
+
+    public void PauseAnimation()
+    {
+        overworldAnimator.speed = 0f;
     }
 
     public void PlayAnimation(string animToPlay)
@@ -39,33 +72,7 @@ public class OverworldView : MonoBehaviour
     private void Update()
     {
       
-        if (direction.x >= velocityThreshold)
-        {
-            PlayAnimation("walkingRight");
-            transform.rotation = Quaternion.Euler(Vector2.zero);
-            return;
-        }
-        else if(direction.x <= -velocityThreshold)
-        {
-            PlayAnimation("walkingLeft");
-            transform.rotation =Quaternion.Euler(leftDir);
-            return;
-        }
-
-        if (direction.y >= velocityThreshold)
-        {
-            PlayAnimation("walkingUp");
-            transform.rotation = Quaternion.Euler(Vector2.zero);
-            return;
-        }
-        else if (direction.y <= -velocityThreshold)
-        {
-            PlayAnimation("walkingDown");
-            transform.rotation = Quaternion.Euler(Vector2.zero);
-            return;
-        }
-        overworldAnimator.speed = 0f;
-        //PlayAnimation("stopped");
+      
     }
     public void SwitchDisplayCharacterUp(List<PC> partyMembers)
     {
@@ -103,6 +110,50 @@ public class OverworldView : MonoBehaviour
         }
         overworldAnimator.runtimeAnimatorController = partyMembers[cPMI].overworldAnimOverride;
         PlayAnimation(lastAnimSet);
+    }
+
+    AnimatorClipInfo[] animatorClipInfos;
+    public void PlayAnimationAndCallbackWhenDone(string animationName, Action callback)
+    {
+        //PlayAnimation(animationName);
+        overworldAnimator.speed = 1f;
+        //EndLastAnimation();
+        //overworldAnimator.Play(animationName);
+        PlayAnimation("camp");
+        
+        Debug.Log("camp check " + overworldAnimator.GetCurrentAnimatorStateInfo(0).length + " " + overworldAnimator.GetCurrentAnimatorStateInfo(0).IsName("camp"));
+        
+        animatorClipInfos = overworldAnimator.GetCurrentAnimatorClipInfo(0);
+        //InvokeRepeating("ShowCallback",.5f, .5f);
+        StartCoroutine(Test());
+
+       // float length = overworldAnimator.Get;
+       
+        
+
+       
+    }
+
+    private IEnumerator Test()
+    {
+        yield return 0;
+        float length = overworldAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.length;
+        Invoke("EndTurn", length);
+    }
+
+    private void ShowCallback()
+    {
+        foreach(AnimatorClipInfo ac in overworldAnimator.GetCurrentAnimatorClipInfo(0))
+        {
+            Debug.Log(overworldAnimator.GetCurrentAnimatorClipInfo(0).Length);
+            Debug.Log(ac.clip.name);
+            Debug.Log(animatorClipInfos[0].clip.name + "WTF");
+        }
+    }
+
+    private void EndTurn()
+    {
+        TurnManager.EndTurn(this);
     }
 
 }

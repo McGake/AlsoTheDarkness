@@ -5,50 +5,35 @@ using UnityEngine;
 
 public class PartyMovement : MonoBehaviour
 {
-    public Animator anim;
-    public SpriteRenderer sP;
-    private TownMenuManager tMM;
+    HeatMapTileInfo heatMapTileInfo;
+
+    GameObject battleStarter;
     public List<PC> partyMembers;
-
-    public HeatMapTileInfo heatMapTileInfo;
-
-    public GameObject battleStarter;
 
     public static bool inMenu = false;
 
     Vector2 direction = new Vector2(0f, 0f);
     private const float inputThreshold = 0.1f;
 
-    public OverworldView overworldView;
+    public WalkingView overworldView;
 
-    public OverworldMovement oM;
-
-
-    void Awake()
-    {
-        oM.nextCellCenter = transform.position;
-        GetPartyMembers();
-        oM.ownerTransform = transform;
-    }
-
+    public GridMovementUtilities movementUtilities;
     void OnEnable()
-    {
-        //if (gameStateMachine != null)
-        //{
-        //    gameStateMachine.SetCurrentGameSegment(this);
-        //    gameStateMachine.SetDefaultGameSegment(this);
-        //}
+    {      
+        movementUtilities.nextCellCenter = (Vector2)transform.position + movementUtilities.nextCellCenter;
+        StartCoroutine(GetPartyMembers());
+        movementUtilities.ownerTransform = transform;
+        returnPosition = transform.position;
         ContiuneFacingOnResume(); //this setsup the caracter switching. this is a temporary slightly hacky use of this function
         RestorePositionOnResume();
     }
 
+    
+
     public void Start()
     {
-        Debug.Log("party stareted");
         TurnManager.ManagerTest("WTF is happening");
         TurnManager.RegisterTurnTakerAsFirst(this);
-            //gameStateMachine.SetCurrentGameSegment(this);
-            //gameStateMachine.SetDefaultGameSegment(this);
     }
 
 
@@ -63,7 +48,7 @@ public class PartyMovement : MonoBehaviour
 
     private void UpdateView()
     {
-        overworldView.SetAnimDirection(direction);
+        overworldView.SetDirectionAnim(direction);
     }
 
     private void SwitchingCharacterDisplayBehavior()
@@ -80,28 +65,36 @@ public class PartyMovement : MonoBehaviour
 
     private bool encounterChecked = false;
 
-
-
     private void WalkingBehavior()
     {
-        if (oM.ArivedAtNextSquare())
+        if (movementUtilities.ArivedAtNextSquare())
         {
             if (encounterChecked == false)
             {
                 overworldView.PauseAnimation();
                 encounterChecked = true;
-                CheckForEncounter();
+                //CheckForEncounter();
             }
 
             if (Mathf.Abs(MultiInput.GetPrimaryDirection().x) > inputThreshold || Mathf.Abs(MultiInput.GetPrimaryDirection().y) > inputThreshold)
             {
-                direction = oM.CalculateDirectionWithInput(MultiInput.GetPrimaryDirection());
-                oM.CalculateNextSquare(direction);
+                direction = movementUtilities.CalculateDirectionWithInput(MultiInput.GetPrimaryDirection());
                 UpdateView();
+
+
+                if (!movementUtilities.IsObstructionIn(direction))
+                {
+                    movementUtilities.CalculateNextSquare(direction);
+                }
+                else
+                {
+                    direction = Vector2.zero;
+                }
             }
             else
             {
                 direction = Vector2.zero;
+                overworldView.PauseAnimation();
             }
             
         }
@@ -110,7 +103,7 @@ public class PartyMovement : MonoBehaviour
             encounterChecked = false;
         }
 
-        oM.MoveInDirection(direction);
+        movementUtilities.MoveInDirection(direction);
 
         if(MultiInput.GetAButtonDown())
         {
@@ -144,13 +137,21 @@ public class PartyMovement : MonoBehaviour
 
     private void RestorePositionOnResume()
     {
-        oM.nextCellCenter = returnPosition;
+        movementUtilities.nextCellCenter = returnPosition + movementUtilities.raycastOffset;
         transform.position = returnPosition;
     }
 
-    private void GetPartyMembers()
+    private IEnumerator GetPartyMembers()
     {
-        partyMembers = PartyManager.curParty.partyMembers;
+        if (PartyManager.curParty?.partyMembers != null)
+        {
+            partyMembers = PartyManager.curParty.partyMembers;
+        }
+        else
+        {
+            yield return 0;
+            StartCoroutine(GetPartyMembers());
+        }
     }
 
     private Vector2 returnPosition;

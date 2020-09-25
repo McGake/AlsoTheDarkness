@@ -6,7 +6,9 @@ using UnityEngine;
 
 public static class MultiInput
 {
-    private static bool isXbox = true;
+    private static bool isXbox = false;
+    private static bool isPS4 = false;
+    private static bool isKeybaord = false;
     public static void Setup()
     {
         string[] controllernames;
@@ -18,13 +20,21 @@ public static class MultiInput
             if (name == "Controller (XBOX 360 For Windows)")
             {
                 isXbox = true;
+                isPS4 = false;
+                break;
+            }
+            else if(name.Length == 19)
+            {
+                isXbox = false;
+                isPS4 = true;
                 break;
             }
             else
             {
-                isXbox = false;
+                Debug.Log("kb");
+                isKeybaord = true;
             }
-            Debug.Log(name);
+            Debug.Log("input device: " +name);
         }
     }
 
@@ -32,9 +42,16 @@ public static class MultiInput
     {
         
         Vector2 dir;
-
-        dir.x = Input.GetAxis("Horizontal");
-        dir.y = Input.GetAxis("Vertical");
+        if (isPS4 || isXbox)
+        {
+            dir.x = Input.GetAxis("Horizontal");
+            dir.y = Input.GetAxis("Vertical");
+        }
+        else
+        {
+            dir.x = Input.GetAxis("KBHorizontal");
+            dir.y = Input.GetAxis("KBVertical");
+        }
 
         return dir;
     }
@@ -42,26 +59,42 @@ public static class MultiInput
 
     public static Vector2 GetSecondaryDirection()
     {
-        Vector2 dir;
-        if(isXbox)
+        Vector2 dir = new Vector2(0f,0f);
+        if (isXbox)
         {
             dir.x = Input.GetAxis("RXboxHorizontal");
             dir.y = Input.GetAxis("RXboxVertical");
             return dir;
         }
-        dir.x = Input.GetAxis("RHorizontal");
-        dir.y = Input.GetAxis("RVertical");
+        else if (isPS4)
+        {
+            dir.x = Input.GetAxis("RHorizontal");
+            dir.y = Input.GetAxis("RVertical");
+        }
+        else if(isKeybaord)
+        {
+            dir.x = Input.GetAxis("KBRVertical");
+            dir.y = Input.GetAxis("KBRHorizontal");
+        }
 
         return dir;
     }
 
     public static bool GetAButtonDown()
     {
-        if(isXbox)
+        if (isXbox )
         {
             return Input.GetButtonDown("AXbox");
         }
-        return Input.GetButtonDown("A");
+        else if (isPS4)
+        {
+            return Input.GetButtonDown("A");
+        }
+        else if (isKeybaord)
+        {
+            return Input.GetButtonDown("KBA");
+        }
+        return false;
     }
     public static bool GetBButtonDown()
     {
@@ -69,7 +102,15 @@ public static class MultiInput
         {
             return Input.GetButtonDown("BXbox");
         }
-        return Input.GetButtonDown("B");
+        else if (isPS4)
+        {
+            return Input.GetButtonDown("B");
+        }
+        else if (isKeybaord)
+        {
+            return Input.GetButtonDown("KBB");
+        }
+        return false;
     }
     public static bool GetXButtonDown()
     {
@@ -77,7 +118,15 @@ public static class MultiInput
         {
             return Input.GetButtonDown("XXbox");
         }
-        return Input.GetButtonDown("X");
+        else if (isPS4)
+        {
+            return Input.GetButtonDown("X");
+        }
+        else if (isKeybaord)
+        {
+            return Input.GetButtonDown("KBX");
+        }
+        return false;
     }
     public static bool GetYButtonDown()
     {
@@ -85,6 +134,14 @@ public static class MultiInput
         {
             return Input.GetButtonDown("YXbox");
         }
-        return Input.GetButtonDown("Y");
+        else if (isPS4)
+        {
+            return Input.GetButtonDown("Y");
+        }
+        else if (isKeybaord)
+        {
+            return Input.GetButtonDown("KBY");
+        }
+        return false;
     }
 }

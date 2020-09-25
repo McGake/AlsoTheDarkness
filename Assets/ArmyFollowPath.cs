@@ -21,9 +21,9 @@ public class ArmyFollowPath : MonoBehaviour
 
     public Vector2 direction;
 
-    public OverworldView overworldView;
+    public WalkingView overworldView;
 
-    public OverworldMovement oM;
+    public GridMovementUtilities oM;
 
     private void Awake()
     {
@@ -77,7 +77,7 @@ public class ArmyFollowPath : MonoBehaviour
 
     void UpdateView()
     {
-        overworldView.SetAnimDirection(direction);
+        overworldView.SetDirectionAnim(direction);
     }
     void Walk()
     {
@@ -136,7 +136,7 @@ public class ArmyFollowPath : MonoBehaviour
     void CheckForInteraction()
     {
 
-       RaycastHit2D rh2d = Physics2D.Raycast(transform.position, direction,.5f, mask);
+       RaycastHit2D rh2d = Physics2D.Raycast(((Vector2)transform.position + oM.raycastOffset), direction,.5f, mask);
 
         if (rh2d.transform != null)
         {
@@ -191,63 +191,10 @@ public class ArmyFollowPath : MonoBehaviour
     {
         Debug.Log("TURN ENDED");
         direction = Vector2.zero;
-        overworldView.SetAnimDirection(direction);
+        overworldView.SetDirectionAnim(direction);
         TurnManager.EndTurn(this);
     }
 }
 
-[System.Serializable]
-public class OverworldMovement
-{
-    public Tilemap terrainMap;
-    public float speed;
-    public float pointArrivalThreshold;
-    const float tileSize = .5f;
-    public Transform ownerTransform;
-    public Vector2? nextCellCenter = null;
 
-    public Vector2 CalculateDirectionWithTarget(Vector2 targetPoint )
-    {
-        return (targetPoint - (Vector2)ownerTransform.position).normalized;
-    }
 
-    public Vector2 CalculateDirectionWithInput(Vector2 input)
-    {
-        if(Mathf.Abs(input.x)>Mathf.Abs(input.y))
-        {
-            return new Vector2(input.x, 0f).normalized;
-        }
-
-        return new Vector2(0f, input.y).normalized;
-    }
-
-    
-
-    public void CalculateNextSquare(Vector2 direction)
-    {
-        
-        Vector2 tempCellCenter = (Vector2)ownerTransform.position + (direction * tileSize);
-        Vector3Int nextCellCoords = terrainMap.WorldToCell(tempCellCenter);
-        //This makes sure that the next cell position is exact
-        nextCellCenter = terrainMap.GetCellCenterWorld(nextCellCoords);
-        //Debug.Log("calcultate next square " + transform.position + " " + nextCellCenter + " " + tempCellCenter + " " + (direction * tileSize) + " " + direction + " " + tileSize);
-    }
-
-    public bool ArivedAtNextSquare()
-    {
-
-        float distance = Vector2.Distance((Vector2)ownerTransform.position, (Vector2)nextCellCenter);
-        if (Mathf.Abs(distance) <= pointArrivalThreshold)
-        {
-            return true;
-        }
-        return false;
-    }
-
-    public void MoveInDirection(Vector2 dir)
-    {
-        Vector2 translation = dir * speed * Time.deltaTime;
-        ownerTransform.Translate(translation);
-
-    }
-}

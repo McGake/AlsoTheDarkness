@@ -85,7 +85,6 @@
     <Compile Include="Assets\OpenMainMenuOnPressStart.cs" />
     <Compile Include="Assets\OverworldBattleView.cs" />
     <Compile Include="Assets\OverworldStarter.cs" />
-    <Compile Include="Assets\OverworldView.cs" />
     <Compile Include="Assets\Prefabs\Projectiles\BeamExtender.cs" />
     <Compile Include="Assets\Prefabs\Projectiles\DisableAfterSeconds.cs" />
     <Compile Include="Assets\Prefabs\Projectiles\WorldEffectScripts\WorldEffect.cs" />
@@ -189,6 +188,12 @@
     <Compile Include="Assets\Scripts\MoveTheseFiles\TownMovement.cs" />
     <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\NewInteractions\Shop.cs" />
+    <Compile Include="Assets\Scripts\Overworld\Camp.cs" />
+    <Compile Include="Assets\Scripts\Overworld\EncounterChecker.cs" />
+    <Compile Include="Assets\Scripts\Overworld\GeneralGridMovement.cs" />
+    <Compile Include="Assets\Scripts\Overworld\GridMovementUtilities.cs" />
+    <Compile Include="Assets\Scripts\Overworld\PlayerWalkingDirectionInput.cs" />
+    <Compile Include="Assets\Scripts\Overworld\WalkingDirecitonInput.cs" />
     <Compile Include="Assets\Scripts\Persistant\PCFactory.cs" />
     <Compile Include="Assets\Scripts\Persistant\PartyManager.cs" />
     <Compile Include="Assets\Scripts\ProjectileAndOtherObjectScripts\BaseClasses\CastSequence.cs" />
@@ -258,6 +263,7 @@
     <Compile Include="Assets\TurnManager.cs" />
     <Compile Include="Assets\TurnOnSecondaryOnTime.cs" />
     <Compile Include="Assets\UseItemFromMenu.cs" />
+    <Compile Include="Assets\WalkingView.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />

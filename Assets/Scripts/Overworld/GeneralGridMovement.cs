@@ -13,8 +13,8 @@ public class GeneralGridMovement : MonoBehaviour
     public WalkingDirectionInput directionalInput;
 
     public float inputThreshold;
-
-    private Vector2 direction;
+    [HideInInspector]
+    public Vector2 direction;
 
     private List<Action> subscribedStay = new List<Action>();
 
@@ -23,7 +23,6 @@ public class GeneralGridMovement : MonoBehaviour
     public void SubscribeToSquareStay(Action subMethod)
     {
         subscribedStay.Add(subMethod);
-        
     }
 
     public void UnsubscribeToSquareStay(Action unsubMethod)

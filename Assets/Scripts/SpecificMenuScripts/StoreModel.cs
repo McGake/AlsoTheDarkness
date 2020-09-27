@@ -28,7 +28,7 @@ public class StoreModel : GeneralSelectionModel
 
             selections[i].GetComponent<Buy>().thisItem = curShopItem;
             
-            selections[i].GetComponentInChildren<TextMeshProUGUI>().text = curShopItem.itemDef.name + " " + curShopItem.price;
+            selections[i].GetComponentInChildren<TextMeshProUGUI>().text = curShopItem.displayName + " " + curShopItem.price;
             
         }
     }

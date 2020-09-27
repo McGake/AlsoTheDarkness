@@ -35,4 +35,6 @@ public class TownStateMachine : MonoBehaviour
 public interface Iinteractable
 {
     void InteractionUpdate();
+
+    void Interact();
 }

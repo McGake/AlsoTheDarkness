@@ -14,7 +14,8 @@ public class GridMovementUtilities
     public float pointArrivalThreshold;
     public Vector2? nextCellCenter = null;
     public Vector2 raycastOffset;
-    private float tileSize = .5f;
+    [HideInInspector]
+    public float tileSize = .5f;
 
     public void Setup(Transform transform)
     {

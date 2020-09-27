@@ -76,8 +76,6 @@ public class SelectionController : MonoBehaviour
         //selectionModel = iSM;        
         //RepopulateSelections(sT);
         gameObject.SetActive(true);
-        TownMovement.inMenu = true;
-        PartyMovement.inMenu = true;
         selectionModel = GetComponent<GeneralSelectionModel>();
         selections = selectionModel.GetSelections();
         indx = 0;
@@ -103,8 +101,6 @@ public class SelectionController : MonoBehaviour
         else
         {
             selectionView.LeaveMenus();
-            TownMovement.inMenu = false;//This is a dumb hack
-            PartyMovement.inMenu = false;
             gameObject.transform.gameObject.SetActive(false); 
         }
     }

@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\AbilityView.cs" />
+    <Compile Include="Assets\AdvanceTextController.cs" />
     <Compile Include="Assets\ArmyFollowPath.cs" />
     <Compile Include="Assets\Art\Characters\OldTestCharacter\Loke\TestAddAnim.cs" />
     <Compile Include="Assets\Art\TileMaps\PlaceHoderTiles\Scriptable TilesBrushes\TransitionZoneDef.cs" />
@@ -76,11 +77,15 @@
     <Compile Include="Assets\Characters\PCs\PCDef.cs" />
     <Compile Include="Assets\ControllerCheck.cs" />
     <Compile Include="Assets\DeactivateOnCallback.cs" />
+    <Compile Include="Assets\DialogueInteraction.cs" />
     <Compile Include="Assets\HeatMapTileInfo.cs" />
+    <Compile Include="Assets\InteractionChecker.cs" />
+    <Compile Include="Assets\MVCHelper.cs" />
     <Compile Include="Assets\MaintainWorldRotation.cs" />
     <Compile Include="Assets\MoveChildWithParentSprite.cs" />
     <Compile Include="Assets\MoveForward.cs" />
     <Compile Include="Assets\MoveWithObjectOnStay.cs" />
+    <Compile Include="Assets\MultiLineModel.cs" />
     <Compile Include="Assets\OnlyCollideWithOneThing.cs" />
     <Compile Include="Assets\OpenMainMenuOnPressStart.cs" />
     <Compile Include="Assets\OverworldBattleView.cs" />
@@ -176,6 +181,7 @@
     <Compile Include="Assets\Scripts\GUI\HeroPanelStats.cs" />
     <Compile Include="Assets\Scripts\Items\Item.cs" />
     <Compile Include="Assets\Scripts\Items\ItemFactory.cs" />
+    <Compile Include="Assets\Scripts\Items\ShopItem.cs" />
     <Compile Include="Assets\Scripts\Items\TempHealingItem.cs" />
     <Compile Include="Assets\Scripts\Items\UseItemScript.cs" />
     <Compile Include="Assets\Scripts\Items\UseItemScripts\Heal1.cs" />
@@ -183,9 +189,6 @@
     <Compile Include="Assets\Scripts\Managers\BattleStarter.cs" />
     <Compile Include="Assets\Scripts\Managers\LevelManager.cs" />
     <Compile Include="Assets\Scripts\Managers\ObjectsInBattle.cs" />
-    <Compile Include="Assets\Scripts\MoveTheseFiles\PartyMovement.cs" />
-    <Compile Include="Assets\Scripts\MoveTheseFiles\ShopInteraction.cs" />
-    <Compile Include="Assets\Scripts\MoveTheseFiles\TownMovement.cs" />
     <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\NewInteractions\Shop.cs" />
     <Compile Include="Assets\Scripts\Overworld\Camp.cs" />
@@ -201,7 +204,6 @@
     <Compile Include="Assets\Scripts\SpecificMenuScripts\BuySellExitController.cs" />
     <Compile Include="Assets\Scripts\SpecificMenuScripts\CurPartyAssignItemModel.cs" />
     <Compile Include="Assets\Scripts\SpecificMenuScripts\Dialogue\DialogueController.cs" />
-    <Compile Include="Assets\Scripts\SpecificMenuScripts\Dialogue\DialogueModel.cs" />
     <Compile Include="Assets\Scripts\SpecificMenuScripts\Dialogue\DialogueView.cs" />
     <Compile Include="Assets\Scripts\SpecificMenuScripts\GeneralSelectionModel.cs" />
     <Compile Include="Assets\Scripts\SpecificMenuScripts\Gold\GoldController.cs" />
@@ -228,7 +230,6 @@
     <Compile Include="Assets\Scripts\SpecificMenuScripts\SellModel.cs" />
     <Compile Include="Assets\Scripts\SpecificMenuScripts\StaticSelectionView.cs" />
     <Compile Include="Assets\Scripts\SpecificMenuScripts\StoreModel.cs" />
-    <Compile Include="Assets\Scripts\SpecificMenuScripts\TownMenuManager.cs" />
     <Compile Include="Assets\Scripts\SpecificMenuScripts\ghk.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\EffectDefiner.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\BuffArmor.cs" />
@@ -258,6 +259,7 @@
     <Compile Include="Assets\TestMagicAim.cs" />
     <Compile Include="Assets\TestScript.cs" />
     <Compile Include="Assets\TestTriggerEnter.cs" />
+    <Compile Include="Assets\TextView.cs" />
     <Compile Include="Assets\TownStateMachine.cs" />
     <Compile Include="Assets\Transition.cs" />
     <Compile Include="Assets\TurnManager.cs" />

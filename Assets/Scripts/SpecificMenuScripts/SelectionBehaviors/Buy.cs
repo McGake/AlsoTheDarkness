@@ -16,7 +16,7 @@ public class Buy : MonoBehaviour, ISelectionBehavior
 
             //A copy of the item should probably be made here.
 
-            Item tempItem = new Item(thisItem.itemDef.item);
+            Item tempItem = new Item(thisItem.item);
 
             tempItem.sellPrice = thisItem.price / 2;
 

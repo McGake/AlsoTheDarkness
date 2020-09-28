@@ -5,11 +5,13 @@ using UnityEngine;
 public class DialogueInteraction : MonoBehaviour, Iinteractable
 {
 
-    public string dialogue;
+    public string[] dialogue;
+
+    public MVCHelper dialogueWindow;
 
     public void Interact()
     {
-        
+        dialogueWindow.StartUI(dialogue);
     }
 
     public void InteractionUpdate()

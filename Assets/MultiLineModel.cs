@@ -6,6 +6,12 @@ public class MultiLineModel : UIMVC
 {
     private string[] lines;
 
+    public override void MVCSetup(object obj)
+    {
+        base.MVCSetup(obj);
+       // Debug.Log("setup test88888");
+    }
+
     public override void MVCStart(object obj)
     {
         base.MVCStart(obj);

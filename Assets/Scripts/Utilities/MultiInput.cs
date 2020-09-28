@@ -13,7 +13,7 @@ public static class MultiInput
     {
         string[] controllernames;
         controllernames = Input.GetJoystickNames();
-
+        isKeybaord = true;
         foreach(string name in controllernames)
         {
             Debug.Log(name);
@@ -21,20 +21,16 @@ public static class MultiInput
             {
                 isXbox = true;
                 isPS4 = false;
+                isKeybaord = false;
                 break;
             }
             else if(name.Length == 19)
             {
                 isXbox = false;
                 isPS4 = true;
+                isKeybaord = false;
                 break;
             }
-            else
-            {
-                Debug.Log("kb");
-                isKeybaord = true;
-            }
-            Debug.Log("input device: " +name);
         }
     }
 

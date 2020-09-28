@@ -6,6 +6,7 @@ using UnityEngine;
 public class Item
 {
     public string listName;
+    public string description;
     //public Sprite icon;
     public int sellPrice;
     public UseItemScript useScript;

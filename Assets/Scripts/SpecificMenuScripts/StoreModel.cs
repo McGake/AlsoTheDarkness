@@ -7,7 +7,7 @@ using TMPro;
 public class StoreModel : GeneralSelectionModel
 {
 
-    List<ShopItem> shopItems;
+    List<ShopItemOld> shopItems;
 
     public override List<GameObject> GetSelections()
     {
@@ -24,7 +24,7 @@ public class StoreModel : GeneralSelectionModel
                 selections.Add(GameObject.Instantiate(buttonTemplate));
             }
 
-            ShopItem curShopItem = shopItems[i];
+            ShopItemOld curShopItem = shopItems[i];
 
             selections[i].GetComponent<Buy>().thisItem = curShopItem;
             
@@ -33,7 +33,7 @@ public class StoreModel : GeneralSelectionModel
         }
     }
 
-    public void SetShopItems(List<ShopItem> sI)
+    public void SetShopItems(List<ShopItemOld> sI)
     {
         shopItems = sI;
     }

@@ -7,17 +7,19 @@ using System;
 public class AdvanceTextController : UIMVC
 {
     private int curLevelOfAdvancement;
-    private List<string> text;
+    private string[] text;
 
-    public override void MVCStart(object obj)
+    public override void MVCSetup(object obj)
     {
-        base.MVCStart(obj);
+        base.MVCSetup(obj);
+        curLevelOfAdvancement = 0;
         mVCHelper.Subscribe(UIEvents.dataChanged, OnDataChanged);
     }
 
     private void OnDataChanged(object obj)
     {
-        text = obj as List<string>;
+      
+        text = obj as string[];
         mVCHelper.CallEvent(UIEvents.display, text[curLevelOfAdvancement]);
     }
 
@@ -32,7 +34,7 @@ public class AdvanceTextController : UIMVC
     private void AdvanceDisplay()
     {
         curLevelOfAdvancement++;
-        if(curLevelOfAdvancement >= text.Count)
+        if(curLevelOfAdvancement >= text.Length)
         {
             mVCHelper.CallEvent(UIEvents.end, null);
         }
@@ -40,5 +42,12 @@ public class AdvanceTextController : UIMVC
         {
             mVCHelper.CallEvent(UIEvents.display, text[curLevelOfAdvancement]);
         }
+    }
+
+    public override void MVCEnd(object obj)
+    {
+        base.MVCEnd(obj);
+        mVCHelper.Unsubscribe(UIEvents.dataChanged, OnDataChanged);
+        Pauser.UnpauseGame();
     }
 }

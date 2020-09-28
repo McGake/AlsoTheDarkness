@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemFactory : MonoBehaviour
 {
-    public Item CreateItem(ShopItem shopItem)
+    public Item CreateItem(ShopItemOld shopItem)
     {
         Item createdItem = new Item();
         return createdItem;
@@ -16,10 +16,10 @@ public class ItemFactory : MonoBehaviour
         return placeholder;
     }
 
-    public List<Item> CreateItems(List<ShopItem> itemsToCreate)
+    public List<Item> CreateItems(List<ShopItemOld> itemsToCreate)
     {
         List<Item> createdItems = new List<Item>();
-        foreach (ShopItem sI in itemsToCreate)
+        foreach (ShopItemOld sI in itemsToCreate)
         {
             Item newItem = CreateItem(sI);
             createdItems.Add(newItem);

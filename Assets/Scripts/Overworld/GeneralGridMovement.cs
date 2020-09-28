@@ -15,6 +15,8 @@ public class GeneralGridMovement : MonoBehaviour
     public float inputThreshold;
     [HideInInspector]
     public Vector2 direction;
+    [HideInInspector]
+    public Vector2 lastFacingDirection;
 
     private List<Action> subscribedStay = new List<Action>();
 
@@ -101,6 +103,7 @@ public class GeneralGridMovement : MonoBehaviour
         if (directionalInput.IsThereDirectionalInput(inputThreshold))
         {
             direction = moveUtil.CalculateDirectionWithInput(directionalInput.DirectionalInput());
+            lastFacingDirection = direction;
 
             walkingView.SetDirectionAnim(direction);
 

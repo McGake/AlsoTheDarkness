@@ -10,7 +10,7 @@ public class TownStateMachine : MonoBehaviour
 
     void Update()
     {
-        curInteraction.InteractionUpdate(); //this is the state machien basically     
+        //curInteraction.InteractionUpdate(); //this is the state machien basically     
     }
 
     public void ReturnToDefaultInteraction()
@@ -34,7 +34,5 @@ public class TownStateMachine : MonoBehaviour
 
 public interface Iinteractable
 {
-    void InteractionUpdate();
-
     void Interact();
 }

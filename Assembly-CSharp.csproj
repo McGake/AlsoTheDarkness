@@ -80,6 +80,9 @@
     <Compile Include="Assets\DialogueInteraction.cs" />
     <Compile Include="Assets\HeatMapTileInfo.cs" />
     <Compile Include="Assets\InteractionChecker.cs" />
+    <Compile Include="Assets\ListSelectionController.cs" />
+    <Compile Include="Assets\ListSelectionModel.cs" />
+    <Compile Include="Assets\ListSelectionView.cs" />
     <Compile Include="Assets\MVCHelper.cs" />
     <Compile Include="Assets\MaintainWorldRotation.cs" />
     <Compile Include="Assets\MoveChildWithParentSprite.cs" />
@@ -90,6 +93,7 @@
     <Compile Include="Assets\OpenMainMenuOnPressStart.cs" />
     <Compile Include="Assets\OverworldBattleView.cs" />
     <Compile Include="Assets\OverworldStarter.cs" />
+    <Compile Include="Assets\Pauser.cs" />
     <Compile Include="Assets\Prefabs\Projectiles\BeamExtender.cs" />
     <Compile Include="Assets\Prefabs\Projectiles\DisableAfterSeconds.cs" />
     <Compile Include="Assets\Prefabs\Projectiles\WorldEffectScripts\WorldEffect.cs" />
@@ -181,7 +185,7 @@
     <Compile Include="Assets\Scripts\GUI\HeroPanelStats.cs" />
     <Compile Include="Assets\Scripts\Items\Item.cs" />
     <Compile Include="Assets\Scripts\Items\ItemFactory.cs" />
-    <Compile Include="Assets\Scripts\Items\ShopItem.cs" />
+    <Compile Include="Assets\Scripts\Items\ShopItemOld.cs" />
     <Compile Include="Assets\Scripts\Items\TempHealingItem.cs" />
     <Compile Include="Assets\Scripts\Items\UseItemScript.cs" />
     <Compile Include="Assets\Scripts\Items\UseItemScripts\Heal1.cs" />
@@ -250,6 +254,7 @@
     <Compile Include="Assets\Scripts\Utilities\MultiInput.cs" />
     <Compile Include="Assets\Scripts\Utilities\Timer.cs" />
     <Compile Include="Assets\Scripts\Utilities\TimerManager.cs" />
+    <Compile Include="Assets\ShopInteraction.cs" />
     <Compile Include="Assets\SpawnManagerScriptableObject.cs" />
     <Compile Include="Assets\StayInBounds.cs" />
     <Compile Include="Assets\StayWithXPositionOfObject.cs" />

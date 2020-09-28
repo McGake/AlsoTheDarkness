@@ -5,7 +5,7 @@ using UnityEngine;
 public class Buy : MonoBehaviour, ISelectionBehavior
 {
 
-    public ShopItem thisItem;
+    public ShopItemOld thisItem;
 
 
     public void DoSelectionBehavior()

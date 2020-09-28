@@ -7,14 +7,20 @@ public class TextView : UIMVC
 {
     public TextMeshProUGUI text;
 
-    public override void MVCStart(object obj)
+    public override void MVCSetup(object obj)
     {
-        base.MVCStart(obj);
+        //Debug.Log("setup called");
         mVCHelper.Subscribe(UIEvents.display, UpdateText);
     }
 
     private void UpdateText(object obj)
     {
         text.text = (string)obj;
+    }
+
+    public override void MVCEnd(object obj)
+    {
+        base.MVCEnd(obj);
+        mVCHelper.Unsubscribe(UIEvents.display, UpdateText);
     }
 }

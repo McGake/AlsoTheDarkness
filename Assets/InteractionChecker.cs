@@ -5,6 +5,8 @@ using UnityEngine;
 public class InteractionChecker : MonoBehaviour
 {
     public GeneralGridMovement gGM;
+
+    public Pauser inMenuPauser;
     void Update()
     {
         if(MultiInput.GetAButtonDown())
@@ -17,7 +19,7 @@ public class InteractionChecker : MonoBehaviour
 
     void CheckForInteraction()
     {
-        RaycastHit2D rh2d = Physics2D.Raycast(((Vector2)transform.position + gGM.moveUtil.raycastOffset), gGM.direction, gGM.moveUtil.tileSize, mask);
+        RaycastHit2D rh2d = Physics2D.Raycast(((Vector2)transform.position + gGM.moveUtil.raycastOffset), gGM.lastFacingDirection, gGM.moveUtil.tileSize, mask);
 
         if(rh2d.transform != null)
         {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelectSellMenu : MonoBehaviour, ISelectionBehavior
+public class SelectSellMenu : MonoBehaviour, ISelectionBehaviorOLD
 {
     public string displayName => "Sell";
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sell : MonoBehaviour, ISelectionBehavior
+public class Sell : MonoBehaviour, ISelectionBehaviorOLD
 {
 
     public Item sellItem;

@@ -58,9 +58,9 @@ public class SelectionController : MonoBehaviour
 
     public void Select(int indx)
     {
-        if (selections[indx].GetComponent<ISelectionBehavior>() != null)
+        if (selections[indx].GetComponent<ISelectionBehaviorOLD>() != null)
         {
-            selections[indx].GetComponent<ISelectionBehavior>().DoSelectionBehavior();
+            selections[indx].GetComponent<ISelectionBehaviorOLD>().DoSelectionBehavior();
         }
         else
         {

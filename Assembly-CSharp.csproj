@@ -64,7 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\AbilityView.cs" />
-    <Compile Include="Assets\AdvanceTextController.cs" />
     <Compile Include="Assets\ArmyFollowPath.cs" />
     <Compile Include="Assets\Art\Characters\OldTestCharacter\Loke\TestAddAnim.cs" />
     <Compile Include="Assets\Art\TileMaps\PlaceHoderTiles\Scriptable TilesBrushes\TransitionZoneDef.cs" />
@@ -75,20 +74,21 @@
     <Compile Include="Assets\Boundary.cs" />
     <Compile Include="Assets\CallbackOnDisable.cs" />
     <Compile Include="Assets\Characters\PCs\PCDef.cs" />
+    <Compile Include="Assets\ConfirmItemBuyView.cs" />
     <Compile Include="Assets\ControllerCheck.cs" />
     <Compile Include="Assets\DeactivateOnCallback.cs" />
     <Compile Include="Assets\DialogueInteraction.cs" />
     <Compile Include="Assets\HeatMapTileInfo.cs" />
     <Compile Include="Assets\InteractionChecker.cs" />
-    <Compile Include="Assets\ListSelectionController.cs" />
-    <Compile Include="Assets\ListSelectionModel.cs" />
-    <Compile Include="Assets\ListSelectionView.cs" />
-    <Compile Include="Assets\MVCHelper.cs" />
+    <Compile Include="Assets\ItemConfirmController.cs" />
+    <Compile Include="Assets\ItemConfirmModel.cs" />
     <Compile Include="Assets\MaintainWorldRotation.cs" />
+    <Compile Include="Assets\MenuStarter.cs" />
+    <Compile Include="Assets\MessageController.cs" />
+    <Compile Include="Assets\MessageModel.cs" />
     <Compile Include="Assets\MoveChildWithParentSprite.cs" />
     <Compile Include="Assets\MoveForward.cs" />
     <Compile Include="Assets\MoveWithObjectOnStay.cs" />
-    <Compile Include="Assets\MultiLineModel.cs" />
     <Compile Include="Assets\OnlyCollideWithOneThing.cs" />
     <Compile Include="Assets\OpenMainMenuOnPressStart.cs" />
     <Compile Include="Assets\OverworldBattleView.cs" />
@@ -195,6 +195,17 @@
     <Compile Include="Assets\Scripts\Managers\ObjectsInBattle.cs" />
     <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\NewInteractions\Shop.cs" />
+    <Compile Include="Assets\Scripts\NewMenus\AdvanceTextController.cs" />
+    <Compile Include="Assets\Scripts\NewMenus\ButtonScripts\OpenMenu.cs" />
+    <Compile Include="Assets\Scripts\NewMenus\BuySellExitModel.cs" />
+    <Compile Include="Assets\Scripts\NewMenus\ListSelectionController.cs" />
+    <Compile Include="Assets\Scripts\NewMenus\ListSelectionModel.cs" />
+    <Compile Include="Assets\Scripts\NewMenus\ListSelectionView.cs" />
+    <Compile Include="Assets\Scripts\NewMenus\MVCHelper.cs" />
+    <Compile Include="Assets\Scripts\NewMenus\MultiLineModel.cs" />
+    <Compile Include="Assets\Scripts\NewMenus\PrepBuyItem.cs" />
+    <Compile Include="Assets\Scripts\NewMenus\TextView.cs" />
+    <Compile Include="Assets\Scripts\Overworld\BuySellExitView.cs" />
     <Compile Include="Assets\Scripts\Overworld\Camp.cs" />
     <Compile Include="Assets\Scripts\Overworld\EncounterChecker.cs" />
     <Compile Include="Assets\Scripts\Overworld\GeneralGridMovement.cs" />
@@ -254,7 +265,11 @@
     <Compile Include="Assets\Scripts\Utilities\MultiInput.cs" />
     <Compile Include="Assets\Scripts\Utilities\Timer.cs" />
     <Compile Include="Assets\Scripts\Utilities\TimerManager.cs" />
+    <Compile Include="Assets\ShopGoldModel.cs" />
     <Compile Include="Assets\ShopInteraction.cs" />
+    <Compile Include="Assets\ShopItemModel.cs" />
+    <Compile Include="Assets\SingleLineController.cs" />
+    <Compile Include="Assets\SingleLineModel.cs" />
     <Compile Include="Assets\SpawnManagerScriptableObject.cs" />
     <Compile Include="Assets\StayInBounds.cs" />
     <Compile Include="Assets\StayWithXPositionOfObject.cs" />
@@ -264,7 +279,6 @@
     <Compile Include="Assets\TestMagicAim.cs" />
     <Compile Include="Assets\TestScript.cs" />
     <Compile Include="Assets\TestTriggerEnter.cs" />
-    <Compile Include="Assets\TextView.cs" />
     <Compile Include="Assets\TownStateMachine.cs" />
     <Compile Include="Assets\Transition.cs" />
     <Compile Include="Assets\TurnManager.cs" />

@@ -9,6 +9,8 @@ public class DialogueInteraction : MonoBehaviour, Iinteractable
 
     public MVCHelper dialogueWindow;
 
+
+
     public void Interact()
     {
         dialogueWindow.StartUI(dialogue);

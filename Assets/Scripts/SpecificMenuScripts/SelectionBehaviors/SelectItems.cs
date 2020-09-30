@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelectItems : MonoBehaviour, ISelectionBehavior
+public class SelectItems : MonoBehaviour, ISelectionBehaviorOLD
 {
 
     public GameObject uiToOpen;

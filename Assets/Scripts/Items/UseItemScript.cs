@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 [System.Serializable]
-public abstract class UseItemScript : ScriptableObject, ISelectionBehavior
+public abstract class UseItemScript : ScriptableObject, ISelectionBehaviorOLD
 {
     public virtual void DoSelectionBehavior()
     {

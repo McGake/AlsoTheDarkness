@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UseItemFromMenu : MonoBehaviour, ISelectionBehavior
+public class UseItemFromMenu : MonoBehaviour, ISelectionBehaviorOLD
 {
     // Start is called before the first frame update
 

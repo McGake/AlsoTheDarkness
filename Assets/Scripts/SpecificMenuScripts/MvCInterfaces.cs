@@ -80,7 +80,7 @@ public interface ISelectionModel
 }
 
 
-public interface ISelectionBehavior
+public interface ISelectionBehaviorOLD
 {
     void DoSelectionBehavior();
 }

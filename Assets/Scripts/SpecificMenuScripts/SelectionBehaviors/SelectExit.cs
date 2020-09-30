@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelectExit : MonoBehaviour, ISelectionBehavior
+public class SelectExit : MonoBehaviour, ISelectionBehaviorOLD
 {
     public string displayName => "Exit";
 

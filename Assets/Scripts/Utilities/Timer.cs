@@ -24,6 +24,7 @@ public class Timer
         TimerManager.TurnOnTimer(this);
     }
 
+
     public void ResetTimer()
     {
         endTime = Time.time + Duration;

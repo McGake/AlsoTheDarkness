@@ -10,8 +10,8 @@ public class OpenMenu : MonoBehaviour, ISelectionBehavior
 
     public void DoSelectionBehavior(object obj)
     {
-        menuToOpen.StartUI(obj);
         menuToClose.EndUI(null);
+        menuToOpen.StartUI(obj);
     }
 
 }

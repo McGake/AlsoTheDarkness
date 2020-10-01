@@ -17,5 +17,17 @@ MonoBehaviour:
   nextInterval: 0
   endTime: 0
   duration: 20
-  healthBuff: 5
-  physicalPowerBuff: 2
+  dontAddStatus: 0
+  statusValues: []
+  healthBuff:
+    label: 
+    governingStat: 2
+    baseValue: 5
+    multiplyer: 1
+    val: 0
+  physicalPowerBuff:
+    label: 
+    governingStat: 2
+    baseValue: 20
+    multiplyer: 0.5
+    val: 0

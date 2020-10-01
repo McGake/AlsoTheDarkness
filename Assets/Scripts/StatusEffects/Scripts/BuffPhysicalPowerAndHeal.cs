@@ -7,20 +7,27 @@ using UnityEngine;
 public class BuffPhysicalPowerAndHeal : Status
 {
 
-    public int healthBuff;
+    public StatusValue healthBuff;
 
-    public int physicalPowerBuff;
+    public StatusValue physicalPowerBuff;
 
-    public override void SetUpStatus(Ability sourceAbility, GameObject de)
+    public override void SetModifiers()
+    {
+        statusValues.Add(healthBuff);
+        statusValues.Add(physicalPowerBuff);
+        base.SetModifiers();
+    }
+
+    public override void SetReferences(Ability sourceAbility, GameObject de)
     {
 
     }
 
     public override void DoStatusInitialEffect(BaseBattleActor bbA)
     {
-        bbA.ChangeHp(healthBuff);
-        bbA.stats.physicalPower += physicalPowerBuff;
-        bbA.battleActorView.ShowBuff(physicalPowerBuff, "PWR", BuffStyle.Positive);
+        bbA.ChangeHp(healthBuff.val);
+        bbA.stats.physicalPower += physicalPowerBuff.val;
+        bbA.battleActorView.ShowBuff(physicalPowerBuff.val, "PWR", BuffStyle.Positive);
     }
     public override void DoStatus(BaseBattleActor bbA)
     {
@@ -28,6 +35,6 @@ public class BuffPhysicalPowerAndHeal : Status
     }
     public override void DoStatusEnd(BaseBattleActor bbA)
     {
-        bbA.stats.physicalPower -= physicalPowerBuff;
+        bbA.stats.physicalPower -= physicalPowerBuff.val;
     }
 }

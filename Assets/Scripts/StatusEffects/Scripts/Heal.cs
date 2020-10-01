@@ -7,7 +7,7 @@ public class Heal : Status
 {
     public int healthBuff;
 
-    public override void SetUpStatus(Ability sourceAbility, GameObject de)
+    public override void SetReferences(Ability sourceAbility, GameObject de)
     {
 
     }

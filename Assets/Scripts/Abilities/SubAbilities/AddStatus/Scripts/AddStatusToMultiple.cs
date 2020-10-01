@@ -11,7 +11,7 @@ public class AddStatusToMultiple : SubAbility
 
 #pragma warning disable 649
     [SerializeField]
-    private Status statusToAdd;
+    private Status prefabStatusToAdd;
 #pragma warning restore 649
 
     private Status statusToAddInstance;
@@ -22,7 +22,7 @@ public class AddStatusToMultiple : SubAbility
     {
         foreach (GameObject gO in ab.objectTargets)
         {
-            statusToAddInstance = Instantiate(statusToAdd);
+            statusToAddInstance = prefabStatusToAdd.CreateStatusInstance(ab.stats);
             gO.GetComponent<BaseBattleActor>().AddStatus(statusToAddInstance);
         }
 

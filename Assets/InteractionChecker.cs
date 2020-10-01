@@ -6,7 +6,6 @@ public class InteractionChecker : MonoBehaviour
 {
     public GeneralGridMovement gGM;
 
-    public Pauser inMenuPauser;
     void Update()
     {
         if(MultiInput.GetAButtonDown())

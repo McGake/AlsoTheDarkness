@@ -61,7 +61,7 @@ public class BattleActorView : MonoBehaviour
     {
         OngoingDisplaybehavior();
     }
-    public void ShowDamage(int damage)
+    public void ShowDamage(float damage)
     {
         int damageAsInt = Mathf.RoundToInt(damage);
         ExplodeText(damageAsInt.ToString(), Color.red);
@@ -71,14 +71,16 @@ public class BattleActorView : MonoBehaviour
         }
     }
 
-    public void ShowHeal(int healing)
+    public void ShowHeal(float healing)
     {
-        ExplodeText(healing.ToString(), Color.green);
+        int healingAsInt = Mathf.RoundToInt(healing);
+        ExplodeText(healingAsInt.ToString(), Color.green);
     }
 
-    public void ShowBuff(int buffAmount, string textDesignation, BuffStyle buffStyle)
+    public void ShowBuff(float buffAmount, string textDesignation, BuffStyle buffStyle)
     {
-        string buffText = buffAmount.ToString() + "\n" + textDesignation;
+        int buffAmountAsInt = Mathf.RoundToInt(buffAmount);
+        string buffText = buffAmountAsInt.ToString() + "\n" + textDesignation;
         Color textColor = ReturnColorFromBuffStyle(buffStyle);
         ExplodeText(buffText, textColor);
     }
@@ -110,11 +112,11 @@ public class BattleActorView : MonoBehaviour
         return Color.gray;
     }
 
-    public void UpdateHealthBar(int curHealth, int maxHealth)
+    public void UpdateHealthBar(float curHealth, float maxHealth)
     {
         if (healthBar != null)
         {
-            healthBar.fillAmount = (float)curHealth / maxHealth;
+            healthBar.fillAmount = curHealth / maxHealth;
         }
     }
 

@@ -94,6 +94,7 @@
     <Compile Include="Assets\OverworldBattleView.cs" />
     <Compile Include="Assets\OverworldStarter.cs" />
     <Compile Include="Assets\Pauser.cs" />
+    <Compile Include="Assets\PersistentController.cs" />
     <Compile Include="Assets\Prefabs\Projectiles\BeamExtender.cs" />
     <Compile Include="Assets\Prefabs\Projectiles\DisableAfterSeconds.cs" />
     <Compile Include="Assets\Prefabs\Projectiles\WorldEffectScripts\WorldEffect.cs" />
@@ -261,6 +262,7 @@
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\ShowingDamage.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\Status.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\Stun.cs" />
+    <Compile Include="Assets\Scripts\StatusEffects\StatusFactory.cs" />
     <Compile Include="Assets\Scripts\Utilities\BattlePooler.cs" />
     <Compile Include="Assets\Scripts\Utilities\MultiInput.cs" />
     <Compile Include="Assets\Scripts\Utilities\Timer.cs" />
@@ -282,6 +284,7 @@
     <Compile Include="Assets\TownStateMachine.cs" />
     <Compile Include="Assets\Transition.cs" />
     <Compile Include="Assets\TurnManager.cs" />
+    <Compile Include="Assets\TurnMenuOnAtStartup.cs" />
     <Compile Include="Assets\TurnOnSecondaryOnTime.cs" />
     <Compile Include="Assets\UseItemFromMenu.cs" />
     <Compile Include="Assets\WalkingView.cs" />

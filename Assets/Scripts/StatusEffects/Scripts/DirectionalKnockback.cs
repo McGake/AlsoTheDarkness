@@ -20,7 +20,7 @@ public class DirectionalKnockback : Status //TODO: perhaps to turn this and thin
 
     private GameObject retainedDeliveryObject; 
 
-    public override void SetUpStatus(Ability sourceAbility, GameObject deliveryObject)
+    public override void SetReferences(Ability sourceAbility, GameObject deliveryObject)
     {
         retainedDeliveryObject = deliveryObject;
 

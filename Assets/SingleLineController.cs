@@ -7,7 +7,6 @@ public class SingleLineController : UIMVC
     public override void MVCSetup(object obj)
     {
         base.MVCSetup(obj);
- 
         mVCHelper.Subscribe(UIEvents.dataChanged, OnDataChanged);
     }
 

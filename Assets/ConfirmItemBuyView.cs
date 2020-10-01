@@ -41,6 +41,10 @@ public class ConfirmItemBuyView : UIMVC
         {
             mVCHelper.CallEvent(UIEvents.execute, shopItemToConfirm);
         }
+        if(MultiInput.GetBButtonDown())
+        {
+            mVCHelper.CallEvent(UIEvents.backout, null);
+        }
     }
 
     public override void MVCEnd(object obj)

@@ -6,7 +6,7 @@ using UnityEngine;
 public class PCDown : Status //TODO: perhaps to turn this and things like this to an event that the battle actor listens for and self applies 
 {
 
-    public override void SetUpStatus(Ability sourceAbility, GameObject deliveryObject)
+    public override void SetReferences(Ability sourceAbility, GameObject deliveryObject)
     {
     }
 

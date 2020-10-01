@@ -15,6 +15,7 @@ public class ItemConfirmController : UIMVC
         base.MVCSetup(obj);
         mVCHelper.Subscribe(UIEvents.dataChanged, SetItem);
         mVCHelper.Subscribe(UIEvents.execute, BuyItem);
+        mVCHelper.Subscribe(UIEvents.backout, Backout);
 
     }
 
@@ -33,11 +34,23 @@ public class ItemConfirmController : UIMVC
         
     }
 
+    private void Backout(object obj)
+    {
+        mVCHelper.CallEvent(UIEvents.end, null);
+        if (returnPage != null)
+        {
+            returnPage.Return();
+        }
+    }
+
     public override void MVCEnd(object obj)
     {
         base.MVCEnd(obj);
         mVCHelper.Unsubscribe(UIEvents.dataChanged, SetItem);
         mVCHelper.Unsubscribe(UIEvents.execute, BuyItem);
+        mVCHelper.Unsubscribe(UIEvents.backout, Backout);
+
+
 
     }
 }

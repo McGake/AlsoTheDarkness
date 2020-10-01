@@ -9,7 +9,7 @@ public class ResistEffects : Status //TODO: perhaps to turn this and things like
     public List <Status> statusesToResist;
 
 
-    public override void SetUpStatus(Ability sourceAbility, GameObject deliveryObject)
+    public override void SetReferences(Ability sourceAbility, GameObject deliveryObject)
     {
     }
 

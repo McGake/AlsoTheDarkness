@@ -10,7 +10,7 @@ public class BuffArmor : Status
 
     private int totalArmorBuff;
 
-    public override void SetUpStatus(Ability sourceAbility, GameObject de)
+    public override void SetReferences(Ability sourceAbility, GameObject de)
     {
 
     }

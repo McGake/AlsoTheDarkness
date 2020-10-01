@@ -10,7 +10,7 @@ public class MultiplyMagicalPower : Status
 
     private int totalModifier;
 
-    public override void SetUpStatus(Ability sourceAbility, GameObject de)
+    public override void SetReferences(Ability sourceAbility, GameObject de)
     {
 
     }

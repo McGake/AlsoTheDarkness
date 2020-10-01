@@ -22,9 +22,29 @@ public abstract class Status : ScriptableObject
     public delegate void DelFinishStatus(Status status);
     public DelFinishStatus FinishStatus;
 
-    public virtual void SetUpStatus(Ability sourceAbility, GameObject deliveryObject)
-    {
+    protected BattleStats stats;
 
+    public List<StatusValue> statusValues;
+
+    public Status CreateStatusInstance(BattleStats curStats)
+    {
+        Status statusToCreate = Instantiate(this);
+        statusToCreate.stats = curStats;
+        statusToCreate.SetModifiers();
+        return statusToCreate;
+    }
+
+    public virtual void SetReferences(Ability sourceAbility, GameObject deliveryObject)
+    {
+        stats = sourceAbility.stats.Copy();
+    }
+
+    public virtual void SetModifiers()
+    {
+        foreach(StatusValue sVal in statusValues)
+        {
+            sVal.val = sVal.baseValue * (stats.GetGoverningStat(sVal.governingStat) * sVal.multiplyer);
+        }
     }
 
     public virtual void DoStatusInitialEffect(BaseBattleActor bbA)
@@ -73,4 +93,23 @@ public abstract class Status : ScriptableObject
 
         return true;
     }
+}
+
+public enum GoverningStat
+{
+    none,
+    magicalPower,
+    magicalSkill,
+    physicalPower,
+    physicalSkill,
+}
+
+[System.Serializable]
+public class StatusValue
+{
+    public string label;
+    public GoverningStat governingStat;
+    public float baseValue;
+    public float multiplyer;
+    public float val;
 }

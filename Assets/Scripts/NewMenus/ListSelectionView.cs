@@ -20,8 +20,6 @@ public class ListSelectionView : UIMVC
 
     public float inputThreshold;
 
-    object listToPassOn;
-
     bool isHorizontal = false;
 
     private Action GetDirInput;
@@ -30,8 +28,9 @@ public class ListSelectionView : UIMVC
     {
         base.MVCSetup(obj);
         mVCHelper.Subscribe(UIEvents.dataChanged, SetButtons);
-        cursor.SetActive(true);
-        listToPassOn = obj;
+
+        
+        curSelection = 0;
         if (GetComponent<LayoutGroup>() is VerticalLayoutGroup)
         {
             GetDirInput = GetVertDirInput;
@@ -43,6 +42,7 @@ public class ListSelectionView : UIMVC
     }
     public override void MVCStart(object obj)
     {
+        cursor.SetActive(true);
         base.MVCStart(obj);
         
     }
@@ -88,7 +88,12 @@ public class ListSelectionView : UIMVC
 
         if(MultiInput.GetAButtonDown())
         {
-            selectionList[curSelection].GetComponent<ISelectionBehavior>().DoSelectionBehavior(listToPassOn);
+            mVCHelper.CallEvent(UIEvents.execute, selectionList[curSelection]);
+        }
+        if(MultiInput.GetBButtonDown())
+        {
+            Debug.Log("backout");
+            mVCHelper.CallEvent(UIEvents.backout, null);
         }
     }
 
@@ -120,7 +125,9 @@ public class ListSelectionView : UIMVC
     public override void MVCEnd(object obj)
     {
         base.MVCEnd(obj);
+        cursor.SetActive(false);
         mVCHelper.Unsubscribe(UIEvents.dataChanged, SetButtons);
+        Debug.Log("unsubscribe called54");
     }
 
 }

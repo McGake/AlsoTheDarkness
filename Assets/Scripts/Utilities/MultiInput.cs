@@ -17,8 +17,9 @@ public static class MultiInput
         foreach(string name in controllernames)
         {
             Debug.Log(name);
-            if (name == "Controller (XBOX 360 For Windows)")
+            if (name == "Controller (XBOX 360 For Windows)" || name == "Controller (GAME FOR WINDOWS >)")
             {
+                Debug.Log("xbox set to true");
                 isXbox = true;
                 isPS4 = false;
                 isKeybaord = false;

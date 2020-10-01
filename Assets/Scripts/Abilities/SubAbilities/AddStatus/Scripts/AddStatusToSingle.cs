@@ -20,7 +20,7 @@ public class AddStatusTosingle : SubAbility
 
     public override void DoInitialSubAbility(Ability ab)
     {
-        statusToAddInstance = Instantiate(statusToAdd);
+        statusToAddInstance = statusToAdd.CreateStatusInstance(ab.stats);
         ab.objectTargets[0].GetComponent<BaseBattleActor>().AddStatus(statusToAddInstance);        
         EndSubAbility();
     }

@@ -10,7 +10,7 @@ public class ShowingDamage : Status //TODO: perhaps to turn this and things like
 
     public float damage;
 
-    public override void SetUpStatus(Ability sourceAbility, GameObject deliveryObject)
+    public override void SetReferences(Ability sourceAbility, GameObject deliveryObject)
     {
         
     }

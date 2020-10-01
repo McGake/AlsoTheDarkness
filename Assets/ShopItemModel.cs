@@ -13,15 +13,18 @@ public class ShopItemModel : UIMVC
     public MVCHelper menuToOpen;
     public MVCHelper menuToClose;
 
+    private int startCalled = 0;
+
+
+
     public override void MVCSetup(object obj)
     {
         base.MVCSetup(obj);
-        if(obj is List<ShopItem> == false)
-        {
-            Debug.Log("its not even a shop item");
-        }
-
+        startCalled++;
         shopItemList = (List<ShopItem>)obj;
+        Debug.Log("shop items " + shopItemList.Count);
+        Debug.Log("button List " + buttonList.Count);
+        Debug.Log("settup called " + startCalled);
         CreateButtons();
 
     }
@@ -37,7 +40,6 @@ public class ShopItemModel : UIMVC
     {
         for(int i = 0; i < shopItemList.Count; i++)
         {
-            Debug.Log("order " + shopItemList[i].price + " index: " + i);
             GameObject tempButton;
             tempButton = BattlePooler.ProduceObject(shopButton);
             TextMeshProUGUI nameDisplay = tempButton.transform.Find("Name").GetComponent<TextMeshProUGUI>();

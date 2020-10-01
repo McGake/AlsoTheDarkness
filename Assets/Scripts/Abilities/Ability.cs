@@ -28,6 +28,8 @@ public class Ability:ScriptableObject
     public string LastAnimSet { get; set; } = "stand";
     public GameObject singleObjectTarget  {get { return objectTargets[0]; } set{ objectTargets[0] = value; } }
 
+    public BattleStats stats;
+
     [HideInInspector]
     public List<GameObject> objectTargets = new List<GameObject>();
     [HideInInspector]
@@ -67,6 +69,7 @@ public class Ability:ScriptableObject
         this.Owner = owner;
         PCAnimator = Owner.GetComponent<Animator>();
         BattleActorView = Owner.GetComponent<BattleActorView>();
+        stats = Owner.GetComponent<BaseBattleActor>().stats;
         AbilityOver = true;
         Useable = true;
         CurCooldownEndTime = 0f;

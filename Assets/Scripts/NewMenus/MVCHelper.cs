@@ -27,7 +27,7 @@ public class MVCHelper : MonoBehaviour
         CallEvent(UIEvents.setup, obj);
         CallEvent(UIEvents.start, obj);
         last = obj;
-        Pauser.PauseGame();
+
 
     }
 
@@ -105,8 +105,10 @@ public abstract class UIMVC:MonoBehaviour
 
     private void Start() //Danger!!! in the current setup, these two methods never get unsubscribed. This is by design, but the design might be a bad one.
     {
+        Debug.Log("start called " + gameObject.name);
         mVCHelper.Subscribe(UIEvents.setup, MVCSetup);
         mVCHelper.Subscribe(UIEvents.start, MVCStart);
+        mVCHelper.Subscribe(UIEvents.end, MVCEnd);
         gameObject.SetActive(false);
     }
 
@@ -117,7 +119,7 @@ public abstract class UIMVC:MonoBehaviour
 
     public virtual void MVCStart(object obj)
     {
-        mVCHelper.Subscribe(UIEvents.end, MVCEnd);
+        
         gameObject.SetActive(true);
     }
 

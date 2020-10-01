@@ -7,11 +7,11 @@ using UnityEngine;
 public class DefensivePosture : Status //TODO: perhaps to turn this and things like this to an event that the battle actor listens for and self applies 
 {
 
-    public override void SetUpStatus(Ability sourceAbility, GameObject deliveryObject)
+    public override void SetReferences(Ability sourceAbility, GameObject deliveryObject)
     {
     }
 
-    private int armorChange = 0;
+    private float armorChange = 0;
     //TODO: this may cause problems if abilities are not properly reset
     public override void DoStatusInitialEffect(BaseBattleActor bbA)
     {

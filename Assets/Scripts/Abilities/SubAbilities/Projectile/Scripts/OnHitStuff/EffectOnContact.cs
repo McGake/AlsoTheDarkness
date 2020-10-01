@@ -37,7 +37,7 @@ public class EffectOnContact : Fireable
     {
         foreach (Status status in statusesToAdd)
         {
-            status.SetUpStatus(sourceAbility, gameObject);
+            status.SetReferences(sourceAbility, gameObject);
         }
     }
 
@@ -51,7 +51,7 @@ public class EffectOnContact : Fireable
         {
             foreach (Status status in inspectorStatusesToAdd)
             {
-                Status tempStat = Instantiate(status);
+                Status tempStat = status.CreateStatusInstance(sourceAbility.stats);
                 statusesToAdd.Add(tempStat);
             }
         }

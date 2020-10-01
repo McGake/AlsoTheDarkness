@@ -3,26 +3,77 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering;
 
 [System.Serializable]
 public class BattleStats
 {
-    public int maxHP;
-    public int hP;
+    public float maxHP;
+    public float hP;
 
-    public int maxMana;
-    public int mana;
+    public float maxMana;
+    public float mana;
 
-    public int speed;
-    public int quckness;
+    public float speed;
+    public float quickness;
 
-    public int magicalPower;
-    public int magicalSkill;
+    public float magicalPower;
+    public float magicalSkill;
 
-    public int physicalSkill;
-    public int physicalPower;
+    public float physicalSkill;
+    public float physicalPower;
 
-    public int armor;
+    public float armor;
+
+    public BattleStats Copy()
+    {
+        BattleStats tempStats = new BattleStats();
+
+        tempStats.maxHP = maxHP;
+        tempStats.hP = hP;
+
+        tempStats.maxMana = maxMana;
+        tempStats.mana = mana;
+
+        tempStats.speed = speed;
+        tempStats.quickness = quickness;
+
+        tempStats.magicalPower = magicalPower;
+        tempStats.magicalSkill = magicalSkill;
+
+        tempStats.physicalSkill = physicalSkill;
+        tempStats.physicalPower = physicalPower;
+
+        tempStats.armor = armor;
+
+        return tempStats;
+    }
+
+    public float GetGoverningStat(GoverningStat gS)
+    {
+        switch (gS)
+        {
+            case GoverningStat.magicalPower:
+                return magicalPower;
+                break;
+            case GoverningStat.magicalSkill:
+                return magicalSkill;
+                break;
+            case GoverningStat.physicalPower:
+                return physicalPower;
+                break;
+            case GoverningStat.physicalSkill:
+                return physicalSkill;
+                break;
+            case GoverningStat.none:
+                return 1f;
+                break;
+        }
+
+        Debug.LogError("we somehow searched for a governing stat that is not accounted for");
+        return 0f;
+    }
+
 }
 
 [System.Serializable]
@@ -231,7 +282,7 @@ public class BaseBattleActor :MonoBehaviour
     #endregion AbilityManagement
 
 
-    public void ChangeHp(int amount)
+    public void ChangeHp(float amount)
     {
         stats.hP += amount;
 

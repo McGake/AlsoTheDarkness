@@ -18,6 +18,8 @@ public class LevelManager : MonoBehaviour
 
     private GameObject curLevel;
 
+    public Canvas mainMenu;
+
     private void Awake()
     {
         allLevels = new Dictionary<Levels, GameObject>();
@@ -62,6 +64,8 @@ public class LevelManager : MonoBehaviour
         {
             curLevel = allLevels[level];
             curLevel.SetActive(true);
+            
+            mainMenu.worldCamera = curLevel.GetComponentInChildren<Camera>();
         }
         else
         {

@@ -68,7 +68,6 @@ public class OverworldBattleView : MonoBehaviour
         yield return 0;
         float length;
         length = overworldAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.length;
-        Debug.Log("clip length was " + length);
         Invoke("Callback", length);
     }
 

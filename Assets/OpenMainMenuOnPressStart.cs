@@ -12,6 +12,9 @@ public class OpenMainMenuOnPressStart : MonoBehaviour
         if(Input.GetButtonDown("Start"))
         {
             topMenu.GetComponent<SelectionController>().StartSelection();
+            Pauser.PauseGame();
         }
     }
+
+
 }

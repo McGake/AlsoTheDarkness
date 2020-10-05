@@ -2,17 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelectEquip : MonoBehaviour
+public class SelectEquip : MonoBehaviour, ISelectionBehaviorOLD
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject uiToOpen;
+    public GameObject selectionControllerToPause;
+    public void DoSelectionBehavior()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        uiToOpen.GetComponent<MVCHelper>().StartUI(null);
+        selectionControllerToPause.GetComponent<SelectionController>().Pause();
     }
 }

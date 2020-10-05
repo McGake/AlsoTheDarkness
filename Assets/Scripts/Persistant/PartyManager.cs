@@ -5,28 +5,25 @@ using UnityEngine;
 public class PartyManager : MonoBehaviour
 {
     public int curPartyIndx = 0;
-
     public List<Party> parties;
-
     public static Party curParty;
-
     public TestClass tc;
-
     private PCFactory pcFactory = new PCFactory();
-
     public List<PCDef> pcDefs;
 
-    // Start is called before the first frame update
     void Awake()
     {
         curParty = parties[curPartyIndx];
         InitializeParties();
     }
-
-    // Update is called once per frame
     public static void AddItemToCurrentParty(Item item)
     {
         curParty.items.Add(item);
+    }
+
+    public static void RemoveItemFromCurrentParty(Item item)
+    {
+        curParty.items.Remove(item);
     }
 
     private void InitializeParties()//ToDo: this will become a full featured setup with saving and loading once saving is implemented
@@ -40,7 +37,16 @@ public class PartyManager : MonoBehaviour
         {
             foreach (PC pc in p.partyMembers)
             {
-                pc.battler = GameObject.Instantiate(pc.battler);
+                pc.battler = GameObject.Instantiate(pc.battler);//TODO: make this into a PC factory
+                pc.battlePC = pc.battler.GetComponent<BattlePC>();
+                pc.equipment = new PCEquipment();
+                //Debug.Log(pc.battlePC);
+                //Debug.Log(pc.equipment);
+                //Debug.Log(pc.equipment.battlePcToEquip);
+
+                pc.equipment.battlePcToEquip = pc.battlePC;
+
+
                 pc.battler.SetActive(false);
             }
         }

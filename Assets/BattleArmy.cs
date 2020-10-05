@@ -27,6 +27,7 @@ public class BattleArmy : MonoBehaviour
     {
         Debug.Log("battle army callback");
         enemy.overworldBattleView.PlayOngoingBattleAnim();
+
     }
 
 }

@@ -62,10 +62,12 @@ public class GeneralGridMovement : MonoBehaviour
     {
         moveUtil.Setup(transform);
         SubscribeToSquareStay(CheckForNewSquareTarget);
+        TurnManager.RegisterTurnTakerAsFirst(this);
     }
 
     private void OnDisable()
     {
+        TurnManager.UnregisterTurnTaker(this);
         UnsubscribeToSquareStay(CheckForNewSquareTarget);
     }
 

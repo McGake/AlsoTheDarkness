@@ -22,6 +22,7 @@ public class Pauser : MonoBehaviour
         {
             m.enabled = false;
         }
+        //Time.timeScale = 0f;
     }
 
     public static void UnpauseGame()
@@ -30,6 +31,7 @@ public class Pauser : MonoBehaviour
         {
             m.enabled = true;
         }
+        Time.timeScale = 1f;
     }
 
     private void OnDestroy()

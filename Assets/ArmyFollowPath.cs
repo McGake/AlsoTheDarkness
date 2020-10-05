@@ -41,10 +41,16 @@ public class ArmyFollowPath : MonoBehaviour
 
     private void OnEnable()
     {
+        
         seeker = GetComponent<Seeker>();
         oM.ownerTransform = transform;
 
         StartTurn();
+    }
+
+    private void OnDisable()
+    {
+        TurnManager.UnregisterTurnTaker(this);
     }
 
     void StartTurn()
@@ -140,11 +146,8 @@ public class ArmyFollowPath : MonoBehaviour
 
         if (rh2d.transform != null)
         {
-            Debug.Log("HitSOmething "  + rh2d.transform.name);
             if (rh2d.transform.gameObject.layer == LayerMask.NameToLayer("BattlePC"))
             {
-                Debug.Log("reached battle PC!!!!!");
-
                 BattleDef newBattle = GetComponent<EncounterRoller>().RollEncounter(tempArmyDangerZone);
                 if (newBattle != null)
                 {
@@ -158,7 +161,6 @@ public class ArmyFollowPath : MonoBehaviour
             }
             else if (rh2d.transform.gameObject.layer == LayerMask.NameToLayer("Settlement"))
             {
-                Debug.Log("Settlement detectedCOXOXOXOXOXOXOXOX");
                 this.enabled = false;
                 BattleArmy enemyBattleArmy = rh2d.transform.gameObject.GetComponent<BattleArmy>();
                 BattleArmy thisBattleArmy = GetComponent<BattleArmy>();

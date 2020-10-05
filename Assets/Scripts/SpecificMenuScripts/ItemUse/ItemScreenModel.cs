@@ -27,6 +27,7 @@ public class ItemScreenModel : GeneralSelectionModel
             if(selections.Count <= i)
             {
                 selections.Add(GameObject.Instantiate(buttonTemplate));
+                Debug.Log("selection count " + selections.Count + " i val " + i);
             }
 
             Item item = itmes[i];

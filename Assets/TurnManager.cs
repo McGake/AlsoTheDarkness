@@ -43,8 +43,13 @@ public static class TurnManager
 
     public static void RegisterTurnTakerAsLast(MonoBehaviour scriptToRegister)
     {
-        Debug.Log(scriptToRegister.name + "registered");
+        Debug.Log(scriptToRegister.name + "registered!!!!!!!!!!");
         turnTakingScripts.Add(scriptToRegister);
+    }
+
+    public static void UnregisterTurnTaker(MonoBehaviour scriptToUnregister)
+    {
+        turnTakingScripts.Remove(scriptToUnregister);
     }
 
     public static void ManagerTest(string test)

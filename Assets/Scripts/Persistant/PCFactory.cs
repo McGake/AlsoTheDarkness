@@ -9,13 +9,10 @@ public class PCFactory
         PC newPC =  new PC();
         newPC.displayName = pcDef.displayName;
         newPC.battler = pcDef.battler;
-
         newPC.portrait = pcDef.portrait;
-
         newPC.battleAnimOverride = pcDef.battleAnimOverride;
-
         newPC.overworldAnimOverride = pcDef.overworldAnimOverride;
-
+        newPC.equipment = pcDef.equipment;
         return newPC;
     }
 

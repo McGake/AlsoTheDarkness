@@ -16,17 +16,21 @@ public enum UIEvents
     display,
     execute,
     backout,
+    pause,
+    unpause,
     
 }
 public class MVCHelper : MonoBehaviour
 {
     private Dictionary<UIEvents, List<Action<object>>> subscribers = new Dictionary<UIEvents, List<Action<object>>>();
     private object last;
+    private bool startCalledOnce = false;
     public void StartUI(object obj)
     {
         CallEvent(UIEvents.setup, obj);
         CallEvent(UIEvents.start, obj);
         last = obj;
+        startCalledOnce = true;
 
 
     }
@@ -36,6 +40,24 @@ public class MVCHelper : MonoBehaviour
         CallEvent(UIEvents.end, obj);
     }
 
+    public void Pause()
+    {
+        CallEvent(UIEvents.pause, null);
+    }
+
+    public void Unpause(object obj)
+    {
+        if (startCalledOnce == false)
+        {
+            StartUI(obj);
+            CallEvent(UIEvents.unpause, obj);
+        }
+        else
+        {
+            CallEvent(UIEvents.unpause, obj);
+            CallEvent(UIEvents.start, obj);
+        }
+    }
 
     public void Return()
     {
@@ -105,7 +127,6 @@ public abstract class UIMVC:MonoBehaviour
 
     private void Start() //Danger!!! in the current setup, these two methods never get unsubscribed. This is by design, but the design might be a bad one.
     {
-        Debug.Log("start called " + gameObject.name);
         mVCHelper.Subscribe(UIEvents.setup, MVCSetup);
         mVCHelper.Subscribe(UIEvents.start, MVCStart);
         mVCHelper.Subscribe(UIEvents.end, MVCEnd);

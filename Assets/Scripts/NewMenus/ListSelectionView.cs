@@ -49,7 +49,10 @@ public class ListSelectionView : UIMVC
 
     private void MoveCursorByIndx()
     {
-        cursor.transform.position = (Vector2)selectionList[curSelection].transform.position + cursorOffset;
+        if (selectionList.Count > 0)
+        {
+            cursor.transform.position = (Vector2)selectionList[curSelection].transform.position + cursorOffset;
+        }
     }
 
     private void SetButtons(object obj)

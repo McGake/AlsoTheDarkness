@@ -25,3 +25,33 @@ public class Item:ScriptableObject
     }
     //this will be the parent class for all equipment and items in the game. place hoder for now.
 }
+
+public class Equipable:Item
+{
+    public List<Status> statusesOnEquip;
+}
+
+
+
+
+
+public enum WeaponType
+{
+    sword,
+    spear,
+    wand,
+}
+
+public enum ArmorType
+{
+    robe,
+    leather,
+    plate,
+}
+
+public enum HelmetType
+{
+    cap,
+    leather,
+    metal,
+}

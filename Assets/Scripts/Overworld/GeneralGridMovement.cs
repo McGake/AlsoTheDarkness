@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.WSA.Input;
+//using UnityEngine.XR.WSA.Input;
 
 public class GeneralGridMovement : MonoBehaviour
 {
@@ -39,7 +39,7 @@ public class GeneralGridMovement : MonoBehaviour
 
     public void UnsubscribeToSquareArrival(Action unsubMethod)
     {
-        subscribedArrival.Add(unsubMethod);
+        subscribedArrival.Remove(unsubMethod);
     }
 
     private void NotifyStaySubscribers()
@@ -52,23 +52,34 @@ public class GeneralGridMovement : MonoBehaviour
 
     private void NotifyArrivalSubscribers()
     {
+        Debug.Log("notify arrival subscribers");
         for (int i = 0; i < subscribedArrival.Count; i++)
         {
             subscribedArrival[i]();
         }
     }
 
+    private void Awake()
+    {
+        TurnManager.RegisterTurnTakerAsFirst(this);
+    }
+
     private void OnEnable()
     {
         moveUtil.Setup(transform);
         SubscribeToSquareStay(CheckForNewSquareTarget);
-        TurnManager.RegisterTurnTakerAsFirst(this);
+
     }
 
     private void OnDisable()
     {
-        TurnManager.UnregisterTurnTaker(this);
+
         UnsubscribeToSquareStay(CheckForNewSquareTarget);
+    }
+
+    private void OnDestroy()
+    {
+        TurnManager.UnregisterTurnTaker(this);
     }
 
     private void Start()
@@ -100,7 +111,7 @@ public class GeneralGridMovement : MonoBehaviour
 
     private void CheckForNewSquareTarget()
     {
-        walkingView.PauseAnimation();
+        //walkingView.PauseAnimation();
 
         if (directionalInput.IsThereDirectionalInput(inputThreshold))
         {

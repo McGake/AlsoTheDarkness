@@ -22,6 +22,11 @@ public class AddStatusToMultiple : SubAbility
     {
         foreach (GameObject gO in ab.objectTargets)
         {
+            Debug.Log(ab.name);
+            Debug.Log(ab.Owner.name);
+            Debug.Log(prefabStatusToAdd);
+            Debug.Log(ab.stats);
+
             statusToAddInstance = prefabStatusToAdd.CreateStatusInstance(ab.stats);
             gO.GetComponent<BaseBattleActor>().AddStatus(statusToAddInstance);
         }

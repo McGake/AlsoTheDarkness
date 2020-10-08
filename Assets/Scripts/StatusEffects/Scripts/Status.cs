@@ -26,6 +26,8 @@ public abstract class Status : ScriptableObject
 
     public List<StatusValue> statusValues;
 
+    private const float percentCoversion = .01f;
+
     public Status CreateStatusInstance(BattleStats curStats)
     {
         Status statusToCreate = Instantiate(this);
@@ -38,12 +40,24 @@ public abstract class Status : ScriptableObject
     {
         stats = sourceAbility.stats.Copy();
     }
-
+    /// <summary>
+    /// multiplies a base value of a status effect (say damage for example) 
+    /// by the designated governing stat (say physical power for example) converted to a percentage. (so a stat value of 18 is multipled by .01 making it .18)
+    /// One is added to the percentage so that the stats add to the base vaule not divide it. (So .18 becomes 1.18 which when multiplied works as 18 percent increase)
+    /// Then the that is multiplied by an overall modifier to determin how strong of an impact the stats have on the base value. So a multiplier of 1 means that a stat of 18 will add 18 percent to the
+    /// </summary>
     public virtual void SetModifiers()
     {
         foreach(StatusValue sVal in statusValues)
         {
-            sVal.val = sVal.baseValue * (stats.GetGoverningStat(sVal.governingStat) * sVal.multiplyer);
+            float governingStatValue = stats.GetGoverningStat(sVal.governingStat);
+
+
+            sVal.val = 
+                sVal.baseValue * 
+                (((governingStatValue * sVal.multiplyer) * 
+                percentCoversion)+1)
+                ;
         }
     }
 
@@ -109,7 +123,8 @@ public class StatusValue
 {
     public string label;
     public GoverningStat governingStat;
+
     public float baseValue;
-    public float multiplyer;
+    public float multiplyer = 1f;
     public float val;
 }

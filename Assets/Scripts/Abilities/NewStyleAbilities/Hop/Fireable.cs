@@ -13,7 +13,7 @@ public class Fireable : MonoBehaviour
 
     }
 
-    public void SetSourceAbility(Ability newSource)
+    public virtual void SetupProjectile(Ability newSource)
     {
         sourceAbility = newSource;
         SetPhysicsLayer();

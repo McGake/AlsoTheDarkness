@@ -16,7 +16,7 @@ public class LevelManager : MonoBehaviour
 
     public Dictionary<Levels, GameObject> allLevels;
 
-    private GameObject curLevel;
+    public GameObject curLevel { get; private set; }
 
     public Canvas mainMenu;
 

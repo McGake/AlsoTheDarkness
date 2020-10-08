@@ -7,5 +7,21 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: linailBattle
-  m_Controller: {fileID: 0}
-  m_Clips: []
+  m_Controller: {fileID: 9100000, guid: 047d546f2ecc9344282dd8c8d8ed4239, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: bd2ae3f4b0908df4080492c78c174bfd, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d230dac57eaf60848a76f32ca6d5b797, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 21da7c6e42590264eb6b774caed7fc0b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0d3e9de1aab03de46818e14db7c90c51, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 2607e90c0c9a0744a8231223351a1719, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b9041a40733852442826425b731ffeb7, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: cf8e21831e2cd7242a0df46ad304745e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 962995f0c2e205840b5ffa6c3ee7fd89, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 74206a244e59df84888fda457fdb8ee9, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 177ab967d73546746a3a3aecc09f8522, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 99911a45aa1949349b28a119ccd4368b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 478e45e6a9676ba41a76d34c86f33fbd, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 61bc6ad2bb8ac8f408210542cf779c6e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9b303ee830aeec24eb7682bb10c81c6e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 5078547b300080b4aad2bdaac2017a2c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9cfc7800905712444b8c941799a02ac9, type: 2}

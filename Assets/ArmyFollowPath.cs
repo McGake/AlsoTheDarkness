@@ -50,6 +50,11 @@ public class ArmyFollowPath : MonoBehaviour
 
     private void OnDisable()
     {
+
+    }
+
+    private void OnDestroy()
+    {
         TurnManager.UnregisterTurnTaker(this);
     }
 

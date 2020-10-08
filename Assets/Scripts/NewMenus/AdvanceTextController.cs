@@ -14,6 +14,8 @@ public class AdvanceTextController : UIMVC
         base.MVCSetup(obj);
         curLevelOfAdvancement = 0;
         mVCHelper.Subscribe(UIEvents.dataChanged, OnDataChanged);
+        mVCHelper.Subscribe(UIEvents.backout, Backout);
+        Pauser.PauseGame();
     }
 
     private void OnDataChanged(object obj)
@@ -44,10 +46,16 @@ public class AdvanceTextController : UIMVC
         }
     }
 
+    private void Backout(object obj)
+    {
+        mVCHelper.CallEvent(UIEvents.end, null);
+    }
+
     public override void MVCEnd(object obj)
     {
         base.MVCEnd(obj);
         mVCHelper.Unsubscribe(UIEvents.dataChanged, OnDataChanged);
+        mVCHelper.Unsubscribe(UIEvents.backout, Backout);
         Pauser.UnpauseGame();
     }
 }

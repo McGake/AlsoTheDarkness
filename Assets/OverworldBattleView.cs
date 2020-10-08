@@ -54,7 +54,6 @@ public class OverworldBattleView : MonoBehaviour
     public void PlayAttackAndCallbackWhenDone(Action callback , int damage)
     {
         //Get direction of attack and put the attack anim there
-        Debug.Log("delay and call back when done 090909");
         tMP.text = damage.ToString();
         tMP.gameObject.SetActive(true);
         PlayAnimation("TurnAttack");
@@ -64,7 +63,6 @@ public class OverworldBattleView : MonoBehaviour
 
     public IEnumerator DelayAndCallback()
     {
-        Debug.Log("delay called ^^^^^^^^^^^^^^^^^^^^^");
         yield return 0;
         float length;
         length = overworldAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.length;
@@ -73,7 +71,6 @@ public class OverworldBattleView : MonoBehaviour
 
     private void Callback()
     {
-        Debug.Log("view callback%%%");
         tMP.gameObject.SetActive(false);
         callback();
     }

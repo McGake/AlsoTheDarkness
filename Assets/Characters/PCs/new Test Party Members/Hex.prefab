@@ -25,26 +25,71 @@ PrefabInstance:
     - target: {fileID: 263639194357805292, guid: 4b7a659fa64a9fd47a82e72e5d901049,
         type: 3}
       propertyPath: stats.hP
-      value: 250
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 263639194357805292, guid: 4b7a659fa64a9fd47a82e72e5d901049,
         type: 3}
       propertyPath: inspectorAbilities.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 955a79af5e2bcbb4ab56aec1b77f364b,
+      objectReference: {fileID: 11400000, guid: 808af4064c0a08743a8474769c592d48,
         type: 2}
     - target: {fileID: 263639194357805292, guid: 4b7a659fa64a9fd47a82e72e5d901049,
         type: 3}
       propertyPath: inspectorAbilities.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: a79c40d379e7db54291386397e1a1cfc,
+      objectReference: {fileID: 11400000, guid: 76e3795f9a443774db7410197ca2d7cd,
         type: 2}
     - target: {fileID: 263639194357805292, guid: 4b7a659fa64a9fd47a82e72e5d901049,
         type: 3}
       propertyPath: inspectorAbilities.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: 04216075e951c4b4fb2aa726ac41af76,
+      objectReference: {fileID: 11400000, guid: c91821ce54c284141abb0fa139fa23c5,
         type: 2}
+    - target: {fileID: 263639194357805292, guid: 4b7a659fa64a9fd47a82e72e5d901049,
+        type: 3}
+      propertyPath: stats.maxMana
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 263639194357805292, guid: 4b7a659fa64a9fd47a82e72e5d901049,
+        type: 3}
+      propertyPath: stats.mana
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 263639194357805292, guid: 4b7a659fa64a9fd47a82e72e5d901049,
+        type: 3}
+      propertyPath: stats.speed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 263639194357805292, guid: 4b7a659fa64a9fd47a82e72e5d901049,
+        type: 3}
+      propertyPath: stats.quickness
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 263639194357805292, guid: 4b7a659fa64a9fd47a82e72e5d901049,
+        type: 3}
+      propertyPath: stats.magicalPower
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 263639194357805292, guid: 4b7a659fa64a9fd47a82e72e5d901049,
+        type: 3}
+      propertyPath: stats.magicalSkill
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 263639194357805292, guid: 4b7a659fa64a9fd47a82e72e5d901049,
+        type: 3}
+      propertyPath: stats.physicalSkill
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 263639194357805292, guid: 4b7a659fa64a9fd47a82e72e5d901049,
+        type: 3}
+      propertyPath: stats.physicalPower
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 263639194357805292, guid: 4b7a659fa64a9fd47a82e72e5d901049,
+        type: 3}
+      propertyPath: stats.armor
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1755673316737204961, guid: 4b7a659fa64a9fd47a82e72e5d901049,
         type: 3}
       propertyPath: m_Name

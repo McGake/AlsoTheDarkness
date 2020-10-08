@@ -78,11 +78,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sourceAbility: {fileID: 0}
-  targetTypes:
-  - Monster
-  otherCollideableTypes: []
+  fireableBehaviors: []
   inspectorStatusesToAdd:
-  - {fileID: 11400000, guid: 1835e310515904f4dbf4094bc46a6409, type: 2}
+  - {fileID: 11400000, guid: 8a52a22716c8c954d91a8db28f396e36, type: 2}
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
+  continuous: 0
+  repeatInterval: 0
 --- !u!114 &4941200126124808951
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f111b118bda9c774e839d9dd2369b0a7, type: 3}
   m_Name: FireProjectileWithForce
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 5800589841093965516, guid: cf300c87aff6b0b429df73786cde76a6,
+  projectilePrefab: {fileID: -7065724614457603561, guid: 150f3996f73d05d4b839832774d4304b,
     type: 3}

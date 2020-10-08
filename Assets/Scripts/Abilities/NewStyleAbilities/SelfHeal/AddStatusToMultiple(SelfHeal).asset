@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c979c64cb7bfff479b46c7fcb9ad1e4, type: 3}
   m_Name: AddStatusToMultiple(SelfHeal)
   m_EditorClassIdentifier: 
-  statusToAdd: {fileID: 11400000, guid: 321deb1b4fca1f24e8fc5b5ed4986030, type: 2}
+  prefabStatusToAdd: {fileID: 11400000, guid: 321deb1b4fca1f24e8fc5b5ed4986030, type: 2}

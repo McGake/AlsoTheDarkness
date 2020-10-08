@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb1fc92d47782fb4a99b223dc42c3cd6, type: 3}
   m_Name: FireReturningTargetsProjectile
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 8515647366171059885, guid: a22966934d9f99d45ab61126f840f0e5,
+  projectilePrefab: {fileID: 8515647366171059887, guid: a22966934d9f99d45ab61126f840f0e5,
     type: 3}
-  eOC: {fileID: 8515647366171059887, guid: a22966934d9f99d45ab61126f840f0e5, type: 3}

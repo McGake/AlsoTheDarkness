@@ -7,6 +7,8 @@ public class Camp : MonoBehaviour
 
     public WalkingView walkingView;
 
+    public GeneralGridMovement generalGridMovement;
+
     private void Update()
     {
         if(MultiInput.GetAButtonDown())
@@ -17,7 +19,7 @@ public class Camp : MonoBehaviour
 
     private void DoCamping()
     {
-        this.enabled = false;
+        generalGridMovement.enabled = false;
         foreach (PC pc in PartyManager.curParty.partyMembers)
         {
             pc.battler.GetComponent<BattlePC>().stats.hP = pc.battler.GetComponent<BattlePC>().stats.maxHP;

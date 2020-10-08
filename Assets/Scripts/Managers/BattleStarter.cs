@@ -9,7 +9,7 @@ public class BattleStarter : MonoBehaviour
 
     public GameObject battleFolder;
     public GameObject overworldFolder;
-    public BattleMenuManager battleMenuManager;
+    public BattleSelectionManager battleMenuManager;
 
     public List<GameObject> pcBlanks;
 
@@ -36,6 +36,8 @@ public class BattleStarter : MonoBehaviour
 
     public List<Transform> possibleMonsterStartPositions;
 
+    
+
       public void Update()
     {
         if(Input.GetButtonDown("Start"))//this is temporary test code
@@ -59,6 +61,7 @@ public class BattleStarter : MonoBehaviour
         battleDef = recivedBattleDef;
         SetUpBattle();
         battleFolder.SetActive(true);
+        Debug.Log("SET OVERWORLD TO FALSE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         overworldFolder.SetActive(false);
     }
 

@@ -154,6 +154,7 @@ public class WalkingView : MonoBehaviour
     {
         yield return 0;
         float length = overworldAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.length;
+        Debug.Log("how long " + length);
         Invoke("EndTurn", length);
     }
 

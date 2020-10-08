@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3647189363385741791}
   - component: {fileID: -7150326338409246369}
   - component: {fileID: 5707430199381939981}
+  - component: {fileID: -7065724614457603561}
   m_Layer: 11
   m_Name: MageBomb
   m_TagString: Untagged
@@ -156,3 +157,17 @@ MonoBehaviour:
   objectToTurnOn: {fileID: 8515647366171059885, guid: 0e810509a61186645b6e671fc60a9219,
     type: 3}
   turnOffSelfOnTime: 1
+--- !u!114 &-7065724614457603561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5800589841093965516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19d99211cf3386f40b946f4a8f8d7b79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sourceAbility: {fileID: 0}
+  fireableBehaviors: []

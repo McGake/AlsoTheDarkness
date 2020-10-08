@@ -7,5 +7,21 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: GlenyBattle
-  m_Controller: {fileID: 0}
-  m_Clips: []
+  m_Controller: {fileID: 9100000, guid: 047d546f2ecc9344282dd8c8d8ed4239, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: bd2ae3f4b0908df4080492c78c174bfd, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 34ffe37fc94db2e41840f074b50de40a, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 21da7c6e42590264eb6b774caed7fc0b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0b0e91d8d35e88347a37a7283952140b, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 2607e90c0c9a0744a8231223351a1719, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e207b381434fbfc44954648ec181d904, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: cf8e21831e2cd7242a0df46ad304745e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 552d424761125e34a9fb4cb958ec6c31, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 99911a45aa1949349b28a119ccd4368b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 1660db3cd46525c4fa31444317c73044, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 61bc6ad2bb8ac8f408210542cf779c6e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 2e0914b378df6ae40ad93f7bd0345f4e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 5078547b300080b4aad2bdaac2017a2c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: eb51cf7886dd9a748b4a09302bab6c8f, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 74206a244e59df84888fda457fdb8ee9, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d65c269b23b378349aadba752a20ae4b, type: 2}

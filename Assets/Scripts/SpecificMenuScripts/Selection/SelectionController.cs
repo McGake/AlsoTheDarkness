@@ -101,7 +101,8 @@ public class SelectionController : MonoBehaviour
         else
         {
             selectionView.LeaveMenus();
-            gameObject.transform.gameObject.SetActive(false); 
+            gameObject.transform.gameObject.SetActive(false);
+            Pauser.UnpauseGame();
         }
     }
 

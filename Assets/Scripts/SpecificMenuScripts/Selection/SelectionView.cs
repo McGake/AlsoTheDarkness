@@ -9,7 +9,7 @@ public class SelectionView : MonoBehaviour
 #pragma warning disable 649
     private List<GameObject> selections;
 
-    private GameObject cursor;
+    public GameObject cursor;
 
     [SerializeField]
     private Vector3 cursorOffset;
@@ -18,20 +18,9 @@ public class SelectionView : MonoBehaviour
     private GameObject layoutObject;
 #pragma warning restore 649
 
-    public void Awake()
-    {
-        cursor = GameObject.Find("Pointer");
-    }
-
-    public void Start()
-    {
-        cursor = GameObject.Find("Pointer");
-    }
 
     public void OpenView(List<GameObject> tempSelections)
     {
-        cursor = GameObject.Find("Pointer");
-        Debug.Log(gameObject + " " + "Found" + cursor.name);
         layoutObject.SetActive(true);
         gameObject.SetActive(true);
         selections = tempSelections;

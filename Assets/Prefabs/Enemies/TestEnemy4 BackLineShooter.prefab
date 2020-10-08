@@ -50,6 +50,51 @@ PrefabInstance:
       propertyPath: abilityIntervalMin
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
+        type: 3}
+      propertyPath: stats.maxMana
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
+        type: 3}
+      propertyPath: stats.mana
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
+        type: 3}
+      propertyPath: stats.speed
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
+        type: 3}
+      propertyPath: stats.quickness
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
+        type: 3}
+      propertyPath: stats.magicalPower
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
+        type: 3}
+      propertyPath: stats.magicalSkill
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
+        type: 3}
+      propertyPath: stats.physicalSkill
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
+        type: 3}
+      propertyPath: stats.physicalPower
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
+        type: 3}
+      propertyPath: stats.armor
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8844169639533487329, guid: bd4b75f9dc605f447bcd0309e9922de2,
         type: 3}
       propertyPath: m_Name

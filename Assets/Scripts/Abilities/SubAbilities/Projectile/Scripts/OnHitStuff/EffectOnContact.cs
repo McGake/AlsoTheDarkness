@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,8 +15,7 @@ public class EffectOnContact : Fireable
 
     private List<GameObject> objectsHit = new List<GameObject>();
 
-    public delegate void DelSendObjectsHit(List<GameObject> osHit);
-    public DelSendObjectsHit SendObjectsHit;
+    public List<Action<List<GameObject>>> ObjectsHitSubs = new List<Action<List<GameObject>>>();
 
     public LayerMask mask;
 
@@ -26,8 +26,20 @@ public class EffectOnContact : Fireable
 
     protected List<Status> statusesToAdd = new List<Status>();
 
-    public void OnEnable()
+
+    public void SubscribeToObjectsHit(Action<List<GameObject>> subscriber)
     {
+        ObjectsHitSubs.Add(subscriber);
+    }
+
+    public void UnsubscribeToObjectsHit(Action<List<GameObject>> subscriber)
+    {
+        ObjectsHitSubs.Remove(subscriber);
+    }
+
+    public override void SetupProjectile(Ability newSource)
+    {
+        base.SetupProjectile(newSource);
         objectsHit.Clear();
         GetInspectorStatuses();
         SetUpStatuses();
@@ -51,6 +63,11 @@ public class EffectOnContact : Fireable
         {
             foreach (Status status in inspectorStatusesToAdd)
             {
+                Debug.Log(status);
+                Debug.Log(sourceAbility);
+                Debug.Log(sourceAbility.stats);
+
+
                 Status tempStat = status.CreateStatusInstance(sourceAbility.stats);
                 statusesToAdd.Add(tempStat);
             }
@@ -112,9 +129,13 @@ public class EffectOnContact : Fireable
 
     private void OnDisable()
     {
-        if (SendObjectsHit != null)
+        foreach(Action<List<GameObject>> sub in ObjectsHitSubs)
         {
-            SendObjectsHit(objectsHit);
+            sub?.Invoke(objectsHit);
+        }
+        if(ObjectsHitSubs.Count > 0)
+        {
+            Debug.LogError("not all subscribers were unsubscribbed on disable");
         }
     }
     #endregion Effects To Apply

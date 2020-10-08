@@ -12,6 +12,13 @@ public class TurnOnSecondaryOnTime : MonoBehaviour
 
     public bool turnOffSelfOnTime = true;
 
+    private Fireable fireable;
+
+    public void Awake()
+    {
+        fireable = GetComponent<Fireable>();
+    }
+
     public void OnEnable()
     {
         deathTime = lifeTime + Time.time;
@@ -21,7 +28,9 @@ public class TurnOnSecondaryOnTime : MonoBehaviour
     {
         if (deathTime <= Time.time)
         {
-            BattlePooler.ProduceObject(objectToTurnOn, transform.position);
+            Debug.Log(fireable);
+            Debug.Log(fireable.sourceAbility);
+            ProjectileFactory.ProduceProjectile(objectToTurnOn, fireable.sourceAbility, transform.position);
             if (turnOffSelfOnTime)
             {
                 gameObject.SetActive(false);

@@ -21,6 +21,7 @@ public class EncounterChecker : MonoBehaviour
 
     private void CheckForEncounter()
     {
+        Debug.Log("Get cur zone");
         DangerZoneDef dangerZone = heatMapTileInfo.GetCurZone(transform.position);
         BattleDef newBattle = new BattleDef();
 
@@ -34,6 +35,7 @@ public class EncounterChecker : MonoBehaviour
             if (newBattle != null)
             {
                 //returnPosition = transform.position;
+                Debug.Log("start new battle");
                 newBattle.pcsInBattle = PartyManager.curParty.partyMembers;
                 battleStarter.TurnOnBattleScene(newBattle);
             }

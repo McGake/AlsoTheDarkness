@@ -7,6 +7,7 @@ public class TextView : UIMVC
 {
     public TextMeshProUGUI text;
 
+
     public override void MVCSetup(object obj)
     {
         //Debug.Log("setup called");

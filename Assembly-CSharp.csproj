@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AbilityDisplayManager.cs" />
     <Compile Include="Assets\AbilityView.cs" />
     <Compile Include="Assets\ArmyFollowPath.cs" />
     <Compile Include="Assets\Art\Characters\OldTestCharacter\Loke\TestAddAnim.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Assets\ControllerCheck.cs" />
     <Compile Include="Assets\DeactivateOnCallback.cs" />
     <Compile Include="Assets\DialogueInteraction.cs" />
+    <Compile Include="Assets\DialogueView.cs" />
     <Compile Include="Assets\EquipItemController.cs" />
     <Compile Include="Assets\HeatMapTileInfo.cs" />
     <Compile Include="Assets\InteractionChecker.cs" />
@@ -155,7 +157,6 @@
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\DeterminAngle\DeterminAngleEdgeSpread.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\DeterminAngle\DeterminAngleSimpleSetting.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\DeterminAngle\SimpleSetAnglePlusFacing.cs" />
-    <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\Fire\FireCallbackOnDisable.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\Fire\FireProjectile.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\Fire\FireProjectileAndWaitForDisable.cs" />
     <Compile Include="Assets\Scripts\Abilities\SubAbilities\Projectile\Scripts\Fire\FireProjectileWithForce.cs" />
@@ -197,7 +198,8 @@
     <Compile Include="Assets\Scripts\Items\UseItemScript.cs" />
     <Compile Include="Assets\Scripts\Items\UseItemScripts\Heal1.cs" />
     <Compile Include="Assets\Scripts\Items\Weapon.cs" />
-    <Compile Include="Assets\Scripts\Managers\BattleMenuManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\AbilityDisplayView.cs" />
+    <Compile Include="Assets\Scripts\Managers\BattleSelectionManager.cs" />
     <Compile Include="Assets\Scripts\Managers\BattleStarter.cs" />
     <Compile Include="Assets\Scripts\Managers\LevelManager.cs" />
     <Compile Include="Assets\Scripts\Managers\ObjectsInBattle.cs" />
@@ -227,7 +229,7 @@
     <Compile Include="Assets\Scripts\SpecificMenuScripts\BuySellExitController.cs" />
     <Compile Include="Assets\Scripts\SpecificMenuScripts\CurPartyAssignItemModel.cs" />
     <Compile Include="Assets\Scripts\SpecificMenuScripts\Dialogue\DialogueController.cs" />
-    <Compile Include="Assets\Scripts\SpecificMenuScripts\Dialogue\DialogueView.cs" />
+    <Compile Include="Assets\Scripts\SpecificMenuScripts\Dialogue\DialogueViewOld.cs" />
     <Compile Include="Assets\Scripts\SpecificMenuScripts\GeneralSelectionModel.cs" />
     <Compile Include="Assets\Scripts\SpecificMenuScripts\Gold\GoldController.cs" />
     <Compile Include="Assets\Scripts\SpecificMenuScripts\Gold\GoldModel.cs" />
@@ -272,6 +274,7 @@
     <Compile Include="Assets\Scripts\StatusEffects\StatusFactory.cs" />
     <Compile Include="Assets\Scripts\Utilities\BattlePooler.cs" />
     <Compile Include="Assets\Scripts\Utilities\MultiInput.cs" />
+    <Compile Include="Assets\Scripts\Utilities\ProjectileFactory.cs" />
     <Compile Include="Assets\Scripts\Utilities\Timer.cs" />
     <Compile Include="Assets\Scripts\Utilities\TimerManager.cs" />
     <Compile Include="Assets\SelectEquipmentController.cs" />
@@ -280,6 +283,7 @@
     <Compile Include="Assets\SelectHeroModel.cs" />
     <Compile Include="Assets\SelectSlotController.cs" />
     <Compile Include="Assets\SelectSlotModel.cs" />
+    <Compile Include="Assets\SetCameraOnStart.cs" />
     <Compile Include="Assets\ShopGoldModel.cs" />
     <Compile Include="Assets\ShopInteraction.cs" />
     <Compile Include="Assets\ShopItemModel.cs" />

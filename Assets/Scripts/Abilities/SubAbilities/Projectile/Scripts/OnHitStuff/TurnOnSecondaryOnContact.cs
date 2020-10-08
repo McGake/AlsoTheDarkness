@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(Fireable))]
 public class TurnOnSecondaryOnContact : MonoBehaviour
 {
 
@@ -10,11 +12,22 @@ public class TurnOnSecondaryOnContact : MonoBehaviour
     public GameObject objectToTurnOn;
 
     public bool turnOffSelfOnContact = true;
+
+    private Fireable fireable;
+
+    public void Awake()
+    {
+        fireable = GetComponent<Fireable>();
+    }
+
     public void OnTriggerEnter2D(Collider2D col)
     {
         if (((triggerOnEnterMask >> col.gameObject.layer)) == 1)
         {
-            BattlePooler.ProduceObject(objectToTurnOn, transform.position);
+            Debug.Log(fireable);
+            Debug.Log(fireable.sourceAbility);
+
+            ProjectileFactory.ProduceProjectile(objectToTurnOn, fireable.sourceAbility, transform.position);
         }
         if(turnOffSelfOnContact)
         {

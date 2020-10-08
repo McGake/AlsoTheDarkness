@@ -36,7 +36,13 @@ public class HeatMapTileInfo : MonoBehaviour
 
         //Debug.Log(heatMap.layoutGrid + "layoutgrid");
 
-        //Debug.Log(worldPos + "worldPos");
+        //tilePos = new Vector3Int(0, 0, 0);
+
+        //Debug.Log(tilePos);
+
+        //Debug.Log(heatMap.layoutGrid.cellSize);
+
+        //Debug.Log(heatMap.layoutGrid.WorldToCell(new Vector3(5,5,0)));
 
         tilePos = heatMap.layoutGrid.WorldToCell(worldPos);
 

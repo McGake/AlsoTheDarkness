@@ -6,9 +6,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "MultiplyMagicalPower", menuName = "Effects/MultiplyMagicalPower", order = 1)]
 public class MultiplyMagicalPower : Status
 {
-    public float magicMultiplier;
+    public StatusValue magicMultiplier;
 
-    private int totalModifier;
+    private float totalModifier;
 
     public override void SetReferences(Ability sourceAbility, GameObject de)
     {
@@ -17,8 +17,8 @@ public class MultiplyMagicalPower : Status
 
     public override void DoStatusInitialEffect(BaseBattleActor bbA)
     {
-        totalModifier = Mathf.FloorToInt(bbA.stats.magicalPower * magicMultiplier);
-        bbA.modifiedStats.magicalPower += totalModifier; 
+        totalModifier = ((bbA.stats.basic.magicalPower * magicMultiplier.val) - bbA.stats.basic.magicalPower) ;
+        bbA.stats.modified.magicalPower += totalModifier; 
     }
     public override void DoStatus(BaseBattleActor bbA)
     {
@@ -26,6 +26,6 @@ public class MultiplyMagicalPower : Status
     }
     public override void DoStatusEnd(BaseBattleActor bbA)
     {
-        bbA.modifiedStats.magicalPower -= totalModifier;
+        bbA.stats.modified.magicalPower -= totalModifier;
     }
 }

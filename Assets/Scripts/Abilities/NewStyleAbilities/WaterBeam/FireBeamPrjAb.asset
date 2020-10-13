@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: FireBeamPrjAb
   m_EditorClassIdentifier: 
   inspectorProjectileSubAbilities:
-  - {fileID: 11400000, guid: 971df82235c9cba4082f00c50094ef42, type: 2}
   - {fileID: 11400000, guid: 0c99fa7438d59224c94d02c6a57feeff, type: 2}
   - {fileID: 11400000, guid: 51c1edd5af1ef5445a06984eea12b821, type: 2}
   - {fileID: 11400000, guid: 0f3459481046a684a8d2c310c654b5fd, type: 2}

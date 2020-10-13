@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class AbilityDisplayManager 
@@ -9,12 +10,14 @@ public class AbilityDisplayManager
     private GameObject curHero;
     private GameObject heroAbilitiesDisplay;
 
+    private int[] clusterFillOrder = new int[] { 1, 0, 2 };
+
     public void SetupAbilityDisplayManager(GameObject curHero, GameObject heroAbilitiesDisplay)
     {
         this.heroAbilitiesDisplay = heroAbilitiesDisplay;
         view.ResetView();
         AddAbilityClustersToDictionary();
-        AddAllAbilitybuttonsToListInProperOrder();
+        AddAllAbilityButtonsToListInProperOrder();
         this.curHero = curHero;
         view.PopulateHeroAbilityMenu(curHero);
     }
@@ -22,23 +25,27 @@ public class AbilityDisplayManager
     void AddAbilityClustersToDictionary()
     {
         //this will eventually add all the ability button clusters open, righ trigger down, left trigger down, and both down
-        view.abilityDisplayClusters.Add(heroAbilitiesDisplay.GetComponentInChildren<AbilityCluster>());
-        view.curAbilityCluster = view.abilityDisplayClusters[0]; //temp code          
+        view.abilityDisplayClusters.AddRange(heroAbilitiesDisplay.GetComponentsInChildren<AbilityCluster>());
+        view.curAbilityCluster = view.abilityDisplayClusters[1]; //temp code          
     }
 
-    void AddAllAbilitybuttonsToListInProperOrder()
+    void AddAllAbilityButtonsToListInProperOrder()
     {
-        //this will eventually go through all the clusters to get all of the abilities
-        AbilityCluster tempCluster = view.abilityDisplayClusters[0];
-        foreach (AbilityButton aB in tempCluster.abilityButtons)
+        foreach (int indx in clusterFillOrder)
         {
-            view.allAbilityButtons.Add(aB);
+            AbilityCluster tempCluster = view.abilityDisplayClusters[indx];
+
+            foreach (AbilityButton aB in tempCluster.abilityButtons)
+            {
+                view.allAbilityButtons.Add(aB);
+            }
         }
+        
     }
 
 
 
-    private void Update()
+    public void UpdateAbilityMenu()
     {
         view.UpdateAbilityMenu();
     }
@@ -47,6 +54,13 @@ public class AbilityDisplayManager
     {
         this.curHero = curHero;
         view.PopulateHeroAbilityMenu(curHero);
+    }
+
+
+    public void ChangeCurAbilityCluster(int clusterIndx)
+    {
+        view.curAbilityCluster = view.abilityDisplayClusters[clusterIndx];
+        view.MakeNonIndxClustersTransparent(clusterIndx);
     }
 
 
@@ -65,11 +79,13 @@ public class AbilityDisplayManager
         }
         if (abilityToPass == null)
         {
-            Debug.LogError("We just called a null ability from the menu. did the hero get switched or the ability list change?");
+            //Debug.LogError("We just called a null ability from the menu. did the hero get switched or the ability list change?");
+            return;
         }
-        BaseBattleActor curHeroBattleActor = curHero.GetComponent<BaseBattleActor>();
-        if (AbilityManager.abManager.IsCharacterCurrentlyDoingAbility(curHero) == false)
+        else if (AbilityManager.abManager.IsCharacterCurrentlyDoingAbility(curHero) == false)
         {
+            BaseBattleActor curHeroBattleActor = curHero.GetComponent<BaseBattleActor>();
+            Debug.Log("character was not doing other thing");
             curHeroBattleActor.DoAbility(abilityToPass);
         }
         //else just do nothing and continue

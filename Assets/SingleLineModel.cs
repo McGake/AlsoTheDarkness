@@ -10,7 +10,6 @@ public class SingleLineModel : UIMVC
     public override void MVCSetup(object obj)
     {
         base.MVCSetup(obj);
-        // Debug.Log("setup test88888");
     }
 
     public override void MVCStart(object obj)

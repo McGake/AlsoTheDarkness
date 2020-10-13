@@ -10,8 +10,7 @@ public class TextView : UIMVC
 
     public override void MVCSetup(object obj)
     {
-        //Debug.Log("setup called");
-        mVCHelper.Subscribe(UIEvents.display, UpdateText);
+        mVCHelper.Subscribe(UIEvents.dataChanged, UpdateText);
     }
 
     private void UpdateText(object obj)
@@ -22,6 +21,6 @@ public class TextView : UIMVC
     public override void MVCEnd(object obj)
     {
         base.MVCEnd(obj);
-        mVCHelper.Unsubscribe(UIEvents.display, UpdateText);
+        mVCHelper.Unsubscribe(UIEvents.dataChanged, UpdateText);
     }
 }

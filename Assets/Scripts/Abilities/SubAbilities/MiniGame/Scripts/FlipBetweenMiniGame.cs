@@ -32,7 +32,20 @@ public class FlipBetweenMiniGame : SubAbility
         public GameObject display;
     }
 
-    public List<MGSeleciton> mgSelections;
+    public List<MGSeleciton> inspectorSelections;
+
+    private List<MGSeleciton> mgSelections = new List<MGSeleciton>();
+
+    public void Awake()
+    {
+        for (int i = 0; i < inspectorSelections.Count; i++)
+        {
+            mgSelections.Add(new MGSeleciton());
+            mgSelections[i].display = BattlePooler.ProduceObject(inspectorSelections[i].display);
+            mgSelections[i].directionData = inspectorSelections[i].directionData;
+            mgSelections[i].display.SetActive(false);
+        }
+    }
 
 
     public override void DoInitialSubAbility(Ability ab)
@@ -40,10 +53,8 @@ public class FlipBetweenMiniGame : SubAbility
 
             for (int i = 0; i < mgSelections.Count; i++)
             {
-                mgSelections[i].display = BattlePooler.ProduceObject(mgSelections[i].display, ab.Owner.transform);
-            mgSelections[i].display.transform.position += new Vector3(0f,1f, 0f); 
-                //mgSelections[i].sR = mgSelections[i].display.GetComponent<SpriteRenderer>();
-                //mgSelections[i].sR.color = greyedOutColor;
+            mgSelections[i].display.transform.parent = ab.Owner.transform;
+            mgSelections[i].display.transform.position = ab.Owner.transform.position + new Vector3(0f,1f, 0f); 
             mgSelections[i].display.SetActive(false);
             }
         
@@ -82,6 +93,7 @@ public class FlipBetweenMiniGame : SubAbility
         if(MultiInput.GetAButtonDown())
         {
             ab.positionTargets.Add(mgSelections[curSelection].directionData);
+            mgSelections[curSelection].display.SetActive(false);
             EndSubAbility();
         }
     }

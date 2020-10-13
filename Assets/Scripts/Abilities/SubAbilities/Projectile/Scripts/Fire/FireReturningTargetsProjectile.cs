@@ -19,6 +19,7 @@ public class FireReturningTargetsProjectile : SubProjectileAbility
     public override void DoInitialProjectileSubAbility(ProjectileAbility pa) 
     {
         reported = 0;
+        
 
         if (projectiles.Count == 0)
         {
@@ -48,14 +49,17 @@ public class FireReturningTargetsProjectile : SubProjectileAbility
 
     private void ReceiveObjectsHit(List<GameObject> oH)
     {
+        Debug.Log("recived objects&&&&&&&&&");
+        subbedProjectile.UnsubscribeToObjectsHit(ReceiveObjectsHit);
         if (oH.Count > 0)
         {
             ab.objectTargets.AddRange(oH);
         }
-        subbedProjectile.UnsubscribeToObjectsHit(ReceiveObjectsHit);
+
         reported++;
         if (reported >= projectiles.Count)
         {
+            projectiles.Clear();
             EndProjectileSubAbility();
         }
     }

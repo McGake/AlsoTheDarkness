@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3435350383686365699}
   - component: {fileID: 382460479650122172}
   m_Layer: 5
-  m_Name: AButtonAbility (2)
+  m_Name: CooldownHighlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 2373136439510718306}
   - component: {fileID: 2301745131033175373}
   m_Layer: 5
-  m_Name: AButtonAbility (3)
+  m_Name: ButtonHighlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -413,7 +413,7 @@ RectTransform:
   m_GameObject: {fileID: 2001733951133978245}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 2001733952112103094}
   - {fileID: 5602695657897658887}
@@ -1150,7 +1150,7 @@ GameObject:
   - component: {fileID: 6458962244681887484}
   - component: {fileID: 2515844163164044157}
   m_Layer: 5
-  m_Name: AButtonAbility (1)
+  m_Name: BoxHighlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

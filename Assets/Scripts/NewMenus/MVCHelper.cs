@@ -67,8 +67,8 @@ public class MVCHelper : MonoBehaviour
 
     public void CallEvent(UIEvents uiEvent, object obj)
     {
-       // Debug.Log(uiEvent + " event called$$$ ");
-       // Debug.Log(" totalcount" + subscribers[uiEvent].Count);
+        Debug.Log(uiEvent + " event called$$$ ");
+        Debug.Log(" totalcount" + subscribers[uiEvent].Count);
         for (int i = 0; i < subscribers[uiEvent].Count; i++)
         {
            // Debug.Log(subscribers[uiEvent][i].Target.GetType().Name + " " + uiEvent + " cont " + i );

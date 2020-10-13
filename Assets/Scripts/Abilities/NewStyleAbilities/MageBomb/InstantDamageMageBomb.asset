@@ -18,4 +18,10 @@ MonoBehaviour:
   endTime: 0
   duration: 2
   dontAddStatus: 0
-  damage: 27
+  statusValues: []
+  damage:
+    label: 
+    governingStat: 2
+    baseValue: 32
+    multiplyer: 0.25
+    val: 0

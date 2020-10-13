@@ -14,11 +14,11 @@ public class Heal1 : UseItemScript
 
     public override void UseItem(PC pcToUse)
     {
-        pcToUse.battler.GetComponent<BaseBattleActor>().stats.hP += healthToAdd;
+        pcToUse.battler.GetComponent<BaseBattleActor>().stats.modified.hP += healthToAdd;
 
-        if(pcToUse.battler.GetComponent<BaseBattleActor>().stats.hP > pcToUse.battler.GetComponent<BaseBattleActor>().stats.maxHP)
+        if(pcToUse.battler.GetComponent<BaseBattleActor>().stats.modified.hP > pcToUse.battler.GetComponent<BaseBattleActor>().stats.modified.maxHP)
         {
-            pcToUse.battler.GetComponent<BaseBattleActor>().stats.hP = pcToUse.battler.GetComponent<BaseBattleActor>().stats.maxHP;
+            pcToUse.battler.GetComponent<BaseBattleActor>().stats.modified.hP = pcToUse.battler.GetComponent<BaseBattleActor>().stats.modified.maxHP;
         }
     }
 }

@@ -32,7 +32,7 @@ public class SelectHeroToApplyModel : GeneralSelectionModel
             Debug.Log(pc.portrait);
             selections[i].GetComponentInChildren<Image>().sprite = pc.portrait;
 
-            selections[i].GetComponentInChildren<TextMeshProUGUI>().text = pc.displayName + "\nHP:" + pc.battler.GetComponent<BattlePC>().stats.hP + "/" + pc.battler.GetComponent<BattlePC>().stats.maxHP + "\nMP:" + pc.battler.GetComponent<BattlePC>().stats.mana + "/" + pc.battler.GetComponent<BattlePC>().stats.maxMana;
+            selections[i].GetComponentInChildren<TextMeshProUGUI>().text = pc.displayName + "\nHP:" + pc.battler.GetComponent<BattlePC>().stats.modified.hP + "/" + pc.battler.GetComponent<BattlePC>().stats.modified.maxHP + "\nMP:" + pc.battler.GetComponent<BattlePC>().stats.modified.mana + "/" + pc.battler.GetComponent<BattlePC>().stats.modified.maxMana;
 
             selections[i].GetComponentInChildren<UseItemFromMenu>().itemToUse = itemToUse;
 
@@ -60,7 +60,7 @@ public class SelectHeroToApplyModel : GeneralSelectionModel
             Debug.Log(pc.portrait);
             selections[i].GetComponentInChildren<Image>().sprite = pc.portrait;
 
-            selections[i].GetComponentInChildren<TextMeshProUGUI>().text = pc.displayName + "\nHP:" + pc.battler.GetComponent<BattlePC>().stats.hP + "/" + pc.battler.GetComponent<BattlePC>().stats.maxHP + "\nMP:" + pc.battler.GetComponent<BattlePC>().stats.mana + "/" + pc.battler.GetComponent<BattlePC>().stats.maxMana;
+            selections[i].GetComponentInChildren<TextMeshProUGUI>().text = pc.displayName + "\nHP:" + pc.battler.GetComponent<BattlePC>().stats.modified.hP + "/" + pc.battler.GetComponent<BattlePC>().stats.modified.maxHP + "\nMP:" + pc.battler.GetComponent<BattlePC>().stats.modified.mana + "/" + pc.battler.GetComponent<BattlePC>().stats.modified.maxMana;
 
             selections[i].GetComponentInChildren<UseItemFromMenu>().referencedPC = pc;
             //  selections[i].GetComponent<SelectPartyAssignMenu>().item = ;

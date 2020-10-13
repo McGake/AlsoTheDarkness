@@ -16,10 +16,10 @@ MonoBehaviour:
   greyedOutColor: {r: 0, g: 0, b: 0, a: 0}
   startFlipInterval: 0.01
   nextFlipIntervalMultiplyer: 1.2
-  mgSelections:
-  - directionData: {x: 1, y: 1, z: 0}
+  inspectorSelections:
+  - directionData: {x: 0, y: 1, z: 0}
     display: {fileID: 5571274734045237230, guid: f65a9f0ec8062964b866e3787c33ac5b,
       type: 3}
-  - directionData: {x: 1, y: -1, z: 0}
+  - directionData: {x: 0, y: -1, z: 0}
     display: {fileID: 4608130523595259612, guid: 039265b047f72c347a50e82ed51ad022,
       type: 3}

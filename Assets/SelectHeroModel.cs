@@ -29,7 +29,7 @@ public class SelectHeroModel : UIMVC
             GameObject heroDisplayToCreate = BattlePooler.ProduceObject(heroDisplayTemplate);
             heroDisplayToCreate.GetComponentInChildren<Image>().sprite = pc.portrait;
 
-            heroDisplayToCreate.GetComponentInChildren<TextMeshProUGUI>().text = pc.displayName + "\nHP:" + pc.battler.GetComponent<BattlePC>().stats.hP + "/" + pc.battler.GetComponent<BattlePC>().stats.maxHP + "\nMP:" + pc.battler.GetComponent<BattlePC>().stats.mana + "/" + pc.battler.GetComponent<BattlePC>().stats.maxMana;
+            heroDisplayToCreate.GetComponentInChildren<TextMeshProUGUI>().text = pc.displayName + "\nHP:" + pc.battler.GetComponent<BattlePC>().stats.modified.hP + "/" + pc.battler.GetComponent<BattlePC>().stats.modified.maxHP + "\nMP:" + pc.battler.GetComponent<BattlePC>().stats.modified.mana + "/" + pc.battler.GetComponent<BattlePC>().stats.modified.maxMana;
             
             heroDisplayToCreate.GetComponent<SelectHeroForEquiping>().pc = pc;
 

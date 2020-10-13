@@ -187,6 +187,7 @@ public class BattleActorView : MonoBehaviour
     private float nextBlinkTime;
     private float blinkInterval = .18f;
 
+
     public void StartBlink()
     {
         nextBlinkTime = Time.time;
@@ -217,7 +218,7 @@ public class BattleActorView : MonoBehaviour
 
     private float nextFlashTime = 0;
 
-    private Color flashColor = new Color(255f, 191f, 81f);
+    private Color flashColor =  new Color(1, .6f,0);
 
     private float flashInterval;
 
@@ -230,27 +231,28 @@ public class BattleActorView : MonoBehaviour
     private float nextFlashDuration =0f;
 
     private bool turnOnFlash = true;
-    public void StartFlash(int times = 2, float interval = .2f)
+    public void StartFlash(int times = 7, float interval = .15f)
     {
         OngoingDisplaybehavior += Flash;
         nextFlashTime = 0f;
         flashes = 0;
         timesToFlash = times;
         flashInterval = interval;
-        Flash();
+       // Flash();
     }
     private void Flash() //ToDo: Implement timer and redo this convolution
     {
-        if(Time.time >= nextFlashTime)
+
+        if (Time.time >= nextFlashTime)
         {
+
             if (turnOnFlash == true)
             {
                 spriteRenderer.color = flashColor;
                 nextFlashDuration = Time.time + flashDuration;
                 turnOnFlash = false;
             }
-
-            if (Time.time >= nextFlashDuration)
+            else if (Time.time >= nextFlashDuration)
             {
                 spriteRenderer.color = Color.white;
                 nextFlashTime = Time.time + flashInterval;
@@ -260,7 +262,7 @@ public class BattleActorView : MonoBehaviour
 
             if (flashes >= timesToFlash)
             {
-                spriteRenderer.color = Color.white;
+                
                 StopFlash();
             }
         }
@@ -269,7 +271,9 @@ public class BattleActorView : MonoBehaviour
 
     private void StopFlash()
     {
-        OngoingDisplaybehavior = Nothing;
+        spriteRenderer.color = Color.white;
+        turnOnFlash = true;
+        OngoingDisplaybehavior -= Flash;
     }
 
     private void Nothing()//TODO: remove this cludge

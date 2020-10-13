@@ -15,16 +15,19 @@ public class AbilityView : MonoBehaviour, iAbilityView
     private Action ongoingDisplayBehavior;
 
     private float flashSpeed = .2f;
-    private float flashDuration = 1f;
-    private float flashEnd;
+    private float flashDuration = .2f;
+    private float flashOff;
     private Color flashColor = Color.green;
-    private int timesToFalsh = 2;
+    private int timesToFalsh = 5;
     private int timesFlashed = 0;
-    private float nextFlash;
+    private float flashOn;
 
     private float fillPercentage;
     private Image[] highlights;
     private bool useableWasFalse = true;
+
+    private Color semiTranparent = new Color(1f, 1f, 1f, .3f);
+    private Color opaque = new Color(1f, 1f, 1f, 1f);
 
     public void Update()
     {
@@ -34,24 +37,58 @@ public class AbilityView : MonoBehaviour, iAbilityView
     {
         StartFlashOnTrunsUsable();
     }
+
+    public void BecomeTransparent()
+    {
+        Image[] imageComponents = GetComponentsInChildren<Image>();
+        foreach(Image image in imageComponents)
+        {
+            if (!image.gameObject.name.Contains("Grey"))
+            {
+                Color tempColor;
+                tempColor = image.color;
+                tempColor = new Color(tempColor.r, tempColor.g, tempColor.b, semiTranparent.a);
+                image.color = tempColor;
+            }
+        }
+    }
+
+    public void BecomeOpaque()
+    {
+        Image[] imageComponents = GetComponentsInChildren<Image>();
+        foreach (Image image in imageComponents)
+        {
+            if (!image.gameObject.name.Contains("Grey"))
+            {
+                Color tempColor;
+                tempColor = image.color;
+                tempColor = new Color(tempColor.r, tempColor.g, tempColor.b, opaque.a);
+                image.color = tempColor;
+            }
+        }
+    }
     private void StartFlashOnTrunsUsable()
     {
         ongoingDisplayBehavior += Flash;
-        nextFlash = 0f;
+        flashOn = 0f;
+        flashOff = float.PositiveInfinity;
+
         timesFlashed = 0;
     }
     private void Flash()
     {
-        if(Time.time > nextFlash)
+        if(Time.time > flashOn)
         {
             timesFlashed++;
-            flashEnd = Time.time + flashDuration;
+            flashOff = Time.time + flashSpeed;
+            flashOn = float.PositiveInfinity;
             UsingHighlight.SetActive(false);
         }
 
-        if(Time.time > flashEnd)
+        if(Time.time > flashOff)
         {
-            nextFlash = Time.time + flashSpeed;
+            flashOn = Time.time + flashSpeed;
+            flashOff = float.PositiveInfinity;
             UsingHighlight.SetActive(true);
 
             if(timesFlashed >= timesToFalsh)
@@ -73,9 +110,18 @@ public class AbilityView : MonoBehaviour, iAbilityView
         highlights = UsingHighlight.GetComponentsInChildren<Image>();
         for (int i = 0; i < highlights.Length; i++)
         {
-            highlights[i].color = color;
+            Color tempColor = highlights[i].color;
+            tempColor = new Color(color.r, color.g, color.b, tempColor.a);
+            highlights[i].color = tempColor;
         }
     }
+
+    public void NewAbilitySet()
+    {
+        ongoingDisplayBehavior = null;
+        useableWasFalse = false;
+    }
+
     public void UpdateAbility(Ability ab)
     {
         if(ab.Useable == false)
@@ -90,6 +136,7 @@ public class AbilityView : MonoBehaviour, iAbilityView
             SetHighlightColor(Color.green);
             if(useableWasFalse)
             {
+
                 useableWasFalse = false;
                 OnAbilityTurnsUsable();//TODO: get rid of this mess and add an event system
             }

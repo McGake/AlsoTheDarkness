@@ -22,7 +22,7 @@ public class BuffArmorAndMagDef : Status
     public override void DoStatusInitialEffect(BaseBattleActor bbA)
     {
         totalArmorBuff = Mathf.FloorToInt(armorBuff);
-        bbA.modifiedStats.armor += totalArmorBuff; 
+        //bbA.modifiedStats.armor += totalArmorBuff; 
     }
 
     public override void DoStatus(BaseBattleActor bbA)
@@ -32,6 +32,6 @@ public class BuffArmorAndMagDef : Status
 
     public override void DoStatusEnd(BaseBattleActor bbA)
     {
-        bbA.modifiedStats.armor -= totalArmorBuff;
+       //bbA.modifiedStats.armor -= totalArmorBuff;
     }
 }

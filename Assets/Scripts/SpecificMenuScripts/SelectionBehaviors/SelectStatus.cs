@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelectStatus : MonoBehaviour
+public class SelectStatus : MonoBehaviour, ISelectionBehaviorOLD
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public GameObject uiToOpen;
+
+    public GameObject selectionControllerToPause;
+    public void DoSelectionBehavior()
     {
-        
+        uiToOpen.GetComponent<MVCHelper>().StartUI(null);
+        selectionControllerToPause.GetComponent<SelectionController>().Pause();
     }
 }

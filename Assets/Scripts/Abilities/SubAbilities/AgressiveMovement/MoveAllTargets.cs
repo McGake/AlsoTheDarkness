@@ -14,6 +14,7 @@ public class MoveAllTargets : SubAbility
 
     public override void DoInitialSubAbility(Ability ab)
     {
+        Debug.Log("move all targets called");
         moveDirection.Normalize();
         moveDistanceSquared = Mathf.Pow(moveDistance, 2);
         totalMove = Vector3.zero;

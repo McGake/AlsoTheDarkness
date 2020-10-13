@@ -15,8 +15,8 @@ public class DefensivePosture : Status //TODO: perhaps to turn this and things l
     //TODO: this may cause problems if abilities are not properly reset
     public override void DoStatusInitialEffect(BaseBattleActor bbA)
     {
-        armorChange = bbA.stats.armor;
-        bbA.stats.armor += armorChange;
+       // armorChange = bbA.stats.armor;
+       // bbA.stats.armor += armorChange;
         //Send to view for armor up! message once that system is in place
     }
 
@@ -28,7 +28,7 @@ public class DefensivePosture : Status //TODO: perhaps to turn this and things l
 
     public override void DoStatusEnd(BaseBattleActor bbA)
     {
-        bbA.stats.armor -= armorChange;
+        //bbA.stats.armor -= armorChange;
     }
 
     public override void OnAbilityUsed(BaseBattleActor bbA, Ability abilityUsed)

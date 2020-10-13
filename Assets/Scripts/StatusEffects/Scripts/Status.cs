@@ -19,6 +19,8 @@ public abstract class Status : ScriptableObject
 
     public bool dontAddStatus = false;
 
+    public List<DurationType> durationTypes;
+
     public delegate void DelFinishStatus(Status status);
     public DelFinishStatus FinishStatus;
 
@@ -28,10 +30,10 @@ public abstract class Status : ScriptableObject
 
     private const float percentCoversion = .01f;
 
-    public Status CreateStatusInstance(BattleStats curStats)
+    public Status CreateStatusInstance(BattleStats curModifiedStats)
     {
         Status statusToCreate = Instantiate(this);
-        statusToCreate.stats = curStats;
+        statusToCreate.stats = curModifiedStats;
         statusToCreate.SetModifiers();
         return statusToCreate;
     }
@@ -127,4 +129,14 @@ public class StatusValue
     public float baseValue;
     public float multiplyer = 1f;
     public float val;
+}
+
+public enum DurationType
+{
+    time,
+    instant,
+    unequip,
+    battleEnd,
+    externalSource,
+    selfDefined,
 }

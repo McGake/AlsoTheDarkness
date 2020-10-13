@@ -53,7 +53,9 @@ public static class BattlePooler
     {
         GameObject objectToProduce = ProduceObjectUsingPooling(prefab);
         objectToProduce.transform.position = prefab.transform.position;
-        objectToProduce.transform.SetParent(parent);
+        objectToProduce.transform.SetParent(parent,false);
+        
+
         objectToProduce.SetActive(true);
         return objectToProduce;
     }
@@ -70,9 +72,10 @@ public static class BattlePooler
     public static GameObject ProduceObject(GameObject prefab, Vector3 position, Quaternion rotation, Transform parent)
     {
         GameObject objectToProduce = ProduceObjectUsingPooling(prefab);
+        objectToProduce.transform.SetParent(parent);
         objectToProduce.transform.position = position;
         objectToProduce.transform.rotation = rotation;
-        objectToProduce.transform.SetParent(parent);
+
         objectToProduce.SetActive(true);
         return objectToProduce;
     }

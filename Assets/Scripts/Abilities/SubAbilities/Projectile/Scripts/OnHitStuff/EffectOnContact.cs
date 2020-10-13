@@ -127,15 +127,24 @@ public class EffectOnContact : Fireable
 
     }
 
+
+    private Action<GameObject> testAction;
+
+    private Func<GameObject, bool> testFunc;
     private void OnDisable()
     {
-        foreach(Action<List<GameObject>> sub in ObjectsHitSubs)
+        for(int i = ObjectsHitSubs.Count -1; i >= 0; i--)
         {
-            sub?.Invoke(objectsHit);
+            Action<List<GameObject>> checker = ObjectsHitSubs[i];
+            if(checker == null)
+            {
+                Debug.LogError("we just tried to invoke a null event. Did we deactivate a subscriber without unsubscribing?");
+            }
+            ObjectsHitSubs[i]?.Invoke(objectsHit);
         }
         if(ObjectsHitSubs.Count > 0)
         {
-            Debug.LogError("not all subscribers were unsubscribbed on disable");
+            Debug.LogError("not all subscribers were unsubscribbed on disable " + ObjectsHitSubs.Count.ToString());
         }
     }
     #endregion Effects To Apply

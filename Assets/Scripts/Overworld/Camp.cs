@@ -22,7 +22,7 @@ public class Camp : MonoBehaviour
         generalGridMovement.enabled = false;
         foreach (PC pc in PartyManager.curParty.partyMembers)
         {
-            pc.battler.GetComponent<BattlePC>().stats.hP = pc.battler.GetComponent<BattlePC>().stats.maxHP;
+            pc.battler.GetComponent<BattlePC>().stats.modified.hP = pc.battler.GetComponent<BattlePC>().stats.modified.maxHP;
         }
         //returnPosition = transform.position;
         walkingView.PlayAnimationAndCallbackWhenDone("camp", EndCamping);

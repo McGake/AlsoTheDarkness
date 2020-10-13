@@ -100,15 +100,11 @@ public class BattleSelectionManager : MonoBehaviour //TODO: I think the best way
     }
 
 
-
-
-
-
     #endregion SetupMethods
     public void Update()
     {
         RunCurrentSelecionBehaviors();
-        
+        abilityDisplayManager.UpdateAbilityMenu();
     }
 
     #region UpdateMethods
@@ -125,10 +121,28 @@ public class BattleSelectionManager : MonoBehaviour //TODO: I think the best way
         }
         RunAutoSelectionTasks();
 
-
+        ChangeClusterOnTriggerButton();
         SelectAbilityByInput();
+
     }
 
+
+    void ChangeClusterOnTriggerButton()
+    {
+
+        if(MultiInput.GetLeftTriggerDown() > .01f)
+        {
+            abilityDisplayManager.ChangeCurAbilityCluster(0);
+        }
+        else if(MultiInput.GetRightTriggerDown() > .01f)
+        {
+            abilityDisplayManager.ChangeCurAbilityCluster(2);
+        }
+        else
+        {
+            abilityDisplayManager.ChangeCurAbilityCluster(1);
+        }
+    }
     void SelectAbilityByInput()
     {
         const int aIndx = 0;
@@ -146,6 +160,7 @@ public class BattleSelectionManager : MonoBehaviour //TODO: I think the best way
         }
         else if (MultiInput.GetYButtonDown())
         {
+            Debug.Log("y booton down");
             abilityDisplayManager.StartAbilityAtIndx(yIndx);
         }
         else if (MultiInput.GetBButtonDown())

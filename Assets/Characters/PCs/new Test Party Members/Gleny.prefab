@@ -90,6 +90,56 @@ PrefabInstance:
       propertyPath: stats.armor
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 263639194357805292, guid: 4b7a659fa64a9fd47a82e72e5d901049,
+        type: 3}
+      propertyPath: stats.basic.maxHP
+      value: 219
+      objectReference: {fileID: 0}
+    - target: {fileID: 263639194357805292, guid: 4b7a659fa64a9fd47a82e72e5d901049,
+        type: 3}
+      propertyPath: stats.basic.hP
+      value: 219
+      objectReference: {fileID: 0}
+    - target: {fileID: 263639194357805292, guid: 4b7a659fa64a9fd47a82e72e5d901049,
+        type: 3}
+      propertyPath: stats.basic.maxMana
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 263639194357805292, guid: 4b7a659fa64a9fd47a82e72e5d901049,
+        type: 3}
+      propertyPath: stats.basic.mana
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 263639194357805292, guid: 4b7a659fa64a9fd47a82e72e5d901049,
+        type: 3}
+      propertyPath: stats.basic.speed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 263639194357805292, guid: 4b7a659fa64a9fd47a82e72e5d901049,
+        type: 3}
+      propertyPath: stats.basic.quickness
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 263639194357805292, guid: 4b7a659fa64a9fd47a82e72e5d901049,
+        type: 3}
+      propertyPath: stats.basic.magicalPower
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 263639194357805292, guid: 4b7a659fa64a9fd47a82e72e5d901049,
+        type: 3}
+      propertyPath: stats.basic.magicalSkill
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 263639194357805292, guid: 4b7a659fa64a9fd47a82e72e5d901049,
+        type: 3}
+      propertyPath: stats.basic.physicalSkill
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 263639194357805292, guid: 4b7a659fa64a9fd47a82e72e5d901049,
+        type: 3}
+      propertyPath: stats.basic.physicalPower
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 1755673316737204961, guid: 4b7a659fa64a9fd47a82e72e5d901049,
         type: 3}
       propertyPath: m_Name

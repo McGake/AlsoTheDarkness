@@ -299,6 +299,7 @@
     <Compile Include="Assets\TestMagicAim.cs" />
     <Compile Include="Assets\TestScript.cs" />
     <Compile Include="Assets\TestTriggerEnter.cs" />
+    <Compile Include="Assets\TitleController.cs" />
     <Compile Include="Assets\TownStateMachine.cs" />
     <Compile Include="Assets\Transition.cs" />
     <Compile Include="Assets\TurnManager.cs" />

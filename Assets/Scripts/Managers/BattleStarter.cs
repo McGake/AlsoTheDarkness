@@ -36,7 +36,7 @@ public class BattleStarter : MonoBehaviour
 
     public List<Transform> possibleMonsterStartPositions;
 
-    
+    public MVCHelper battleTypeDisplay;
 
       public void Update()
     {
@@ -63,6 +63,13 @@ public class BattleStarter : MonoBehaviour
         battleFolder.SetActive(true);
         Debug.Log("SET OVERWORLD TO FALSE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         overworldFolder.SetActive(false);
+        Invoke("ShowTitle", .3f);
+
+    }
+
+    private void ShowTitle()
+    {
+        battleTypeDisplay.StartUI(battleDef.encounterType.ToString());
     }
 
     private void ResetBattle()

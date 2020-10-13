@@ -67,8 +67,6 @@ public class GeneralGridMovement : MonoBehaviour
     private void OnEnable()
     {
         moveUtil.Setup(transform);
-        SubscribeToSquareStay(CheckForNewSquareTarget);
-
     }
 
     private void OnDisable()
@@ -97,7 +95,8 @@ public class GeneralGridMovement : MonoBehaviour
     {
         if (moveUtil.ArivedAtNextSquare())
         {
-            if(firstArrival)
+            CheckForNewSquareTarget();
+            if (firstArrival)
             {
                 firstArrival = false;
                 NotifyArrivalSubscribers();

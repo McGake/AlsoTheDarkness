@@ -141,4 +141,38 @@ public static class MultiInput
         }
         return false;
     }
+
+    public static float GetRightTriggerDown()
+    {
+        if (isXbox)
+        {
+            return Input.GetAxis("RTrigXbox");
+        }
+        else if (isPS4)
+        {
+            //return Input.GetButtonDown("Y");
+        }
+        else if (isKeybaord)
+        {
+            //return Input.GetButtonDown("KBY");
+        }
+        return 0f;
+    }
+
+    public static float GetLeftTriggerDown()
+    {
+        if (isXbox)
+        {
+            return Input.GetAxis("LTrigXbox");
+        }
+        else if (isPS4)
+        {
+            //return Input.GetButtonDown("Y");
+        }
+        else if (isKeybaord)
+        {
+            //return Input.GetButtonDown("KBY");
+        }
+        return 0f;
+    }
 }

@@ -5,8 +5,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering;
 
+
 [System.Serializable]
-public class BattleStats
+public class Stats
 {
     public float maxHP;
     public float hP;
@@ -25,9 +26,9 @@ public class BattleStats
 
     public float armor;
 
-    public BattleStats Copy()
+    public Stats Copy()
     {
-        BattleStats tempStats = new BattleStats();
+        Stats tempStats = new Stats();
 
         tempStats.maxHP = maxHP;
         tempStats.hP = hP;
@@ -48,22 +49,40 @@ public class BattleStats
 
         return tempStats;
     }
+}
+
+[System.Serializable]
+public class BattleStats
+{
+    public Stats basic;
+
+    public Stats modified;
+
+    public BattleStats Copy()
+    {
+        BattleStats tempStats = new BattleStats();
+
+        tempStats.basic = basic;
+        tempStats.modified = modified;
+
+        return tempStats;
+    }
 
     public float GetGoverningStat(GoverningStat gS)
     {
         switch (gS)
         {
             case GoverningStat.magicalPower:
-                return magicalPower;
+                return modified.magicalPower;
                 break;
             case GoverningStat.magicalSkill:
-                return magicalSkill;
+                return modified.magicalSkill;
                 break;
             case GoverningStat.physicalPower:
-                return physicalPower;
+                return modified.physicalPower;
                 break;
             case GoverningStat.physicalSkill:
-                return physicalSkill;
+                return modified.physicalSkill;
                 break;
             case GoverningStat.none:
                 return 1f;
@@ -84,8 +103,6 @@ public class BaseBattleActor :MonoBehaviour
     public BattleActorView battleActorView;
 
     public BattleStats stats;
-
-    public BattleStats modifiedStats;
 
     public List<Status> curStatuses = new List<Status>();
 
@@ -108,12 +125,13 @@ public class BaseBattleActor :MonoBehaviour
     public virtual void Awake()
     {
         SetUpAbilities();
+        stats.modified = stats.basic.Copy(); //TODO: set up status system to re add all stat effecting statuses on start
 
     }
 
     public void OnEnable()
     {
-        battleActorView.UpdateHealthBar(stats.hP, stats.maxHP);
+        battleActorView.UpdateHealthBar(stats.modified.hP, stats.modified.maxHP);
     }
 
     protected virtual void SetUpAbilities()
@@ -284,26 +302,26 @@ public class BaseBattleActor :MonoBehaviour
 
     public void ChangeHp(float amount)
     {
-        stats.hP += amount;
+        stats.modified.hP += amount;
 
-        if (stats.hP > stats.maxHP)
+        if (stats.modified.hP > stats.modified.maxHP)
         {
-            stats.hP = stats.maxHP;
+            stats.modified.hP = stats.modified.maxHP;
         }
-        if (stats.hP <= 0)
+        if (stats.modified.hP <= 0)
         {
             Die();
         }
         if(amount <0)
         {
             battleActorView.ShowDamage(amount);
-            battleActorView.StartBlink();
+            battleActorView.StartFlash();
         }
         else if(amount >=0)
         {
             battleActorView.ShowHeal(amount);
         }
-        battleActorView.UpdateHealthBar(stats.hP, stats.maxHP);
+        battleActorView.UpdateHealthBar(stats.modified.hP, stats.modified.maxHP);
     }
 
 

@@ -32,12 +32,34 @@ public class AbilityDisplayView
             allAbilityButtons[i].abilityView.SetButtonLabel(curCombatAbilities[i].DisplayName);
             allAbilityButtons[i].abilityView.SetUsesLeft((curCombatAbilities[i].maxUses - curCombatAbilities[i].uses).ToString());
             allAbilityButtons[i].ability = curCombatAbilities[i];
+            allAbilityButtons[i].abilityView.NewAbilitySet();
             //put other image changes here when you have them
         }
 
         for (int i = curCombatAbilities.Count; i < allAbilityButtons.Count; i++)
         {
             allAbilityButtons[i].uIButton.SetActive(false);
+        }
+    }
+
+    public void MakeNonIndxClustersTransparent(int clusterIndx)
+    {
+        for (int i = 0; i < abilityDisplayClusters.Count; i++)
+        {
+            if (i != clusterIndx)
+            {
+                foreach(AbilityButton but in abilityDisplayClusters[i].abilityButtons)
+                {
+                    but?.abilityView?.BecomeTransparent();
+                }
+            }
+            else
+            {
+                foreach (AbilityButton but in abilityDisplayClusters[i].abilityButtons)
+                {
+                    but?.abilityView?.BecomeOpaque();
+                }
+            }
         }
     }
 

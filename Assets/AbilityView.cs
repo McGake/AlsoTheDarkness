@@ -124,7 +124,7 @@ public class AbilityView : MonoBehaviour, iAbilityView
 
     public void UpdateAbility(Ability ab)
     {
-        if(ab.Useable == false)
+        if(ab.IsUseable() == false)
         {
             SetHighlightColor(Color.red);
             greyMask.SetActive(true);
@@ -157,7 +157,7 @@ public class AbilityView : MonoBehaviour, iAbilityView
                 
             }
             radialProgress.fillAmount = fillPercentage;
-            if (ab.Useable == false)
+            if (ab.IsUseable() == false)
             {
                 
             }

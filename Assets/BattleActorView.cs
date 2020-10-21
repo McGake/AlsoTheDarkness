@@ -156,7 +156,7 @@ public class BattleActorView : MonoBehaviour
 
     public void PlayInteruptingCharacterAnimation(string stateName)
     {
-        pcAnimator.Play("down", 0, 0f);
+        pcAnimator.Play(stateName, 0, 0f);
     }
 
     private string lastAnimSet = "stand";

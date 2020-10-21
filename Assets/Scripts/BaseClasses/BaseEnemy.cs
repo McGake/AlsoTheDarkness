@@ -17,10 +17,19 @@ public class BaseEnemy : BaseBattleActor
 
     private float nextAbilityInterval;
 
+    public float maxGold;
+
+    public float minGold;
+
+    public float gold;
+
+    public float exp;
+
     public override void Awake()
     {
         base.Awake();
         nextAbilityInterval = Random.Range(abilityIntervalMin, abilityIntervalMax);
+        gold = Random.Range(minGold, maxGold);
     }
 
     void SimpleAbilitySelector()

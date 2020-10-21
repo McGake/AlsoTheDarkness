@@ -130,7 +130,6 @@ public class ListSelectionView : UIMVC
         base.MVCEnd(obj);
         cursor.SetActive(false);
         mVCHelper.Unsubscribe(UIEvents.dataChanged, SetButtons);
-        Debug.Log("unsubscribe called54");
     }
 
 }

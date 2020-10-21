@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -26,6 +27,14 @@ public class Stats
 
     public float armor;
 
+    public float exp;
+    public float nextLevel;
+
+    public int level;
+
+    public float expLevelModifier;
+
+
     public Stats Copy()
     {
         Stats tempStats = new Stats();
@@ -47,7 +56,34 @@ public class Stats
 
         tempStats.armor = armor;
 
+        tempStats.exp = exp;
+        tempStats.nextLevel = nextLevel;
+
+
+        tempStats.level = level;        
+
         return tempStats;
+    }
+
+    public void AddOnLevelUp(Stats statsToAdd)
+    {
+        maxHP += statsToAdd.maxHP;
+        hP = maxHP;
+
+        maxMana += statsToAdd.maxMana;
+        mana = maxMana;
+
+        speed += statsToAdd.speed;
+        quickness += statsToAdd.quickness;
+
+        magicalPower += statsToAdd.magicalPower;
+        magicalSkill += statsToAdd.magicalSkill;
+
+        physicalSkill += statsToAdd.physicalSkill;
+        physicalPower += statsToAdd.physicalPower;
+
+        armor += statsToAdd.armor;
+        nextLevel = nextLevel * statsToAdd.expLevelModifier;
     }
 }
 
@@ -57,6 +93,8 @@ public class BattleStats
     public Stats basic;
 
     public Stats modified;
+
+    public Stats increaseRate;
 
     public BattleStats Copy()
     {
@@ -111,16 +149,12 @@ public class BaseBattleActor :MonoBehaviour
     [System.NonSerialized]
     public List<Ability> abilities = new List<Ability>();
 
-    public delegate void DelShowDamage();
-    public DelShowDamage ShowDamage;
-
-    public delegate void DelShowBuff();
-    public DelShowBuff ShowBuff;
-
     public delegate void DelOnDeathCallback(GameObject gO);
     public DelOnDeathCallback OnDeathCallback;
 
     public Status deathStatus;
+
+    private const float armorMultiplyer = .5f;
 
     public virtual void Awake()
     {
@@ -147,6 +181,8 @@ public class BaseBattleActor :MonoBehaviour
         }
     }
 
+    
+
     public virtual void Update()
     {
         RunStatuses();
@@ -162,7 +198,13 @@ public class BaseBattleActor :MonoBehaviour
         {
             status.nextInterval = Time.time + status.intervalLength;
         }
-        status.endTime = Time.time + status.duration;
+
+        if (status.HasDurationType(typeof(TimeElapsed)))
+        {
+            TimeElapsed tE = status.GetDurationOfType<TimeElapsed>();
+            tE.endTime = Time.time + tE.timeDuration;
+        }
+
         status.FinishStatus = FinishStatus;
         for (int i = 0; i < curStatuses.Count; i++)//TODO: This might not be needed
         {
@@ -176,6 +218,9 @@ public class BaseBattleActor :MonoBehaviour
         status.DoStatusInitialEffect(this); 
     }
 
+
+
+
     public virtual void RunStatuses()
     {
         for(int i = 0; i<curStatuses.Count; i++)
@@ -186,7 +231,7 @@ public class BaseBattleActor :MonoBehaviour
                 RemoveStatus(curStatuses[i]);
                 
             }            
-            else if(IsTimeToRunStatus(curStatuses[i]))
+            else if(IsTimeToRunStatus(curStatuses[i]))//TODO: this also should probably be handled on the status except for an update like check perhaps
             {
                 RunStatus(curStatuses[i]);
             }
@@ -199,11 +244,16 @@ public class BaseBattleActor :MonoBehaviour
         RemoveStatus(status);
     }
 
-    private bool IsStatusFinished(Status status)
+    private bool IsStatusFinished(Status status) //TODO: wheather a status is finished should be determined and checked on the status itself.
     {
-        if (status.endTime <= Time.time)
+        if (status.HasDurationType(typeof(TimeElapsed)))
         {
-            return true;
+            TimeElapsed tE = status.GetDurationOfType<TimeElapsed>();
+            if(tE.endTime <= Time.time)
+            {
+                return true;
+            }
+            return false;
         }
         else return false;
     }
@@ -229,6 +279,8 @@ public class BaseBattleActor :MonoBehaviour
         }
     }
 
+
+
     private bool IsTimeToRunStatus(Status status)
     {
         if(status.nextInterval <= Time.time)
@@ -244,7 +296,7 @@ public class BaseBattleActor :MonoBehaviour
         status.DoStatus(this);
     }
 
-    public bool HasStatus(Status status)
+    public bool HasStatus(Status status)//TODO: this seems like a bad setup. if we need to use this then it should probably be something the status itself does.
     {
         for (int i = 0; i<curStatuses.Count; i++)
         {
@@ -275,15 +327,15 @@ public class BaseBattleActor :MonoBehaviour
 
     public void DoAbility(Ability aB)
     {
-        if (!IsStuned())//TODO this is no longer the right way to do this. add this functionality to the Stuned OnAbilityStarted override
-        {
-            for (int i = 0; i < curStatuses.Count; i++)
-            {
-                curStatuses[i].OnAbilityUsed(this, aB);//TODO: change this to an event system
-            }
-            AbilityManager.abManager.TurnOnAbility(aB);
-        }
+         for (int i = 0; i < curStatuses.Count; i++)
+         {
+             curStatuses[i].OnAbilityUsed(this, aB);//TODO: change this to an event system
+         }
+         AbilityManager.abManager.TurnOnAbility(aB);
     }
+
+
+
 
     public bool IsStuned() //TODO: when we have a better grasp of what kind of status effects are going to be in our game, generalize this. We could , for example, have a function that runs a snipet of code from every status called ModifyAbility()
     {
@@ -299,6 +351,18 @@ public class BaseBattleActor :MonoBehaviour
 
     #endregion AbilityManagement
 
+
+    public void TakePhysicalDamage(float amount)
+    {
+        TakePhysicalDamage(amount, 0f);
+    }
+
+    public void TakePhysicalDamage(float amount, float penAmount)
+    {
+        amount -= (amount * (stats.modified.armor * .01f * armorMultiplyer));
+        amount += penAmount;
+        ChangeHp(-amount);
+    }
 
     public void ChangeHp(float amount)
     {
@@ -324,9 +388,29 @@ public class BaseBattleActor :MonoBehaviour
         battleActorView.UpdateHealthBar(stats.modified.hP, stats.modified.maxHP);
     }
 
+    public void EndBattle()
+    {
+        for (int i = curStatuses.Count -1; i >= 0; i--)
+        {
+            if (curStatuses[i].HasDurationType(typeof(BattleEnd)))
+            {
+                curStatuses[i].FinishStatus(curStatuses[i]);
+            }
+        }
+    }
+
+    public void LevelUp()
+    {
+        stats.modified.exp = stats.modified.exp - stats.modified.nextLevel;
+        stats.modified.nextLevel = stats.modified.nextLevel * stats.modified.expLevelModifier;
+        stats.basic.AddOnLevelUp(stats.increaseRate);
+        stats.modified.AddOnLevelUp(stats.increaseRate);
+        stats.modified.level++;
+    }
 
     public virtual void Die()
     {
+        Debug.Log("death " + gameObject.name);
         OnDeathCallback(gameObject);
         AddStatus(deathStatus);
         //gameObject.SetActive(false); //TODO: flesh this out with arbitrary animation and make it part of a pooling system. PC's and monsters will of course have their own thing but should implement the base class if possible.

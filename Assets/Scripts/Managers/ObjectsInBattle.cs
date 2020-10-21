@@ -20,8 +20,8 @@ public class ObjectsInBattle : MonoBehaviour
 
     public Dictionary<Type, List<GameObject>> objectsInBattleDict = new Dictionary<Type, List<GameObject>>();
 
-    public delegate void DelExitBattle();
-    public DelExitBattle ExitBattle;
+    public Action<float,float> ExitBattle;
+    
 
     public void Awake()
     {
@@ -113,12 +113,17 @@ public class ObjectsInBattle : MonoBehaviour
         }
     }
 
+    private float battleExp;
+    private float battleGold;
+
     public void OnMonsterDeath(GameObject monster)//TEMP: This and the callback on monsters is only here untill we get our event system made
     {
+        battleGold += monster.GetComponent<BaseEnemy>().gold;
+        battleExp += monster.GetComponent<BaseEnemy>().exp;
         enemiesInBattle.Remove(monster);
         if(enemiesInBattle.Count <= 0)
         {
-            ExitBattle();
+            ExitBattle(battleGold, battleExp);
         }
     }
 
@@ -135,7 +140,7 @@ public class ObjectsInBattle : MonoBehaviour
 
         if(pcsInBattle.Count <= 0)
         {
-            ExitBattle();
+            ExitBattle(0f,0f);
         }
     }
 

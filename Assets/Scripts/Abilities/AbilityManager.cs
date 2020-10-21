@@ -45,7 +45,7 @@ public class AbilityManager : MonoBehaviour
     }
     public void TurnOnAbility(Ability ab)
     {
-        if (ab.Useable == true)
+        if (ab.IsUseable() == true)
         {
             ab.ResetAbilityAndStartInitial();
             abilitiesInUse.Add(ab);

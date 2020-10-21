@@ -34,6 +34,8 @@ public class BattleSelectionManager : MonoBehaviour //TODO: I think the best way
 
     [SerializeField] private GameObject heroAbilitiesDisplay;
 
+    const int defaultFirstObject = 0;
+
     private delegate void DelCurSelectionBehavior(SelectionTask selectionTask);
     private delegate void DelSelectionFinishedCallback(List<GameObject> selectedObjects);
 
@@ -83,6 +85,7 @@ public class BattleSelectionManager : MonoBehaviour //TODO: I think the best way
                 aB.StartSelectAllEnemeies = ManualSelectAllEnemies;
                 aB.StartSelectAllPCsButCurrent = ManualSelectAllFriendsButCurrent;
                 aB.InstantiateInWorldSpaceCanvas = InstantiateInWorldSpaceCanvas;
+                aB.IsCurrentSelectedHero = IsPCSelected;
             }
         }
         foreach (GameObject en in objectsInBattle.enemiesInBattle)
@@ -95,6 +98,7 @@ public class BattleSelectionManager : MonoBehaviour //TODO: I think the best way
                 aB.StartSelectAllPCs = AutoSelectAllFriends;
                 aB.StartSelectAllEnemeies = AutoSelectAllEnemies;
                 aB.InstantiateInWorldSpaceCanvas = InstantiateInWorldSpaceCanvas;
+                aB.IsCurrentSelectedHero = IsMonsterSelectedDummy;
             }
         }
     }
@@ -235,7 +239,7 @@ public class BattleSelectionManager : MonoBehaviour //TODO: I think the best way
         StartManualSelection(subAb, SecondarySelection, objectsForSelection);
     }
 
-    const int defaultFirstObject = 0;
+
     private void ManualSelectEnemy(SubAbility subAb, Type requesterType)
     {
         List<GameObject> objectsForSelection;
@@ -383,6 +387,25 @@ public class BattleSelectionManager : MonoBehaviour //TODO: I think the best way
         EndAutoSelection(selectionTask,tempSelectedObjects);
     }
     #endregion SelectionTaskDefinitions
+
+    #region OtherExternalHelpers
+
+    public bool IsPCSelected(GameObject pc)
+    {
+        if(pc == curHero)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    //If we place an ability that checks if thing is currently selected on a monster, is does not matter because monsters can go simultaniously, so just return true.
+    public bool IsMonsterSelectedDummy(GameObject monster) 
+    {
+        return true;
+    }
+
+    #endregion OtherExternalHelpers
 
     #endregion SelectionMethods
 

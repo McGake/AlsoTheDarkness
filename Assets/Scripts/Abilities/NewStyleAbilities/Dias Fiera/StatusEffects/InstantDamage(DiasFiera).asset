@@ -18,10 +18,11 @@ MonoBehaviour:
   endTime: 0
   duration: 2
   dontAddStatus: 0
+  inspectorDurationTypes: []
   statusValues: []
   damage:
-    label: 
+    label: Dias Fiera instant damage
     governingStat: 1
-    baseValue: 7
-    multiplyer: 1.5
+    baseValue: 70
+    multiplyer: 2
     val: 0

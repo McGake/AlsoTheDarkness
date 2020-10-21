@@ -38,6 +38,10 @@ public class BattleStarter : MonoBehaviour
 
     public MVCHelper battleTypeDisplay;
 
+    public MVCHelper victoryDisplay;
+
+    public Status victory;
+
       public void Update()
     {
         if(Input.GetButtonDown("Start"))//this is temporary test code
@@ -92,7 +96,7 @@ public class BattleStarter : MonoBehaviour
         SetupMonsters();
 
 
-        objectsInBattle.ExitBattle = ExitBattle;
+        objectsInBattle.ExitBattle = Victory;
 
         battleFolder.SetActive(true);
         objectsInBattle.CollectObjectsInBattle();
@@ -145,9 +149,9 @@ public class BattleStarter : MonoBehaviour
             Transform startPosition = TakeRandomPosition(possiblePCStartPositionsCopy);
             pc.battler.transform.position = startPosition.position;
             pc.battler.transform.rotation = startPosition.rotation;
-            pcBlanks[curPCBlankIndex] = pc.battler;
-            objectsInBattle.AddPCToList(pcBlanks[curPCBlankIndex]);
-            pcBlanks[curPCBlankIndex].SetActive(true);
+            pcBlanks.Add(pc.battler);
+            objectsInBattle.AddPCToList(pc.battler);
+            pc.battler.SetActive(true);
             curPCBlankIndex++;
             if(curPCBlankIndex >= maxBlanksCount)
             {
@@ -191,13 +195,49 @@ public class BattleStarter : MonoBehaviour
         return (returnTransform);
     }
 
+    private List<string> victoryInfo = new List<string>();
+    public void Victory(float gold, float exp)
+    {
+        Debug.Log("victory happened");
+        victoryInfo.Add("Victory!");
+        victoryInfo.Add(gold.ToString());
+        victoryInfo.Add(exp.ToString());
+        BattleStats expCarrier = new BattleStats();
+        expCarrier.modified = new Stats();
+        expCarrier.modified.exp = exp/objectsInBattle.pcsInBattle.Count;
+
+        foreach(GameObject bPC in objectsInBattle.pcsInBattle)
+        {
+            Status statusToAdd;
+            statusToAdd = victory.CreateStatusInstance(expCarrier);
+            bPC.GetComponent<BattlePC>().AddStatus(statusToAdd);
+
+            if((bPC.GetComponent<BattlePC>().stats.modified.exp + expCarrier.modified.exp) > bPC.GetComponent<BattlePC>().stats.modified.nextLevel)
+            {
+                victoryInfo.Add(bPC.GetComponent<BattlePC>().displayName + " Leveled Up");
+            }
+        }
+        victoryDisplay.StartUI(victoryInfo);
+    }
+
+    public void Defeat()
+    {
+        victoryInfo.Add("temporary defeat screen");
+        victoryDisplay.StartUI(victoryInfo);
+    }
 
     public void ExitBattle()
     {
-        foreach(GameObject blank in pcBlanks)
+        foreach (GameObject bPC in objectsInBattle.pcsInBattle)
+        {
+            bPC.GetComponent<BaseBattleActor>().EndBattle();
+        }
+
+        foreach (GameObject blank in pcBlanks)
         {
             blank.SetActive(false);
         }
+        pcBlanks.Clear();
         battleFolder.SetActive(false);
         overworldFolder.SetActive(true);
         objectsInBattle.DestroyMonstersInBattle();

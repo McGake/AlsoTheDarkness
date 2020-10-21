@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
-//using UnityEngine.XR.WSA.Input;
 
 public class GeneralGridMovement : MonoBehaviour
 {
@@ -95,13 +95,20 @@ public class GeneralGridMovement : MonoBehaviour
     {
         if (moveUtil.ArivedAtNextSquare())
         {
-            CheckForNewSquareTarget();
             if (firstArrival)
             {
+                transform.position =(Vector2)moveUtil.nextCellCenter; //TODO: make this a lerp untill new square is chosen through directional input
                 firstArrival = false;
                 NotifyArrivalSubscribers();
+                return;
             }
+            CheckForNewSquareTarget();
+
             NotifyStaySubscribers();
+        }
+        else
+        {
+            firstArrival = true;
         }
 
         moveUtil.MoveInDirection(direction);
@@ -122,7 +129,7 @@ public class GeneralGridMovement : MonoBehaviour
             if (!moveUtil.IsObstructionIn(direction))
             {
                 moveUtil.CalculateNextSquare(direction);
-                firstArrival = true;
+                
             }
             else
             {

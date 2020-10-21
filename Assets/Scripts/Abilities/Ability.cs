@@ -40,7 +40,31 @@ public class Ability:ScriptableObject
     private List<SubAbility> subAbilities = new List<SubAbility>();
     [HideInInspector]
     public int curSubAbilityIndx = 0;
+
+    private List<object> scriptsPreventingUse = new List<object>();
     
+    public void AddUsePreventor(object script)
+    {
+        scriptsPreventingUse.Add(script);
+    }
+
+    public void RemoveUsePreventor(object script)
+    {
+        if (scriptsPreventingUse.Contains(script))
+        {
+            scriptsPreventingUse.Remove(script);
+        }
+    }
+
+    public bool IsUseable()
+    {
+        if(scriptsPreventingUse.Count > 0)
+        {
+            return false;
+        }
+        return true;
+    }
+
     #region Temp"Interface"
     public delegate void DelStartSelectFromPCs(SubAbility subAb,Type requesterType);
     public DelStartSelectFromPCs StartSelectFromPCs; //TODO: this is temporary untill I can put in a proper event system
@@ -57,6 +81,8 @@ public class Ability:ScriptableObject
     public delegate void DelStartSelectAllPCsButCurrent(SubAbility subAb, Type requesterType);
     public DelStartSelectAllPCsButCurrent StartSelectAllPCsButCurrent;
 
+    public Func<GameObject, bool> IsCurrentSelectedHero;
+
     public delegate void DelKickOffMinigame(MiniGame mG);
     public DelKickOffMinigame KickOffMiniGame;
 
@@ -71,7 +97,7 @@ public class Ability:ScriptableObject
         BattleActorView = Owner.GetComponent<BattleActorView>();
         stats = Owner.GetComponent<BaseBattleActor>().stats;
         AbilityOver = true;
-        Useable = true;
+        RemoveUsePreventor(this);
         CurCooldownEndTime = 0f;
         LastAnimSet = "stand";
         curSubAbilityIndx = 0;
@@ -107,7 +133,7 @@ public class Ability:ScriptableObject
         SetUpNextSubAb();
         RunSubAbilityInitial();
         uses++;
-        Useable = false;
+        AddUsePreventor(this);
     }
     
     public void OnSubAbilityOver()//Called by sub ability delegate
@@ -172,7 +198,7 @@ public class Ability:ScriptableObject
             {
                 if (AbilityOver == true)
                 {
-                    Useable = true; //TODO: there will have to be a TrySetUseable method that checks a List to see if there is anything that is still preventing useable
+                    RemoveUsePreventor(this);
                 }
             }
             AbilityManager.abManager.UnregisterAbilityForCooldown(this);

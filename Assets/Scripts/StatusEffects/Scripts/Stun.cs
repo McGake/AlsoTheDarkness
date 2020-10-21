@@ -39,7 +39,14 @@ public class Stun : Status //TODO: perhaps to turn this and things like this to 
     {
         for (int i = 0; i < bbA.abilities.Count; i++)
         {
-            bbA.abilities[i].Useable = useableValue;
+            if (useableValue == true)
+            {
+                bbA.abilities[i].RemoveUsePreventor(this);
+            }
+            else if(useableValue == false)
+            {
+                bbA.abilities[i].AddUsePreventor(this);
+            }
         }
     }
 }

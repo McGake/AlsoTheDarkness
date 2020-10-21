@@ -33,7 +33,10 @@ public class SelectHeroController : UIMVC
 
     private void Select(object obj)
     {
+        Debug.Log("selected hero controllerUUUU");
+       
         GameObject selected = (GameObject)obj;
+        Debug.Log(selected.name);
         selected.GetComponent<ISelectionBehavior>().DoSelectionBehavior(null);
     }
 

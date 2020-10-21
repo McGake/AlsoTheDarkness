@@ -107,7 +107,7 @@ PrefabInstance:
         type: 3}
       propertyPath: inspectorAbilities.Array.data[6]
       value: 
-      objectReference: {fileID: 11400000, guid: 76e3795f9a443774db7410197ca2d7cd,
+      objectReference: {fileID: 11400000, guid: 0c29f9c9b337a1f4a9a4dd2a7c85f79a,
         type: 2}
     - target: {fileID: 263639194357805292, guid: 4b7a659fa64a9fd47a82e72e5d901049,
         type: 3}

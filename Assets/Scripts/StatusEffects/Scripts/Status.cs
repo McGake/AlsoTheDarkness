@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public abstract class Status : ScriptableObject
@@ -18,22 +20,38 @@ public abstract class Status : ScriptableObject
     public float duration;
 
     public bool dontAddStatus = false;
-
-    public List<DurationType> durationTypes;
+    [SerializeField] private List<DurationType> inspectorDurationTypes = new List<DurationType>();
+    
+    private Dictionary<Type,DurationType> durationTypes = new Dictionary<Type, DurationType>();
 
     public delegate void DelFinishStatus(Status status);
-    public DelFinishStatus FinishStatus;
+    public DelFinishStatus FinishStatus; //TODO: there is no reason to do it this way. I can simply have a finish status function on the basebattleactor.
 
     protected BattleStats stats;
 
-    public List<StatusValue> statusValues;
+    public List<StatusValue> statusValues = new List<StatusValue>();
 
     private const float percentCoversion = .01f;
 
+    private void Awake()
+    {
+        for(int i = 0; i < inspectorDurationTypes.Count; i++)
+        {
+            durationTypes.Add(inspectorDurationTypes[i].GetType(), inspectorDurationTypes[i]);
+        }
+    }
+
     public Status CreateStatusInstance(BattleStats curModifiedStats)
     {
-        Status statusToCreate = Instantiate(this);
+        Status statusToCreate = Instantiate(this);//TODO: this may be creating scriptable objects that never get destroyed
+
         statusToCreate.stats = curModifiedStats;
+        statusToCreate.SetModifiers();
+        return statusToCreate;
+    }
+    public Status CreateStatusInstance()
+    {
+        Status statusToCreate = Instantiate(this);//TODO: this may be creating scriptable objects that never get destroyed
         statusToCreate.SetModifiers();
         return statusToCreate;
     }
@@ -109,6 +127,26 @@ public abstract class Status : ScriptableObject
 
         return true;
     }
+
+    public bool HasDurationType(Type type)
+    {
+        if(durationTypes.ContainsKey(type))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public T GetDurationOfType<T>() where T : DurationType
+    {
+        DurationType returnDT;
+        durationTypes.TryGetValue(typeof(T), out returnDT);
+        if(returnDT is T)
+        {
+            return returnDT as T;
+        }
+        return null;
+    }
 }
 
 public enum GoverningStat
@@ -131,12 +169,17 @@ public class StatusValue
     public float val;
 }
 
-public enum DurationType
-{
-    time,
-    instant,
-    unequip,
-    battleEnd,
-    externalSource,
-    selfDefined,
-}
+//public enum DurationType
+//{
+//    time,
+//    instant,
+//    unequip,
+//    battleEnd,
+//    externalSource,
+//    selfDefined,
+//}
+
+
+
+
+

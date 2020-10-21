@@ -59,6 +59,8 @@ public class EffectOnContact : Fireable
 
     private void GetInspectorStatuses()
     {
+        statusesToAdd.Clear();
+
         if (statusesToAdd.Count < inspectorStatusesToAdd.Count)
         {
             foreach (Status status in inspectorStatusesToAdd)
@@ -68,7 +70,7 @@ public class EffectOnContact : Fireable
                 Debug.Log(sourceAbility.stats);
 
 
-                Status tempStat = status.CreateStatusInstance(sourceAbility.stats);
+                Status tempStat = status.CreateStatusInstance(sourceAbility.stats); //TODO: this maybe creating scriptable objects that never get destroyed
                 statusesToAdd.Add(tempStat);
             }
         }

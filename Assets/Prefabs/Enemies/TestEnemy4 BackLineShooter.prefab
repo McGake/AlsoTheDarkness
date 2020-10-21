@@ -95,6 +95,56 @@ PrefabInstance:
       propertyPath: stats.armor
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
+        type: 3}
+      propertyPath: stats.basic.maxHP
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
+        type: 3}
+      propertyPath: stats.basic.hP
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
+        type: 3}
+      propertyPath: stats.basic.maxMana
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
+        type: 3}
+      propertyPath: stats.basic.mana
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
+        type: 3}
+      propertyPath: stats.basic.speed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
+        type: 3}
+      propertyPath: stats.basic.quickness
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
+        type: 3}
+      propertyPath: stats.basic.magicalPower
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
+        type: 3}
+      propertyPath: stats.basic.magicalSkill
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
+        type: 3}
+      propertyPath: stats.basic.physicalSkill
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844169639533487328, guid: bd4b75f9dc605f447bcd0309e9922de2,
+        type: 3}
+      propertyPath: stats.basic.physicalPower
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8844169639533487329, guid: bd4b75f9dc605f447bcd0309e9922de2,
         type: 3}
       propertyPath: m_Name

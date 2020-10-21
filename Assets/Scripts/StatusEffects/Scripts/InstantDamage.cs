@@ -21,7 +21,8 @@ public class InstantDamage : Status
 
     public override void DoStatusInitialEffect(BaseBattleActor bbA)
     {
-        bbA.ChangeHp((int)-damage.val);
+        Debug.Log("instant damage " + damage.label+ " " + damage.baseValue + " " + damage.val);
+        bbA.TakePhysicalDamage((int)damage.val);
     }
 
     public override void DoStatusEnd(BaseBattleActor bbA)

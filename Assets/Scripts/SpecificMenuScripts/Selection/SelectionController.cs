@@ -149,7 +149,6 @@ public class SelectionController : MonoBehaviour
     {
         if(Time.time > nextInputTime)
         {
-            Debug.Log("change");
             if(invertCounting)
             {
                 indxChange *= -1;

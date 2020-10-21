@@ -29,6 +29,9 @@ public class Item:ScriptableObject
 public class Equipable:Item
 {
     public List<Status> statusesOnEquip;
+
+    [HideInInspector]
+    public List<Status> statusesToUnequip;
 }
 
 

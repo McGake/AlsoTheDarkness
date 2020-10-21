@@ -71,6 +71,9 @@
     <Compile Include="Assets\Barrier.cs" />
     <Compile Include="Assets\BattleActorView.cs" />
     <Compile Include="Assets\BattleArmy.cs" />
+    <Compile Include="Assets\BattleEndController.cs" />
+    <Compile Include="Assets\BattleEndModel.cs" />
+    <Compile Include="Assets\BattleEndView.cs" />
     <Compile Include="Assets\Bounce.cs" />
     <Compile Include="Assets\Boundary.cs" />
     <Compile Include="Assets\CallbackOnDisable.cs" />
@@ -214,6 +217,7 @@
     <Compile Include="Assets\Scripts\NewMenus\MVCHelper.cs" />
     <Compile Include="Assets\Scripts\NewMenus\MultiLineModel.cs" />
     <Compile Include="Assets\Scripts\NewMenus\PrepBuyItem.cs" />
+    <Compile Include="Assets\Scripts\NewMenus\StatusModel.cs" />
     <Compile Include="Assets\Scripts\NewMenus\TextView.cs" />
     <Compile Include="Assets\Scripts\Overworld\BuySellExitView.cs" />
     <Compile Include="Assets\Scripts\Overworld\Camp.cs" />
@@ -256,6 +260,11 @@
     <Compile Include="Assets\Scripts\SpecificMenuScripts\StaticSelectionView.cs" />
     <Compile Include="Assets\Scripts\SpecificMenuScripts\StoreModel.cs" />
     <Compile Include="Assets\Scripts\SpecificMenuScripts\ghk.cs" />
+    <Compile Include="Assets\Scripts\StatusEffects\DurationTypesScripts\BattleEnd.cs" />
+    <Compile Include="Assets\Scripts\StatusEffects\DurationTypesScripts\DurationType.cs" />
+    <Compile Include="Assets\Scripts\StatusEffects\DurationTypesScripts\Instant.cs" />
+    <Compile Include="Assets\Scripts\StatusEffects\DurationTypesScripts\TimeElapsed.cs" />
+    <Compile Include="Assets\Scripts\StatusEffects\DurationTypesScripts\Unequip.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\EffectDefiner.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\BuffArmor.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\BuffArmorAndMagDef.cs" />
@@ -271,6 +280,7 @@
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\ShowingDamage.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\Status.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\Stun.cs" />
+    <Compile Include="Assets\Scripts\StatusEffects\Scripts\Victory.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\StatusFactory.cs" />
     <Compile Include="Assets\Scripts\Utilities\BattlePooler.cs" />
     <Compile Include="Assets\Scripts\Utilities\MultiInput.cs" />
@@ -291,6 +301,8 @@
     <Compile Include="Assets\SingleLineModel.cs" />
     <Compile Include="Assets\SpawnManagerScriptableObject.cs" />
     <Compile Include="Assets\StartWithEquipmentType.cs" />
+    <Compile Include="Assets\StatusController.cs" />
+    <Compile Include="Assets\StatusView.cs" />
     <Compile Include="Assets\StayInBounds.cs" />
     <Compile Include="Assets\StayWithXPositionOfObject.cs" />
     <Compile Include="Assets\TestAnimBehavior.cs" />

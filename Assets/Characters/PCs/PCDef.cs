@@ -54,13 +54,13 @@ public class PCEquipment
                 armor = (Armor)SetNew(armor,equipable);
                 break;
             case Weapon notUsed:
-                weapon = (Weapon)SetNew(armor, equipable);
+                weapon = (Weapon)SetNew(weapon, equipable);
                 break;
             case Ring notUsed:
-                ring = (Ring)SetNew(armor, equipable);
+                ring = (Ring)SetNew(ring, equipable);
                 break;
             case Helmet notUsed:
-                helmet = (Helmet)SetNew(armor, equipable);
+                helmet = (Helmet)SetNew(helmet, equipable);
                 break;
         }
 
@@ -71,10 +71,31 @@ public class PCEquipment
     {
         if(slot != null)
         {
+            RemoveEquipmentEffects(slot);
             PartyManager.AddItemToCurrentParty(slot);
         }
+        AddEquipmentEffects(itemToSet);
         PartyManager.RemoveItemFromCurrentParty(itemToSet);
 
         return itemToSet;
+    }
+
+    private void AddEquipmentEffects(Equipable itemToSet)
+    {
+        foreach(Status status in itemToSet.statusesOnEquip)
+        {
+            Status statusInstance = status.CreateStatusInstance(battlePcToEquip.stats);
+            itemToSet.statusesToUnequip.Add(statusInstance);
+            battlePcToEquip.AddStatus(status);
+        }
+    }
+
+    private void RemoveEquipmentEffects(Equipable itemToRemove)
+    {
+        foreach (Status status in itemToRemove.statusesToUnequip)
+        {
+            battlePcToEquip.FinishStatus(status);
+        }
+        itemToRemove.statusesToUnequip.Clear();
     }
 }

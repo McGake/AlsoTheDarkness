@@ -10,15 +10,27 @@ public class MultiplyMagicalPower : Status
 
     private float totalModifier;
 
-    public override void SetReferences(Ability sourceAbility, GameObject de)
+     public override void SetModifiers()
     {
-
+        statusValues.Add(magicMultiplier);
+        base.SetModifiers();
     }
 
     public override void DoStatusInitialEffect(BaseBattleActor bbA)
     {
+
+        Debug.Log("magic mult val " + magicMultiplier.val);
+        Debug.Log("magic power " + bbA.stats.basic.magicalPower);
+
+        Debug.Log("power x magic " + bbA.stats.basic.magicalPower * magicMultiplier.val);
+
+        Debug.Log("magic mult val again " + magicMultiplier.val);
+        Debug.Log("magic power again" + bbA.stats.basic.magicalPower);
+
+        Debug.Log("whole thing " + ((bbA.stats.basic.magicalPower * magicMultiplier.val) - bbA.stats.basic.magicalPower));
         totalModifier = ((bbA.stats.basic.magicalPower * magicMultiplier.val) - bbA.stats.basic.magicalPower) ;
-        bbA.stats.modified.magicalPower += totalModifier; 
+        Debug.Log("total modifier " + totalModifier);
+        bbA.stats.modified.magicalPower += totalModifier;
     }
     public override void DoStatus(BaseBattleActor bbA)
     {

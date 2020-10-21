@@ -16,13 +16,38 @@ MonoBehaviour:
   maxUses: 6
   uses: 0
   cooldownTime: 12.1
-  objectTargets: []
-  positionTargets: []
   inspectorSubAbilities:
   - {fileID: 11400000, guid: 53ac12f23e03c96408a57ea79edc6229, type: 2}
   - {fileID: 11400000, guid: 07df29c41f01f8a479bf389a7df7d539, type: 2}
   - {fileID: 11400000, guid: e384e129fcdab314eb722bd4d8fdf21a, type: 2}
-  - {fileID: 11400000, guid: 6e3051ae69b0a984995774a1fb00b496, type: 2}
+  - {fileID: 11400000, guid: 35b78e0d5f2efa542bb8f30d8b62b0fa, type: 2}
   - {fileID: 11400000, guid: c98dab6dad21d83449415fa391f85714, type: 2}
   - {fileID: 11400000, guid: 200e160e75203b84dab81ce5abc745b7, type: 2}
+  stats:
+    basic:
+      maxHP: 0
+      hP: 0
+      maxMana: 0
+      mana: 0
+      speed: 0
+      quickness: 0
+      magicalPower: 0
+      magicalSkill: 0
+      physicalSkill: 0
+      physicalPower: 0
+      armor: 0
+    modified:
+      maxHP: 0
+      hP: 0
+      maxMana: 0
+      mana: 0
+      speed: 0
+      quickness: 0
+      magicalPower: 0
+      magicalSkill: 0
+      physicalSkill: 0
+      physicalPower: 0
+      armor: 0
+  objectTargets: []
+  positionTargets: []
   curSubAbilityIndx: 3

@@ -9,15 +9,14 @@ public class Ability:ScriptableObject
 {
 
 #pragma warning disable 649
-    [SerializeField]
-    private string _displayName;
+    [SerializeField] private string _displayName;
     public string DisplayName { get { return _displayName; }}
     public int maxUses;
-    public int uses = 0;
+    [HideInInspector] public int uses = 0;
     public float cooldownTime;
-    [SerializeField]
-    public List<SubAbility> inspectorSubAbilities;
+    [SerializeField] public List<SubAbility> inspectorSubAbilities;
 #pragma warning restore 649
+
     public Type ActorType { get; private set; }
     public Animator PCAnimator { get; private set; }
     public BattleActorView BattleActorView { get; private set; }
@@ -26,23 +25,22 @@ public class Ability:ScriptableObject
     public GameObject Owner { get; private set; }
     public float CurCooldownEndTime { get; private set; } = 0f;
     public string LastAnimSet { get; set; } = "stand";
+
+    /// <summary>
+    /// A property so that sub abilitie that only ever target one object can make that fact explicit
+    /// </summary>
     public GameObject singleObjectTarget  {get { return objectTargets[0]; } set{ objectTargets[0] = value; } }
 
-    public BattleStats stats;
-
-    [HideInInspector]
-    public List<GameObject> objectTargets = new List<GameObject>();
-    [HideInInspector]
-    public List<Vector3> positionTargets = new List<Vector3>();
-    [HideInInspector]
-    public List<Action> projectileCallbacks { get; private set; } = new List<Action>();
-    [System.NonSerialized]
-    private List<SubAbility> subAbilities = new List<SubAbility>();
-    [HideInInspector]
-    public int curSubAbilityIndx = 0;
+    [HideInInspector] public BattleStats stats;
+    [HideInInspector] public List<GameObject> objectTargets = new List<GameObject>();
+    [HideInInspector] public List<Vector3> positionTargets = new List<Vector3>();
+    [HideInInspector] public List<Action> projectileCallbacks { get; private set; } = new List<Action>();
+    [System.NonSerialized] private List<SubAbility> subAbilities = new List<SubAbility>();
+    [HideInInspector] public int curSubAbilityIndx = 0;
 
     private List<object> scriptsPreventingUse = new List<object>();
-    
+
+    #region TrackIfAbilityIsUseable
     public void AddUsePreventor(object script)
     {
         scriptsPreventingUse.Add(script);
@@ -64,10 +62,12 @@ public class Ability:ScriptableObject
         }
         return true;
     }
+    #endregion TrackIfAbilityIsUseable
 
-    #region Temp"Interface"
+    #region ExternalTargetingMethods 
+    //This allows different targeting methods for sub abilities using the exact same code. So monsters can target pcs using an ai script and pcs can target using a controll stick and all sub abilities and abilities work with no changes.
     public delegate void DelStartSelectFromPCs(SubAbility subAb,Type requesterType);
-    public DelStartSelectFromPCs StartSelectFromPCs; //TODO: this is temporary untill I can put in a proper event system
+    public DelStartSelectFromPCs StartSelectFromPCs; 
 
     public delegate void DelStartSelectFromEnemies(SubAbility subAb, Type requesterType);
     public DelStartSelectFromEnemies StartSelectFromEnemies;
@@ -88,21 +88,31 @@ public class Ability:ScriptableObject
 
     public delegate GameObject DelInstantiateInWorldSpaceCanvas(GameObject go, Vector3 position);
     public DelInstantiateInWorldSpaceCanvas InstantiateInWorldSpaceCanvas;
-    #endregion Temp"Interface"
+    #endregion ExternalTargetingMethods
 
     public void SetupAbility(GameObject owner)
+    {
+        CacheOwnerReferences(owner);
+        SetStartingValues();
+        SetupActorType();
+        InstantiateScriptableObjects();
+        RemoveUsePreventor(this);
+    }
+    #region Setup
+    private void CacheOwnerReferences(GameObject owner)
     {
         this.Owner = owner;
         PCAnimator = Owner.GetComponent<Animator>();
         BattleActorView = Owner.GetComponent<BattleActorView>();
         stats = Owner.GetComponent<BaseBattleActor>().stats;
+    }
+
+    private void SetStartingValues()
+    {
         AbilityOver = true;
-        RemoveUsePreventor(this);
         CurCooldownEndTime = 0f;
         LastAnimSet = "stand";
         curSubAbilityIndx = 0;
-        SetupActorType();
-        InstantiateScriptableObjects();
     }
 
     private void SetupActorType()
@@ -123,20 +133,28 @@ public class Ability:ScriptableObject
             subAbilities.Add(Instantiate(inspectorSubAbilities[i]));
         }
     }
-    public virtual void ResetAbilityAndStartInitial()
+    #endregion Setup
+
+    #region KickOff
+    public virtual void KickOffAbility()
     {
-        AbilityOver = false;
-        LastAnimSet = "stand";
-        curSubAbilityIndx = 0;
-        objectTargets.Clear();
-        positionTargets.Clear();
+        SetStartingValues();
+        ClearPreviousUseData();
         SetUpNextSubAb();
         RunSubAbilityInitial();
         uses++;
         AddUsePreventor(this);
     }
     
-    public void OnSubAbilityOver()//Called by sub ability delegate
+    private void ClearPreviousUseData()
+    {
+        objectTargets.Clear();
+        positionTargets.Clear();
+    }
+    #endregion KickOff
+
+    #region MainStateMachine //Runs all sub abilities and Calls EndAbility when done
+    public void OnSubAbilityOver()
     {
         RunSubAbilityFinish();
 
@@ -181,7 +199,9 @@ public class Ability:ScriptableObject
     {
         subAbilities[curSubAbilityIndx].DoInitialSubAbility(this);
     }
-    public void RunSubAbility()//This is called on update by the AbilityManager
+
+    //This is called on update by the AbilityManager
+    public void RunSubAbility()
     {
         subAbilities[curSubAbilityIndx].DoSubAbility(this);
     }
@@ -189,6 +209,8 @@ public class Ability:ScriptableObject
     {
         subAbilities[curSubAbilityIndx].DoFinishSubAbility(this);
     }
+
+    #endregion MainStateMachine
 
     public void UpdateCooldown()
     {
@@ -206,7 +228,7 @@ public class Ability:ScriptableObject
     }
 
     #region Utilities
-    public static List<Ability> NewRetrunOnlyAbilitiesOfContext(UsableContexts cont, List<Ability> abs)
+    public static List<Ability> NewRetrunOnlyAbilitiesOfContext(UsableContexts cont, List<Ability> abs) //TODO: this system is on hold for now untill we create use contexts other than battle that actually need this. For now it returns all abilities sent.
     {
         List<Ability> abilitiesOfContext = new List<Ability>();
         foreach (Ability a in abs)

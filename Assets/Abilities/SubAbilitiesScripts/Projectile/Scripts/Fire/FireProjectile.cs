@@ -15,8 +15,4 @@ public class FireProjectile : SubProjectileAbility
         pa.projectilesFired++;
         EndProjectileSubAbility();
     }
-
-    public override void DoProjectileSubAbility(ProjectileAbility pa)
-    {
-    }
 }

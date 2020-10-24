@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97ee91b4c27756347bc9e369e8eae3fe, type: 3}
-  m_Name: TestMiniGameProjectileAbilityMageBomb
+  m_Name: MiniGameProjectileAbilityMageBomb
   m_EditorClassIdentifier: 
   inspectorProjectileSubAbilities:
   - {fileID: 11400000, guid: 935dc7a900754cb4cbfb2f6dc498d124, type: 2}

@@ -1,173 +1,30 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Rendering;
 
-
-[System.Serializable]
-public class Stats
-{
-    public float maxHP;
-    public float hP;
-
-    public float maxMana;
-    public float mana;
-
-    public float speed;
-    public float quickness;
-
-    public float magicalPower;
-    public float magicalSkill;
-
-    public float physicalSkill;
-    public float physicalPower;
-
-    public float armor;
-
-    public float exp;
-    public float nextLevel;
-
-    public int level;
-
-    public float expLevelModifier;
-
-
-    public Stats Copy()
-    {
-        Stats tempStats = new Stats();
-
-        tempStats.maxHP = maxHP;
-        tempStats.hP = hP;
-
-        tempStats.maxMana = maxMana;
-        tempStats.mana = mana;
-
-        tempStats.speed = speed;
-        tempStats.quickness = quickness;
-
-        tempStats.magicalPower = magicalPower;
-        tempStats.magicalSkill = magicalSkill;
-
-        tempStats.physicalSkill = physicalSkill;
-        tempStats.physicalPower = physicalPower;
-
-        tempStats.armor = armor;
-
-        tempStats.exp = exp;
-        tempStats.nextLevel = nextLevel;
-
-
-        tempStats.level = level;        
-
-        return tempStats;
-    }
-
-    public void AddOnLevelUp(Stats statsToAdd)
-    {
-        maxHP += statsToAdd.maxHP;
-        hP = maxHP;
-
-        maxMana += statsToAdd.maxMana;
-        mana = maxMana;
-
-        speed += statsToAdd.speed;
-        quickness += statsToAdd.quickness;
-
-        magicalPower += statsToAdd.magicalPower;
-        magicalSkill += statsToAdd.magicalSkill;
-
-        physicalSkill += statsToAdd.physicalSkill;
-        physicalPower += statsToAdd.physicalPower;
-
-        armor += statsToAdd.armor;
-        nextLevel = nextLevel * statsToAdd.expLevelModifier;
-    }
-}
-
-[System.Serializable]
-public class BattleStats
-{
-    public Stats basic;
-
-    public Stats modified;
-
-    public Stats increaseRate;
-
-    public BattleStats Copy()
-    {
-        BattleStats tempStats = new BattleStats();
-
-        tempStats.basic = basic;
-        tempStats.modified = modified;
-
-        return tempStats;
-    }
-
-    public float GetGoverningStat(GoverningStat gS)
-    {
-        switch (gS)
-        {
-            case GoverningStat.magicalPower:
-                return modified.magicalPower;
-                break;
-            case GoverningStat.magicalSkill:
-                return modified.magicalSkill;
-                break;
-            case GoverningStat.physicalPower:
-                return modified.physicalPower;
-                break;
-            case GoverningStat.physicalSkill:
-                return modified.physicalSkill;
-                break;
-            case GoverningStat.none:
-                return 1f;
-                break;
-        }
-
-        Debug.LogError("we somehow searched for a governing stat that is not accounted for");
-        return 0f;
-    }
-
-}
 
 [System.Serializable]
 public class BaseBattleActor :MonoBehaviour
 {
     public string displayName;
-
     public BattleActorView battleActorView;
-
     public BattleStats stats;
-
     public List<Status> curStatuses = new List<Status>();
-
     public List<Ability> inspectorAbilities = new List<Ability>();
-
-    [System.NonSerialized]
-    public List<Ability> abilities = new List<Ability>();
+    [System.NonSerialized]public List<Ability> abilities = new List<Ability>();
 
     public delegate void DelOnDeathCallback(GameObject gO);
     public DelOnDeathCallback OnDeathCallback;
 
     public Status deathStatus;
-
-    private const float armorMultiplyer = .5f;
-
+    
     public virtual void Awake()
     {
         SetUpAbilities();
-        stats.modified = stats.basic.Copy(); //TODO: set up status system to re add all stat effecting statuses on start
-
+        SetUpStats();
     }
-
-    public void OnEnable()
-    {
-        battleActorView.UpdateHealthBar(stats.modified.hP, stats.modified.maxHP);
-    }
-
+    #region Setup
     protected virtual void SetUpAbilities()
     {
         foreach (Ability aB in inspectorAbilities)
@@ -181,7 +38,16 @@ public class BaseBattleActor :MonoBehaviour
         }
     }
 
-    
+    public void SetUpStats()
+    {
+        stats.modified = stats.basic.Copy();
+    }
+    #endregion Setup
+
+    public void OnEnable()
+    {
+        battleActorView.UpdateHealthBar(stats.modified.hP, stats.modified.maxHP);
+    }
 
     public virtual void Update()
     {
@@ -217,9 +83,6 @@ public class BaseBattleActor :MonoBehaviour
 
         status.DoStatusInitialEffect(this); 
     }
-
-
-
 
     public virtual void RunStatuses()
     {
@@ -279,8 +142,6 @@ public class BaseBattleActor :MonoBehaviour
         }
     }
 
-
-
     private bool IsTimeToRunStatus(Status status)
     {
         if(status.nextInterval <= Time.time)
@@ -300,21 +161,13 @@ public class BaseBattleActor :MonoBehaviour
     {
         for (int i = 0; i<curStatuses.Count; i++)
         {
-            Debug.Log(status);
-
-            Debug.Log(curStatuses);
-
-            Debug.Log("status count " +curStatuses.Count);
-
             System.Type type1 = status.GetType();
             System.Type type2 = curStatuses[i].GetType();
             if (type1 == type2)
             {
                 return true;
             }
-            
         }
-
         return false;
     }
 
@@ -322,9 +175,6 @@ public class BaseBattleActor :MonoBehaviour
 
     //This regoin should be temporary till i move functionality to abilities themselves
     #region AbilityManagement 
-
-
-
     public void DoAbility(Ability aB)
     {
          for (int i = 0; i < curStatuses.Count; i++)
@@ -333,25 +183,9 @@ public class BaseBattleActor :MonoBehaviour
          }
          AbilityManager.abManager.TurnOnAbility(aB);
     }
-
-
-
-
-    public bool IsStuned() //TODO: when we have a better grasp of what kind of status effects are going to be in our game, generalize this. We could , for example, have a function that runs a snipet of code from every status called ModifyAbility()
-    {
-        foreach(Status status in curStatuses)
-        {
-            if(status is Stun)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
     #endregion AbilityManagement
 
-
+    #region ExternalMethods
     public void TakePhysicalDamage(float amount)
     {
         TakePhysicalDamage(amount, 0f);
@@ -359,6 +193,7 @@ public class BaseBattleActor :MonoBehaviour
 
     public void TakePhysicalDamage(float amount, float penAmount)
     {
+        const float armorMultiplyer = .5f;
         amount -= (amount * (stats.modified.armor * .01f * armorMultiplyer));
         amount += penAmount;
         ChangeHp(-amount);
@@ -415,6 +250,7 @@ public class BaseBattleActor :MonoBehaviour
         AddStatus(deathStatus);
         //gameObject.SetActive(false); //TODO: flesh this out with arbitrary animation and make it part of a pooling system. PC's and monsters will of course have their own thing but should implement the base class if possible.
     }
+    #endregion ExternalMethods
 }
 
 

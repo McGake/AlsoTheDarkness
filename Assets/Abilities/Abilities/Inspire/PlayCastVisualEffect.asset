@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32fcdcab32a9e824e9790cc65dc24925, type: 3}
-  m_Name: Casting
+  m_Script: {fileID: 11500000, guid: 0cfb5cf9b66fa9d4db5d14e41a76b7dd, type: 3}
+  m_Name: PlayCastVisualEffect
   m_EditorClassIdentifier: 
-  isFinished: 1
+  animOverrideController: {fileID: 22100000, guid: d70b5a6be4f751c4db3a92316412783d,
+    type: 2}
+  effectStartDelay: 2

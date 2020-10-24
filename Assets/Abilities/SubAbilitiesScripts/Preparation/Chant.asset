@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4a5deb4e943fcd40b57799445bd6c1e, type: 3}
-  m_Name: Chanting3sec
+  m_Name: Chant
   m_EditorClassIdentifier: 
   prepTime: 3

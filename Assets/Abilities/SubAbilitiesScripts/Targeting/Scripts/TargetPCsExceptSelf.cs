@@ -12,19 +12,8 @@ public class TargetPCsExceptSelf : SubAbility
         ab.StartSelectAllPCsButCurrent(this, ab.ActorType);
     }
 
-    public override void DoSubAbility(Ability ab)
-    {
-        //if(skipFirst == true)
-        //{
-        //    skipFirst = false;
-        //    return;//This skips one frame incase the player has already pressed a this frame to select the overall ability. TODO: do this better somehow and check if this is really even needed
-        //}
-
-    }
-
     public override void OnSelectionFinished(List<GameObject> selectedObjects)
     {
-        Debug.Log("selection FINISHED");
         ability.objectTargets.AddRange(selectedObjects);
         EndSubAbility();
     }

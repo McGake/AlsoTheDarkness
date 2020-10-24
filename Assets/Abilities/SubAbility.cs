@@ -5,7 +5,6 @@ using UnityEngine;
 
 public abstract class SubAbility : ScriptableObject
 {
-    //TODO: make these delegates so that I can avoid calling empty functions using the ?. operator
     public virtual void DoInitialSubAbility(Ability ab)
     {
     }
@@ -28,17 +27,14 @@ public abstract class SubAbility : ScriptableObject
         if (ab.ActorType == typeof(BattlePC))//TODO: this is temp code that must be modified if we want enemies to be able to use same sub abilities as pcs
         {
             ab.BattleActorView.PlayCharacterAnimation(newAnim);
-
         }
     }
 
     protected void SetNewAnimationAtSpeed(string newAnim, Ability ab, float speed)
     {
-
         if (ab.ActorType == typeof(BattlePC))//TODO: this is temp code that must be modified if we want enemies to be able to use same sub abilities as pcs
         {
             ab.BattleActorView.PlayCharacterAnimationAtSpeed(newAnim,speed);
-
         }
     }
 
@@ -55,42 +51,22 @@ public abstract class SubAbility : ScriptableObject
         aOC["special"] = anim;
         SetNewAnimation("special", ab);
     }
+
+    protected int GetOwnerFacing(Ability ab)
+    {
+        if (ab.Owner.transform.rotation.eulerAngles.y > 179f)
+        {
+            return -1;
+        }
+        else if (ab.Owner.transform.rotation.eulerAngles.y < 1f)
+        {
+            return 1;
+        }
+        return 0;
+    }
     #endregion Utilities
 }
 
-public abstract class SubProjectileAbility:ScriptableObject
-{
 
-    public delegate void DelEndProjectileSubAbility();
-    public DelEndProjectileSubAbility EndProjectileSubAbility;
 
-    public virtual void DoInitialProjectileSubAbility(ProjectileAbility pa)
-    {
 
-    }
-
-    public virtual void DoFinishProjectileSubAbility(ProjectileAbility pa)
-    {
-
-    }
-
-    public abstract void DoProjectileSubAbility(ProjectileAbility projectileAbility);
-}
-
-public abstract class SubMiniGameAbility:ScriptableObject
-{
-    public delegate void DelEndProjectileSubAbility();
-    public DelEndProjectileSubAbility EndProjectileSubAbility;
-
-    public virtual void DoInitialProjectileSubAbility(SubMiniGameAbility mga)
-    {
-
-    }
-
-    public virtual void DoFinishProjectileSubAbility(SubMiniGameAbility mga)
-    {
-
-    }
-
-    public abstract void DoProjectileSubAbility(SubMiniGameAbility mga);
-}

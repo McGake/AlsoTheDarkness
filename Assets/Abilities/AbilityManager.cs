@@ -14,13 +14,14 @@ public class AbilityManager : MonoBehaviour
         abManager = this;
     }
 
-
     void Update()
     {
         RemoveFinishedAbilities();
         RunAbilities();
         UpdateCooldowns();
     }
+    #region Internal
+
     private void RemoveFinishedAbilities()
     {
         foreach (Ability aTR in abilitiesToRemove)
@@ -29,6 +30,7 @@ public class AbilityManager : MonoBehaviour
         }
         abilitiesToRemove.Clear();
     }
+
     private void RunAbilities()
     {
         foreach (Ability ability in abilitiesInUse)
@@ -43,11 +45,23 @@ public class AbilityManager : MonoBehaviour
             }
         }
     }
+
+    private void UpdateCooldowns()
+    {
+        for (int i = 0; i < abilitiesToCooldown.Count; i++)
+        {
+            abilitiesToCooldown[i].UpdateCooldown();
+        }
+    }
+    #endregion Internal
+
+    #region ExternalStartStopAbilities
+
     public void TurnOnAbility(Ability ab)
     {
         if (ab.IsUseable() == true)
         {
-            ab.ResetAbilityAndStartInitial();
+            ab.KickOffAbility();
             abilitiesInUse.Add(ab);
         }
     }
@@ -56,17 +70,23 @@ public class AbilityManager : MonoBehaviour
     {
         abilitiesToCooldown.Add(ab);
     }
+
     public void UnregisterAbilityForCooldown(Ability ab)
     {
         abilitiesToCooldown.Remove(ab);
     }
-    private void UpdateCooldowns()
+
+    public void StopAllAbilitiesFromCharacter(GameObject character)
     {
-        for (int i = 0; i < abilitiesToCooldown.Count; i++)
+        foreach (Ability aIU in abilitiesInUse)
         {
-            abilitiesToCooldown[i].UpdateCooldown();
+            if (aIU.Owner == character)
+            {
+                abilitiesToRemove.Add(aIU);
+            }
         }
     }
+    #endregion ExternalStartStopAbilities
 
     #region Utilities
     public bool IsCharacterCurrentlyDoingAbility(GameObject character)
@@ -80,17 +100,5 @@ public class AbilityManager : MonoBehaviour
         }
         return false;
     }
-
-    public void StopAllAbilitiesFromCharacter(GameObject character)
-    {
-        foreach (Ability aIU in abilitiesInUse)
-        {
-            if (aIU.Owner == character)
-            {
-                abilitiesToRemove.Add(aIU);
-            }
-        }
-    }
-
     #endregion Utilities
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "BuffPhysicalPowerAndHeal", menuName = "Effects/BuffPhysicalPowerAndHeal", order = 1)]
+[CreateAssetMenu(fileName = "BuffPhysicalPowerAndHeal", menuName = "StatusEffects/BuffPhysicalPowerAndHeal", order = 1)]
 public class BuffPhysicalPowerAndHeal : Status
 {
 

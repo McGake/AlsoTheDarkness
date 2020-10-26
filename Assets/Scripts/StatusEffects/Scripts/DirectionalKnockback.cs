@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "DirectionalKnockback", menuName = "Effects/DirectionalKnockback", order = 1)]
+[CreateAssetMenu(fileName = "DirectionalKnockback", menuName = "StatusEffects/DirectionalKnockback", order = 1)]
 public class DirectionalKnockback : Status //TODO: perhaps to turn this and things like this to an event that the battle actor listens for and self applies 
 {
     public float knockBackDistance;

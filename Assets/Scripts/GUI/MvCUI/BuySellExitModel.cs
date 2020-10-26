@@ -12,4 +12,9 @@ public class BuySellExitModel : UIMVC
         base.MVCStart(obj);
         mVCHelper.CallEvent(UIEvents.dataChanged, BuySellExitButtons);
     }
+
+    public override void MVCEnd(object obj)
+    {
+        //this prevents calling setactive false
+    }
 }

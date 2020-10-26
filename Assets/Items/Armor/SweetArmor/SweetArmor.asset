@@ -16,6 +16,7 @@ MonoBehaviour:
   description: Seeet armor dude
   sellPrice: 0
   useScript: {fileID: 0}
-  statusesOnEquip: []
+  statusesOnEquip:
+  - {fileID: 11400000, guid: 97a10db772629b740a5efc26659460bb, type: 2}
   statusesToUnequip: []
   armorType: 2

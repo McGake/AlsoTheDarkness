@@ -11,6 +11,7 @@ public static class MultiInput
     private static bool isKeybaord = false;
     public static void Setup()
     {
+        Debug.Log("controller setup");
         string[] controllernames;
         controllernames = Input.GetJoystickNames();
         isKeybaord = true;
@@ -27,12 +28,14 @@ public static class MultiInput
             }
             else if(name.Length == 19)
             {
+                Debug.Log("ps set to true");
                 isXbox = false;
                 isPS4 = true;
                 isKeybaord = false;
                 break;
             }
         }
+        
     }
 
     public static Vector2 GetPrimaryDirection()

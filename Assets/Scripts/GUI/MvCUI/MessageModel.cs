@@ -24,7 +24,7 @@ public class MessageModel : UIMVC
 
     private void UpdateMessage(string message)
     {
-        mVCHelper.CallEvent(UIEvents.display, message);
+        mVCHelper.CallEvent(UIEvents.dataChanged, message);
     }
 
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Inspire
   m_EditorClassIdentifier: 
   _displayName: Inspire
-  maxUses: 6
+  maxUses: 7
   uses: 0
   cooldownTime: 12.1
   inspectorSubAbilities:
@@ -36,6 +36,10 @@ MonoBehaviour:
       physicalSkill: 0
       physicalPower: 0
       armor: 0
+      exp: 0
+      nextLevel: 0
+      level: 0
+      expLevelModifier: 0
     modified:
       maxHP: 0
       hP: 0
@@ -48,6 +52,26 @@ MonoBehaviour:
       physicalSkill: 0
       physicalPower: 0
       armor: 0
+      exp: 0
+      nextLevel: 0
+      level: 0
+      expLevelModifier: 0
+    increaseRate:
+      maxHP: 0
+      hP: 0
+      maxMana: 0
+      mana: 0
+      speed: 0
+      quickness: 0
+      magicalPower: 0
+      magicalSkill: 0
+      physicalSkill: 0
+      physicalPower: 0
+      armor: 0
+      exp: 0
+      nextLevel: 0
+      level: 0
+      expLevelModifier: 0
   objectTargets: []
   positionTargets: []
   curSubAbilityIndx: 3

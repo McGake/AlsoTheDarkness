@@ -97,7 +97,7 @@ public class GeneralGridMovement : MonoBehaviour
         {
             if (firstArrival)
             {
-                transform.position =(Vector2)moveUtil.nextCellCenter; //TODO: make this a lerp untill new square is chosen through directional input
+                transform.position =(Vector2)moveUtil.nextCellCenter - moveUtil.raycastOffset; //TODO: make this a lerp untill new square is chosen through directional input
                 firstArrival = false;
                 NotifyArrivalSubscribers();
                 return;
@@ -121,6 +121,7 @@ public class GeneralGridMovement : MonoBehaviour
 
         if (directionalInput.IsThereDirectionalInput(inputThreshold))
         {
+            Debug.Log("ther is directional inptu");
             direction = moveUtil.CalculateDirectionWithInput(directionalInput.DirectionalInput());
             lastFacingDirection = direction;
 

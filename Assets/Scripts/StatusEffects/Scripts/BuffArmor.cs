@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "BuffArmor", menuName = "Effects/BuffArmor", order = 1)]
+[CreateAssetMenu(fileName = "BuffArmor", menuName = "StatusEffects/BuffArmor", order = 1)]
 public class BuffArmor : Status
 {
     public float armorBuff;
 
-    private int totalArmorBuff;
-
+    private float totalArmorBuff;
     public override void SetReferences(Ability sourceAbility, GameObject de)
     {
 
@@ -18,7 +17,7 @@ public class BuffArmor : Status
     public override void DoStatusInitialEffect(BaseBattleActor bbA)
     {
         totalArmorBuff = Mathf.FloorToInt(armorBuff);
-        //bbA.modifiedStats.armor += totalArmorBuff; 
+        bbA.stats.modified.armor += totalArmorBuff; 
     }
 
     public override void DoStatus(BaseBattleActor bbA)
@@ -28,6 +27,6 @@ public class BuffArmor : Status
 
     public override void DoStatusEnd(BaseBattleActor bbA)
     {
-        //bbA.modifiedStats.armor -= totalArmorBuff;
+        bbA.stats.modified.armor -= totalArmorBuff;
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "MultiplyMagicalPower", menuName = "Effects/MultiplyMagicalPower", order = 1)]
+[CreateAssetMenu(fileName = "MultiplyMagicalPower", menuName = "StatusEffects/MultiplyMagicalPower", order = 1)]
 public class MultiplyMagicalPower : Status
 {
     public StatusValue magicMultiplier;

@@ -67,10 +67,17 @@ public class MVCHelper : MonoBehaviour
 
     public void CallEvent(UIEvents uiEvent, object obj)
     {
-        for (int i = 0; i < subscribers[uiEvent].Count; i++)
+        try
         {
-           // Debug.Log(subscribers[uiEvent][i].Target.GetType().Name + " " + uiEvent + " cont " + i );
-            subscribers[uiEvent][i](obj);
+            for (int i = 0; i < subscribers[uiEvent].Count; i++)
+            {
+                // Debug.Log(subscribers[uiEvent][i].Target.GetType().Name + " " + uiEvent + " cont " + i );
+                subscribers[uiEvent][i](obj);
+            }
+        }
+        catch
+        {
+            Debug.LogError(gameObject.name + " " + uiEvent.ToString());
         }
     }
 

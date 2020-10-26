@@ -143,6 +143,7 @@
     <Compile Include="Assets\Abilities\SubProjectileAbility.cs" />
     <Compile Include="Assets\Art\TileMaps\PlaceHoderTiles\Scriptable TilesBrushes\TransitionZoneDef.cs" />
     <Compile Include="Assets\CharacterPrefabs\PCs\PCDef.cs" />
+    <Compile Include="Assets\GameStarter.cs" />
     <Compile Include="Assets\Items\Armor.cs" />
     <Compile Include="Assets\Items\Helmet.cs" />
     <Compile Include="Assets\Items\Item.cs" />
@@ -189,8 +190,10 @@
     <Compile Include="Assets\Scripts\GUI\MvCUI\ItemConfirmController.cs" />
     <Compile Include="Assets\Scripts\GUI\MvCUI\ItemConfirmModel.cs" />
     <Compile Include="Assets\Scripts\GUI\MvCUI\ListSelectionController.cs" />
+    <Compile Include="Assets\Scripts\GUI\MvCUI\ListSelectionControllerRemain.cs" />
     <Compile Include="Assets\Scripts\GUI\MvCUI\ListSelectionModel.cs" />
     <Compile Include="Assets\Scripts\GUI\MvCUI\ListSelectionView.cs" />
+    <Compile Include="Assets\Scripts\GUI\MvCUI\ListSelectionViewRemain.cs" />
     <Compile Include="Assets\Scripts\GUI\MvCUI\MVCHelper.cs" />
     <Compile Include="Assets\Scripts\GUI\MvCUI\MatchSlotModel.cs" />
     <Compile Include="Assets\Scripts\GUI\MvCUI\MenuStarter.cs" />
@@ -285,6 +288,8 @@
     <Compile Include="Assets\Scripts\StatusEffects\EffectDefiner.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\BuffArmor.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\BuffArmorAndMagDef.cs" />
+    <Compile Include="Assets\Scripts\StatusEffects\Scripts\BuffMagicPower.cs" />
+    <Compile Include="Assets\Scripts\StatusEffects\Scripts\BuffMagicSkill.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\BuffPhysicalPowerAndHeal.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\CanPassBarriers.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\DefensivePosture.cs" />
@@ -294,7 +299,6 @@
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\MultiplyMagicalPower.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\PCDown.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\ResistEffects.cs" />
-    <Compile Include="Assets\Scripts\StatusEffects\Scripts\ShowingDamage.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\Status.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\Stun.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\Scripts\Victory.cs" />

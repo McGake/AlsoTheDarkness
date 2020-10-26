@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.UI;
 
 public class ListSelectionView : UIMVC
@@ -23,6 +24,8 @@ public class ListSelectionView : UIMVC
     bool isHorizontal = false;
 
     private Action GetDirInput;
+
+    public ScrollRect scrollRect;
 
     public override void MVCSetup(object obj)
     {
@@ -55,7 +58,7 @@ public class ListSelectionView : UIMVC
         }
     }
 
-    private void SetButtons(object obj)
+    protected void SetButtons(object obj)
     {
         selectionList = (List<GameObject>)obj;
         for (int i = 0; i < selectionList.Count; i++)
@@ -86,6 +89,7 @@ public class ListSelectionView : UIMVC
                 }
                 MoveCursorByIndx();
                 inputRefractoryEnd = Time.time + inputRefractoryPeriod;
+                ScrollScrollRect();
             }
         }
 
@@ -97,6 +101,29 @@ public class ListSelectionView : UIMVC
         {
             Debug.Log("backout");
             mVCHelper.CallEvent(UIEvents.backout, null);
+        }
+    }
+
+    private void ScrollScrollRect()
+    {
+        if (scrollRect != null)
+        {
+
+
+                Vector3 yIncrease = new Vector3(0f, selectionList[curSelection].transform.localPosition.y, 0f);
+                Vector3 testVal = new Vector3(0f, 10f, 0f);
+
+            RectTransform curSelectionRect = selectionList[curSelection].GetComponent<RectTransform>();
+            RectTransform contentRect = scrollRect.content;
+            RectTransform scrollRectRect = scrollRect.gameObject.GetComponent<RectTransform>();
+
+            Debug.Log("cur slected pos " + curSelectionRect.anchoredPosition.y);
+            Debug.Log("min y " + contentRect.anchoredPosition.y);
+            Debug.Log("max y " + contentRect.anchoredPosition.y + " "+ scrollRectRect.rect.height);
+            float add = contentRect.anchoredPosition.y + scrollRectRect.rect.height;
+            Debug.Log("add " + add);
+                //scrollRect.content.localPosition += testVal;
+
         }
     }
 

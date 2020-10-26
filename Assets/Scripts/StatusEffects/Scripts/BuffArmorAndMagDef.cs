@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "BuffArmorAndMagDef", menuName = "Effects/BuffArmorAndMagDef", order = 1)]
+[CreateAssetMenu(fileName = "BuffArmorAndMagDef", menuName = "StatusEffects/BuffArmorAndMagDef", order = 1)]
 public class BuffArmorAndMagDef : Status
 {
     public float armorBuff;

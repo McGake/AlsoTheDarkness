@@ -20,4 +20,4 @@ MonoBehaviour:
   dontAddStatus: 0
   inspectorDurationTypes: []
   statusValues: []
-  armorBuff: 15
+  armorBuff: 25

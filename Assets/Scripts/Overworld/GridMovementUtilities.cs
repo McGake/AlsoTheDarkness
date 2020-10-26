@@ -59,7 +59,7 @@ public class GridMovementUtilities
         }
         float distance = Vector2.Distance((Vector2)((Vector2)ownerTransform.position + raycastOffset), (Vector2)nextCellCenter);
 
-        //Debug.Log(((Vector2)ownerTransform.position + raycastOffset).ToString("F4") + " " + distance.ToString("F4") + " " + nextCellCenter.ToString("F4"));
+        //Debug.Log(((Vector2)ownerTransform.position + raycastOffset).ToString("F4") + " " + distance.ToString("F4") + " " + ((Vector2)nextCellCenter).ToString("F4"));
         if (Mathf.Abs(distance) <= pointArrivalThreshold)
         {
             return true;

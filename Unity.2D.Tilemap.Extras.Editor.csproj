@@ -651,9 +651,6 @@
     <Reference Include="Boo.Lang">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.4f1/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>C:/Users/Jon/Documents/UnityProjects/AlsoTheDarkness/AlsoTheDarkness/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>C:/Users/Jon/Documents/UnityProjects/AlsoTheDarkness/AlsoTheDarkness/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
@@ -671,6 +668,10 @@
     <ProjectReference Include="Unity.2D.Tilemap.Extras.csproj">
       <Project>{DDCE5B51-5FEC-14BF-AF34-113DB623ACAC}</Project>
       <Name>Unity.2D.Tilemap.Extras</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.2D.Tilemap.Editor.csproj">
+      <Project>{420C149E-780F-C6BF-E8BA-F908A2DDCFB1}</Project>
+      <Name>Unity.2D.Tilemap.Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

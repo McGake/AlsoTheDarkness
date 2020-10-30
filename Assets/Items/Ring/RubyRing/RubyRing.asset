@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1749970997cb64ea6ea393822c4765, type: 3}
   m_Name: RubyRing
   m_EditorClassIdentifier: 
-  listName: 
+  listName: Ruby Ring
   description: 
   sellPrice: 0
   useScript: {fileID: 0}

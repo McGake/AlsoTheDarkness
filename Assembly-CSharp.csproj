@@ -141,7 +141,9 @@
     <Compile Include="Assets\Abilities\SubAbility.cs" />
     <Compile Include="Assets\Abilities\SubMiniGameAbility.cs" />
     <Compile Include="Assets\Abilities\SubProjectileAbility.cs" />
-    <Compile Include="Assets\Art\TileMaps\PlaceHoderTiles\Scriptable TilesBrushes\TransitionZoneDef.cs" />
+    <Compile Include="Assets\Art\TileMaps\PlaceHolderTiles\Scriptable TilesBrushes\TransitionZoneDef.cs" />
+    <Compile Include="Assets\Art\TileMaps\TestNewTilesTielmeasp\TestMask.cs" />
+    <Compile Include="Assets\Art\TileMaps\TestNewTilesTielmeasp\WorldTile.cs" />
     <Compile Include="Assets\CharacterPrefabs\PCs\PCDef.cs" />
     <Compile Include="Assets\GameStarter.cs" />
     <Compile Include="Assets\Items\Armor.cs" />
@@ -325,10 +327,10 @@
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
-    <None Include="Assets\Art\TileMaps\PlaceHoderTiles\Towns\TestTown1\RPGMAKER\README_UPDATE.txt" />
+    <None Include="Assets\Art\TileMaps\PlaceHolderTiles\Towns\TestTown1\RPGMAKER\README_UPDATE.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
-    <None Include="Assets\Art\TileMaps\PlaceHoderTiles\Towns\TestTown1\RPGMAKER\READ_ME.txt" />
+    <None Include="Assets\Art\TileMaps\PlaceHolderTiles\Towns\TestTown1\RPGMAKER\READ_ME.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
@@ -916,9 +918,6 @@
     <Reference Include="Unity.2D.Sprite.Editor">
       <HintPath>C:/Users/Jon/Documents/UnityProjects/AlsoTheDarkness/AlsoTheDarkness/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>C:/Users/Jon/Documents/UnityProjects/AlsoTheDarkness/AlsoTheDarkness/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.2D.PixelPerfect">
       <HintPath>C:/Users/Jon/Documents/UnityProjects/AlsoTheDarkness/AlsoTheDarkness/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
     </Reference>
@@ -960,6 +959,10 @@
     <ProjectReference Include="AstarPathfindingProjectEditor.csproj">
       <Project>{853229FC-4725-0830-D431-B9EEE8DBA1B5}</Project>
       <Name>AstarPathfindingProjectEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.2D.Tilemap.Editor.csproj">
+      <Project>{420C149E-780F-C6BF-E8BA-F908A2DDCFB1}</Project>
+      <Name>Unity.2D.Tilemap.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.Tilemap.Extras.csproj">
       <Project>{DDCE5B51-5FEC-14BF-AF34-113DB623ACAC}</Project>

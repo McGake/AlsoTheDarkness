@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f906d50b07ff6149b4ce06fa0eabb4f, type: 3}
   m_Name: Heal
   m_EditorClassIdentifier: 
-  listName: Armor Of Frost
+  listName: Heal
   description: Rarest of rare items. Many people belive they don't even exist.
   sellPrice: 700
   useScript: {fileID: 11400000, guid: 8387c9f8b37091041b7074dea46b8e8f, type: 2}

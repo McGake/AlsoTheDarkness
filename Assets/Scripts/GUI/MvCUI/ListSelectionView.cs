@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class ListSelectionView : UIMVC
 {
@@ -27,6 +28,8 @@ public class ListSelectionView : UIMVC
 
     public ScrollRect scrollRect;
 
+    private float scrollZeroPos;
+
     public override void MVCSetup(object obj)
     {
         base.MVCSetup(obj);
@@ -41,6 +44,11 @@ public class ListSelectionView : UIMVC
         else if (GetComponent<LayoutGroup>() is HorizontalLayoutGroup)
         {
             GetDirInput = GetHorDirInput;
+        }
+
+        if(scrollRect != null)
+        {
+            scrollZeroPos = scrollRect.content.anchoredPosition.y;
         }
     }
     public override void MVCStart(object obj)
@@ -87,9 +95,9 @@ public class ListSelectionView : UIMVC
                 {
                     IncrementCurSelection((int)Mathf.Sign(dirInput));
                 }
+                ScrollScrollRect();
                 MoveCursorByIndx();
                 inputRefractoryEnd = Time.time + inputRefractoryPeriod;
-                ScrollScrollRect();
             }
         }
 
@@ -108,21 +116,38 @@ public class ListSelectionView : UIMVC
     {
         if (scrollRect != null)
         {
-
-
-                Vector3 yIncrease = new Vector3(0f, selectionList[curSelection].transform.localPosition.y, 0f);
-                Vector3 testVal = new Vector3(0f, 10f, 0f);
-
             RectTransform curSelectionRect = selectionList[curSelection].GetComponent<RectTransform>();
             RectTransform contentRect = scrollRect.content;
             RectTransform scrollRectRect = scrollRect.gameObject.GetComponent<RectTransform>();
 
-            Debug.Log("cur slected pos " + curSelectionRect.anchoredPosition.y);
-            Debug.Log("min y " + contentRect.anchoredPosition.y);
-            Debug.Log("max y " + contentRect.anchoredPosition.y + " "+ scrollRectRect.rect.height);
-            float add = contentRect.anchoredPosition.y + scrollRectRect.rect.height;
-            Debug.Log("add " + add);
-                //scrollRect.content.localPosition += testVal;
+            float selectedBottom = curSelectionRect.anchoredPosition.y - curSelectionRect.rect.height;// - curSelectionRect.rect.height;
+            float selectedTop = curSelectionRect.anchoredPosition.y + (curSelectionRect.rect.height/2);
+
+           float heightAbove = -(scrollZeroPos - (contentRect.anchoredPosition.y));
+            float heightBelow = -(scrollZeroPos - (contentRect.anchoredPosition.y));
+            Debug.Log("height below " + heightBelow);
+
+            Debug.Log("selectedBottom " + selectedBottom);
+
+
+
+
+                if (heightAbove + selectedTop > 0)
+                {
+                    contentRect.anchoredPosition = new Vector2(contentRect.anchoredPosition.x, scrollZeroPos -selectedTop);
+                }
+            
+
+
+                if (-scrollRectRect.rect.height > selectedBottom + heightAbove)
+                {
+                    contentRect.anchoredPosition = new Vector2(contentRect.anchoredPosition.x, scrollZeroPos + (-selectedBottom - scrollRectRect.rect.height));
+                }
+            
+            //if(selectedTop > scrollZeroPos)
+            //{
+            //    contentRect.anchoredPosition = new Vector2(contentRect.anchoredPosition.x, scrollZeroPos + (-selectedTop - scrollRectRect.rect.height));
+            //}
 
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -14,6 +15,8 @@ public class GridMovementUtilities
     public float pointArrivalThreshold;
     public Vector2? nextCellCenter = null;
     public Vector2 raycastOffset;
+
+    private Vector3Int nextCellCoords;
     [HideInInspector]
     public float tileSize = .5f;
 
@@ -44,7 +47,7 @@ public class GridMovementUtilities
     {
 
         Vector2 tempCellCenter = (Vector2)((Vector2)ownerTransform.position + raycastOffset) + (direction * tileSize);
-        Vector3Int nextCellCoords = terrainMap.WorldToCell(tempCellCenter);
+        nextCellCoords = terrainMap.WorldToCell(tempCellCenter);
         //This makes sure that the next cell position is exact
         nextCellCenter = terrainMap.GetCellCenterWorld(nextCellCoords);
         //Debug.Log("next cell : " +nextCellCenter.ToString("F4") + " position " + ownerTransform.position.ToString("F4") + " raycast offset = : " + raycastOffset.ToString("F4") );
@@ -75,19 +78,17 @@ public class GridMovementUtilities
 
     }
 
-    public LayerMask mask;
-    public bool IsObstructionIn(Vector2 direction)
+    public bool IsNextSquarePassable(TerrainTypes passableTerrainTypes)
     {
-        RaycastHit2D rh2d = Physics2D.Raycast(((Vector2)ownerTransform.position + raycastOffset), direction, tileSize * 1.45f, mask);
-        if (rh2d.transform != null)
-        {
-            //Debug.Log("Obstruction name is: " + rh2d.transform.name);
-            if (rh2d.transform.gameObject.layer == LayerMask.NameToLayer("BaseOverworldTerrain"))
-            {
-                return true;
-            }
-        }
+        TerrainTypes terrainType = ((WorldTile)terrainMap.GetTile(nextCellCoords)).terrainType;
 
+        if((passableTerrainTypes & terrainType)!=0)
+        {
+            return true;
+        }
         return false;
     }
+
+    public LayerMask mask;
+
 }

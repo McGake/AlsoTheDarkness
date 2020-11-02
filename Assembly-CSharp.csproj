@@ -142,8 +142,6 @@
     <Compile Include="Assets\Abilities\SubMiniGameAbility.cs" />
     <Compile Include="Assets\Abilities\SubProjectileAbility.cs" />
     <Compile Include="Assets\Art\TileMaps\PlaceHolderTiles\Scriptable TilesBrushes\TransitionZoneDef.cs" />
-    <Compile Include="Assets\Art\TileMaps\TestNewTilesTielmeasp\TestMask.cs" />
-    <Compile Include="Assets\Art\TileMaps\TestNewTilesTielmeasp\WorldTile.cs" />
     <Compile Include="Assets\CharacterPrefabs\PCs\PCDef.cs" />
     <Compile Include="Assets\GameStarter.cs" />
     <Compile Include="Assets\Items\Armor.cs" />

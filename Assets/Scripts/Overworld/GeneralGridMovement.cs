@@ -12,6 +12,8 @@ public class GeneralGridMovement : MonoBehaviour
 
     public WalkingDirectionInput directionalInput;
 
+    public TerrainTypes passableTerrain;
+
     public float inputThreshold;
     [HideInInspector]
     public Vector2 direction;
@@ -127,7 +129,7 @@ public class GeneralGridMovement : MonoBehaviour
 
             walkingView.SetDirectionAnim(direction);
 
-            if (!moveUtil.IsObstructionIn(direction))
+            if (IsPassableInDirection(direction))
             {
                 moveUtil.CalculateNextSquare(direction);
                 
@@ -142,6 +144,18 @@ public class GeneralGridMovement : MonoBehaviour
             direction = Vector2.zero;
             walkingView.PauseAnimation();
         }
+    }
+
+
+
+    public bool IsPassableInDirection(Vector2 direction)
+    {
+        moveUtil.CalculateNextSquare(direction);
+        if (moveUtil.IsNextSquarePassable(passableTerrain))
+        {
+                return true;
+        }
+        return false;
     }
 }
 

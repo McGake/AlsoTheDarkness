@@ -97,6 +97,7 @@
     <Compile Include="Packages\com.unity.2d.tilemap - Copy\Editor\TileDragAndDrop.cs" />
     <Compile Include="Packages\com.unity.2d.tilemap - Copy\Editor\TileDragAndDropManager.cs" />
     <Compile Include="Packages\com.unity.2d.tilemap - Copy\Editor\TileUtility.cs" />
+    <Compile Include="Packages\com.unity.2d.tilemap - Copy\Editor\TransitionTile.cs" />
     <Compile Include="Packages\com.unity.2d.tilemap - Copy\Editor\WorldTile.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

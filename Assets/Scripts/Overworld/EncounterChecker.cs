@@ -27,7 +27,7 @@ public class EncounterChecker : MonoBehaviour
 
         if (dangerZone == null)
         {
-            Debug.LogError("failed to find a danger zone at this location. Is your heat map painted? does your heat map string name correspond to the name of a danger zone?");
+            Debug.Log("failed to find a danger zone at this location. Is your heat map painted? does your heat map string name correspond to the name of a danger zone?");
         }
         else
         {

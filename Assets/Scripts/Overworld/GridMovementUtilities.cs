@@ -11,6 +11,7 @@ public class GridMovementUtilities
     public Transform ownerTransform;
 
     public Tilemap terrainMap;
+    public Tilemap transitionLayer;
     public float speed;
     public float pointArrivalThreshold;
     public Vector2? nextCellCenter = null;
@@ -45,12 +46,13 @@ public class GridMovementUtilities
 
     public void CalculateNextSquare(Vector2 direction)
     {
-
+        Debug.Log(direction);
         Vector2 tempCellCenter = (Vector2)((Vector2)ownerTransform.position + raycastOffset) + (direction * tileSize);
+        Debug.Log("temp cell center " + tempCellCenter);
         nextCellCoords = terrainMap.WorldToCell(tempCellCenter);
         //This makes sure that the next cell position is exact
         nextCellCenter = terrainMap.GetCellCenterWorld(nextCellCoords);
-        //Debug.Log("next cell : " +nextCellCenter.ToString("F4") + " position " + ownerTransform.position.ToString("F4") + " raycast offset = : " + raycastOffset.ToString("F4") );
+        Debug.Log("next cell : " + ((Vector2)nextCellCenter).ToString("F4") + " position " + ownerTransform.position.ToString("F4") + " raycast offset = : " + raycastOffset.ToString("F4") );
         //Debug.Log("calcultate next square " + transform.position + " " + nextCellCenter + " " + tempCellCenter + " " + (direction * tileSize) + " " + direction + " " + tileSize);
     }
 
@@ -62,7 +64,7 @@ public class GridMovementUtilities
         }
         float distance = Vector2.Distance((Vector2)((Vector2)ownerTransform.position + raycastOffset), (Vector2)nextCellCenter);
 
-        //Debug.Log(((Vector2)ownerTransform.position + raycastOffset).ToString("F4") + " " + distance.ToString("F4") + " " + ((Vector2)nextCellCenter).ToString("F4"));
+       //Debug.Log(((Vector2)ownerTransform.position + raycastOffset).ToString("F4") + " " + distance.ToString("F4") + " " + ((Vector2)nextCellCenter).ToString("F4"));
         if (Mathf.Abs(distance) <= pointArrivalThreshold)
         {
             return true;
@@ -81,12 +83,38 @@ public class GridMovementUtilities
     public bool IsNextSquarePassable(TerrainTypes passableTerrainTypes)
     {
         TerrainTypes terrainType = ((WorldTile)terrainMap.GetTile(nextCellCoords)).terrainType;
-
+        Debug.Log("tile " + terrainMap.GetTile(nextCellCoords).name);
+        Debug.Log(nextCellCoords);
+        Debug.Log("terrain in next square " + terrainType);
+        Debug.Log("passable terrain by this actor " + passableTerrainTypes);
         if((passableTerrainTypes & terrainType)!=0)
         {
             return true;
         }
         return false;
+    }
+
+    public bool IsCurSquareTransition()
+    {
+        Vector2 tempCellCenter = (Vector2)((Vector2)ownerTransform.position + raycastOffset);
+        Vector3Int transitionLayerlCoords = transitionLayer.WorldToCell(tempCellCenter);
+
+        TileBase transitionTile = transitionLayer.GetTile(transitionLayerlCoords);
+        if(transitionTile != null)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public Levels GetCurSquareTransitionLevel()
+    {
+        Vector2 tempCellCenter = (Vector2)((Vector2)ownerTransform.position + raycastOffset);
+        Vector3Int transitionLayerlCoords = transitionLayer.WorldToCell(tempCellCenter);
+
+        TileBase transitionTile = transitionLayer.GetTile(transitionLayerlCoords);
+
+        return ((TransitionTile)transitionTile).level;
     }
 
     public LayerMask mask;

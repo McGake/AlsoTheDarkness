@@ -272,7 +272,6 @@
     <Compile Include="Assets\Scripts\Overworld\OverworldStarter.cs" />
     <Compile Include="Assets\Scripts\Overworld\PlayerWalkingDirectionInput.cs" />
     <Compile Include="Assets\Scripts\Overworld\TerrainAndWorld\HeatMapTileInfo.cs" />
-    <Compile Include="Assets\Scripts\Overworld\TerrainAndWorld\Transition.cs" />
     <Compile Include="Assets\Scripts\Overworld\Walker\InteractionChecker.cs" />
     <Compile Include="Assets\Scripts\Overworld\Walker\WalkingView.cs" />
     <Compile Include="Assets\Scripts\Overworld\WalkingDirecitonInput.cs" />
@@ -325,10 +324,8 @@
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
-    <None Include="Assets\Art\TileMaps\PlaceHolderTiles\Towns\TestTown1\RPGMAKER\README_UPDATE.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
-    <None Include="Assets\Art\TileMaps\PlaceHolderTiles\Towns\TestTown1\RPGMAKER\READ_ME.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />

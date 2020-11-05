@@ -24,6 +24,8 @@ public class GeneralGridMovement : MonoBehaviour
 
     private List<Action> subscribedArrival = new List<Action>();
 
+    public LevelManager levelManager;
+
     public void SubscribeToSquareStay(Action subMethod)
     {
         subscribedStay.Add(subMethod);
@@ -64,6 +66,7 @@ public class GeneralGridMovement : MonoBehaviour
     private void Awake()
     {
         TurnManager.RegisterTurnTakerAsFirst(this);
+        levelManager = GameObject.FindObjectOfType<LevelManager>();
     }
 
     private void OnEnable()
@@ -97,11 +100,17 @@ public class GeneralGridMovement : MonoBehaviour
     {
         if (moveUtil.ArivedAtNextSquare())
         {
+            Debug.Log("first ssqatr");
             if (firstArrival)
             {
                 transform.position =(Vector2)moveUtil.nextCellCenter - moveUtil.raycastOffset; //TODO: make this a lerp untill new square is chosen through directional input
                 firstArrival = false;
                 NotifyArrivalSubscribers();
+                if(moveUtil.IsCurSquareTransition())
+                {
+                    Levels level = moveUtil.GetCurSquareTransitionLevel();
+                    levelManager.LoadLevel(level);
+                }
                 return;
             }
             CheckForNewSquareTarget();
@@ -131,6 +140,7 @@ public class GeneralGridMovement : MonoBehaviour
 
             if (IsPassableInDirection(direction))
             {
+                Debug.Log("was passable");
                 moveUtil.CalculateNextSquare(direction);
                 
             }
@@ -150,6 +160,7 @@ public class GeneralGridMovement : MonoBehaviour
 
     public bool IsPassableInDirection(Vector2 direction)
     {
+        Debug.Log("passable");
         moveUtil.CalculateNextSquare(direction);
         if (moveUtil.IsNextSquarePassable(passableTerrain))
         {
